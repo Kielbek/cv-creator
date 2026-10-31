@@ -8,19 +8,19 @@ import { Logo } from './logo';
   imports: [RouterLink, TranslatePipe, Logo],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <footer class="border-t border-slate-200 bg-white">
-      <div class="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <div>
-          <app-logo [dark]="false" />
-          <p class="mt-2 max-w-sm text-sm text-slate-500">{{ 'footer.tagline' | translate }}</p>
+    <footer class="border-t border-line">
+      <div class="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-12 sm:flex-row sm:justify-between sm:px-8">
+        <div class="max-w-xs">
+          <app-logo />
+          <p class="mt-3 text-[13.5px] leading-relaxed text-muted">{{ 'footer.tagline' | translate }}</p>
         </div>
-        <div class="flex flex-wrap gap-6 text-sm text-slate-600">
-          <a routerLink="/templates" class="hover:text-brand-600">{{ 'nav.templates' | translate }}</a>
-          <a routerLink="/editor" class="hover:text-brand-600">{{ 'nav.create' | translate }}</a>
-          <a routerLink="/" fragment="faq" class="hover:text-brand-600">FAQ</a>
+        <div class="flex gap-10 text-[13.5px] text-muted">
+          <a routerLink="/templates" class="hover:text-ink">{{ 'nav.templates' | translate }}</a>
+          <a routerLink="/start" class="hover:text-ink">{{ 'nav.create' | translate }}</a>
+          <a routerLink="/" fragment="faq" class="hover:text-ink">FAQ</a>
         </div>
       </div>
-      <p class="pb-8 text-center text-xs text-slate-400">© {{ year }} {{ 'footer.rights' | translate }}</p>
+      <p class="mx-auto max-w-6xl px-5 pb-10 text-[12.5px] text-faint sm:px-8">© {{ year }} {{ 'footer.rights' | translate }}</p>
     </footer>
   `,
 })

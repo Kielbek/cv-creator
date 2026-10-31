@@ -6,7 +6,7 @@ import { findCountry } from './countries';
 const AVATAR =
   'data:image/svg+xml;utf8,' +
   encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c7d2fe"/><stop offset="1" stop-color="#e9d5ff"/></linearGradient></defs><rect width="120" height="120" fill="url(#a)"/><circle cx="60" cy="47" r="21" fill="#7c6cf6" opacity=".85"/><path d="M20 120c4-26 20-38 40-38s36 12 40 38z" fill="#7c6cf6" opacity=".85"/></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9e7e1"/><stop offset="1" stop-color="#d9d6ce"/></linearGradient></defs><rect width="120" height="120" fill="url(#a)"/><circle cx="60" cy="47" r="21" fill="#a8a59d"/><path d="M20 120c4-26 20-38 40-38s36 12 40 38z" fill="#a8a59d"/></svg>`,
   );
 
 /** Example content for previews, the template gallery and "load example". A fictional person. */

@@ -1,53 +1,45 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LucideAngularModule, ShieldCheck, ArrowRight } from 'lucide-angular';
 import { SiteNav } from '../../shared/site-nav';
 import { SiteFooter } from '../../shared/site-footer';
 import { CvThumb } from '../../cv-render/cv-thumb';
 import { TEMPLATES, TemplateTag } from '../../core/cv/templates';
-import { CvStore } from '../../core/cv/cv.store';
 import { UiLanguage } from '../../core/i18n/ui-language';
 
 @Component({
   selector: 'app-templates-page',
-  imports: [TranslatePipe, LucideAngularModule, SiteNav, SiteFooter, CvThumb],
+  imports: [TranslatePipe, SiteNav, SiteFooter, CvThumb],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="hero-bg pb-16 text-white">
-      <app-site-nav />
-      <div class="mx-auto max-w-7xl px-4 pt-8 sm:px-6">
-        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">{{ 'templates.title' | translate }}</h1>
-        <p class="mt-3 max-w-2xl text-white/70">{{ 'templates.subtitle' | translate }}</p>
-        <div class="mt-8 flex flex-wrap gap-2">
-          @for (f of filters; track f) {
-            <button type="button" class="rounded-full px-4 py-1.5 text-sm font-medium transition" [class]="filter() === f ? 'bg-white text-slate-900' : 'bg-white/10 text-white/80 hover:bg-white/20'" (click)="filter.set(f)">
-              {{ 'templates.filter.' + f | translate }}
-            </button>
-          }
-        </div>
+    <app-site-nav />
+    <div class="mx-auto max-w-6xl px-5 pt-16 sm:px-8">
+      <h1 class="serif text-balance text-[2.75rem] leading-tight">{{ 'templates.title' | translate }}</h1>
+      <p class="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">{{ 'templates.subtitle' | translate }}</p>
+      <div class="mt-10 flex flex-wrap gap-6 border-b border-line text-[14px]" role="tablist">
+        @for (f of filters; track f) {
+          <button type="button" role="tab" [attr.aria-selected]="filter() === f" class="-mb-px border-b pb-3 transition" [class]="filter() === f ? 'border-ink text-ink' : 'border-transparent text-muted hover:text-ink'" (click)="filter.set(f)">
+            {{ 'templates.filter.' + f | translate }}
+          </button>
+        }
       </div>
     </div>
-    <div class="mx-auto -mt-8 grid max-w-7xl gap-6 px-4 pb-24 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
+    <div class="mx-auto grid max-w-6xl gap-x-6 gap-y-12 px-5 pt-10 pb-28 sm:grid-cols-2 sm:px-8 lg:grid-cols-3">
       @for (t of visible(); track t.id) {
-        <div class="group overflow-hidden rounded-2xl bg-white shadow-lg shadow-slate-900/5 ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-2xl hover:ring-brand-300">
-          <div class="relative flex justify-center overflow-hidden bg-slate-100 p-4">
-            <cv-thumb [templateId]="t.id" [lang]="ui.current()" [width]="250" class="shadow-md" />
-            <div class="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-ink-950/70 to-transparent p-5 opacity-0 transition group-hover:opacity-100 group-focus-within:opacity-100">
-              <button type="button" class="btn-primary text-sm" (click)="use(t.id)">{{ 'templates.use' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" /></button>
+        <button type="button" class="group text-left" (click)="use(t.id)">
+          <div class="flex justify-center rounded-xl bg-paper-2 px-8 pt-8 transition group-hover:bg-[#ebe9e3]">
+            <div class="overflow-hidden rounded-t-md bg-white shadow-[0_1px_2px_rgb(0_0_0/0.05),0_16px_40px_-18px_rgb(0_0_0/0.2)] transition group-hover:-translate-y-1">
+              <cv-thumb [templateId]="t.id" [lang]="ui.current()" [width]="280" class="h-[330px]!" />
             </div>
           </div>
-          <div class="flex items-center justify-between gap-2 px-4 py-3">
+          <div class="mt-4 flex items-baseline justify-between gap-3">
             <div>
-              <p class="font-semibold text-slate-900">{{ t.name }}</p>
-              <p class="text-xs text-slate-500">{{ 'layout.columns.' + t.columns | translate }} · {{ 'templates.filter.' + t.tags[0] | translate }}</p>
+              <p class="text-[15px] font-medium text-ink">{{ t.name }}</p>
+              <p class="mt-0.5 text-[13px] text-muted">{{ 'layout.columns.' + t.columns | translate }} · {{ 'templates.filter.' + t.tags[0] | translate }}{{ t.ats ? ' · ATS' : '' }}</p>
             </div>
-            @if (t.ats) {
-              <span class="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700"><lucide-icon [img]="icons.ShieldCheck" class="size-3.5" /> ATS</span>
-            }
+            <span class="text-[13px] font-medium text-ink opacity-0 transition group-hover:opacity-100">{{ 'templates.use' | translate }} →</span>
           </div>
-          <button type="button" class="sr-only" (click)="use(t.id)">{{ 'templates.use' | translate }} {{ t.name }}</button>
-        </div>
+        </button>
       }
     </div>
     <app-site-footer />
@@ -55,9 +47,7 @@ import { UiLanguage } from '../../core/i18n/ui-language';
 })
 export class TemplatesPage {
   protected readonly ui = inject(UiLanguage);
-  private readonly store = inject(CvStore);
   private readonly router = inject(Router);
-  protected readonly icons = { ShieldCheck, ArrowRight };
   protected readonly filters: ('all' | TemplateTag)[] = ['all', 'ats', 'modern', 'classic', 'creative', 'minimal'];
   protected readonly filter = signal<'all' | TemplateTag>('all');
   protected readonly visible = computed(() => {
@@ -66,7 +56,6 @@ export class TemplatesPage {
   });
 
   protected use(id: string): void {
-    this.store.setTemplate(id);
-    this.router.navigateByUrl('/editor');
+    this.router.navigate(['/start'], { queryParams: { template: id } });
   }
 }

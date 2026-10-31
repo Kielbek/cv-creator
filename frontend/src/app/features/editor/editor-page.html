@@ -1,10 +1,9 @@
 @let c = cv();
-<div class="wizard theme-mono" [class.rail-collapsed]="railCollapsed()">
+<div class="wizard" [class.rail-collapsed]="railCollapsed()">
   <!-- ================= step rail ================= -->
   <aside class="wizard-rail no-print">
-    <div class="flex items-center justify-between gap-2 px-5 pb-6 pt-5">
-      <a routerLink="/" aria-label="Home" class="rail-label"><app-logo [dark]="true" [mono]="true" /></a>
-      <a routerLink="/" aria-label="Home" class="rail-icon-only"><app-logo [dark]="true" [compact]="true" [mono]="true" /></a>
+    <div class="flex h-14 items-center justify-between px-5">
+      <a routerLink="/" aria-label="Home"><app-logo [compact]="railCollapsed()" /></a>
       <button type="button" class="rail-toggle" (click)="railCollapsed.set(!railCollapsed())" [attr.aria-label]="'editor.collapse' | translate">
         <lucide-icon [img]="icons.ChevronLeft" class="size-4 transition" [class.rotate-180]="railCollapsed()" />
       </button>
@@ -13,46 +12,35 @@
     <nav class="wizard-steps" [attr.aria-label]="'editor.stepsLabel' | translate">
       @for (s of steps; track s.id; let i = $index) {
         <button type="button" class="wizard-step" [class.is-active]="i === stepIndex()" [attr.aria-current]="i === stepIndex() ? 'step' : null" (click)="go(i)" [title]="'editor.steps.' + s.id + '.nav' | translate">
-          <span class="step-icon">
-            @if (done(i) && i !== stepIndex()) {
-              <lucide-icon [img]="icons.Check" class="size-4" />
-            } @else {
-              <lucide-icon [img]="s.icon" class="size-[18px]" />
-            }
-          </span>
-          <span class="rail-label truncate">{{ 'editor.steps.' + s.id + '.nav' | translate }}</span>
+          <span class="step-num">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</span>
+          <span class="rail-label min-w-0 flex-1 truncate">{{ 'editor.steps.' + s.id + '.nav' | translate }}</span>
+          @if (done(i)) {
+            <lucide-icon [img]="icons.Check" class="rail-label size-3.5 text-faint" />
+          }
         </button>
       }
     </nav>
 
-    <div class="rail-label mt-auto space-y-4 px-5 pb-5">
-      <div class="rounded-xl border border-white/10 p-3.5">
-        <div class="flex items-center justify-between text-xs text-white/70"><span>{{ 'editor.score.title' | translate }}</span><span class="font-bold text-white">{{ score() }}%</span></div>
-        <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-          <div class="h-full rounded-full bg-white transition-all" [style.width.%]="score()"></div>
-        </div>
-      </div>
-      <div class="flex items-center justify-between">
-        <app-language-switcher [dark]="true" />
-        <span class="text-[11px] text-white/40">{{ 'editor.autosave' | translate }}</span>
-      </div>
+    <div class="rail-label mt-auto flex items-center justify-between border-t border-line px-5 py-3">
+      <span class="text-[12px] text-faint">{{ 'editor.autosave' | translate }}</span>
+      <app-language-switcher />
     </div>
   </aside>
 
   <!-- ================= main column ================= -->
   <main class="wizard-main no-print">
-    <div class="sticky top-0 z-20 flex items-center gap-2 border-b border-slate-200/70 bg-white/85 px-4 py-2.5 backdrop-blur sm:px-8">
+    <div class="sticky top-0 z-20 flex h-14 items-center gap-2 border-b border-line bg-white/90 px-4 backdrop-blur sm:px-6">
       <label class="flex min-w-0 items-center gap-2 text-xs text-slate-500">
-        <span class="hidden whitespace-nowrap 2xl:inline">{{ 'editor.cvLanguage' | translate }}</span>
-        <select class="input w-auto! py-1.5 max-sm:max-w-[6.5rem]" [value]="c.language" (change)="setLanguage($any($event.target).value)" [attr.aria-label]="'editor.cvLanguage' | translate">
+        <span class="hidden whitespace-nowrap text-faint 2xl:inline">{{ 'editor.cvLanguage' | translate }}</span>
+        <select class="input h-8! w-auto! border-transparent! bg-transparent! text-[13.5px]! hover:bg-paper-2! max-sm:max-w-[6.5rem]" [value]="c.language" (change)="setLanguage($any($event.target).value)" [attr.aria-label]="'editor.cvLanguage' | translate">
           @for (l of languages; track l) {
             <option [value]="l" [selected]="l == c.language">{{ langName(l) }}</option>
           }
         </select>
       </label>
       <label class="flex min-w-0 items-center gap-2 text-xs text-slate-500">
-        <span class="hidden whitespace-nowrap 2xl:inline">{{ 'editor.country' | translate }}</span>
-        <select class="input w-auto! max-w-40 py-1.5 max-sm:max-w-[6.5rem]" [value]="c.country" (change)="setCountry($any($event.target).value)" [attr.aria-label]="'editor.country' | translate">
+        <span class="hidden whitespace-nowrap text-faint 2xl:inline">{{ 'editor.country' | translate }}</span>
+        <select class="input h-8! w-auto! max-w-44 border-transparent! bg-transparent! text-[13.5px]! hover:bg-paper-2! max-sm:max-w-[6.5rem]" [value]="c.country" (change)="setCountry($any($event.target).value)" [attr.aria-label]="'editor.country' | translate">
           @for (co of countries; track co.code) {
             <option [value]="co.code" [selected]="co.code == c.country">{{ countryName(co.code) }}</option>
           }
@@ -67,7 +55,7 @@
           <lucide-icon [img]="icons.MoreHorizontal" class="size-5" />
         </button>
         @if (menuOpen()) {
-          <div class="absolute right-0 z-30 mt-2 w-60 rounded-xl border border-slate-200 bg-white p-1.5 shadow-xl" (mouseleave)="menuOpen.set(false)">
+          <div class="absolute right-0 z-30 mt-1 w-60 rounded-xl border border-line bg-white p-1 shadow-[0_8px_30px_rgb(0_0_0/0.08)]" (mouseleave)="menuOpen.set(false)">
             <button type="button" class="menu-item" (click)="exportJson()"><lucide-icon [img]="icons.FileJson" class="size-4" /> {{ 'editor.menu.export' | translate }}</button>
             <label class="menu-item cursor-pointer"><lucide-icon [img]="icons.FileUp" class="size-4" /> {{ 'editor.menu.import' | translate }}<input type="file" accept="application/json,.json" class="sr-only" (change)="importJson($event)" /></label>
             <button type="button" class="menu-item" (click)="loadSample()"><lucide-icon [img]="icons.Eye" class="size-4" /> {{ 'editor.menu.sample' | translate }}</button>
@@ -75,35 +63,34 @@
           </div>
         }
       </div>
-      <button type="button" class="btn-primary shrink-0 whitespace-nowrap rounded-full! px-4! py-2! text-sm" (click)="download()">
+      <button type="button" class="btn-primary btn-sm shrink-0" (click)="download()">
         <lucide-icon [img]="icons.Download" class="size-4" /> <span class="hidden sm:inline">{{ 'editor.download' | translate }}</span><span class="sm:hidden">PDF</span>
       </button>
     </div>
 
-    <div class="mx-auto w-full max-w-[680px] px-5 pb-32 pt-10 sm:px-10 sm:pt-16">
-      <p class="mb-3 text-[13px] text-slate-400">{{ 'editor.stepOf' | translate: { n: stepIndex() + 1, total: steps.length } }}</p>
-      <h1 class="text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.03em] text-slate-900 sm:text-[2.35rem]">
-        {{ 'editor.steps.' + step().id + '.title1' | translate }}<br />
-        <span class="text-gradient">{{ 'editor.steps.' + step().id + '.title2' | translate }}</span>
+    <div class="mx-auto w-full max-w-[640px] px-5 pb-32 pt-12 sm:px-10 sm:pt-16">
+      <p class="eyebrow">{{ 'editor.stepOf' | translate: { n: stepIndex() + 1, total: steps.length } }}</p>
+      <h1 class="serif text-balance mt-4 text-[2rem] leading-[1.12] text-ink sm:text-[2.4rem]">
+        {{ 'editor.steps.' + step().id + '.title1' | translate }} {{ 'editor.steps.' + step().id + '.title2' | translate }}
       </h1>
-      <p class="mt-4 max-w-xl text-[15px] leading-relaxed text-slate-500">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
+      <p class="mt-3 max-w-[32rem] text-[15px] leading-relaxed text-muted">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
 
       <div class="mt-10">
         @if (!isFinish()) {
           <app-content-panel [sections]="step().sections" />
         } @else {
           <!-- finish: download + design, layout, AI -->
-          <div class="mb-6 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:flex-row sm:items-center">
+          <div class="mb-8 flex flex-col gap-4 rounded-xl border border-line bg-paper p-5 sm:flex-row sm:items-center">
             <div class="flex-1">
-              <p class="font-semibold text-slate-900">{{ 'editor.readyTitle' | translate }}</p>
+              <p class="font-medium text-ink">{{ 'editor.readyTitle' | translate }}</p>
               <p class="text-sm text-slate-600">{{ 'editor.pages' | translate: { count: pageCount() } }} · {{ 'editor.score.title' | translate }} {{ score() }}%</p>
             </div>
-            <button type="button" class="btn-primary rounded-full!" (click)="download()"><lucide-icon [img]="icons.Download" class="size-4" /> {{ 'editor.download' | translate }}</button>
+            <button type="button" class="btn-primary" (click)="download()"><lucide-icon [img]="icons.Download" class="size-4" /> {{ 'editor.download' | translate }}</button>
           </div>
 
           @if (score() < 100) {
-            <div class="mb-6 rounded-2xl border border-slate-200 bg-white p-4">
-              <p class="mb-2 text-sm font-semibold text-slate-800">{{ 'editor.improveList' | translate }}</p>
+            <div class="mb-8 border-l-2 border-line-2 pl-4">
+              <p class="mb-2 text-[13.5px] font-medium text-ink">{{ 'editor.improveList' | translate }}</p>
               <ul class="space-y-1.5 text-sm">
                 @for (ch of checklist(); track ch.key) {
                   @if (!ch.ok) {
@@ -114,7 +101,7 @@
             </div>
           }
 
-          <div class="mb-5 grid grid-cols-3 gap-1 rounded-xl bg-slate-100 p-1" role="tablist">
+          <div class="mb-6 grid grid-cols-3 gap-1 rounded-lg bg-paper-2 p-1" role="tablist">
             <button type="button" role="tab" class="seg" [class.seg-on]="finishTab() === 'design'" [attr.aria-selected]="finishTab() === 'design'" (click)="finishTab.set('design')"><lucide-icon [img]="icons.Palette" class="size-4" /> {{ 'editor.tabs.design' | translate }}</button>
             <button type="button" role="tab" class="seg" [class.seg-on]="finishTab() === 'layout'" [attr.aria-selected]="finishTab() === 'layout'" (click)="finishTab.set('layout')"><lucide-icon [img]="icons.LayoutGrid" class="size-4" /> {{ 'editor.tabs.layout' | translate }}</button>
             <button type="button" role="tab" class="seg" [class.seg-on]="finishTab() === 'ai'" [attr.aria-selected]="finishTab() === 'ai'" (click)="finishTab.set('ai')"><lucide-icon [img]="icons.Sparkles" class="size-4" /> {{ 'editor.tabs.ai' | translate }}</button>
@@ -131,8 +118,8 @@
             }
           }
 
-          <div class="mt-6 rounded-2xl bg-slate-50 p-4 text-sm text-slate-600">
-            <p class="mb-1.5 flex items-center gap-1.5 font-semibold text-slate-700"><lucide-icon [img]="icons.Lightbulb" class="size-4 text-amber-500" /> {{ 'editor.tipsFor' | translate: { country: countryName(c.country) } }}</p>
+          <div class="mt-8 border-t border-line pt-6 text-[13.5px] text-muted">
+            <p class="mb-2 flex items-center gap-1.5 font-medium text-ink"><lucide-icon [img]="icons.Lightbulb" class="size-4 text-faint" /> {{ 'editor.tipsFor' | translate: { country: countryName(c.country) } }}</p>
             <ul class="list-disc space-y-0.5 pl-5">
               @for (t of store.country().tips; track t) {
                 <li>{{ 'country.tips.' + t | translate }}</li>
@@ -142,16 +129,16 @@
         }
       </div>
 
-      <div class="mt-12 flex items-center justify-between gap-4">
-        <button type="button" class="wizard-back" (click)="go(stepIndex() - 1)" [disabled]="stepIndex() === 0">
+      <div class="mt-14 flex items-center justify-between gap-4 border-t border-line pt-6">
+        <button type="button" class="btn-ghost" (click)="go(stepIndex() - 1)" [disabled]="stepIndex() === 0">
           <lucide-icon [img]="icons.ArrowLeft" class="size-4" /> {{ 'editor.back' | translate }}
         </button>
         @if (!isFinish()) {
-          <button type="button" class="btn-primary rounded-full! px-8!" (click)="go(stepIndex() + 1)">
+          <button type="button" class="btn-primary px-6!" (click)="go(stepIndex() + 1)">
             {{ 'editor.next' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" />
           </button>
         } @else {
-          <button type="button" class="btn-primary rounded-full! px-8!" (click)="download()">
+          <button type="button" class="btn-primary px-6!" (click)="download()">
             <lucide-icon [img]="icons.Download" class="size-4" /> {{ 'editor.download' | translate }}
           </button>
         }
@@ -161,10 +148,10 @@
 
   <!-- ================= live preview ================= -->
   <section class="wizard-preview" [class.is-open]="mobilePreview()" [attr.aria-label]="'editor.preview' | translate">
-    <div class="no-print flex items-center justify-between gap-3 px-6 pb-4 pt-6">
+    <div class="no-print flex items-center justify-between gap-3 px-8 pb-5 pt-7">
       <div>
-        <p class="text-sm font-semibold text-slate-800">{{ 'editor.livePreview' | translate }}</p>
-        <p class="text-xs text-slate-500">{{ store.geometry().template.name }} · {{ 'editor.pages' | translate: { count: pageCount() } }}</p>
+        <p class="eyebrow">{{ 'editor.livePreview' | translate }}</p>
+        <p class="mt-1 text-[13px] text-muted">{{ store.geometry().template.name }} · {{ 'editor.pages' | translate: { count: pageCount() } }}</p>
       </div>
       <button type="button" class="preview-close icon-btn" (click)="mobilePreview.set(false)" [attr.aria-label]="'common.close' | translate"><lucide-icon [img]="icons.X" class="size-5" /></button>
     </div>
@@ -174,14 +161,14 @@
       </div>
       @if (!isFinish()) {
         <div class="no-print mx-auto mt-5 max-w-sm pb-8 text-center">
-          <p class="text-xs text-slate-500">{{ 'editor.previewNote' | translate }}</p>
-          <button type="button" class="mt-2 text-sm font-semibold text-brand-600 hover:underline" (click)="go(steps.length - 1); mobilePreview.set(false)">{{ 'editor.changeTemplate' | translate }}</button>
+          <p class="text-[12.5px] text-faint">{{ 'editor.previewNote' | translate }}</p>
+          <button type="button" class="link mt-2 text-[13px] font-medium" (click)="go(steps.length - 1); mobilePreview.set(false)">{{ 'editor.changeTemplate' | translate }}</button>
         </div>
       }
     </div>
   </section>
 
-  <button type="button" class="preview-fab no-print btn-primary rounded-full! shadow-2xl" (click)="mobilePreview.set(true)">
+  <button type="button" class="preview-fab no-print btn-primary shadow-lg" (click)="mobilePreview.set(true)">
     <lucide-icon [img]="icons.Eye" class="size-4" /> {{ 'editor.preview' | translate }}
   </button>
 </div>

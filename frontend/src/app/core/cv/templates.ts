@@ -36,16 +36,16 @@ export interface CvTemplate {
 }
 
 export const TEMPLATES: readonly CvTemplate[] = [
-  { id: 'atlas', name: 'Atlas', tags: ['ats', 'classic'], ats: true, columns: 1, sidebar: 'left', sidebarTheme: 'plain', header: 'left', heading: 'underline', font: 'inter', accent: '#2f54eb', photo: 'circle', skills: 'chips' },
+  { id: 'atlas', name: 'Atlas', tags: ['ats', 'classic'], ats: true, columns: 1, sidebar: 'left', sidebarTheme: 'plain', header: 'left', heading: 'underline', font: 'inter', accent: '#23406b', photo: 'circle', skills: 'chips' },
   { id: 'harvard', name: 'Harvard', tags: ['ats', 'classic'], ats: true, columns: 1, sidebar: 'left', sidebarTheme: 'plain', header: 'center', heading: 'line', font: 'lora', accent: '#1f2937', photo: 'circle', skills: 'list' },
   { id: 'clarity', name: 'Clarity', tags: ['ats', 'minimal'], ats: true, columns: 1, sidebar: 'left', sidebarTheme: 'plain', header: 'left', heading: 'caps', font: 'system', accent: '#0f766e', photo: 'rounded', skills: 'list' },
-  { id: 'nova', name: 'Nova', tags: ['modern'], ats: false, columns: 2, sidebar: 'left', sidebarTheme: 'tinted', header: 'sidebar', heading: 'bar', font: 'inter', accent: '#5b4cf5', photo: 'circle', skills: 'bars' },
-  { id: 'onyx', name: 'Onyx', tags: ['modern', 'creative'], ats: false, columns: 2, sidebar: 'left', sidebarTheme: 'dark', header: 'sidebar', heading: 'caps', font: 'inter', accent: '#a78bfa', photo: 'circle', skills: 'dots' },
-  { id: 'aurora', name: 'Aurora', tags: ['modern', 'creative'], ats: false, columns: 2, sidebar: 'right', sidebarTheme: 'plain', header: 'banner', heading: 'pill', font: 'inter', accent: '#6d28d9', photo: 'circle', skills: 'chips' },
+  { id: 'nova', name: 'Nova', tags: ['modern'], ats: false, columns: 2, sidebar: 'left', sidebarTheme: 'tinted', header: 'sidebar', heading: 'bar', font: 'inter', accent: '#3f5874', photo: 'circle', skills: 'bars' },
+  { id: 'onyx', name: 'Onyx', tags: ['modern', 'creative'], ats: false, columns: 2, sidebar: 'left', sidebarTheme: 'dark', header: 'sidebar', heading: 'caps', font: 'inter', accent: '#c3a26b', photo: 'circle', skills: 'dots' },
+  { id: 'aurora', name: 'Aurora', tags: ['modern', 'creative'], ats: false, columns: 2, sidebar: 'right', sidebarTheme: 'plain', header: 'banner', heading: 'pill', font: 'inter', accent: '#5a4a6e', photo: 'circle', skills: 'chips' },
   { id: 'executive', name: 'Executive', tags: ['classic', 'modern'], ats: true, columns: 2, sidebar: 'left', sidebarTheme: 'plain', header: 'banner', heading: 'underline', font: 'georgia', accent: '#1e3a5f', photo: 'square', skills: 'list' },
   { id: 'mono', name: 'Mono', tags: ['minimal'], ats: true, columns: 2, sidebar: 'right', sidebarTheme: 'plain', header: 'left', heading: 'minimal', font: 'system', accent: '#111827', photo: 'rounded', skills: 'list' },
-  { id: 'coral', name: 'Coral', tags: ['creative'], ats: false, columns: 2, sidebar: 'left', sidebarTheme: 'accent', header: 'sidebar', heading: 'bar', font: 'inter', accent: '#e8590c', photo: 'circle', skills: 'bars' },
-  { id: 'trio', name: 'Trio', tags: ['modern', 'creative'], ats: false, columns: 3, sidebar: 'left', sidebarTheme: 'tinted', header: 'banner', heading: 'caps', font: 'inter', accent: '#0e7490', photo: 'circle', skills: 'chips' },
+  { id: 'coral', name: 'Coral', tags: ['creative'], ats: false, columns: 2, sidebar: 'left', sidebarTheme: 'accent', header: 'sidebar', heading: 'bar', font: 'inter', accent: '#a4502e', photo: 'circle', skills: 'bars' },
+  { id: 'trio', name: 'Trio', tags: ['modern', 'creative'], ats: false, columns: 3, sidebar: 'left', sidebarTheme: 'tinted', header: 'banner', heading: 'caps', font: 'inter', accent: '#2c5e5a', photo: 'circle', skills: 'chips' },
 ];
 
 export function findTemplate(id: string): CvTemplate {

@@ -24,7 +24,20 @@ export interface TailorResult {
   tailoredSummary: string;
 }
 
-export type AiErrorCode = 'rate_limited' | 'ai_unavailable' | 'invalid' | 'network';
+export interface ImportedCv {
+  language: string;
+  personal: Partial<Record<'firstName' | 'lastName' | 'headline' | 'email' | 'phone' | 'location' | 'website' | 'linkedin' | 'github', string>>;
+  summary: string;
+  experience: { position: string; company: string; location: string; start: string; end: string; current: boolean; description: string }[];
+  education: { degree: string; school: string; location: string; start: string; end: string; current: boolean; description: string }[];
+  skills: string[];
+  languages: { name: string; level: string }[];
+  projects: { name: string; link: string; description: string }[];
+  certificates: { name: string; issuer: string; date: string }[];
+  interests: string;
+}
+
+export type AiErrorCode = 'rate_limited' | 'ai_unavailable' | 'invalid' | 'network' | 'unsupported';
 
 export class AiError extends Error {
   constructor(
@@ -108,13 +121,24 @@ export class AiService {
     return this.post('translate', { sourceLanguage: cv.language, targetLanguage, targetCountry, cv: toCvText(cv) });
   }
 
+  importPdf(file: File): Promise<ImportedCv> {
+    const form = new FormData();
+    form.append('file', file);
+    return this.post('import', form);
+  }
+
+  importText(text: string): Promise<ImportedCv> {
+    return this.post('import', { text });
+  }
+
   private async post<T>(path: string, body: unknown): Promise<T> {
     try {
       return await firstValueFrom(this.http.post<T>(`/api/v1/ai/${path}`, body));
     } catch (e) {
       if (e instanceof HttpErrorResponse) {
         if (e.status === 429) throw new AiError('rate_limited', Number(e.headers.get('Retry-After')) || undefined);
-        if (e.status === 400) throw new AiError('invalid');
+        if (e.status === 400 || e.status === 413) throw new AiError('invalid');
+        if (e.status === 415) throw new AiError('unsupported');
         if (e.status === 0) throw new AiError('network');
       }
       throw new AiError('ai_unavailable');

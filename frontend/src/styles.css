@@ -1,24 +1,49 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/newsreader';
 @import '@fontsource-variable/inter';
 @import '@fontsource/lora/400.css';
 @import '@fontsource/lora/600.css';
 @import './styles/cv.css';
 
-/* App design tokens (the CV itself uses its own variables in cv.css). Violet/indigo brand on deep navy. */
+/* =====================================================================================================================
+ * App design system – "paper": warm off-white surfaces, graphite ink, hairline rules, serif display type.
+ * One accent only: ink. No gradients, no glows. The CV documents have their own styles (styles/cv.css).
+ * The brand-* and slate-* scales are remapped to warm greys, so every utility in the app follows the system.
+ * ================================================================================================================== */
 @theme {
-  --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
-  --color-brand-50: #f1f0ff;
-  --color-brand-100: #e4e1ff;
-  --color-brand-200: #cbc5ff;
-  --color-brand-300: #a99eff;
-  --color-brand-400: #8a7bff;
-  --color-brand-500: #6d5dfc;
-  --color-brand-600: #5b45f0;
-  --color-brand-700: #4b36d1;
-  --color-brand-800: #3d2ea8;
-  --color-ink-950: #060616;
-  --color-ink-900: #0b0b24;
-  --color-ink-800: #15153a;
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+
+  --color-paper: #faf9f6;
+  --color-paper-2: #f2f1ec;
+  --color-ink: #1b1b19;
+  --color-ink-2: #3b3a36;
+  --color-muted: #6e6c66;
+  --color-faint: #9c9a93;
+  --color-line: #e7e5df;
+  --color-line-2: #d6d3cb;
+
+  --color-brand-50: #f2f1ec;
+  --color-brand-100: #eae8e2;
+  --color-brand-200: #dcd9d1;
+  --color-brand-300: #c8c5bc;
+  --color-brand-400: #8f8c84;
+  --color-brand-500: #1b1b19;
+  --color-brand-600: #000000;
+  --color-brand-700: #1b1b19;
+  --color-brand-800: #1b1b19;
+
+  --color-slate-50: #faf9f6;
+  --color-slate-100: #f2f1ec;
+  --color-slate-200: #e7e5df;
+  --color-slate-300: #d6d3cb;
+  --color-slate-400: #a19e96;
+  --color-slate-500: #6e6c66;
+  --color-slate-600: #55534e;
+  --color-slate-700: #3b3a36;
+  --color-slate-800: #262523;
+  --color-slate-900: #1b1b19;
 }
 
 html {
@@ -27,37 +52,102 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  color: #14142b;
-  background: #f6f6fb;
+  font-size: 14.5px;
+  color: var(--color-ink);
+  background: var(--color-paper);
   -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01', 'cv11';
+  accent-color: var(--color-ink);
+}
+::selection {
+  background: #e4e1d8;
 }
 
-/* Deep space hero background with light ribbons (pure CSS + inline SVG in the component). */
-.hero-bg {
-  background:
-    radial-gradient(60% 50% at 0% 0%, rgb(124 77 255 / 0.55), transparent 60%),
-    radial-gradient(45% 40% at 100% 0%, rgb(79 70 229 / 0.5), transparent 60%),
-    radial-gradient(55% 45% at 100% 100%, rgb(139 92 246 / 0.55), transparent 60%),
-    radial-gradient(50% 40% at 0% 100%, rgb(67 56 202 / 0.45), transparent 60%),
-    #05051a;
+.serif {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  letter-spacing: -0.012em;
 }
-.text-gradient {
-  background: linear-gradient(90deg, #6d7dff, #a78bfa 55%, #c084fc);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-faint);
 }
+.link {
+  @apply text-ink underline decoration-line-2 underline-offset-4 transition hover:decoration-ink;
+}
+
+/* ---- controls ---------------------------------------------------------------------------------------------------- */
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 font-semibold text-white shadow-lg shadow-brand-500/30 transition hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 disabled:cursor-not-allowed disabled:opacity-50;
+  @apply inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-ink px-4 text-[14px] font-medium whitespace-nowrap text-paper transition hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:cursor-not-allowed disabled:opacity-40;
 }
 .btn-ghost {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 font-medium text-slate-700 transition hover:border-brand-300 hover:text-brand-700 disabled:opacity-50;
+  @apply inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-line-2 bg-white px-4 text-[14px] font-medium whitespace-nowrap text-ink transition hover:border-ink disabled:cursor-not-allowed disabled:opacity-40;
+}
+.btn-sm {
+  @apply h-8 rounded-md px-3 text-[13px];
 }
 .input {
-  @apply w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100;
+  @apply h-10 w-full rounded-lg border border-line bg-white px-3 text-[14px] text-ink outline-none transition placeholder:text-faint hover:border-line-2 focus:border-ink disabled:bg-paper disabled:text-faint;
+}
+textarea.input {
+  @apply h-auto py-2.5 leading-relaxed;
+}
+select.input {
+  @apply pr-8;
 }
 .label {
-  @apply mb-1 block text-xs font-medium text-slate-500;
+  @apply mb-1.5 block text-[12.5px] font-medium text-muted;
+}
+
+/* ---- editor building blocks --------------------------------------------------------------------------------------- */
+.panel-card {
+  @apply rounded-xl border border-line bg-white;
+}
+.count {
+  @apply ml-1.5 text-[12px] font-normal text-faint tabular-nums;
+}
+.item-card {
+  @apply relative rounded-xl border border-line bg-white p-4 pt-11;
+}
+.item-tools {
+  @apply absolute top-2.5 right-2.5 flex gap-0.5;
+}
+.item-tools button {
+  @apply rounded-md p-1.5 text-faint transition hover:bg-paper hover:text-ink disabled:opacity-30 disabled:hover:bg-transparent;
+}
+.add-btn {
+  @apply flex h-11 w-full items-center justify-center gap-1.5 rounded-xl border border-dashed border-line-2 text-[13.5px] font-medium text-muted transition hover:border-ink hover:text-ink;
+}
+.ai-btn {
+  @apply inline-flex h-8 items-center gap-1.5 rounded-md border border-line-2 bg-white px-2.5 text-[13px] font-medium text-ink transition hover:border-ink disabled:opacity-50;
+}
+.icon-btn {
+  @apply inline-flex size-9 items-center justify-center rounded-lg text-muted transition hover:bg-paper-2 hover:text-ink disabled:opacity-30 disabled:hover:bg-transparent;
+}
+.section-chip {
+  @apply flex w-full items-center gap-1.5 rounded-lg border border-line bg-white px-2.5 py-2 text-[13px] text-ink;
+}
+.menu-item {
+  @apply flex w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-[13.5px] text-ink-2 hover:bg-paper-2;
+}
+.seg {
+  @apply flex flex-1 items-center justify-center gap-1.5 rounded-md py-1.5 text-[13.5px] font-medium text-muted transition hover:text-ink;
+}
+.seg-on {
+  @apply bg-white text-ink shadow-[0_1px_2px_rgb(0_0_0/0.08)];
+}
+.cdk-drag-preview {
+  @apply rounded-lg shadow-lg;
+}
+.cdk-drag-placeholder {
+  opacity: 0.35;
+}
+.cdk-drag-animating,
+.cdk-drop-list-dragging .cdk-drag:not(.cdk-drag-placeholder) {
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 @media print {
@@ -70,180 +160,4 @@ body {
   .no-print {
     display: none !important;
   }
-}
-
-/* ---- editor building blocks ---------------------------------------------------------------------------------- */
-.panel-card {
-  @apply rounded-2xl border border-slate-200/80 bg-white shadow-[0_1px_2px_rgb(15_15_40/0.04)];
-}
-.panel-head {
-  @apply flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-slate-800;
-}
-.panel-body {
-  @apply space-y-3 border-t border-slate-100 p-4;
-}
-.count {
-  @apply ml-1 rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-500;
-}
-.item-card {
-  @apply relative rounded-xl border border-slate-200 bg-slate-50/50 p-3 pt-9;
-}
-.item-tools {
-  @apply absolute right-2 top-2 flex gap-0.5;
-}
-.item-tools button {
-  @apply rounded-md p-1 text-slate-400 hover:bg-white hover:text-slate-700 disabled:opacity-30 disabled:hover:bg-transparent;
-}
-.add-btn {
-  @apply flex w-full items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-slate-200 py-2.5 text-sm font-medium text-slate-500 transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700;
-}
-.ai-btn {
-  @apply inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand-500 to-violet-500 px-3 py-1.5 text-sm font-semibold text-white shadow-sm shadow-brand-500/30 transition hover:brightness-110 disabled:opacity-60;
-}
-.icon-btn {
-  @apply inline-flex size-9 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 disabled:opacity-30 disabled:hover:bg-transparent;
-}
-.section-chip {
-  @apply flex w-full items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs font-medium text-slate-700 shadow-sm;
-}
-.menu-item {
-  @apply flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm text-slate-700 hover:bg-slate-50;
-}
-.seg {
-  @apply flex flex-1 items-center justify-center gap-1.5 rounded-lg py-1.5 text-sm font-medium text-slate-500;
-}
-.seg-on {
-  @apply bg-brand-50 text-brand-700;
-}
-.tab {
-  @apply flex flex-col items-center gap-1 rounded-lg py-1.5 text-[11px] font-medium text-slate-500 transition hover:bg-slate-50 hover:text-slate-800 sm:flex-row sm:justify-center sm:text-xs;
-}
-.tab-on {
-  @apply bg-brand-50 text-brand-700 hover:bg-brand-50 hover:text-brand-700;
-}
-.cdk-drag-preview {
-  @apply rounded-lg shadow-xl;
-}
-.cdk-drag-placeholder {
-  opacity: 0.35;
-}
-.cdk-drag-animating,
-.cdk-drop-list-dragging .cdk-drag:not(.cdk-drag-placeholder) {
-  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
-}
-.check-dot {
-  @apply flex size-5 shrink-0 items-center justify-center rounded-md bg-brand-500 text-white;
-}
-
-/* =================================================================================================================
- * Monochrome "premium" theme for the editor: everything in greys, black primary actions, hairline borders.
- * Utilities read colours from CSS variables, so remapping the palette here re-skins every panel at once.
- * ============================================================================================================== */
-.theme-mono {
-  --color-brand-50: #f6f6f6;
-  --color-brand-100: #eeeeee;
-  --color-brand-200: #e3e3e3;
-  --color-brand-300: #c9c9c9;
-  --color-brand-400: #8c8c8c;
-  --color-brand-500: #161616;
-  --color-brand-600: #000000;
-  --color-brand-700: #161616;
-  --color-brand-800: #161616;
-  --color-slate-50: #fafafa;
-  --color-slate-100: #f3f3f3;
-  --color-slate-200: #e7e7e7;
-  --color-slate-300: #d4d4d4;
-  --color-slate-400: #a1a1a1;
-  --color-slate-500: #737373;
-  --color-slate-600: #555555;
-  --color-slate-700: #3d3d3d;
-  --color-slate-800: #262626;
-  --color-slate-900: #161616;
-  accent-color: #161616;
-  color: #161616;
-}
-.theme-mono .btn-primary {
-  background: #161616;
-  box-shadow: none;
-  border-radius: 999px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-.theme-mono .btn-primary:hover {
-  background: #000;
-}
-.theme-mono .btn-ghost {
-  border-radius: 999px;
-}
-.theme-mono .ai-btn {
-  background: #fff;
-  background-image: none;
-  color: #161616;
-  border: 1px solid #e3e3e3;
-  box-shadow: none;
-  border-radius: 999px;
-  font-weight: 500;
-  padding: 7px 14px;
-}
-.theme-mono .ai-btn:hover {
-  border-color: #161616;
-  filter: none;
-}
-.theme-mono .input {
-  border-color: #e6e6e6;
-  border-radius: 10px;
-  padding: 11px 13px;
-  font-size: 14px;
-  background: #fff;
-}
-.theme-mono .input:hover {
-  border-color: #cfcfcf;
-}
-.theme-mono .input:focus {
-  border-color: #161616;
-  box-shadow: 0 0 0 3px rgb(0 0 0 / 0.05);
-  --tw-ring-shadow: 0 0 #0000;
-}
-.theme-mono .label {
-  margin-bottom: 6px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #6b6b6b;
-}
-.theme-mono .text-gradient {
-  background: none;
-  color: #a6a6a6;
-  -webkit-text-fill-color: currentColor;
-}
-.theme-mono .panel-card,
-.theme-mono .item-card {
-  border-color: #ececec;
-  box-shadow: none;
-  background: #fff;
-}
-.theme-mono .item-card {
-  border-radius: 16px;
-  padding: 44px 18px 18px;
-}
-.theme-mono .add-btn {
-  border-width: 1px;
-  border-radius: 14px;
-  padding-block: 13px;
-}
-.theme-mono .add-btn:hover {
-  background: #fafafa;
-  border-color: #161616;
-  color: #161616;
-}
-.theme-mono .seg {
-  border-radius: 10px;
-}
-.theme-mono .seg-on {
-  background: #fff;
-  color: #161616;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
-}
-.theme-mono .section-chip {
-  box-shadow: none;
-  border-color: #e7e7e7;
 }

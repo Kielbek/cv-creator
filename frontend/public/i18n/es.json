@@ -122,7 +122,9 @@
   "final": {
    "title": "¿Listo para tu próximo empleo?",
    "text": "Crea ya tu CV profesional – solo lleva un momento."
-  }
+  },
+  "statLanguages": "idiomas de CV",
+  "statPrice": "para siempre"
  },
  "templates": {
   "title": "Plantillas de CV",
@@ -345,7 +347,8 @@
    "rate_limited": "Límite de IA alcanzado – inténtalo más tarde",
    "ai_unavailable": "IA no disponible temporalmente – inténtalo de nuevo",
    "invalid": "Solicitud demasiado larga o incompleta",
-   "network": "Sin conexión con el servidor"
+   "network": "Sin conexión con el servidor",
+   "unsupported": "Solo se admiten archivos PDF"
   },
   "tone": {
    "label": "Tono",
@@ -399,6 +402,56 @@
    "noPersonal": "Omite datos personales no relacionados con el puesto (edad, nacionalidad).",
    "usResume": "En EE. UU. se llama résumé: breve, orientado a resultados, formato US Letter.",
    "itConsent": "Los empleadores italianos suelen esperar una línea de consentimiento RGPD (Reg. UE 2016/679)."
+  }
+ },
+ "start": {
+  "chosen": "Plantilla",
+  "template": {
+   "title": "Elige la plantilla de tu CV",
+   "subtitle": "Puedes cambiar la plantilla y el color cuando quieras – el contenido se mantiene. Las plantillas ATS funcionan mejor en candidaturas online.",
+   "choose": "Elegir plantilla",
+   "defaultColor": "Color de la plantilla"
+  },
+  "method": {
+   "title": "¿Cómo quieres crear tu CV?",
+   "privacy": "Tus datos se quedan en este navegador. Al importar, el archivo solo se procesa para leer su contenido y no se guarda.",
+   "new": {
+    "title": "CV nuevo",
+    "text": "Te guiamos por cada sección, paso a paso."
+   },
+   "import": {
+    "title": "Ya tengo un CV",
+    "text": "Sube un PDF – la IA pasa el contenido a la plantilla elegida."
+   },
+   "continue": {
+    "title": "Continuar mi CV",
+    "text": "Vuelve al CV guardado en este navegador con la nueva plantilla."
+   }
+  },
+  "upload": {
+   "title": "Sube tu CV actual",
+   "subtitle": "Leeremos el contenido y lo colocaremos en la nueva plantilla. Después podrás corregirlo todo en el editor.",
+   "drop": "Arrastra un PDF aquí o elige un archivo",
+   "limits": "PDF, máx. 5 MB",
+   "change": "haz clic para cambiar",
+   "pasteInstead": "¿Sin PDF? Pega el texto de tu CV",
+   "fileInstead": "Subir un archivo PDF",
+   "pastePlaceholder": "Pega aquí el texto completo de tu CV…",
+   "run": "Pasar a la plantilla",
+   "onlyPdf": "Solo se admiten archivos PDF",
+   "tooBig": "El archivo supera los 5 MB"
+  },
+  "loading": {
+   "new": "Preparando tu CV",
+   "import": "Pasando tu CV a la plantilla",
+   "steps": {
+    "template": "Plantilla {{template}}",
+    "country": "Ajustes para el país de destino",
+    "ai": "Asistente IA listo",
+    "preview": "Vista previa en vivo",
+    "read": "Leyendo el documento",
+    "structure": "Ordenando secciones y fechas"
+   }
   }
  }
 }

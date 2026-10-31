@@ -114,4 +114,49 @@ public final class AiDtos {
 
     public record StatusResponse(boolean enabled) {
     }
+
+    // ---- import of an existing CV ------------------------------------------------------------------------------
+
+    public record ImportTextRequest(@NotBlank @Size(min = 80, max = 30000) String text) {
+    }
+
+    /** A full CV read from a PDF or pasted text. Dates as "YYYY-MM" ("YYYY" when the month is unknown). */
+    public record ImportedCv(
+            @JsonPropertyDescription("ISO 639-1 code of the language the CV is written in, e.g. pl, en, de") String language,
+            ImportedPersonal personal,
+            String summary,
+            List<ImportedExperience> experience,
+            List<ImportedEducation> education,
+            @JsonPropertyDescription("Single skills, short names") List<String> skills,
+            List<ImportedLanguage> languages,
+            List<ImportedProject> projects,
+            List<ImportedCertificate> certificates,
+            String interests) {
+    }
+
+    public record ImportedPersonal(String firstName, String lastName,
+                                   @JsonPropertyDescription("Current or target job title") String headline,
+                                   String email, String phone, String location, String website, String linkedin, String github) {
+    }
+
+    public record ImportedExperience(String position, String company, String location,
+                                     @JsonPropertyDescription("YYYY-MM") String start,
+                                     @JsonPropertyDescription("YYYY-MM, empty when current") String end,
+                                     boolean current,
+                                     @JsonPropertyDescription("Achievements and duties, one per line, without bullet characters") String description) {
+    }
+
+    public record ImportedEducation(String degree, String school, String location, String start, String end,
+                                    boolean current, String description) {
+    }
+
+    public record ImportedLanguage(String name,
+                                   @JsonPropertyDescription("CEFR level A1-C2, or 'native'") String level) {
+    }
+
+    public record ImportedProject(String name, String link, String description) {
+    }
+
+    public record ImportedCertificate(String name, String issuer, @JsonPropertyDescription("YYYY-MM") String date) {
+    }
 }

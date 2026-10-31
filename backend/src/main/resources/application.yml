@@ -7,11 +7,15 @@ spring:
   mvc:
     problemdetails:
       enabled: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
 
 server:
   forward-headers-strategy: framework
   tomcat:
-    max-swallow-size: 1MB
+    max-swallow-size: 6MB
     max-http-form-post-size: 1MB
 
 app:

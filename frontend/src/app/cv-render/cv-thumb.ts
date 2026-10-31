@@ -17,6 +17,8 @@ export class CvThumb {
   readonly width = input(220);
   /** Use this CV instead of the example (the template is still applied). */
   readonly cv = input<Cv | null>(null);
+  /** Override the template's accent colour. */
+  readonly accent = input<string | null>(null);
 
   protected readonly doc = computed(() => {
     const own = this.cv();
@@ -26,6 +28,7 @@ export class CvThumb {
       base.design = { ...fresh.design, showPhoto: own.design.showPhoto, pageSize: 'A4' };
     }
     base.design.pageSize = 'A4';
+    if (this.accent()) base.design.accent = this.accent();
     return base;
   });
 }

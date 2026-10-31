@@ -122,7 +122,9 @@
   "final": {
    "title": "Prêt pour votre prochain emploi ?",
    "text": "Créez votre CV professionnel maintenant – cela ne prend qu'un instant."
-  }
+  },
+  "statLanguages": "langues de CV",
+  "statPrice": "pour toujours"
  },
  "templates": {
   "title": "Modèles de CV",
@@ -345,7 +347,8 @@
    "rate_limited": "Limite IA atteinte – réessayez plus tard",
    "ai_unavailable": "IA temporairement indisponible – réessayez",
    "invalid": "Requête trop longue ou incomplète",
-   "network": "Pas de connexion au serveur"
+   "network": "Pas de connexion au serveur",
+   "unsupported": "Seuls les fichiers PDF sont acceptés"
   },
   "tone": {
    "label": "Ton",
@@ -399,6 +402,56 @@
    "noPersonal": "Omettez les données personnelles sans lien avec le poste (âge, nationalité).",
    "usResume": "Aux États-Unis, on parle de résumé : court, axé sur les résultats, format US Letter.",
    "itConsent": "Les employeurs italiens attendent souvent une mention RGPD (Reg. UE 2016/679)."
+  }
+ },
+ "start": {
+  "chosen": "Modèle",
+  "template": {
+   "title": "Choisissez le modèle de votre CV",
+   "subtitle": "Vous pouvez changer de modèle et de couleur à tout moment – votre contenu est conservé. Les modèles ATS sont les plus adaptés aux candidatures en ligne.",
+   "choose": "Choisir ce modèle",
+   "defaultColor": "Couleur du modèle"
+  },
+  "method": {
+   "title": "Comment souhaitez-vous créer votre CV ?",
+   "privacy": "Vos données restent dans ce navigateur. Lors d'un import, le fichier n'est traité que pour lire son contenu et n'est pas conservé.",
+   "new": {
+    "title": "Nouveau CV",
+    "text": "Nous vous guidons section par section."
+   },
+   "import": {
+    "title": "J'ai déjà un CV",
+    "text": "Importez un PDF – l'IA transfère le contenu dans le modèle choisi."
+   },
+   "continue": {
+    "title": "Continuer mon CV",
+    "text": "Reprendre le CV enregistré dans ce navigateur avec le nouveau modèle."
+   }
+  },
+  "upload": {
+   "title": "Importez votre CV actuel",
+   "subtitle": "Nous lisons le contenu et le mettons en page dans le nouveau modèle. Vous pourrez tout corriger ensuite.",
+   "drop": "Glissez un PDF ici ou choisissez un fichier",
+   "limits": "PDF, 5 Mo max.",
+   "change": "cliquez pour changer",
+   "pasteInstead": "Pas de PDF ? Collez le texte de votre CV",
+   "fileInstead": "Importer un fichier PDF",
+   "pastePlaceholder": "Collez ici le texte complet de votre CV…",
+   "run": "Transférer dans le modèle",
+   "onlyPdf": "Seuls les fichiers PDF sont acceptés",
+   "tooBig": "Le fichier dépasse 5 Mo"
+  },
+  "loading": {
+   "new": "Préparation de votre CV",
+   "import": "Transfert de votre CV dans le modèle",
+   "steps": {
+    "template": "Modèle {{template}}",
+    "country": "Réglages pour le pays visé",
+    "ai": "Assistant IA prêt",
+    "preview": "Aperçu en direct",
+    "read": "Lecture du document",
+    "structure": "Organisation des sections et des dates"
+   }
   }
  }
 }

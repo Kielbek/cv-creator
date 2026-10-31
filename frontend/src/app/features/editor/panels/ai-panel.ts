@@ -16,12 +16,12 @@ import { UiLanguage } from '../../../core/i18n/ui-language';
   template: `
     <div class="space-y-5">
       @if (ai.enabled() === false) {
-        <div class="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">{{ 'ai.disabled' | translate }}</div>
+        <div class="rounded-xl border border-line-2 bg-white p-3 text-sm text-ink-2">{{ 'ai.disabled' | translate }}</div>
       }
 
       <!-- tailor to a job offer -->
       <div class="panel-card space-y-3 p-4">
-        <h3 class="flex items-center gap-2 text-sm font-semibold text-slate-800"><lucide-icon [img]="icons.Target" class="size-4 text-brand-500" /> {{ 'ai.tailor.title' | translate }}</h3>
+        <h3 class="flex items-center gap-2 text-[14px] font-medium text-ink"><lucide-icon [img]="icons.Target" class="size-4 text-brand-500" /> {{ 'ai.tailor.title' | translate }}</h3>
         <p class="text-xs text-slate-500">{{ 'ai.tailor.hint' | translate }}</p>
         <textarea class="input min-h-36" [value]="offer()" (input)="offer.set($any($event.target).value)" [placeholder]="'ai.tailor.placeholder' | translate"></textarea>
         <button type="button" class="btn-primary w-full" (click)="tailor()" [disabled]="busy() !== null || offer().trim().length < 50">
@@ -42,10 +42,10 @@ import { UiLanguage } from '../../../core/i18n/ui-language';
             </div>
             @if (r.missingKeywords.length) {
               <div>
-                <p class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-400">{{ 'ai.tailor.missing' | translate }}</p>
+                <p class="mb-1.5 text-xs font-medium uppercase tracking-wide text-slate-400">{{ 'ai.tailor.missing' | translate }}</p>
                 <div class="flex flex-wrap gap-1.5">
                   @for (k of r.missingKeywords; track k) {
-                    <button type="button" class="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs text-amber-800 hover:bg-amber-100" (click)="addSkill(k)" [title]="'ai.tailor.addSkill' | translate">
+                    <button type="button" class="inline-flex items-center gap-1 rounded-md border border-line-2 bg-white px-2.5 py-1 text-xs text-ink-2 hover:border-ink" (click)="addSkill(k)" [title]="'ai.tailor.addSkill' | translate">
                       <lucide-icon [img]="icons.Plus" class="size-3" /> {{ k }}
                     </button>
                   }
@@ -55,16 +55,16 @@ import { UiLanguage } from '../../../core/i18n/ui-language';
             }
             @if (r.matchedKeywords.length) {
               <div>
-                <p class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-400">{{ 'ai.tailor.matched' | translate }}</p>
+                <p class="mb-1.5 text-xs font-medium uppercase tracking-wide text-slate-400">{{ 'ai.tailor.matched' | translate }}</p>
                 <div class="flex flex-wrap gap-1.5">
                   @for (k of r.matchedKeywords; track k) {
-                    <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs text-emerald-700"><lucide-icon [img]="icons.Check" class="size-3" /> {{ k }}</span>
+                    <span class="inline-flex items-center gap-1 rounded-md bg-paper-2 px-2.5 py-1 text-xs text-ink-2"><lucide-icon [img]="icons.Check" class="size-3" /> {{ k }}</span>
                   }
                 </div>
               </div>
             }
             <div>
-              <p class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-400">{{ 'ai.tailor.suggestions' | translate }}</p>
+              <p class="mb-1.5 text-xs font-medium uppercase tracking-wide text-slate-400">{{ 'ai.tailor.suggestions' | translate }}</p>
               <ol class="list-decimal space-y-1 pl-5 text-sm text-slate-700">
                 @for (s of r.suggestions; track $index) {
                   <li>{{ s }}</li>
@@ -73,7 +73,7 @@ import { UiLanguage } from '../../../core/i18n/ui-language';
             </div>
             @if (r.tailoredSummary) {
               <div class="rounded-xl border border-brand-200 bg-brand-50 p-3">
-                <p class="mb-1 text-xs font-semibold text-brand-800">{{ 'ai.tailor.newSummary' | translate }}</p>
+                <p class="mb-1 text-xs font-medium text-brand-800">{{ 'ai.tailor.newSummary' | translate }}</p>
                 <p class="text-sm text-slate-700">{{ r.tailoredSummary }}</p>
                 <button type="button" class="btn-primary mt-2 px-3! py-1.5! text-sm" (click)="useSummary(r.tailoredSummary)">{{ 'ai.tailor.useSummary' | translate }}</button>
               </div>
@@ -84,7 +84,7 @@ import { UiLanguage } from '../../../core/i18n/ui-language';
 
       <!-- translate -->
       <div class="panel-card space-y-3 p-4">
-        <h3 class="flex items-center gap-2 text-sm font-semibold text-slate-800"><lucide-icon [img]="icons.Languages" class="size-4 text-brand-500" /> {{ 'ai.translate.title' | translate }}</h3>
+        <h3 class="flex items-center gap-2 text-[14px] font-medium text-ink"><lucide-icon [img]="icons.Languages" class="size-4 text-brand-500" /> {{ 'ai.translate.title' | translate }}</h3>
         <p class="text-xs text-slate-500">{{ 'ai.translate.hint' | translate }}</p>
         <div class="grid grid-cols-2 gap-3">
           <div>

@@ -15,7 +15,7 @@ import { CvThumb } from '../../../cv-render/cv-thumb';
     @let g = store.geometry();
     <div class="space-y-5">
       <div class="panel-card p-4">
-        <h3 class="mb-3 text-sm font-semibold text-slate-800">{{ 'design.template' | translate }}</h3>
+        <h3 class="mb-3 text-[14px] font-medium text-ink">{{ 'design.template' | translate }}</h3>
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
           @for (t of templates; track t.id) {
             <button type="button" class="group text-left" (click)="store.setTemplate(t.id)" [attr.aria-pressed]="c.design.templateId === t.id">
@@ -28,7 +28,7 @@ import { CvThumb } from '../../../cv-render/cv-thumb';
               <div class="mt-1.5 flex items-center justify-between gap-1 text-xs">
                 <span class="font-medium text-slate-700">{{ t.name }}</span>
                 @if (t.ats) {
-                  <span class="inline-flex items-center gap-0.5 rounded bg-emerald-50 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-700"><lucide-icon [img]="icons.ShieldCheck" class="size-3" />ATS</span>
+                  <span class="inline-flex items-center gap-0.5 rounded bg-paper-2 px-1.5 py-0.5 text-[10px] font-medium text-ink-2"><lucide-icon [img]="icons.ShieldCheck" class="size-3" />ATS</span>
                 }
               </div>
             </button>
@@ -38,7 +38,7 @@ import { CvThumb } from '../../../cv-render/cv-thumb';
 
       <div class="panel-card space-y-4 p-4">
         <div>
-          <h3 class="mb-2 text-sm font-semibold text-slate-800">{{ 'design.accent' | translate }}</h3>
+          <h3 class="mb-2 text-[14px] font-medium text-ink">{{ 'design.accent' | translate }}</h3>
           <div class="flex flex-wrap items-center gap-2">
             @for (color of swatches; track color) {
               <button
@@ -51,7 +51,7 @@ import { CvThumb } from '../../../cv-render/cv-thumb';
                 [attr.aria-label]="color"
               ></button>
             }
-            <label class="relative size-8 cursor-pointer overflow-hidden rounded-full border border-slate-200 bg-[conic-gradient(red,yellow,lime,cyan,blue,magenta,red)]" [title]="'design.custom' | translate">
+            <label class="relative size-8 cursor-pointer overflow-hidden rounded-md border border-slate-200 bg-[conic-gradient(red,yellow,lime,cyan,blue,magenta,red)]" [title]="'design.custom' | translate">
               <input type="color" class="absolute inset-0 cursor-pointer opacity-0" [value]="g.accent" (input)="setAccent($any($event.target).value)" />
             </label>
           </div>
@@ -86,7 +86,7 @@ export class DesignPanel {
   protected readonly store = inject(CvStore);
   protected readonly templates = TEMPLATES;
   protected readonly icons = { Check, ShieldCheck };
-  protected readonly swatches = ['#5b4cf5', '#2f54eb', '#0e7490', '#0f766e', '#15803d', '#b45309', '#e8590c', '#be123c', '#a21caf', '#1e3a5f', '#111827'];
+  protected readonly swatches = ['#1b1b19', '#23406b', '#3f5874', '#2c5e5a', '#4d5b3a', '#8a6a3b', '#a4502e', '#8c3b45', '#5a4a6e', '#6b6b6b'];
   protected readonly fonts: { id: FontId; name: string }[] = [
     { id: 'inter', name: 'Inter' },
     { id: 'system', name: 'System Sans' },

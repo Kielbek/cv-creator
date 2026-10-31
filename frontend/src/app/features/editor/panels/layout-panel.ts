@@ -16,12 +16,12 @@ import { ALL_SECTIONS, SectionId, hasContent } from '../../../core/cv/cv.model';
   template: `
     <div class="space-y-5">
       <div class="panel-card p-4" cdkDropListGroup>
-        <h3 class="text-sm font-semibold text-slate-800">{{ 'layout.arrange' | translate }}</h3>
+        <h3 class="text-[14px] font-medium text-ink">{{ 'layout.arrange' | translate }}</h3>
         <p class="mb-3 text-xs text-slate-500">{{ 'layout.arrangeHint' | translate }}</p>
         <div class="grid gap-2" [style.grid-template-columns]="gridCols()">
           @for (col of columns(); track $index; let ci = $index) {
             <div>
-              <p class="mb-1.5 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+              <p class="mb-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-400">
                 {{ 'layout.column' | translate }} {{ ci + 1 }}
                 @if (ci === geo().sidebarIndex && geo().columns > 1) {
                   · {{ 'layout.sidebar' | translate }}
@@ -46,7 +46,7 @@ import { ALL_SECTIONS, SectionId, hasContent } from '../../../core/cv/cv.model';
           }
         </div>
 
-        <p class="mb-1.5 mt-4 text-[11px] font-semibold uppercase tracking-wide text-slate-400">{{ 'layout.hidden' | translate }}</p>
+        <p class="mb-1.5 mt-4 text-[11px] font-medium uppercase tracking-wide text-slate-400">{{ 'layout.hidden' | translate }}</p>
         <div cdkDropList [cdkDropListData]="unused()" id="unused" (cdkDropListDropped)="drop($event, -1)" class="flex min-h-12 flex-wrap gap-1.5 rounded-xl border-2 border-dashed border-slate-200 p-1.5">
           @for (s of unused(); track s) {
             <div cdkDrag [cdkDragData]="s" class="section-chip w-auto! cursor-grab">

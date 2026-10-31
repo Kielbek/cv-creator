@@ -39,4 +39,11 @@ class AiControllerTest {
                         .content("{\"language\":\"english\",\"text\":\"\"}"))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    void importRejectsNonPdf() throws Exception {
+        mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart("/api/v1/ai/import")
+                        .file(new org.springframework.mock.web.MockMultipartFile("file", "cv.docx", "application/octet-stream", "PK..".getBytes())))
+                .andExpect(status().isUnsupportedMediaType());
+    }
 }

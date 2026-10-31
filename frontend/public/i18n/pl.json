@@ -122,7 +122,9 @@
   "final": {
    "title": "Gotowy na nową pracę?",
    "text": "Stwórz swoje profesjonalne CV już teraz – to zajmie tylko chwilę."
-  }
+  },
+  "statLanguages": "języków CV",
+  "statPrice": "zawsze"
  },
  "templates": {
   "title": "Szablony CV",
@@ -345,7 +347,8 @@
    "rate_limited": "Osiągnięto limit AI – spróbuj później",
    "ai_unavailable": "AI jest chwilowo niedostępne – spróbuj ponownie",
    "invalid": "Zapytanie jest za długie lub niekompletne",
-   "network": "Brak połączenia z serwerem"
+   "network": "Brak połączenia z serwerem",
+   "unsupported": "Obsługujemy tylko pliki PDF"
   },
   "tone": {
    "label": "Ton",
@@ -399,6 +402,56 @@
    "noPersonal": "Pomiń dane niezwiązane z pracą (wiek, narodowość).",
    "usResume": "W USA to résumé: krótkie, nastawione na wyniki, format US Letter.",
    "itConsent": "Włoscy pracodawcy często oczekują zgody RODO (Reg. UE 2016/679)."
+  }
+ },
+ "start": {
+  "chosen": "Wybrany szablon",
+  "template": {
+   "title": "Wybierz szablon swojego CV",
+   "subtitle": "Szablon i kolor możesz zmienić w każdej chwili – treść zostaje. Szablony oznaczone ATS najlepiej sprawdzają się przy aplikowaniu online.",
+   "choose": "Wybierz szablon",
+   "defaultColor": "Kolor szablonu"
+  },
+  "method": {
+   "title": "Jak chcesz stworzyć CV?",
+   "privacy": "Twoje dane zostają w tej przeglądarce. Przy imporcie plik jest przetwarzany tylko po to, by odczytać treść, i nie jest zapisywany.",
+   "new": {
+    "title": "Nowe CV",
+    "text": "Przeprowadzimy Cię przez każdą sekcję, krok po kroku."
+   },
+   "import": {
+    "title": "Mam już CV",
+    "text": "Wgraj PDF – AI przeniesie treść do wybranego szablonu."
+   },
+   "continue": {
+    "title": "Kontynuuj moje CV",
+    "text": "Wróć do CV zapisanego w tej przeglądarce z nowym szablonem."
+   }
+  },
+  "upload": {
+   "title": "Wgraj swoje obecne CV",
+   "subtitle": "Odczytamy treść i ułożymy ją w nowym szablonie. Potem wszystko poprawisz w edytorze.",
+   "drop": "Przeciągnij plik PDF lub wybierz z dysku",
+   "limits": "PDF, maks. 5 MB",
+   "change": "kliknij, aby zmienić",
+   "pasteInstead": "Nie masz PDF? Wklej tekst CV",
+   "fileInstead": "Wgraj plik PDF",
+   "pastePlaceholder": "Wklej tutaj pełny tekst swojego CV…",
+   "run": "Przenieś do szablonu",
+   "onlyPdf": "Obsługujemy tylko pliki PDF",
+   "tooBig": "Plik jest większy niż 5 MB"
+  },
+  "loading": {
+   "new": "Przygotowujemy Twoje CV",
+   "import": "Przenosimy Twoje CV do szablonu",
+   "steps": {
+    "template": "Szablon {{template}}",
+    "country": "Ustawienia dla kraju docelowego",
+    "ai": "Asystent AI gotowy",
+    "preview": "Podgląd na żywo",
+    "read": "Odczytywanie dokumentu",
+    "structure": "Porządkowanie sekcji i dat"
+   }
   }
  }
 }

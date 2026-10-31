@@ -7,7 +7,11 @@ import com.anthropic.errors.AnthropicIoException;
 import com.anthropic.errors.AnthropicServiceException;
 import com.anthropic.errors.BadRequestException;
 import com.anthropic.errors.RateLimitException;
+import com.anthropic.models.messages.Base64PdfSource;
+import com.anthropic.models.messages.ContentBlockParam;
+import com.anthropic.models.messages.DocumentBlockParam;
 import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.TextBlockParam;
 import com.anthropic.models.messages.OutputConfig;
 import com.anthropic.models.messages.StopReason;
 import com.anthropic.models.messages.StructuredMessage;
@@ -19,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
+import java.util.List;
 
 @Component
 public class ClaudeAiGateway implements AiGateway {
@@ -44,6 +49,24 @@ public class ClaudeAiGateway implements AiGateway {
 
     @Override
     public <T> T generate(String system, String user, Class<T> type) {
+        return run(system, List.of(text(user)), type, OutputConfig.Effort.LOW);
+    }
+
+    @Override
+    public <T> T generateWithPdf(String system, String pdfBase64, String user, Class<T> type) {
+        DocumentBlockParam doc = DocumentBlockParam.builder()
+                .source(Base64PdfSource.builder().data(pdfBase64).build())
+                .title("CV")
+                .build();
+        // reading a whole CV into a structure is a bigger job than rewriting one paragraph
+        return run(system, List.of(ContentBlockParam.ofDocument(doc), text(user)), type, OutputConfig.Effort.MEDIUM);
+    }
+
+    private static ContentBlockParam text(String value) {
+        return ContentBlockParam.ofText(TextBlockParam.builder().text(value).build());
+    }
+
+    private <T> T run(String system, List<ContentBlockParam> content, Class<T> type, OutputConfig.Effort effort) {
         if (client == null) {
             throw new AiUnavailableException("AI is not configured");
         }
@@ -54,9 +77,9 @@ public class ClaudeAiGateway implements AiGateway {
                 .outputConfig(StructuredOutputConfig.<T>builder()
                         .format(type)
                         // Editing CV text is a short, well-specified task: low effort keeps it fast and cheap.
-                        .effort(OutputConfig.Effort.LOW)
+                        .effort(effort)
                         .build())
-                .addUserMessage(user);
+                .addUserMessageOfContentBlockParams(content);
         if (props.fallbacks()) {
             // If the safety classifier declines, the API retries on a suitable model instead of failing the request.
             builder.putAdditionalHeader("anthropic-beta", FALLBACK_BETA)

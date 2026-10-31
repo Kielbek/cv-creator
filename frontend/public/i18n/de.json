@@ -122,7 +122,9 @@
   "final": {
    "title": "Bereit für den nächsten Job?",
    "text": "Erstelle jetzt deinen professionellen Lebenslauf – es dauert nur einen Moment."
-  }
+  },
+  "statLanguages": "CV-Sprachen",
+  "statPrice": "für immer"
  },
  "templates": {
   "title": "Lebenslauf-Vorlagen",
@@ -345,7 +347,8 @@
    "rate_limited": "KI-Limit erreicht – später erneut versuchen",
    "ai_unavailable": "KI vorübergehend nicht verfügbar – bitte erneut versuchen",
    "invalid": "Anfrage zu lang oder unvollständig",
-   "network": "Keine Verbindung zum Server"
+   "network": "Keine Verbindung zum Server",
+   "unsupported": "Nur PDF-Dateien werden unterstützt"
   },
   "tone": {
    "label": "Ton",
@@ -399,6 +402,56 @@
    "noPersonal": "Keine jobfremden persönlichen Daten (Alter, Nationalität).",
    "usResume": "In den USA heißt es Résumé: kurz, ergebnisorientiert, Format US Letter.",
    "itConsent": "Italienische Arbeitgeber erwarten oft eine DSGVO-Einwilligung (Reg. UE 2016/679)."
+  }
+ },
+ "start": {
+  "chosen": "Vorlage",
+  "template": {
+   "title": "Wähle deine Lebenslauf-Vorlage",
+   "subtitle": "Vorlage und Farbe lassen sich jederzeit ändern – der Inhalt bleibt. Mit ATS gekennzeichnete Vorlagen eignen sich am besten für Online-Bewerbungen.",
+   "choose": "Vorlage wählen",
+   "defaultColor": "Farbe der Vorlage"
+  },
+  "method": {
+   "title": "Wie möchtest du deinen Lebenslauf erstellen?",
+   "privacy": "Deine Daten bleiben in diesem Browser. Beim Import wird die Datei nur zum Auslesen verarbeitet und nicht gespeichert.",
+   "new": {
+    "title": "Neuer Lebenslauf",
+    "text": "Wir führen dich Schritt für Schritt durch jeden Abschnitt."
+   },
+   "import": {
+    "title": "Ich habe einen Lebenslauf",
+    "text": "PDF hochladen – die KI überträgt den Inhalt in die gewählte Vorlage."
+   },
+   "continue": {
+    "title": "Meinen Lebenslauf fortsetzen",
+    "text": "Mit der neuen Vorlage zum gespeicherten Lebenslauf zurückkehren."
+   }
+  },
+  "upload": {
+   "title": "Lade deinen aktuellen Lebenslauf hoch",
+   "subtitle": "Wir lesen den Inhalt aus und setzen ihn in die neue Vorlage. Danach kannst du alles im Editor anpassen.",
+   "drop": "PDF hierher ziehen oder Datei wählen",
+   "limits": "PDF, max. 5 MB",
+   "change": "klicken zum Ändern",
+   "pasteInstead": "Kein PDF? Text einfügen",
+   "fileInstead": "PDF-Datei hochladen",
+   "pastePlaceholder": "Füge hier den vollständigen Text deines Lebenslaufs ein…",
+   "run": "In Vorlage übertragen",
+   "onlyPdf": "Nur PDF-Dateien werden unterstützt",
+   "tooBig": "Die Datei ist größer als 5 MB"
+  },
+  "loading": {
+   "new": "Dein Lebenslauf wird vorbereitet",
+   "import": "Dein Lebenslauf wird übertragen",
+   "steps": {
+    "template": "Vorlage {{template}}",
+    "country": "Einstellungen für das Zielland",
+    "ai": "KI-Assistent bereit",
+    "preview": "Live-Vorschau",
+    "read": "Dokument wird gelesen",
+    "structure": "Abschnitte und Daten werden geordnet"
+   }
   }
  }
 }

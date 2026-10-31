@@ -30,6 +30,14 @@ class CvAiServiceTest {
             this.user = user;
             return (T) answer;
         }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T> T generateWithPdf(String system, String pdf, String user, Class<T> type) {
+            this.system = system;
+            this.user = pdf;
+            return (T) answer;
+        }
     }
 
     static CvText cv() {
@@ -58,5 +66,13 @@ class CvAiServiceTest {
         fake.answer = cv();
         new CvAiService(fake, new ObjectMapper()).translate(new AiDtos.TranslateRequest("pl", "de", "DE", cv()));
         assertThat(fake.user).contains("Source language: Polish (pl)", "Target language: German (de)", "Target country: Germany");
+    }
+
+    @Test
+    void importPdfSendsBase64Document() {
+        FakeGateway fake = new FakeGateway();
+        new CvAiService(fake, new ObjectMapper()).importPdf("%PDF-1.7".getBytes());
+        assertThat(fake.system).isEqualTo(CvAiService.IMPORT);
+        assertThat(fake.user).isEqualTo(java.util.Base64.getEncoder().encodeToString("%PDF-1.7".getBytes()));
     }
 }

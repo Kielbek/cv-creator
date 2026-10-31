@@ -122,7 +122,9 @@
   "final": {
    "title": "Ready for your next job?",
    "text": "Create a professional CV now – it only takes a moment."
-  }
+  },
+  "statLanguages": "CV languages",
+  "statPrice": "forever"
  },
  "templates": {
   "title": "CV templates",
@@ -345,7 +347,8 @@
    "rate_limited": "AI limit reached – try again later",
    "ai_unavailable": "AI is temporarily unavailable – please try again",
    "invalid": "The request is too long or incomplete",
-   "network": "No connection to the server"
+   "network": "No connection to the server",
+   "unsupported": "Only PDF files are supported"
   },
   "tone": {
    "label": "Tone",
@@ -399,6 +402,56 @@
    "noPersonal": "Leave out personal data unrelated to the job (age, nationality).",
    "usResume": "In the US it is called a résumé: short, results-focused, US Letter format.",
    "itConsent": "Italian employers often expect a GDPR consent line (Reg. UE 2016/679)."
+  }
+ },
+ "start": {
+  "chosen": "Template",
+  "template": {
+   "title": "Choose your CV template",
+   "subtitle": "You can change the template and colour at any time – your content stays. ATS-marked templates work best for online applications.",
+   "choose": "Choose template",
+   "defaultColor": "Template colour"
+  },
+  "method": {
+   "title": "How do you want to create your CV?",
+   "privacy": "Your data stays in this browser. When importing, the file is processed only to read its content and is not stored.",
+   "new": {
+    "title": "New CV",
+    "text": "We'll guide you through every section, step by step."
+   },
+   "import": {
+    "title": "I have a CV",
+    "text": "Upload a PDF – AI moves the content into the chosen template."
+   },
+   "continue": {
+    "title": "Continue my CV",
+    "text": "Go back to the CV saved in this browser with the new template."
+   }
+  },
+  "upload": {
+   "title": "Upload your current CV",
+   "subtitle": "We'll read the content and lay it out in the new template. You can fix anything in the editor afterwards.",
+   "drop": "Drag a PDF here or choose a file",
+   "limits": "PDF, max. 5 MB",
+   "change": "click to change",
+   "pasteInstead": "No PDF? Paste the text of your CV",
+   "fileInstead": "Upload a PDF file",
+   "pastePlaceholder": "Paste the full text of your CV here…",
+   "run": "Move to template",
+   "onlyPdf": "Only PDF files are supported",
+   "tooBig": "The file is larger than 5 MB"
+  },
+  "loading": {
+   "new": "Preparing your CV",
+   "import": "Moving your CV into the template",
+   "steps": {
+    "template": "{{template}} template",
+    "country": "Settings for the target country",
+    "ai": "AI assistant ready",
+    "preview": "Live preview",
+    "read": "Reading the document",
+    "structure": "Organising sections and dates"
+   }
   }
  }
 }
