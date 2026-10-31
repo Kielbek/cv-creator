@@ -19,8 +19,8 @@
   flex-direction: column;
   min-height: 0;
   overflow-y: auto;
-  background: var(--color-paper);
-  border-right: 1px solid var(--color-line);
+  background: linear-gradient(180deg, #0a1a3f 0%, #0c2253 100%);
+  color: #fff;
 }
 .rail-collapsed .rail-label {
   display: none;
@@ -39,11 +39,11 @@
   width: 26px;
   height: 26px;
   border-radius: 6px;
-  color: var(--color-faint);
+  color: rgb(255 255 255 / 0.55);
 }
 .rail-toggle:hover {
-  background: var(--color-paper-2);
-  color: var(--color-ink);
+  background: rgb(255 255 255 / 0.1);
+  color: #fff;
 }
 .wizard-steps {
   display: flex;
@@ -59,30 +59,30 @@
   height: 36px;
   padding: 0 10px;
   border-radius: 8px;
-  color: var(--color-muted);
+  color: rgb(255 255 255 / 0.62);
   font-size: 13.5px;
   text-align: left;
   transition: background 0.12s, color 0.12s;
 }
 .wizard-step:hover {
-  background: var(--color-paper-2);
-  color: var(--color-ink);
+  background: rgb(255 255 255 / 0.06);
+  color: #fff;
 }
 .wizard-step.is-active {
-  background: #fff;
-  color: var(--color-ink);
+  background: rgb(255 255 255 / 0.1);
+  color: #fff;
   font-weight: 500;
-  box-shadow: 0 0 0 1px var(--color-line), 0 1px 2px rgb(0 0 0 / 0.04);
+  box-shadow: inset 2px 0 0 #5f8ff9;
 }
 .step-num {
   width: 18px;
   flex: none;
   font-size: 11.5px;
   font-variant-numeric: tabular-nums;
-  color: var(--color-faint);
+  color: rgb(255 255 255 / 0.4);
 }
 .wizard-step.is-active .step-num {
-  color: var(--color-ink);
+  color: #93b5fd;
 }
 .rail-collapsed .wizard-step {
   justify-content: center;
@@ -107,11 +107,15 @@
 .preview-scroll {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
+  overflow: auto;
   padding: 0 32px 32px;
 }
 .preview-box {
   width: 100%;
+}
+.preview-box ::ng-deep .cv-document {
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .preview-box ::ng-deep .cv-page {
@@ -155,7 +159,6 @@
   .wizard-rail {
     overflow: visible;
     border-right: 0;
-    border-bottom: 1px solid var(--color-line);
   }
   .wizard-rail > div:first-child,
   .wizard-rail > div.mt-auto {

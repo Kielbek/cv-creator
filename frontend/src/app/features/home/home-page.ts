@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LucideAngularModule, ArrowRight, Plus } from 'lucide-angular';
+import { LucideAngularModule, ArrowRight, Plus, ShieldCheck } from 'lucide-angular';
 import { SiteNav } from '../../shared/site-nav';
 import { SiteFooter } from '../../shared/site-footer';
 import { CvThumb } from '../../cv-render/cv-thumb';
@@ -17,7 +17,7 @@ import { CV_LANGUAGES } from '../../core/cv/cv-labels';
 })
 export class HomePage {
   protected readonly ui = inject(UiLanguage);
-  protected readonly icons = { ArrowRight, Plus };
+  protected readonly icons = { ArrowRight, Plus, ShieldCheck };
   protected readonly templateCount = TEMPLATES.length;
   protected readonly cvLanguageCount = CV_LANGUAGES.length;
   protected readonly showcase = ['atlas', 'nova', 'executive', 'onyx'].map(findTemplate);

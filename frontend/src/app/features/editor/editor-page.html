@@ -3,7 +3,7 @@
   <!-- ================= step rail ================= -->
   <aside class="wizard-rail no-print">
     <div class="flex h-14 items-center justify-between px-5">
-      <a routerLink="/" aria-label="Home"><app-logo [compact]="railCollapsed()" /></a>
+      <a routerLink="/" aria-label="Home"><app-logo [dark]="true" [compact]="railCollapsed()" /></a>
       <button type="button" class="rail-toggle" (click)="railCollapsed.set(!railCollapsed())" [attr.aria-label]="'editor.collapse' | translate">
         <lucide-icon [img]="icons.ChevronLeft" class="size-4 transition" [class.rotate-180]="railCollapsed()" />
       </button>
@@ -15,15 +15,15 @@
           <span class="step-num">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</span>
           <span class="rail-label min-w-0 flex-1 truncate">{{ 'editor.steps.' + s.id + '.nav' | translate }}</span>
           @if (done(i)) {
-            <lucide-icon [img]="icons.Check" class="rail-label size-3.5 text-faint" />
+            <lucide-icon [img]="icons.Check" class="rail-label size-3.5 text-brand-300" />
           }
         </button>
       }
     </nav>
 
-    <div class="rail-label mt-auto flex items-center justify-between border-t border-line px-5 py-3">
-      <span class="text-[12px] text-faint">{{ 'editor.autosave' | translate }}</span>
-      <app-language-switcher />
+    <div class="rail-label mt-auto flex items-center justify-between border-t border-white/10 px-4 py-3">
+      <span class="text-[12px] text-white/45">{{ 'editor.autosave' | translate }}</span>
+      <app-language-switcher [dark]="true" [up]="true" />
     </div>
   </aside>
 
@@ -162,7 +162,16 @@
         <p class="eyebrow">{{ 'editor.livePreview' | translate }}</p>
         <p class="mt-1 text-[13px] text-muted">{{ store.geometry().template.name }} · {{ 'editor.pages' | translate: { count: pageCount() } }}</p>
       </div>
-      <button type="button" class="preview-close icon-btn" (click)="mobilePreview.set(false)" [attr.aria-label]="'common.close' | translate"><lucide-icon [img]="icons.X" class="size-5" /></button>
+      <div class="flex items-center gap-2">
+        <div class="flex items-center rounded-lg border border-line bg-white p-0.5 shadow-[0_1px_2px_rgb(10_26_63/0.06)]">
+          <button type="button" class="icon-btn size-8!" (click)="zoomBy(-0.1)" [disabled]="previewZoom() <= 0.31" [attr.aria-label]="'editor.zoomOut' | translate" [title]="'editor.zoomOut' | translate"><lucide-icon [img]="icons.Minus" class="size-4" /></button>
+          <button type="button" class="h-8 min-w-14 rounded-md px-1 text-[12.5px] font-medium text-ink-2 tabular-nums hover:bg-paper-2" (click)="zoomFit()" [title]="'editor.zoomFit' | translate">{{ (previewZoom() * 100).toFixed(0) }}%</button>
+          <button type="button" class="icon-btn size-8!" (click)="zoomBy(0.1)" [disabled]="previewZoom() >= 1.99" [attr.aria-label]="'editor.zoomIn' | translate" [title]="'editor.zoomIn' | translate"><lucide-icon [img]="icons.Plus" class="size-4" /></button>
+          <span class="mx-0.5 h-4 w-px bg-line"></span>
+          <button type="button" class="icon-btn size-8!" (click)="zoomFit()" [attr.aria-label]="'editor.zoomFit' | translate" [title]="'editor.zoomFit' | translate"><lucide-icon [img]="icons.Maximize2" class="size-3.5" /></button>
+        </div>
+        <button type="button" class="preview-close icon-btn" (click)="mobilePreview.set(false)" [attr.aria-label]="'common.close' | translate"><lucide-icon [img]="icons.X" class="size-5" /></button>
+      </div>
     </div>
     <div class="preview-scroll">
       <div #previewBox class="preview-box">

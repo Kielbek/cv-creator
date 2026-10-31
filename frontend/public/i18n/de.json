@@ -392,7 +392,8 @@
   "skillsInputPh": "Kenntnis eingeben und Enter drücken",
   "skillsInputHint": "Z. B. Excel, Kundenservice, Führerschein Klasse B. Ideal sind 6–12.",
   "cefrHint": "GER-Niveaus: A1–A2 Grundkenntnisse, B1–B2 mittel, C1–C2 fortgeschritten.",
-  "interestsPh": "z. B. Fotografie, Laufen, Ehrenamt"
+  "interestsPh": "z. B. Fotografie, Laufen, Ehrenamt",
+  "zoomFit": "An Breite anpassen"
  },
  "ai": {
   "done": "Fertig – du kannst die Änderung rückgängig machen",

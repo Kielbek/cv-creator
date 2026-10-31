@@ -28,7 +28,7 @@ export class Toasts {
       @for (t of toasts.items(); track t.id) {
         <div
           class="pointer-events-auto rounded-xl px-4 py-2.5 text-sm font-medium shadow-xl"
-          [class]="t.kind === 'error' ? 'bg-red-600 text-white' : t.kind === 'warn' ? 'bg-amber-500 text-white' : 'bg-ink-900 text-white'"
+          [class]="t.kind === 'error' ? 'bg-red-600 text-white' : t.kind === 'warn' ? 'bg-amber-500 text-white' : 'bg-navy text-white'"
         >
           {{ t.key | translate }}
         </div>

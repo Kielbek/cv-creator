@@ -4,16 +4,17 @@ import { TranslateService } from '@ngx-translate/core';
 export interface UiLang {
   code: string;
   name: string;
+  /** ISO country code of the flag (public/flags/<code>.svg) */
   flag: string;
 }
 
 /** Languages of the app interface. Add one: a JSON file in public/i18n + an entry here. */
 export const UI_LANGUAGES: readonly UiLang[] = [
-  { code: 'pl', name: 'Polski', flag: '🇵🇱' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'pl', name: 'Polski', flag: 'pl' },
+  { code: 'en', name: 'English', flag: 'gb' },
+  { code: 'de', name: 'Deutsch', flag: 'de' },
+  { code: 'fr', name: 'Français', flag: 'fr' },
+  { code: 'es', name: 'Español', flag: 'es' },
 ];
 
 const KEY = 'cv-creator:ui-lang';

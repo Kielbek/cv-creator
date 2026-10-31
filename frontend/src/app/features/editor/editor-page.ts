@@ -21,6 +21,9 @@ import {
   CircleCheck,
   Circle,
   X,
+  Minus,
+  Plus,
+  Maximize2,
 } from 'lucide-angular';
 import { CvStore, migrate } from '../../core/cv/cv.store';
 import { hasContent } from '../../core/cv/cv.model';
@@ -59,7 +62,7 @@ export class EditorPage {
   private readonly ui = inject(UiLanguage);
   private readonly translate = inject(TranslateService);
   private readonly document = inject(DOCUMENT);
-  protected readonly icons = { ArrowLeft, ArrowRight, Check, ChevronLeft, Download, Eye, FileJson, FileUp, LayoutGrid, Lightbulb, MoreHorizontal, Palette, RotateCcw, Sparkles, Undo2, CircleCheck, Circle, X };
+  protected readonly icons = { ArrowLeft, ArrowRight, Check, ChevronLeft, Download, Eye, FileJson, FileUp, LayoutGrid, Lightbulb, MoreHorizontal, Palette, RotateCcw, Sparkles, Undo2, CircleCheck, Circle, X, Minus, Plus, Maximize2 };
 
   protected readonly cv = this.store.cv;
   protected readonly steps = STEPS;
@@ -85,7 +88,19 @@ export class EditorPage {
   /** preview scaled to the width of its column */
   private readonly previewBox = viewChild<ElementRef<HTMLElement>>('previewBox');
   private readonly previewWidth = signal(420);
-  protected readonly previewZoom = computed(() => Math.min(1, Math.max(0.3, (this.previewWidth() - 8) / 794)));
+  /** 1 = fit to the column width; the user zooms relative to that */
+  private readonly userZoom = signal(1);
+  private readonly fitZoom = computed(() => Math.min(1, Math.max(0.3, (this.previewWidth() - 8) / 794)));
+  protected readonly previewZoom = computed(() => Math.min(2, Math.max(0.3, this.fitZoom() * this.userZoom())));
+
+  protected zoomBy(step: number): void {
+    const target = Math.min(2, Math.max(0.3, Math.round((this.previewZoom() + step) * 10) / 10));
+    this.userZoom.set(target / this.fitZoom());
+  }
+
+  protected zoomFit(): void {
+    this.userZoom.set(1);
+  }
 
   constructor() {
     const observer = new ResizeObserver((entries) => this.previewWidth.set(entries[0].contentRect.width));

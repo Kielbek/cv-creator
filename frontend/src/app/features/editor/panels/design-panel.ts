@@ -19,7 +19,7 @@ import { CvThumb } from '../../../cv-render/cv-thumb';
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
           @for (t of templates; track t.id) {
             <button type="button" class="group text-left" (click)="store.setTemplate(t.id)" [attr.aria-pressed]="c.design.templateId === t.id">
-              <div class="relative overflow-hidden rounded-md border transition" [class]="c.design.templateId === t.id ? 'border-ink shadow-[0_0_0_1px_var(--color-ink)]' : 'border-line group-hover:border-line-2'">
+              <div class="relative overflow-hidden rounded-md border transition" [class]="c.design.templateId === t.id ? 'border-primary shadow-[0_0_0_1px_var(--color-primary)]' : 'border-line group-hover:border-line-2'">
                 <cv-thumb [templateId]="t.id" [cv]="c" [width]="132" class="mx-auto" />
                 @if (c.design.templateId === t.id) {
                   <span class="absolute right-1.5 top-1.5 rounded-full bg-brand-500 p-0.5 text-white"><lucide-icon [img]="icons.Check" class="size-3.5" /></span>

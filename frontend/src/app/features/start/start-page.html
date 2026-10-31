@@ -26,7 +26,7 @@
                 [attr.aria-checked]="accent() === c"
                 class="flex size-7 items-center justify-center rounded-full ring-offset-2 ring-offset-paper transition"
                 [class.ring-1]="accent() === c"
-                [class.ring-ink]="accent() === c"
+                [class.ring-primary]="accent() === c"
                 [style.background]="c ?? '#fff'"
                 [class.border]="!c"
                 [class.border-line-2]="!c"
@@ -43,7 +43,7 @@
 
           <div class="mt-8 flex flex-wrap justify-center gap-6 border-b border-line text-[14px]" role="tablist">
             @for (f of filters; track f) {
-              <button type="button" role="tab" [attr.aria-selected]="filter() === f" class="-mb-px border-b pb-3 transition" [class]="filter() === f ? 'border-ink text-ink' : 'border-transparent text-muted hover:text-ink'" (click)="filter.set(f)">
+              <button type="button" role="tab" [attr.aria-selected]="filter() === f" class="-mb-px border-b pb-3 transition" [class]="filter() === f ? 'border-primary text-primary' : 'border-transparent text-muted hover:text-ink'" (click)="filter.set(f)">
                 {{ 'templates.filter.' + f | translate }}
               </button>
             }
@@ -52,7 +52,7 @@
           <div class="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
             @for (t of templates(); track t.id) {
               <button type="button" class="group text-left" (click)="pick(t.id)">
-                <div class="relative overflow-hidden rounded-lg border bg-white transition" [class]="templateId() === t.id ? 'border-ink' : 'border-line group-hover:border-line-2'">
+                <div class="relative overflow-hidden rounded-lg border bg-white transition" [class]="templateId() === t.id ? 'border-primary shadow-[0_0_0_1px_var(--color-primary)]' : 'border-line group-hover:border-line-2'">
                   <cv-thumb [templateId]="t.id" [accent]="accent()" [lang]="ui.current()" [width]="260" class="w-full! [&_cv-document]:w-full" />
                   <div class="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-black/25 to-transparent p-4 opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
                     <span class="btn-primary btn-sm">{{ 'start.template.choose' | translate }}</span>
@@ -131,12 +131,12 @@
         <div class="mx-auto flex max-w-md flex-col items-center px-5 pt-[18vh] pb-24 text-center" role="status" aria-live="polite">
           <h1 class="serif text-balance text-[1.9rem] leading-tight">{{ (method() === 'import' ? 'start.loading.import' : 'start.loading.new') | translate }}</h1>
           <div class="mt-8 h-[3px] w-full overflow-hidden rounded-full bg-line">
-            <div class="h-full rounded-full bg-ink transition-[width] duration-200" [style.width.%]="progress()"></div>
+            <div class="h-full rounded-full bg-primary transition-[width] duration-200" [style.width.%]="progress()"></div>
           </div>
           <ul class="mt-10 w-full max-w-xs space-y-3.5 text-left text-[14px]">
             @for (s of loadingSteps(); track s; let i = $index) {
               <li class="flex items-center gap-3 transition" [class]="i < doneItems() ? 'text-ink' : 'text-faint'">
-                <span class="flex size-[18px] shrink-0 items-center justify-center rounded-full border transition" [class]="i < doneItems() ? 'border-ink bg-ink text-paper' : 'border-line-2'">
+                <span class="flex size-[18px] shrink-0 items-center justify-center rounded-full border transition" [class]="i < doneItems() ? 'border-primary bg-primary text-white' : 'border-line-2'">
                   @if (i < doneItems()) {
                     <lucide-icon [img]="icons.Check" class="size-3" />
                   }
@@ -157,7 +157,7 @@
     role="radio"
     [attr.aria-checked]="method() === id"
     class="flex items-start gap-4 rounded-xl border bg-white p-6 text-left transition"
-    [class]="method() === id ? 'border-ink shadow-[0_0_0_1px_var(--color-ink)]' : 'border-line hover:border-line-2'"
+    [class]="method() === id ? 'border-primary shadow-[0_0_0_1px_var(--color-primary)]' : 'border-line hover:border-line-2'"
     (click)="method.set(id)"
     (dblclick)="method.set(id); next()"
   >

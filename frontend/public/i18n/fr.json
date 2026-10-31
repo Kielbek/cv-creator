@@ -392,7 +392,8 @@
   "skillsInputPh": "Saisissez une compétence puis Entrée",
   "skillsInputHint": "Ex. Excel, relation client, permis B. Idéalement 6 à 12.",
   "cefrHint": "Niveaux CECRL : A1–A2 élémentaire, B1–B2 indépendant, C1–C2 expérimenté.",
-  "interestsPh": "ex. photographie, course à pied, bénévolat"
+  "interestsPh": "ex. photographie, course à pied, bénévolat",
+  "zoomFit": "Ajuster à la largeur"
  },
  "ai": {
   "done": "Terminé – vous pouvez annuler ce changement",

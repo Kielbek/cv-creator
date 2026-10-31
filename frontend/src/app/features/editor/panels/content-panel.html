@@ -229,7 +229,7 @@
       <div class="entries">
         @for (l of c.languages; track l.id; let i = $index) {
           <div class="entry flex items-center gap-3 px-3 py-2.5">
-            <input class="input h-9! flex-1 border-transparent! px-2! hover:border-line-2! focus:border-ink!" [value]="l.name" (input)="setItem('languages', i, 'name', val($event))" [placeholder]="'editor.f.languagePh' | translate" />
+            <input class="input h-9! flex-1 border-transparent! px-2! hover:border-line-2! focus:border-primary!" [value]="l.name" (input)="setItem('languages', i, 'name', val($event))" [placeholder]="'editor.f.languagePh' | translate" />
             <select class="field-select h-9 max-w-40 flex-none rounded-md border border-line-2 text-[13.5px]" (change)="setItem('languages', i, 'level', val($event))" [attr.aria-label]="'editor.f.level' | translate">
               @for (lv of levels; track lv) {
                 <option [value]="lv" [selected]="lv === l.level">{{ lv === 'native' ? ('editor.native' | translate) : lv }}</option>

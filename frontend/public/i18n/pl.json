@@ -392,7 +392,8 @@
   "skillsInputPh": "Wpisz umiejętność i naciśnij Enter",
   "skillsInputHint": "Np. Excel, obsługa kasy fiskalnej, prawo jazdy kat. B. Najlepiej 6–12 pozycji.",
   "cefrHint": "Poziomy wg skali CEFR: A1–A2 podstawowy, B1–B2 średni, C1–C2 zaawansowany.",
-  "interestsPh": "np. fotografia, bieganie, wolontariat"
+  "interestsPh": "np. fotografia, bieganie, wolontariat",
+  "zoomFit": "Dopasuj do szerokości"
  },
  "ai": {
   "done": "Gotowe – możesz cofnąć tę zmianę",

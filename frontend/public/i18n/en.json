@@ -392,7 +392,8 @@
   "skillsInputPh": "Type a skill and press Enter",
   "skillsInputHint": "E.g. Excel, customer service, driving licence. 6–12 items work best.",
   "cefrHint": "CEFR levels: A1–A2 basic, B1–B2 intermediate, C1–C2 advanced.",
-  "interestsPh": "e.g. photography, running, volunteering"
+  "interestsPh": "e.g. photography, running, volunteering",
+  "zoomFit": "Fit to width"
  },
  "ai": {
   "done": "Done – you can undo this change",

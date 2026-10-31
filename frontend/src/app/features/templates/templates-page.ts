@@ -18,7 +18,7 @@ import { UiLanguage } from '../../core/i18n/ui-language';
       <p class="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted">{{ 'templates.subtitle' | translate }}</p>
       <div class="mt-10 flex flex-wrap gap-6 border-b border-line text-[14px]" role="tablist">
         @for (f of filters; track f) {
-          <button type="button" role="tab" [attr.aria-selected]="filter() === f" class="-mb-px border-b pb-3 transition" [class]="filter() === f ? 'border-ink text-ink' : 'border-transparent text-muted hover:text-ink'" (click)="filter.set(f)">
+          <button type="button" role="tab" [attr.aria-selected]="filter() === f" class="-mb-px border-b pb-3 transition" [class]="filter() === f ? 'border-primary text-primary' : 'border-transparent text-muted hover:text-ink'" (click)="filter.set(f)">
             {{ 'templates.filter.' + f | translate }}
           </button>
         }
