@@ -1,0 +1,343 @@
+{
+ "common": {
+  "remove": "Eliminar",
+  "up": "Subir",
+  "down": "Bajar"
+ },
+ "nav": {
+  "templates": "Plantillas",
+  "features": "Funciones",
+  "how": "Cómo funciona",
+  "create": "Crear CV"
+ },
+ "footer": {
+  "tagline": "Creador de CV gratuito con IA y plantillas compatibles con ATS. Tus datos se quedan en tu navegador.",
+  "rights": "CV Creator. Todos los derechos reservados."
+ },
+ "home": {
+  "badge": "Rápido • Profesional • Multilingüe",
+  "title1": "Crea el CV perfecto",
+  "title2": "en minutos",
+  "subtitle": "Un generador de CV moderno con IA. Elige una plantilla, añade tu experiencia y descarga un PDF profesional en el idioma del puesto que buscas.",
+  "check": {
+   "templates": "{{count}} plantillas modernas, diseños de 1 a 3 columnas",
+   "languages": "CV en {{count}} idiomas, adaptado a cada país",
+   "ats": "Optimizado para sistemas de selección (ATS)"
+  },
+  "cta": "Crea tu CV gratis",
+  "ctaTemplates": "Ver plantillas",
+  "noSignup": "Sin registro. Tus datos no salen de tu navegador.",
+  "moreLanguages": "Contenido del CV en {{count}} idiomas",
+  "atsCard": {
+   "title": "Listo para ATS",
+   "text": "Texto real, estructura limpia"
+  },
+  "features": {
+   "eyebrow": "Por qué nosotros",
+   "title": "Más que un generador de CV",
+   "subtitle": "Todo lo que necesitas para destacar – y superar a los robots que leen los CV primero.",
+   "ai": {
+    "title": "Asistente de redacción IA",
+    "text": "Genera un perfil y convierte tareas en logros concretos con un clic."
+   },
+   "ats": {
+    "title": "Pensado para ATS",
+    "text": "Texto seleccionable, orden de lectura lógico y plantillas ATS claramente marcadas."
+   },
+   "languages": {
+    "title": "Cada país, sus reglas",
+    "text": "Títulos, formato de fecha, tamaño de página, foto y cláusula de consentimiento según el país de destino."
+   },
+   "layout": {
+    "title": "Tu diseño, a tu manera",
+    "text": "1, 2 o 3 columnas. Arrastra secciones donde quieras – las páginas A4 se crean solas."
+   },
+   "tailor": {
+    "title": "Ajusta a una oferta",
+    "text": "Pega un anuncio: la IA puntúa tu CV, lista palabras clave que faltan y reescribe tu perfil."
+   },
+   "privacy": {
+    "title": "Privado por diseño",
+    "text": "Sin cuenta ni rastreo. Tu CV se guarda solo en tu navegador."
+   }
+  },
+  "templates": {
+   "eyebrow": "Plantillas",
+   "title": "Elige el estilo que te va",
+   "text": "Plantillas profesionales para cada sector – desde clásicas de una columna para ATS hasta modernas con barra lateral.",
+   "cta": "Ver plantillas"
+  },
+  "how": {
+   "eyebrow": "Cómo funciona",
+   "title": "Tres pasos hacia un nuevo CV",
+   "template": {
+    "title": "Elige una plantilla",
+    "text": "Elige diseño y estructura. Puedes cambiarlos cuando quieras sin perder contenido."
+   },
+   "content": {
+    "title": "Complétalo con IA",
+    "text": "Escribe o pega tu experiencia. La IA pule la redacción y la vista previa se actualiza al instante."
+   },
+   "download": {
+    "title": "Descarga el PDF",
+    "text": "Un PDF listo para imprimir, con texto real que leen reclutadores y ATS."
+   }
+  },
+  "free": {
+   "eyebrow": "Precios",
+   "title": "Todo gratis. De verdad.",
+   "templates": "Todas las plantillas y diseños",
+   "ai": "Asistente IA incluido",
+   "pdf": "Descargas PDF ilimitadas",
+   "noSignup": "Sin crear cuenta"
+  },
+  "faq": {
+   "title": "Preguntas frecuentes",
+   "free": {
+    "q": "¿De verdad es gratis?",
+    "a": "Sí. Plantillas, funciones de IA y descargas PDF son gratuitas. Las solicitudes de IA tienen un límite diario para que siga siendo así para todos."
+   },
+   "ats": {
+    "q": "¿Qué es un ATS y son compatibles las plantillas?",
+    "a": "Los sistemas de selección leen los CV antes que una persona. Nuestros PDF contienen texto real en orden lógico. Las plantillas marcadas ATS tienen la estructura más sencilla – ideales para grandes empresas y portales de empleo."
+   },
+   "data": {
+    "q": "¿Dónde se guardan mis datos?",
+    "a": "Solo en tu navegador. No se envía nada salvo que uses la IA – entonces solo se envía el texto necesario y no se guarda."
+   },
+   "ai": {
+    "q": "¿La IA se inventará cosas?",
+    "a": "No – solo usa datos de tu CV. Lee siempre la propuesta antes de aceptarla."
+   },
+   "pages": {
+    "q": "¿Y si mi CV ocupa más de una página?",
+    "a": "El contenido pasa automáticamente a la siguiente página A4. Cada columna continúa y las entradas nunca se cortan."
+   },
+   "languages": {
+    "q": "¿Puedo tener el mismo CV en varios idiomas?",
+    "a": "Sí, con la traducción por IA, que adapta los puestos al país de destino. Exporta antes si quieres conservar ambas versiones."
+   }
+  },
+  "final": {
+   "title": "¿Listo para tu próximo empleo?",
+   "text": "Crea ya tu CV profesional – solo lleva un momento."
+  }
+ },
+ "templates": {
+  "title": "Plantillas de CV",
+  "subtitle": "Cada plantilla funciona con 1, 2 o 3 columnas y cualquier orden de secciones. Las marcadas ATS son las más seguras para candidaturas online.",
+  "use": "Usar plantilla",
+  "filter": {
+   "all": "Todas",
+   "ats": "Compatibles ATS",
+   "modern": "Modernas",
+   "classic": "Clásicas",
+   "creative": "Creativas",
+   "minimal": "Minimalistas"
+  }
+ },
+ "layout": {
+  "skeleton": "Estructura de página",
+  "columns": {
+   "1": "1 columna",
+   "2": "2 columnas",
+   "3": "3 columnas"
+  },
+  "arrange": "Organizar secciones",
+  "arrangeHint": "Arrastra secciones entre columnas o cambia su orden. Las páginas se añaden solas.",
+  "column": "Columna",
+  "sidebar": "barra lateral",
+  "hide": "Ocultar sección",
+  "show": "Mostrar sección",
+  "hidden": "No mostradas",
+  "allShown": "Todas las secciones están visibles",
+  "contactInHeader": "Sin la sección Contacto, los datos de contacto aparecen en la cabecera."
+ },
+ "design": {
+  "template": "Plantilla",
+  "accent": "Color de acento",
+  "custom": "Color propio",
+  "font": "Fuente",
+  "pageSize": "Tamaño de página",
+  "fontSize": "Tamaño del texto",
+  "fontSizeHint": "Un texto algo más pequeño puede ahorrar páginas."
+ },
+ "editor": {
+  "cvLanguage": "Idioma del CV",
+  "country": "País de destino",
+  "undo": "Deshacer",
+  "download": "Descargar PDF",
+  "edit": "Editar",
+  "preview": "Vista previa",
+  "zoomIn": "Ampliar",
+  "zoomOut": "Reducir",
+  "pages": "{{count}} página(s)",
+  "tipsFor": "Consejos: {{country}}",
+  "tabs": {
+   "content": "Contenido",
+   "layout": "Diseño",
+   "design": "Estilo",
+   "ai": "IA"
+  },
+  "menu": {
+   "more": "Más",
+   "export": "Exportar datos (JSON)",
+   "import": "Importar datos (JSON)",
+   "sample": "Cargar ejemplo",
+   "reset": "Empezar de cero",
+   "resetConfirm": "¿Borrar todo el contenido y empezar un CV nuevo?",
+   "imported": "CV importado",
+   "importError": "Este archivo no es una exportación válida",
+   "resetDone": "CV nuevo (puedes deshacer)"
+  },
+  "score": {
+   "title": "Fuerza del CV",
+   "name": "Añade nombre y apellidos",
+   "headline": "Añade tu puesto bajo el nombre",
+   "contact": "Añade e-mail y teléfono",
+   "summary": "Escribe un perfil (mín. 2–3 frases)",
+   "experience": "Añade experiencia con puesto, empresa y fecha de inicio",
+   "bullets": "Describe cada empleo con 3+ logros",
+   "numbers": "Usa cifras para mostrar impacto (%, presupuesto, equipo)",
+   "education": "Añade tu formación",
+   "skills": "Incluye al menos 5 habilidades",
+   "languages": "Añade idiomas"
+  },
+  "sections": {
+   "personal": "Datos personales",
+   "contact": "Contacto",
+   "summary": "Perfil profesional",
+   "experience": "Experiencia profesional",
+   "education": "Formación",
+   "skills": "Habilidades",
+   "languages": "Idiomas",
+   "projects": "Proyectos",
+   "certificates": "Certificaciones",
+   "interests": "Intereses",
+   "consent": "Cláusula de consentimiento"
+  },
+  "photo": {
+   "title": "Foto",
+   "show": "Mostrar en el CV",
+   "hint": {
+    "expected": "En este país la foto es habitual.",
+    "optional": "En este país la foto es opcional.",
+    "avoid": "Mejor sin foto para este país – puede causar un descarte."
+   }
+  },
+  "f": {
+   "firstName": "Nombre",
+   "lastName": "Apellidos",
+   "headline": "Puesto",
+   "headlinePh": "p. ej. Desarrollador Java Senior",
+   "email": "E-mail",
+   "phone": "Teléfono",
+   "location": "Ubicación",
+   "locationPh": "Ciudad, país",
+   "website": "Sitio web",
+   "summaryPh": "2–4 frases: quién eres, tu experiencia, tus puntos fuertes y qué buscas.",
+   "position": "Puesto",
+   "company": "Empresa",
+   "city": "Ciudad",
+   "start": "Inicio",
+   "end": "Fin",
+   "current": "Trabajo aquí actualmente",
+   "currentStudy": "En curso",
+   "achievements": "Logros y responsabilidades (uno por línea)",
+   "achievementsPh": "Aumenté las ventas un 20 % gracias a…\nDirigí un equipo de 5 personas…",
+   "degree": "Título / especialidad",
+   "school": "Centro / universidad",
+   "description": "Descripción",
+   "skillPh": "p. ej. Excel, Python, negociación",
+   "level": "Nivel",
+   "languagePh": "p. ej. Inglés",
+   "projectName": "Nombre del proyecto",
+   "link": "Enlace",
+   "certName": "Certificación",
+   "issuer": "Emisor",
+   "date": "Fecha"
+  },
+  "add": {
+   "experience": "Añadir puesto",
+   "education": "Añadir formación",
+   "skill": "Añadir habilidad",
+   "language": "Añadir idioma",
+   "project": "Añadir proyecto",
+   "certificate": "Añadir certificación"
+  },
+  "skillLevel": {
+   "1": "Principiante",
+   "2": "Básico",
+   "3": "Bueno",
+   "4": "Muy bueno",
+   "5": "Experto"
+  },
+  "skillHint": "El nivel solo aparece en plantillas que lo muestran (barras o puntos).",
+  "native": "Nativo",
+  "consentHint": "Muchos empleadores polacos exigen esta cláusula. Déjala vacía si el país de destino no la necesita."
+ },
+ "ai": {
+  "done": "Hecho – puedes deshacer este cambio",
+  "needText": "Escribe primero unas palabras – la IA mejora tu propio texto.",
+  "disabled": "Las funciones de IA no están disponibles ahora. Todo lo demás funciona.",
+  "error": {
+   "rate_limited": "Límite de IA alcanzado – inténtalo más tarde",
+   "ai_unavailable": "IA no disponible temporalmente – inténtalo de nuevo",
+   "invalid": "Solicitud demasiado larga o incompleta",
+   "network": "Sin conexión con el servidor"
+  },
+  "tone": {
+   "label": "Tono",
+   "professional": "Profesional",
+   "confident": "Seguro",
+   "friendly": "Cercano",
+   "concise": "Conciso"
+  },
+  "writeSummary": "Escribir con IA",
+  "rewriteSummary": "Reescribir con IA",
+  "summaryHint": "La IA usa la experiencia y habilidades del CV. Rellénalas primero para un mejor resultado.",
+  "improve": "Mejorar con IA",
+  "proposal": "Propuesta de la IA",
+  "accept": "Usar",
+  "discard": "Descartar",
+  "privacy": "A la IA solo se envía el texto del CV (sin datos de contacto ni foto). Las respuestas no se guardan. Revisa las propuestas antes de usarlas.",
+  "tailor": {
+   "title": "Ajustar a una oferta",
+   "hint": "Pega una oferta de empleo. La IA la compara con tu CV como lo haría un ATS y un reclutador.",
+   "placeholder": "Pega aquí la oferta…",
+   "run": "Analizar coincidencia",
+   "score": "Coincidencia entre tu CV y la oferta. Usa las sugerencias para mejorarla.",
+   "missing": "Palabras clave que faltan",
+   "addSkill": "Añadir a habilidades",
+   "honest": "Añade solo lo que dominas de verdad – la entrevista lo comprobará.",
+   "matched": "Ya en tu CV",
+   "suggestions": "Sugerencias",
+   "newSummary": "Perfil para esta oferta",
+   "useSummary": "Reemplazar mi perfil"
+  },
+  "translate": {
+   "title": "Traducir el CV",
+   "hint": "La IA traduce todo el CV y adapta los puestos al país de destino. Contacto, fechas y diseño se mantienen.",
+   "language": "Idioma",
+   "country": "País",
+   "run": "Traducir",
+   "undo": "Consejo: exporta antes para conservar ambas versiones. También puedes deshacer.",
+   "done": "CV traducido"
+  }
+ },
+ "country": {
+  "tips": {
+   "consent": "Añade la cláusula RGPD (RODO) – muchos empleadores la exigen.",
+   "photoOptional": "La foto es opcional; si la añades, que sea profesional.",
+   "photoExpected": "Se espera una foto profesional.",
+   "photoAvoid": "No incluyas foto, fecha de nacimiento ni estado civil.",
+   "twoPages": "Máximo 1–2 páginas.",
+   "onePage": "Se prefiere una página, sobre todo al inicio de la carrera.",
+   "deLebenslauf": "Lebenslauf tabular en orden cronológico inverso; explica los huecos.",
+   "reverseChrono": "Empieza por la experiencia más reciente.",
+   "noPersonal": "Omite datos personales no relacionados con el puesto (edad, nacionalidad).",
+   "usResume": "En EE. UU. se llama résumé: breve, orientado a resultados, formato US Letter.",
+   "itConsent": "Los empleadores italianos suelen esperar una línea de consentimiento RGPD (Reg. UE 2016/679)."
+  }
+ }
+}

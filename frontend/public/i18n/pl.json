@@ -1,0 +1,343 @@
+{
+ "common": {
+  "remove": "Usuń",
+  "up": "Przesuń wyżej",
+  "down": "Przesuń niżej"
+ },
+ "nav": {
+  "templates": "Szablony",
+  "features": "Funkcje",
+  "how": "Jak to działa",
+  "create": "Stwórz CV"
+ },
+ "footer": {
+  "tagline": "Darmowy kreator CV z AI i szablonami przyjaznymi dla ATS. Twoje dane zostają w przeglądarce.",
+  "rights": "CV Creator. Wszelkie prawa zastrzeżone."
+ },
+ "home": {
+  "badge": "Szybko • Profesjonalnie • W wielu językach",
+  "title1": "Stwórz idealne CV",
+  "title2": "w kilka minut",
+  "subtitle": "Nowoczesny generator CV z AI. Wybierz szablon, dodaj swoje doświadczenie i pobierz profesjonalny dokument w wybranym języku – gotowy do aplikowania na wymarzoną pracę.",
+  "check": {
+   "templates": "{{count}} nowoczesnych szablonów, układy 1–3 kolumnowe",
+   "languages": "CV w {{count}} językach, dopasowane do kraju",
+   "ats": "Optymalizacja pod systemy ATS"
+  },
+  "cta": "Stwórz swoje CV za darmo",
+  "ctaTemplates": "Zobacz szablony",
+  "noSignup": "Bez rejestracji. Twoje dane nie opuszczają przeglądarki.",
+  "moreLanguages": "Treść CV w {{count}} językach",
+  "atsCard": {
+   "title": "Gotowe na ATS",
+   "text": "Prawdziwy tekst, czysta struktura"
+  },
+  "features": {
+   "eyebrow": "Dlaczego my",
+   "title": "Więcej niż zwykły generator CV",
+   "subtitle": "Kompleksowe narzędzie, które pomoże Ci wyróżnić się na rynku pracy – i przejść przez roboty, które czytają CV jako pierwsze.",
+   "ai": {
+    "title": "Asystent AI",
+    "text": "Wygeneruj podsumowanie zawodowe i zamień obowiązki w konkretne osiągnięcia jednym kliknięciem."
+   },
+   "ats": {
+    "title": "Zgodne z ATS",
+    "text": "Zaznaczalny tekst, logiczna kolejność czytania i wyraźnie oznaczone szablony bezpieczne dla ATS."
+   },
+   "languages": {
+    "title": "Każdy kraj, jego zasady",
+    "text": "Nagłówki, format dat, rozmiar strony, zdjęcie i klauzula RODO zgodnie ze zwyczajami kraju docelowego."
+   },
+   "layout": {
+    "title": "Twój układ, Twoje zasady",
+    "text": "1, 2 lub 3 kolumny. Przeciągaj sekcje gdzie chcesz – nowe strony A4 tworzą się automatycznie."
+   },
+   "tailor": {
+    "title": "Dopasuj do oferty",
+    "text": "Wklej ogłoszenie: AI oceni dopasowanie, wskaże brakujące słowa kluczowe i przepisze podsumowanie."
+   },
+   "privacy": {
+    "title": "Prywatność w standardzie",
+    "text": "Bez konta i śledzenia. CV zapisuje się tylko w Twojej przeglądarce."
+   }
+  },
+  "templates": {
+   "eyebrow": "Szablony",
+   "title": "Wybierz styl, który pasuje do Ciebie",
+   "text": "Profesjonalne szablony dopasowane do różnych branż i stanowisk – od klasycznych jednokolumnowych dla ATS po nowoczesne z paskiem bocznym.",
+   "cta": "Przeglądaj szablony"
+  },
+  "how": {
+   "eyebrow": "Jak to działa",
+   "title": "Trzy kroki do nowego CV",
+   "template": {
+    "title": "Wybierz szablon",
+    "text": "Wybierz wygląd i układ. Możesz zmienić je w każdej chwili bez utraty treści."
+   },
+   "content": {
+    "title": "Uzupełnij z pomocą AI",
+    "text": "Wpisz lub wklej doświadczenie. AI dopracuje sformułowania, a podgląd zmienia się na żywo."
+   },
+   "download": {
+    "title": "Pobierz PDF",
+    "text": "Gotowy do druku PDF z prawdziwym tekstem, który przeczyta rekruter i system ATS."
+   }
+  },
+  "free": {
+   "eyebrow": "Cennik",
+   "title": "Wszystko za darmo. Naprawdę.",
+   "templates": "Wszystkie szablony i układy",
+   "ai": "Asystent AI w cenie",
+   "pdf": "Bez limitu pobrań PDF",
+   "noSignup": "Bez zakładania konta"
+  },
+  "faq": {
+   "title": "Najczęstsze pytania",
+   "free": {
+    "q": "Czy to naprawdę za darmo?",
+    "a": "Tak. Wszystkie szablony, funkcje AI i pobieranie PDF są bezpłatne. Zapytania do AI mają dzienny limit, żeby tak zostało dla wszystkich."
+   },
+   "ats": {
+    "q": "Czym jest ATS i czy szablony są zgodne?",
+    "a": "Systemy ATS czytają CV, zanim zrobi to człowiek. Nasze PDF-y zawierają prawdziwy tekst w logicznej kolejności. Szablony oznaczone ATS mają najprostszą strukturę – wybieraj je dla dużych firm i portali z ofertami."
+   },
+   "data": {
+    "q": "Gdzie są przechowywane moje dane?",
+    "a": "Tylko w Twojej przeglądarce. Nic nie jest wysyłane, chyba że użyjesz funkcji AI – wtedy wysyłany jest tylko potrzebny tekst i nie jest on zapisywany."
+   },
+   "ai": {
+    "q": "Czy AI coś zmyśli?",
+    "a": "Nie – ma polecenie używać wyłącznie faktów z Twojego CV. Zawsze przeczytaj propozycję przed jej zaakceptowaniem."
+   },
+   "pages": {
+    "q": "Co jeśli CV ma więcej niż jedną stronę?",
+    "a": "Treść automatycznie przechodzi na kolejną stronę A4. Każda kolumna kontynuuje się na następnej stronie, a wpisy nigdy nie są przecinane w połowie."
+   },
+   "languages": {
+    "q": "Czy mogę mieć to samo CV w kilku językach?",
+    "a": "Tak. Użyj tłumaczenia AI – dopasuje nazwy stanowisk i sformułowania do kraju docelowego. Najpierw wyeksportuj CV, jeśli chcesz zachować obie wersje."
+   }
+  },
+  "final": {
+   "title": "Gotowy na nową pracę?",
+   "text": "Stwórz swoje profesjonalne CV już teraz – to zajmie tylko chwilę."
+  }
+ },
+ "templates": {
+  "title": "Szablony CV",
+  "subtitle": "Każdy szablon działa w układzie 1, 2 lub 3 kolumn i z dowolną kolejnością sekcji. Szablony oznaczone ATS są najbezpieczniejsze przy aplikowaniu online.",
+  "use": "Użyj szablonu",
+  "filter": {
+   "all": "Wszystkie",
+   "ats": "Przyjazne ATS",
+   "modern": "Nowoczesne",
+   "classic": "Klasyczne",
+   "creative": "Kreatywne",
+   "minimal": "Minimalistyczne"
+  }
+ },
+ "layout": {
+  "skeleton": "Szkielet strony",
+  "columns": {
+   "1": "1 kolumna",
+   "2": "2 kolumny",
+   "3": "3 kolumny"
+  },
+  "arrange": "Rozmieszczenie sekcji",
+  "arrangeHint": "Przeciągaj sekcje między kolumnami lub zmieniaj ich kolejność. Strony dodają się automatycznie.",
+  "column": "Kolumna",
+  "sidebar": "pasek boczny",
+  "hide": "Ukryj sekcję",
+  "show": "Pokaż sekcję",
+  "hidden": "Niewidoczne",
+  "allShown": "Wszystkie sekcje są widoczne",
+  "contactInHeader": "Gdy sekcja Kontakt nie jest umieszczona, dane kontaktowe pokazują się w nagłówku."
+ },
+ "design": {
+  "template": "Szablon",
+  "accent": "Kolor akcentu",
+  "custom": "Własny kolor",
+  "font": "Czcionka",
+  "pageSize": "Rozmiar strony",
+  "fontSize": "Wielkość tekstu",
+  "fontSizeHint": "Nieco mniejszy tekst pomoże zmieścić CV na mniejszej liczbie stron."
+ },
+ "editor": {
+  "cvLanguage": "Język CV",
+  "country": "Kraj docelowy",
+  "undo": "Cofnij",
+  "download": "Pobierz PDF",
+  "edit": "Edycja",
+  "preview": "Podgląd",
+  "zoomIn": "Powiększ",
+  "zoomOut": "Pomniejsz",
+  "pages": "Stron: {{count}}",
+  "tipsFor": "Wskazówki: {{country}}",
+  "tabs": {
+   "content": "Treść",
+   "layout": "Układ",
+   "design": "Wygląd",
+   "ai": "AI"
+  },
+  "menu": {
+   "more": "Więcej",
+   "export": "Eksportuj dane (JSON)",
+   "import": "Importuj dane (JSON)",
+   "sample": "Wczytaj przykładowe CV",
+   "reset": "Zacznij od nowa",
+   "resetConfirm": "Usunąć całą treść i zacząć nowe CV?",
+   "imported": "CV zaimportowane",
+   "importError": "Ten plik nie jest poprawnym eksportem CV",
+   "resetDone": "Rozpoczęto nowe CV (możesz cofnąć)"
+  },
+  "score": {
+   "title": "Siła CV",
+   "name": "Dodaj imię i nazwisko",
+   "headline": "Dodaj stanowisko pod nazwiskiem",
+   "contact": "Dodaj e-mail i telefon",
+   "summary": "Napisz podsumowanie (min. 2–3 zdania)",
+   "experience": "Dodaj doświadczenie: stanowisko, firma, data rozpoczęcia",
+   "bullets": "Opisz każdą pracę min. 3 osiągnięciami",
+   "numbers": "Użyj liczb, by pokazać efekty (%, budżet, wielkość zespołu)",
+   "education": "Dodaj wykształcenie",
+   "skills": "Wymień co najmniej 5 umiejętności",
+   "languages": "Dodaj języki"
+  },
+  "sections": {
+   "personal": "Dane osobowe",
+   "contact": "Kontakt",
+   "summary": "Podsumowanie zawodowe",
+   "experience": "Doświadczenie zawodowe",
+   "education": "Wykształcenie",
+   "skills": "Umiejętności",
+   "languages": "Języki",
+   "projects": "Projekty",
+   "certificates": "Certyfikaty",
+   "interests": "Zainteresowania",
+   "consent": "Klauzula RODO"
+  },
+  "photo": {
+   "title": "Zdjęcie",
+   "show": "Pokaż w CV",
+   "hint": {
+    "expected": "W tym kraju zdjęcie jest standardem.",
+    "optional": "W tym kraju zdjęcie jest opcjonalne.",
+    "avoid": "W tym kraju lepiej pominąć zdjęcie – może skutkować odrzuceniem."
+   }
+  },
+  "f": {
+   "firstName": "Imię",
+   "lastName": "Nazwisko",
+   "headline": "Stanowisko",
+   "headlinePh": "np. Senior Java Developer",
+   "email": "E-mail",
+   "phone": "Telefon",
+   "location": "Lokalizacja",
+   "locationPh": "Miasto, kraj",
+   "website": "Strona www",
+   "summaryPh": "2–4 zdania: kim jesteś, jakie masz doświadczenie, mocne strony i czego szukasz.",
+   "position": "Stanowisko",
+   "company": "Firma",
+   "city": "Miasto",
+   "start": "Od",
+   "end": "Do",
+   "current": "Pracuję tu obecnie",
+   "currentStudy": "W trakcie",
+   "achievements": "Osiągnięcia i obowiązki (jedno w linii)",
+   "achievementsPh": "Zwiększyłem sprzedaż o 20% dzięki…\nKierowałem zespołem 5 osób…",
+   "degree": "Kierunek / tytuł",
+   "school": "Szkoła / uczelnia",
+   "description": "Opis",
+   "skillPh": "np. Excel, Python, negocjacje",
+   "level": "Poziom",
+   "languagePh": "np. Angielski",
+   "projectName": "Nazwa projektu",
+   "link": "Link",
+   "certName": "Certyfikat",
+   "issuer": "Wydawca",
+   "date": "Data"
+  },
+  "add": {
+   "experience": "Dodaj stanowisko",
+   "education": "Dodaj szkołę",
+   "skill": "Dodaj umiejętność",
+   "language": "Dodaj język",
+   "project": "Dodaj projekt",
+   "certificate": "Dodaj certyfikat"
+  },
+  "skillLevel": {
+   "1": "Początkujący",
+   "2": "Podstawowy",
+   "3": "Dobry",
+   "4": "Bardzo dobry",
+   "5": "Ekspert"
+  },
+  "skillHint": "Poziom jest widoczny tylko w szablonach, które go pokazują (paski lub kropki).",
+  "native": "Ojczysty",
+  "consentHint": "Wielu polskich pracodawców wymaga tej klauzuli. Zostaw puste, jeśli kraj docelowy jej nie potrzebuje."
+ },
+ "ai": {
+  "done": "Gotowe – możesz cofnąć tę zmianę",
+  "needText": "Najpierw napisz kilka słów – AI ulepsza Twój własny tekst.",
+  "disabled": "Funkcje AI są teraz niedostępne. Reszta działa normalnie.",
+  "error": {
+   "rate_limited": "Osiągnięto limit AI – spróbuj później",
+   "ai_unavailable": "AI jest chwilowo niedostępne – spróbuj ponownie",
+   "invalid": "Zapytanie jest za długie lub niekompletne",
+   "network": "Brak połączenia z serwerem"
+  },
+  "tone": {
+   "label": "Ton",
+   "professional": "Profesjonalny",
+   "confident": "Pewny siebie",
+   "friendly": "Przyjazny",
+   "concise": "Zwięzły"
+  },
+  "writeSummary": "Napisz z AI",
+  "rewriteSummary": "Przepisz z AI",
+  "summaryHint": "AI korzysta z doświadczenia i umiejętności z CV. Uzupełnij je najpierw, a wynik będzie lepszy.",
+  "improve": "Ulepsz z AI",
+  "proposal": "Propozycja AI",
+  "accept": "Użyj",
+  "discard": "Odrzuć",
+  "privacy": "Do AI wysyłany jest tylko tekst CV (bez danych kontaktowych i zdjęcia). Odpowiedzi nie są zapisywane. Sprawdzaj propozycje przed użyciem.",
+  "tailor": {
+   "title": "Dopasuj do oferty pracy",
+   "hint": "Wklej ogłoszenie. AI porówna je z Twoim CV tak, jak zrobiłby to system ATS i rekruter.",
+   "placeholder": "Wklej tutaj treść ogłoszenia…",
+   "run": "Analizuj dopasowanie",
+   "score": "Dopasowanie CV do tej oferty. Skorzystaj z sugestii poniżej, aby je zwiększyć.",
+   "missing": "Brakujące słowa kluczowe",
+   "addSkill": "Dodaj do umiejętności",
+   "honest": "Dodawaj tylko to, co naprawdę umiesz – rozmowa to sprawdzi.",
+   "matched": "Już w Twoim CV",
+   "suggestions": "Sugestie",
+   "newSummary": "Podsumowanie pod tę ofertę",
+   "useSummary": "Zastąp moje podsumowanie"
+  },
+  "translate": {
+   "title": "Przetłumacz CV",
+   "hint": "AI tłumaczy całe CV i dopasowuje nazwy stanowisk do kraju docelowego. Dane kontaktowe, daty i układ zostają.",
+   "language": "Język",
+   "country": "Kraj",
+   "run": "Przetłumacz",
+   "undo": "Wskazówka: najpierw wyeksportuj CV, by zachować obie wersje. Możesz też cofnąć zmianę.",
+   "done": "CV przetłumaczone"
+  }
+ },
+ "country": {
+  "tips": {
+   "consent": "Dodaj klauzulę RODO – wielu pracodawców jej wymaga.",
+   "photoOptional": "Zdjęcie jest opcjonalne; jeśli je dodajesz, niech będzie profesjonalne.",
+   "photoExpected": "Oczekiwane jest profesjonalne zdjęcie.",
+   "photoAvoid": "Nie dodawaj zdjęcia, daty urodzenia ani stanu cywilnego.",
+   "twoPages": "Zmieść się na 1–2 stronach.",
+   "onePage": "Preferowana jest jedna strona, zwłaszcza na początku kariery.",
+   "deLebenslauf": "Stosuj tabelaryczny Lebenslauf w odwrotnej kolejności chronologicznej; wyjaśnij przerwy.",
+   "reverseChrono": "Doświadczenie wymieniaj od najnowszego.",
+   "noPersonal": "Pomiń dane niezwiązane z pracą (wiek, narodowość).",
+   "usResume": "W USA to résumé: krótkie, nastawione na wyniki, format US Letter.",
+   "itConsent": "Włoscy pracodawcy często oczekują zgody RODO (Reg. UE 2016/679)."
+  }
+ }
+}

@@ -1,0 +1,136 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource/lora/400.css';
+@import '@fontsource/lora/600.css';
+@import './styles/cv.css';
+
+/* App design tokens (the CV itself uses its own variables in cv.css). Violet/indigo brand on deep navy. */
+@theme {
+  --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --color-brand-50: #f1f0ff;
+  --color-brand-100: #e4e1ff;
+  --color-brand-200: #cbc5ff;
+  --color-brand-300: #a99eff;
+  --color-brand-400: #8a7bff;
+  --color-brand-500: #6d5dfc;
+  --color-brand-600: #5b45f0;
+  --color-brand-700: #4b36d1;
+  --color-brand-800: #3d2ea8;
+  --color-ink-950: #060616;
+  --color-ink-900: #0b0b24;
+  --color-ink-800: #15153a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: #14142b;
+  background: #f6f6fb;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Deep space hero background with light ribbons (pure CSS + inline SVG in the component). */
+.hero-bg {
+  background:
+    radial-gradient(60% 50% at 0% 0%, rgb(124 77 255 / 0.55), transparent 60%),
+    radial-gradient(45% 40% at 100% 0%, rgb(79 70 229 / 0.5), transparent 60%),
+    radial-gradient(55% 45% at 100% 100%, rgb(139 92 246 / 0.55), transparent 60%),
+    radial-gradient(50% 40% at 0% 100%, rgb(67 56 202 / 0.45), transparent 60%),
+    #05051a;
+}
+.text-gradient {
+  background: linear-gradient(90deg, #6d7dff, #a78bfa 55%, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 font-semibold text-white shadow-lg shadow-brand-500/30 transition hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 disabled:cursor-not-allowed disabled:opacity-50;
+}
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 font-medium text-slate-700 transition hover:border-brand-300 hover:text-brand-700 disabled:opacity-50;
+}
+.input {
+  @apply w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100;
+}
+.label {
+  @apply mb-1 block text-xs font-medium text-slate-500;
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+  body {
+    background: #fff;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ---- editor building blocks ---------------------------------------------------------------------------------- */
+.panel-card {
+  @apply rounded-2xl border border-slate-200/80 bg-white shadow-[0_1px_2px_rgb(15_15_40/0.04)];
+}
+.panel-head {
+  @apply flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-slate-800;
+}
+.panel-body {
+  @apply space-y-3 border-t border-slate-100 p-4;
+}
+.count {
+  @apply ml-1 rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-500;
+}
+.item-card {
+  @apply relative rounded-xl border border-slate-200 bg-slate-50/50 p-3 pt-9;
+}
+.item-tools {
+  @apply absolute right-2 top-2 flex gap-0.5;
+}
+.item-tools button {
+  @apply rounded-md p-1 text-slate-400 hover:bg-white hover:text-slate-700 disabled:opacity-30 disabled:hover:bg-transparent;
+}
+.add-btn {
+  @apply flex w-full items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-slate-200 py-2.5 text-sm font-medium text-slate-500 transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700;
+}
+.ai-btn {
+  @apply inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand-500 to-violet-500 px-3 py-1.5 text-sm font-semibold text-white shadow-sm shadow-brand-500/30 transition hover:brightness-110 disabled:opacity-60;
+}
+.icon-btn {
+  @apply inline-flex size-9 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 disabled:opacity-30 disabled:hover:bg-transparent;
+}
+.section-chip {
+  @apply flex w-full items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs font-medium text-slate-700 shadow-sm;
+}
+.menu-item {
+  @apply flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm text-slate-700 hover:bg-slate-50;
+}
+.seg {
+  @apply flex flex-1 items-center justify-center gap-1.5 rounded-lg py-1.5 text-sm font-medium text-slate-500;
+}
+.seg-on {
+  @apply bg-brand-50 text-brand-700;
+}
+.tab {
+  @apply flex flex-col items-center gap-1 rounded-lg py-1.5 text-[11px] font-medium text-slate-500 transition hover:bg-slate-50 hover:text-slate-800 sm:flex-row sm:justify-center sm:text-xs;
+}
+.tab-on {
+  @apply bg-brand-50 text-brand-700 hover:bg-brand-50 hover:text-brand-700;
+}
+.cdk-drag-preview {
+  @apply rounded-lg shadow-xl;
+}
+.cdk-drag-placeholder {
+  opacity: 0.35;
+}
+.cdk-drag-animating,
+.cdk-drop-list-dragging .cdk-drag:not(.cdk-drag-placeholder) {
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+.check-dot {
+  @apply flex size-5 shrink-0 items-center justify-center rounded-md bg-brand-500 text-white;
+}

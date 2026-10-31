@@ -1,0 +1,343 @@
+{
+ "common": {
+  "remove": "Remove",
+  "up": "Move up",
+  "down": "Move down"
+ },
+ "nav": {
+  "templates": "Templates",
+  "features": "Features",
+  "how": "How it works",
+  "create": "Create CV"
+ },
+ "footer": {
+  "tagline": "Free CV builder with AI and ATS-friendly templates. Your data stays in your browser.",
+  "rights": "CV Creator. All rights reserved."
+ },
+ "home": {
+  "badge": "Fast • Professional • Multilingual",
+  "title1": "Create the perfect CV",
+  "title2": "in minutes",
+  "subtitle": "A modern CV builder with AI. Pick a template, add your experience and download a professional PDF in the language of the job you want.",
+  "check": {
+   "templates": "{{count}} modern templates, 1–3 column layouts",
+   "languages": "CV in {{count}} languages, adapted to each country",
+   "ats": "Optimised for applicant tracking systems (ATS)"
+  },
+  "cta": "Create your CV for free",
+  "ctaTemplates": "Browse templates",
+  "noSignup": "No sign-up. Your data never leaves your browser.",
+  "moreLanguages": "CV content in {{count}} languages",
+  "atsCard": {
+   "title": "ATS-ready",
+   "text": "Real text, clean structure"
+  },
+  "features": {
+   "eyebrow": "Why us",
+   "title": "More than a CV generator",
+   "subtitle": "Everything you need to stand out – and get past the robots that read CVs first.",
+   "ai": {
+    "title": "AI writing assistant",
+    "text": "Generate a profile summary and turn duties into achievement-driven bullet points in one click."
+   },
+   "ats": {
+    "title": "Built for ATS",
+    "text": "Selectable text, logical reading order and ATS-safe templates marked clearly."
+   },
+   "languages": {
+    "title": "Every country, its rules",
+    "text": "Headings, date formats, page size, photo and consent clause follow the conventions of the target country."
+   },
+   "layout": {
+    "title": "Your layout, your way",
+    "text": "1, 2 or 3 columns. Drag sections anywhere – new A4 pages are created automatically."
+   },
+   "tailor": {
+    "title": "Match a job offer",
+    "text": "Paste an ad: AI scores your CV, lists missing keywords and rewrites your summary for the role."
+   },
+   "privacy": {
+    "title": "Private by design",
+    "text": "No account, no tracking. Your CV is stored only in your browser."
+   }
+  },
+  "templates": {
+   "eyebrow": "Templates",
+   "title": "Choose a style that fits you",
+   "text": "Professional templates for every industry – from classic single-column ATS designs to modern sidebars.",
+   "cta": "Browse templates"
+  },
+  "how": {
+   "eyebrow": "How it works",
+   "title": "Three steps to a new CV",
+   "template": {
+    "title": "Pick a template",
+    "text": "Choose a design and a layout. You can change both at any time without losing content."
+   },
+   "content": {
+    "title": "Fill in with AI help",
+    "text": "Type or paste your experience. AI polishes the wording; the preview updates live."
+   },
+   "download": {
+    "title": "Download PDF",
+    "text": "Get a print-perfect PDF with real text that recruiters and ATS can read."
+   }
+  },
+  "free": {
+   "eyebrow": "Pricing",
+   "title": "Everything free. Really.",
+   "templates": "All templates and layouts",
+   "ai": "AI assistant included",
+   "pdf": "Unlimited PDF downloads",
+   "noSignup": "No account needed"
+  },
+  "faq": {
+   "title": "Frequently asked questions",
+   "free": {
+    "q": "Is it really free?",
+    "a": "Yes. All templates, AI features and PDF downloads are free. AI requests are limited per day to keep it that way for everyone."
+   },
+   "ats": {
+    "q": "What is ATS and are the templates compatible?",
+    "a": "Applicant tracking systems read CVs before a human does. Our PDFs contain real text in a logical order. Templates marked ATS use a simple structure that parses best – use them for large companies and online portals."
+   },
+   "data": {
+    "q": "Where is my data stored?",
+    "a": "Only in your browser (local storage). Nothing is uploaded unless you use an AI feature – then only the text needed for that request is sent and not stored."
+   },
+   "ai": {
+    "q": "Will the AI invent things?",
+    "a": "No – it is instructed to use only facts from your CV. Always read the suggestion before accepting it."
+   },
+   "pages": {
+    "q": "What if my CV is longer than one page?",
+    "a": "Content flows to the next A4 page automatically. Each column continues on the next page, entries are never cut in half."
+   },
+   "languages": {
+    "q": "Can I make the same CV in several languages?",
+    "a": "Yes. Use AI translation – it adapts job titles and wording to the target country. Export your CV first if you want to keep both versions."
+   }
+  },
+  "final": {
+   "title": "Ready for your next job?",
+   "text": "Create a professional CV now – it only takes a moment."
+  }
+ },
+ "templates": {
+  "title": "CV templates",
+  "subtitle": "Every template works with 1, 2 or 3 columns and any section order. ATS-marked templates are the safest choice for online applications.",
+  "use": "Use this template",
+  "filter": {
+   "all": "All",
+   "ats": "ATS-friendly",
+   "modern": "Modern",
+   "classic": "Classic",
+   "creative": "Creative",
+   "minimal": "Minimal"
+  }
+ },
+ "layout": {
+  "skeleton": "Page skeleton",
+  "columns": {
+   "1": "1 column",
+   "2": "2 columns",
+   "3": "3 columns"
+  },
+  "arrange": "Arrange sections",
+  "arrangeHint": "Drag sections between columns or change their order. Pages are added automatically.",
+  "column": "Column",
+  "sidebar": "sidebar",
+  "hide": "Hide section",
+  "show": "Show section",
+  "hidden": "Not shown",
+  "allShown": "All sections are shown",
+  "contactInHeader": "Contact details are shown in the header when the Contact section is not placed."
+ },
+ "design": {
+  "template": "Template",
+  "accent": "Accent colour",
+  "custom": "Custom colour",
+  "font": "Font",
+  "pageSize": "Page size",
+  "fontSize": "Text size",
+  "fontSizeHint": "Slightly smaller text can keep your CV on fewer pages."
+ },
+ "editor": {
+  "cvLanguage": "CV language",
+  "country": "Target country",
+  "undo": "Undo",
+  "download": "Download PDF",
+  "edit": "Edit",
+  "preview": "Preview",
+  "zoomIn": "Zoom in",
+  "zoomOut": "Zoom out",
+  "pages": "{{count}} page(s)",
+  "tipsFor": "Tips for {{country}}",
+  "tabs": {
+   "content": "Content",
+   "layout": "Layout",
+   "design": "Design",
+   "ai": "AI"
+  },
+  "menu": {
+   "more": "More",
+   "export": "Export data (JSON)",
+   "import": "Import data (JSON)",
+   "sample": "Load example CV",
+   "reset": "Start from scratch",
+   "resetConfirm": "Delete all content and start a new CV?",
+   "imported": "CV imported",
+   "importError": "This file is not a valid CV export",
+   "resetDone": "New CV started (Undo is available)"
+  },
+  "score": {
+   "title": "CV strength",
+   "name": "Add your first and last name",
+   "headline": "Add a job title under your name",
+   "contact": "Add e-mail and phone",
+   "summary": "Write a profile summary (at least 2–3 sentences)",
+   "experience": "Add work experience with position, company and start date",
+   "bullets": "Describe each job with 3+ achievements",
+   "numbers": "Use numbers to show impact (%, budget, team size)",
+   "education": "Add education",
+   "skills": "List at least 5 skills",
+   "languages": "Add languages"
+  },
+  "sections": {
+   "personal": "Personal details",
+   "contact": "Contact",
+   "summary": "Profile summary",
+   "experience": "Work experience",
+   "education": "Education",
+   "skills": "Skills",
+   "languages": "Languages",
+   "projects": "Projects",
+   "certificates": "Certificates",
+   "interests": "Interests",
+   "consent": "Consent clause"
+  },
+  "photo": {
+   "title": "Photo",
+   "show": "Show on CV",
+   "hint": {
+    "expected": "A photo is common in this country.",
+    "optional": "A photo is optional in this country.",
+    "avoid": "Leave out the photo for this country – it can lead to rejection."
+   }
+  },
+  "f": {
+   "firstName": "First name",
+   "lastName": "Last name",
+   "headline": "Job title",
+   "headlinePh": "e.g. Senior Java Developer",
+   "email": "E-mail",
+   "phone": "Phone",
+   "location": "Location",
+   "locationPh": "City, country",
+   "website": "Website",
+   "summaryPh": "2–4 sentences: who you are, your experience, your strongest skills and what you are looking for.",
+   "position": "Position",
+   "company": "Company",
+   "city": "City",
+   "start": "Start",
+   "end": "End",
+   "current": "I work here now",
+   "currentStudy": "Ongoing",
+   "achievements": "Achievements and responsibilities (one per line)",
+   "achievementsPh": "Increased sales by 20% by…\nLed a team of 5…",
+   "degree": "Degree / field of study",
+   "school": "School / university",
+   "description": "Description",
+   "skillPh": "e.g. Excel, Python, negotiation",
+   "level": "Level",
+   "languagePh": "e.g. English",
+   "projectName": "Project name",
+   "link": "Link",
+   "certName": "Certificate",
+   "issuer": "Issued by",
+   "date": "Date"
+  },
+  "add": {
+   "experience": "Add position",
+   "education": "Add education",
+   "skill": "Add skill",
+   "language": "Add language",
+   "project": "Add project",
+   "certificate": "Add certificate"
+  },
+  "skillLevel": {
+   "1": "Beginner",
+   "2": "Basic",
+   "3": "Good",
+   "4": "Very good",
+   "5": "Expert"
+  },
+  "skillHint": "The level is shown only in templates that display it (bars or dots).",
+  "native": "Native",
+  "consentHint": "Many Polish employers require this clause. Leave it empty if the target country does not need it."
+ },
+ "ai": {
+  "done": "Done – you can undo this change",
+  "needText": "Write a few words first – AI improves your own text.",
+  "disabled": "AI features are not available right now. Everything else works.",
+  "error": {
+   "rate_limited": "AI limit reached – try again later",
+   "ai_unavailable": "AI is temporarily unavailable – please try again",
+   "invalid": "The request is too long or incomplete",
+   "network": "No connection to the server"
+  },
+  "tone": {
+   "label": "Tone",
+   "professional": "Professional",
+   "confident": "Confident",
+   "friendly": "Friendly",
+   "concise": "Concise"
+  },
+  "writeSummary": "Write with AI",
+  "rewriteSummary": "Rewrite with AI",
+  "summaryHint": "AI uses your experience and skills from the CV. Fill those in first for the best result.",
+  "improve": "Improve with AI",
+  "proposal": "AI suggestion",
+  "accept": "Use it",
+  "discard": "Discard",
+  "privacy": "AI requests send only the text of your CV (no contact data or photo). Responses are not stored. Check suggestions before using them.",
+  "tailor": {
+   "title": "Tailor to a job offer",
+   "hint": "Paste a job ad. AI compares it with your CV like an ATS and a recruiter would.",
+   "placeholder": "Paste the job offer here…",
+   "run": "Analyse match",
+   "score": "Match between your CV and this offer. Use the suggestions below to raise it.",
+   "missing": "Missing keywords",
+   "addSkill": "Add to skills",
+   "honest": "Add only what you really know – interviews check it.",
+   "matched": "Already in your CV",
+   "suggestions": "Suggestions",
+   "newSummary": "Summary for this offer",
+   "useSummary": "Replace my summary"
+  },
+  "translate": {
+   "title": "Translate the CV",
+   "hint": "AI translates the whole CV and adapts job titles to the target country. Contact data, dates and layout stay.",
+   "language": "Language",
+   "country": "Country",
+   "run": "Translate",
+   "undo": "Tip: export your CV first to keep both versions. Undo is also available.",
+   "done": "CV translated"
+  }
+ },
+ "country": {
+  "tips": {
+   "consent": "Add the GDPR (RODO) consent clause – many employers require it.",
+   "photoOptional": "A photo is optional; use a professional one if you add it.",
+   "photoExpected": "A professional photo is expected.",
+   "photoAvoid": "Do not include a photo, date of birth or marital status.",
+   "twoPages": "Keep it to 1–2 pages.",
+   "onePage": "One page is preferred, especially early in your career.",
+   "deLebenslauf": "Use a tabular, reverse-chronological Lebenslauf; gaps should be explained.",
+   "reverseChrono": "List experience newest first.",
+   "noPersonal": "Leave out personal data unrelated to the job (age, nationality).",
+   "usResume": "In the US it is called a résumé: short, results-focused, US Letter format.",
+   "itConsent": "Italian employers often expect a GDPR consent line (Reg. UE 2016/679)."
+  }
+ }
+}

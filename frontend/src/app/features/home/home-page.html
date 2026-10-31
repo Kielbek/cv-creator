@@ -1,0 +1,162 @@
+<!-- ======================= HERO ======================= -->
+<section class="hero-bg relative overflow-hidden text-white">
+  <svg class="pointer-events-none absolute inset-0 size-full opacity-60" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="rib" x1="0" x2="1"><stop offset="0" stop-color="#8b5cf6" stop-opacity="0" /><stop offset=".5" stop-color="#a78bfa" /><stop offset="1" stop-color="#60a5fa" stop-opacity="0" /></linearGradient>
+    </defs>
+    <path d="M0 210 C 300 120, 520 260, 820 120 S 1300 40, 1600 160" fill="none" stroke="url(#rib)" stroke-width="1.5" />
+    <path d="M0 640 C 380 520, 700 760, 1050 640 S 1450 520, 1600 600" fill="none" stroke="url(#rib)" stroke-width="1.5" />
+    <path d="M0 700 C 420 600, 760 820, 1100 700 S 1480 600, 1600 660" fill="none" stroke="url(#rib)" stroke-width="1" opacity=".6" />
+  </svg>
+  <app-site-nav />
+
+  <div class="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-4 pb-24 pt-8 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:pb-32 lg:pt-14">
+    <div>
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur">
+        <lucide-icon [img]="icons.Zap" class="size-3.5 text-amber-300" /> {{ 'home.badge' | translate }}
+      </span>
+      <h1 class="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
+        {{ 'home.title1' | translate }}<br /><span class="text-gradient">{{ 'home.title2' | translate }}</span>
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">{{ 'home.subtitle' | translate }}</p>
+      <ul class="mt-7 space-y-3 text-sm sm:text-base">
+        <li class="flex items-center gap-3"><span class="check-dot"><lucide-icon [img]="icons.CheckCheck" class="size-3.5" /></span>{{ 'home.check.templates' | translate: { count: templateCount } }}</li>
+        <li class="flex items-center gap-3"><span class="check-dot"><lucide-icon [img]="icons.CheckCheck" class="size-3.5" /></span>{{ 'home.check.languages' | translate: { count: cvLanguageCount } }}</li>
+        <li class="flex items-center gap-3"><span class="check-dot"><lucide-icon [img]="icons.CheckCheck" class="size-3.5" /></span>{{ 'home.check.ats' | translate }}</li>
+      </ul>
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <a routerLink="/editor" class="btn-primary px-6! py-3.5! text-base">{{ 'home.cta' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-5" /></a>
+        <a routerLink="/templates" class="inline-flex items-center gap-2 rounded-xl px-4 py-3 font-medium text-white/85 transition hover:bg-white/10 hover:text-white">
+          <lucide-icon [img]="icons.LayoutTemplate" class="size-5" /> {{ 'home.ctaTemplates' | translate }}
+        </a>
+      </div>
+      <p class="mt-6 flex items-center gap-2 text-sm text-white/55"><lucide-icon [img]="icons.Lock" class="size-4" /> {{ 'home.noSignup' | translate }}</p>
+    </div>
+
+    <!-- live CV card -->
+    <div class="relative mx-auto w-full max-w-[520px]">
+      <div class="absolute -inset-10 rounded-full bg-brand-500/30 blur-3xl"></div>
+      <div class="relative rotate-[2.5deg] overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/50 ring-1 ring-white/20 transition duration-500 hover:rotate-0">
+        <cv-thumb templateId="atlas" [lang]="ui.current()" [width]="400" class="mx-auto" />
+      </div>
+      <div class="absolute -right-2 top-10 hidden w-44 rounded-2xl border border-white/40 bg-white/95 p-2 text-sm text-slate-700 shadow-2xl backdrop-blur sm:block lg:-right-10">
+        @for (l of uiLanguages; track l.code) {
+          <button type="button" class="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 hover:bg-slate-50" [class.bg-brand-50]="ui.current() === l.code" (click)="ui.use(l.code)">
+            <span>{{ l.flag }}</span><span class="flex-1 text-left">{{ l.name }}</span>
+            @if (ui.current() === l.code) {
+              <lucide-icon [img]="icons.CheckCheck" class="size-4 text-brand-500" />
+            }
+          </button>
+        }
+        <p class="px-2.5 pb-1 pt-1.5 text-xs text-slate-400">{{ 'home.moreLanguages' | translate: { count: cvLanguageCount } }}</p>
+      </div>
+      <div class="absolute -bottom-6 -left-4 hidden items-center gap-3 rounded-2xl border border-white/40 bg-white/95 px-4 py-3 text-slate-800 shadow-2xl sm:flex lg:-left-10">
+        <span class="flex size-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600"><lucide-icon [img]="icons.ShieldCheck" class="size-5" /></span>
+        <div>
+          <p class="text-sm font-semibold">{{ 'home.atsCard.title' | translate }}</p>
+          <p class="text-xs text-slate-500">{{ 'home.atsCard.text' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FEATURES ======================= -->
+<section id="features" class="relative -mt-12 scroll-mt-8 px-4 sm:px-6">
+  <div class="mx-auto max-w-7xl rounded-3xl bg-white p-6 shadow-xl shadow-slate-900/5 ring-1 ring-slate-100 sm:p-10">
+    <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">{{ 'home.features.eyebrow' | translate }}</p>
+    <h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{{ 'home.features.title' | translate }}</h2>
+    <p class="mx-auto mt-3 max-w-2xl text-center text-slate-500">{{ 'home.features.subtitle' | translate }}</p>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      @for (f of features; track f.key) {
+        <div class="group rounded-2xl border border-slate-100 bg-slate-50/50 p-6 transition hover:-translate-y-0.5 hover:border-brand-200 hover:bg-white hover:shadow-lg hover:shadow-brand-500/5">
+          <span class="flex size-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:bg-brand-500 group-hover:text-white"><lucide-icon [img]="f.icon" class="size-5" /></span>
+          <h3 class="mt-4 font-semibold text-slate-900">{{ 'home.features.' + f.key + '.title' | translate }}</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-slate-500">{{ 'home.features.' + f.key + '.text' | translate }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TEMPLATES ======================= -->
+<section class="mx-auto mt-24 grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_2fr]">
+  <div>
+    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">{{ 'home.templates.eyebrow' | translate }}</p>
+    <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{{ 'home.templates.title' | translate }}</h2>
+    <p class="mt-4 text-slate-500">{{ 'home.templates.text' | translate }}</p>
+    <a routerLink="/templates" class="btn-primary mt-7">{{ 'home.templates.cta' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" /></a>
+  </div>
+  <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+    @for (id of showcase; track id) {
+      <a [routerLink]="['/templates']" class="group block overflow-hidden rounded-xl bg-white shadow-lg shadow-slate-900/10 ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-2xl hover:ring-brand-300">
+        <cv-thumb [templateId]="id" [lang]="ui.current()" [width]="200" class="mx-auto w-full! [&_cv-document]:mx-auto" />
+      </a>
+    }
+  </div>
+</section>
+
+<!-- ======================= HOW IT WORKS ======================= -->
+<section id="how" class="mx-auto mt-28 max-w-7xl scroll-mt-8 px-4 sm:px-6">
+  <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">{{ 'home.how.eyebrow' | translate }}</p>
+  <h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{{ 'home.how.title' | translate }}</h2>
+  <div class="mt-12 grid gap-6 md:grid-cols-3">
+    @for (s of steps; track s.key; let i = $index) {
+      <div class="relative rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-100">
+        <span class="absolute right-6 top-5 text-5xl font-black text-slate-100">{{ i + 1 }}</span>
+        <span class="relative flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-violet-500 text-white shadow-lg shadow-brand-500/30"><lucide-icon [img]="s.icon" class="size-5" /></span>
+        <h3 class="relative mt-5 text-lg font-semibold text-slate-900">{{ 'home.how.' + s.key + '.title' | translate }}</h3>
+        <p class="relative mt-2 text-sm leading-relaxed text-slate-500">{{ 'home.how.' + s.key + '.text' | translate }}</p>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ======================= FREE ======================= -->
+<section class="mx-auto mt-24 max-w-7xl px-4 sm:px-6">
+  <div class="grid items-center gap-8 rounded-3xl border border-brand-100 bg-gradient-to-br from-brand-50 via-white to-violet-50 p-8 sm:p-12 md:grid-cols-[1fr_auto]">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">{{ 'home.free.eyebrow' | translate }}</p>
+      <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">{{ 'home.free.title' | translate }}</h2>
+      <ul class="mt-5 grid gap-2.5 text-slate-600 sm:grid-cols-2">
+        @for (k of ['templates', 'ai', 'pdf', 'noSignup']; track k) {
+          <li class="flex items-center gap-2.5"><lucide-icon [img]="icons.BadgeCheck" class="size-5 text-brand-500" /> {{ 'home.free.' + k | translate }}</li>
+        }
+      </ul>
+    </div>
+    <div class="text-center">
+      <p class="text-6xl font-extrabold tracking-tight text-slate-900">0 <span class="text-3xl">€</span></p>
+      <a routerLink="/editor" class="btn-primary mt-5">{{ 'home.cta' | translate }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FAQ ======================= -->
+<section id="faq" class="mx-auto mt-24 max-w-3xl scroll-mt-8 px-4 sm:px-6">
+  <h2 class="text-center text-3xl font-bold tracking-tight text-slate-900">{{ 'home.faq.title' | translate }}</h2>
+  <div class="mt-8 divide-y divide-slate-200 rounded-2xl bg-white ring-1 ring-slate-100">
+    @for (q of faq; track q) {
+      <details class="group p-5">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-medium text-slate-900">
+          {{ 'home.faq.' + q + '.q' | translate }}
+          <span class="text-xl text-brand-500 transition group-open:rotate-45">+</span>
+        </summary>
+        <p class="mt-3 text-sm leading-relaxed text-slate-500">{{ 'home.faq.' + q + '.a' | translate }}</p>
+      </details>
+    }
+  </div>
+</section>
+
+<!-- ======================= CTA ======================= -->
+<section class="mx-auto my-24 max-w-7xl px-4 sm:px-6">
+  <div class="hero-bg relative flex flex-col items-start gap-6 overflow-hidden rounded-3xl px-8 py-10 text-white sm:flex-row sm:items-center sm:px-12">
+    <span class="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/20"><lucide-icon [img]="icons.Rocket" class="size-7" /></span>
+    <div class="flex-1">
+      <h2 class="text-2xl font-bold">{{ 'home.final.title' | translate }}</h2>
+      <p class="mt-1 text-white/70">{{ 'home.final.text' | translate }}</p>
+    </div>
+    <a routerLink="/editor" class="btn-primary">{{ 'home.cta' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" /></a>
+  </div>
+</section>
+
+<app-site-footer />

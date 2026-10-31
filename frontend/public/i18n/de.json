@@ -1,0 +1,343 @@
+{
+ "common": {
+  "remove": "Entfernen",
+  "up": "Nach oben",
+  "down": "Nach unten"
+ },
+ "nav": {
+  "templates": "Vorlagen",
+  "features": "Funktionen",
+  "how": "So funktioniert's",
+  "create": "Lebenslauf erstellen"
+ },
+ "footer": {
+  "tagline": "Kostenloser Lebenslauf-Editor mit KI und ATS-freundlichen Vorlagen. Deine Daten bleiben in deinem Browser.",
+  "rights": "CV Creator. Alle Rechte vorbehalten."
+ },
+ "home": {
+  "badge": "Schnell • Professionell • Mehrsprachig",
+  "title1": "Der perfekte Lebenslauf",
+  "title2": "in wenigen Minuten",
+  "subtitle": "Ein moderner Lebenslauf-Generator mit KI. Vorlage wählen, Erfahrung eintragen und ein professionelles PDF in der Sprache deiner Wunschstelle herunterladen.",
+  "check": {
+   "templates": "{{count}} moderne Vorlagen, Layouts mit 1–3 Spalten",
+   "languages": "Lebenslauf in {{count}} Sprachen, an jedes Land angepasst",
+   "ats": "Optimiert für Bewerbermanagementsysteme (ATS)"
+  },
+  "cta": "Kostenlos Lebenslauf erstellen",
+  "ctaTemplates": "Vorlagen ansehen",
+  "noSignup": "Ohne Anmeldung. Deine Daten verlassen den Browser nicht.",
+  "moreLanguages": "Inhalte in {{count}} Sprachen",
+  "atsCard": {
+   "title": "ATS-tauglich",
+   "text": "Echter Text, klare Struktur"
+  },
+  "features": {
+   "eyebrow": "Warum wir",
+   "title": "Mehr als ein Lebenslauf-Generator",
+   "subtitle": "Alles, um aufzufallen – und an den Robotern vorbeizukommen, die Bewerbungen zuerst lesen.",
+   "ai": {
+    "title": "KI-Schreibassistent",
+    "text": "Profil per Klick erstellen und Aufgaben in erfolgsorientierte Stichpunkte verwandeln."
+   },
+   "ats": {
+    "title": "Für ATS gebaut",
+    "text": "Markierbarer Text, logische Lesereihenfolge und klar gekennzeichnete ATS-sichere Vorlagen."
+   },
+   "languages": {
+    "title": "Jedes Land, seine Regeln",
+    "text": "Überschriften, Datumsformat, Seitengröße, Foto und Einwilligung nach den Gepflogenheiten des Ziellandes."
+   },
+   "layout": {
+    "title": "Dein Layout",
+    "text": "1, 2 oder 3 Spalten. Abschnitte frei verschieben – neue A4-Seiten entstehen automatisch."
+   },
+   "tailor": {
+    "title": "Auf Stellen zuschneiden",
+    "text": "Anzeige einfügen: Die KI bewertet die Passung, nennt fehlende Schlüsselwörter und schreibt dein Profil um."
+   },
+   "privacy": {
+    "title": "Datenschutz inklusive",
+    "text": "Kein Konto, kein Tracking. Dein Lebenslauf wird nur im Browser gespeichert."
+   }
+  },
+  "templates": {
+   "eyebrow": "Vorlagen",
+   "title": "Wähle deinen Stil",
+   "text": "Professionelle Vorlagen für jede Branche – von klassisch einspaltig für ATS bis modern mit Seitenleiste.",
+   "cta": "Vorlagen durchsuchen"
+  },
+  "how": {
+   "eyebrow": "So funktioniert's",
+   "title": "In drei Schritten zum Lebenslauf",
+   "template": {
+    "title": "Vorlage wählen",
+    "text": "Design und Layout wählen. Beides lässt sich jederzeit ohne Inhaltsverlust ändern."
+   },
+   "content": {
+    "title": "Mit KI ausfüllen",
+    "text": "Erfahrung eintippen oder einfügen. Die KI feilt an den Formulierungen, die Vorschau aktualisiert sich live."
+   },
+   "download": {
+    "title": "PDF herunterladen",
+    "text": "Druckfertiges PDF mit echtem Text, lesbar für Recruiter und ATS."
+   }
+  },
+  "free": {
+   "eyebrow": "Preise",
+   "title": "Alles kostenlos. Wirklich.",
+   "templates": "Alle Vorlagen und Layouts",
+   "ai": "KI-Assistent inklusive",
+   "pdf": "Unbegrenzte PDF-Downloads",
+   "noSignup": "Kein Konto nötig"
+  },
+  "faq": {
+   "title": "Häufige Fragen",
+   "free": {
+    "q": "Ist es wirklich kostenlos?",
+    "a": "Ja. Alle Vorlagen, KI-Funktionen und PDF-Downloads sind kostenlos. KI-Anfragen sind pro Tag begrenzt, damit es für alle so bleibt."
+   },
+   "ats": {
+    "q": "Was ist ein ATS und sind die Vorlagen kompatibel?",
+    "a": "Bewerbermanagementsysteme lesen Lebensläufe vor einem Menschen. Unsere PDFs enthalten echten Text in logischer Reihenfolge. Mit ATS gekennzeichnete Vorlagen haben die einfachste Struktur – ideal für große Unternehmen und Jobportale."
+   },
+   "data": {
+    "q": "Wo werden meine Daten gespeichert?",
+    "a": "Nur in deinem Browser. Nichts wird hochgeladen, außer du nutzt eine KI-Funktion – dann wird nur der nötige Text gesendet und nicht gespeichert."
+   },
+   "ai": {
+    "q": "Erfindet die KI etwas?",
+    "a": "Nein – sie verwendet nur Fakten aus deinem Lebenslauf. Lies Vorschläge immer, bevor du sie übernimmst."
+   },
+   "pages": {
+    "q": "Was, wenn mein Lebenslauf länger als eine Seite ist?",
+    "a": "Der Inhalt fließt automatisch auf die nächste A4-Seite. Jede Spalte wird fortgesetzt, Einträge werden nie getrennt."
+   },
+   "languages": {
+    "q": "Kann ich denselben Lebenslauf in mehreren Sprachen haben?",
+    "a": "Ja, mit der KI-Übersetzung – sie passt Berufsbezeichnungen an das Zielland an. Exportiere vorher, um beide Versionen zu behalten."
+   }
+  },
+  "final": {
+   "title": "Bereit für den nächsten Job?",
+   "text": "Erstelle jetzt deinen professionellen Lebenslauf – es dauert nur einen Moment."
+  }
+ },
+ "templates": {
+  "title": "Lebenslauf-Vorlagen",
+  "subtitle": "Jede Vorlage funktioniert mit 1, 2 oder 3 Spalten und beliebiger Reihenfolge. Vorlagen mit ATS-Kennzeichnung sind für Online-Bewerbungen am sichersten.",
+  "use": "Vorlage verwenden",
+  "filter": {
+   "all": "Alle",
+   "ats": "ATS-freundlich",
+   "modern": "Modern",
+   "classic": "Klassisch",
+   "creative": "Kreativ",
+   "minimal": "Minimalistisch"
+  }
+ },
+ "layout": {
+  "skeleton": "Seitenaufbau",
+  "columns": {
+   "1": "1 Spalte",
+   "2": "2 Spalten",
+   "3": "3 Spalten"
+  },
+  "arrange": "Abschnitte anordnen",
+  "arrangeHint": "Abschnitte zwischen Spalten ziehen oder Reihenfolge ändern. Seiten werden automatisch hinzugefügt.",
+  "column": "Spalte",
+  "sidebar": "Seitenleiste",
+  "hide": "Abschnitt ausblenden",
+  "show": "Abschnitt einblenden",
+  "hidden": "Nicht angezeigt",
+  "allShown": "Alle Abschnitte werden angezeigt",
+  "contactInHeader": "Ohne Abschnitt Kontakt stehen die Kontaktdaten in der Kopfzeile."
+ },
+ "design": {
+  "template": "Vorlage",
+  "accent": "Akzentfarbe",
+  "custom": "Eigene Farbe",
+  "font": "Schrift",
+  "pageSize": "Seitengröße",
+  "fontSize": "Textgröße",
+  "fontSizeHint": "Etwas kleinerer Text spart Seiten."
+ },
+ "editor": {
+  "cvLanguage": "Sprache des Lebenslaufs",
+  "country": "Zielland",
+  "undo": "Rückgängig",
+  "download": "PDF herunterladen",
+  "edit": "Bearbeiten",
+  "preview": "Vorschau",
+  "zoomIn": "Vergrößern",
+  "zoomOut": "Verkleinern",
+  "pages": "{{count}} Seite(n)",
+  "tipsFor": "Tipps für {{country}}",
+  "tabs": {
+   "content": "Inhalt",
+   "layout": "Layout",
+   "design": "Design",
+   "ai": "KI"
+  },
+  "menu": {
+   "more": "Mehr",
+   "export": "Daten exportieren (JSON)",
+   "import": "Daten importieren (JSON)",
+   "sample": "Beispiel laden",
+   "reset": "Neu beginnen",
+   "resetConfirm": "Alle Inhalte löschen und neu beginnen?",
+   "imported": "Lebenslauf importiert",
+   "importError": "Diese Datei ist kein gültiger Export",
+   "resetDone": "Neuer Lebenslauf (Rückgängig möglich)"
+  },
+  "score": {
+   "title": "Stärke des Lebenslaufs",
+   "name": "Vor- und Nachname angeben",
+   "headline": "Berufsbezeichnung unter dem Namen angeben",
+   "contact": "E-Mail und Telefon angeben",
+   "summary": "Profil schreiben (mind. 2–3 Sätze)",
+   "experience": "Berufserfahrung mit Position, Firma und Startdatum",
+   "bullets": "Jede Stelle mit 3+ Erfolgen beschreiben",
+   "numbers": "Zahlen nutzen (%, Budget, Teamgröße)",
+   "education": "Ausbildung angeben",
+   "skills": "Mindestens 5 Kenntnisse nennen",
+   "languages": "Sprachen angeben"
+  },
+  "sections": {
+   "personal": "Persönliche Daten",
+   "contact": "Kontakt",
+   "summary": "Profil",
+   "experience": "Berufserfahrung",
+   "education": "Ausbildung",
+   "skills": "Kenntnisse",
+   "languages": "Sprachen",
+   "projects": "Projekte",
+   "certificates": "Zertifikate",
+   "interests": "Interessen",
+   "consent": "Einwilligungsklausel"
+  },
+  "photo": {
+   "title": "Foto",
+   "show": "Im Lebenslauf zeigen",
+   "hint": {
+    "expected": "In diesem Land ist ein Foto üblich.",
+    "optional": "In diesem Land ist ein Foto optional.",
+    "avoid": "Für dieses Land besser ohne Foto – es kann zur Ablehnung führen."
+   }
+  },
+  "f": {
+   "firstName": "Vorname",
+   "lastName": "Nachname",
+   "headline": "Berufsbezeichnung",
+   "headlinePh": "z. B. Senior Java Developer",
+   "email": "E-Mail",
+   "phone": "Telefon",
+   "location": "Ort",
+   "locationPh": "Stadt, Land",
+   "website": "Website",
+   "summaryPh": "2–4 Sätze: wer du bist, deine Erfahrung, Stärken und was du suchst.",
+   "position": "Position",
+   "company": "Unternehmen",
+   "city": "Stadt",
+   "start": "Von",
+   "end": "Bis",
+   "current": "Aktuelle Stelle",
+   "currentStudy": "Laufend",
+   "achievements": "Erfolge und Aufgaben (eine pro Zeile)",
+   "achievementsPh": "Umsatz um 20 % gesteigert durch…\nTeam von 5 Personen geleitet…",
+   "degree": "Abschluss / Fachrichtung",
+   "school": "Schule / Hochschule",
+   "description": "Beschreibung",
+   "skillPh": "z. B. Excel, Python, Verhandlung",
+   "level": "Niveau",
+   "languagePh": "z. B. Englisch",
+   "projectName": "Projektname",
+   "link": "Link",
+   "certName": "Zertifikat",
+   "issuer": "Aussteller",
+   "date": "Datum"
+  },
+  "add": {
+   "experience": "Position hinzufügen",
+   "education": "Ausbildung hinzufügen",
+   "skill": "Kenntnis hinzufügen",
+   "language": "Sprache hinzufügen",
+   "project": "Projekt hinzufügen",
+   "certificate": "Zertifikat hinzufügen"
+  },
+  "skillLevel": {
+   "1": "Anfänger",
+   "2": "Grundkenntnisse",
+   "3": "Gut",
+   "4": "Sehr gut",
+   "5": "Experte"
+  },
+  "skillHint": "Das Niveau erscheint nur in Vorlagen, die es anzeigen (Balken oder Punkte).",
+  "native": "Muttersprache",
+  "consentHint": "Viele polnische Arbeitgeber verlangen diese Klausel. Leer lassen, wenn das Zielland sie nicht braucht."
+ },
+ "ai": {
+  "done": "Fertig – du kannst die Änderung rückgängig machen",
+  "needText": "Schreib zuerst ein paar Worte – die KI verbessert deinen eigenen Text.",
+  "disabled": "KI-Funktionen sind gerade nicht verfügbar. Alles andere funktioniert.",
+  "error": {
+   "rate_limited": "KI-Limit erreicht – später erneut versuchen",
+   "ai_unavailable": "KI vorübergehend nicht verfügbar – bitte erneut versuchen",
+   "invalid": "Anfrage zu lang oder unvollständig",
+   "network": "Keine Verbindung zum Server"
+  },
+  "tone": {
+   "label": "Ton",
+   "professional": "Professionell",
+   "confident": "Selbstbewusst",
+   "friendly": "Freundlich",
+   "concise": "Knapp"
+  },
+  "writeSummary": "Mit KI schreiben",
+  "rewriteSummary": "Mit KI umschreiben",
+  "summaryHint": "Die KI nutzt Erfahrung und Kenntnisse aus dem Lebenslauf. Fülle diese zuerst aus.",
+  "improve": "Mit KI verbessern",
+  "proposal": "KI-Vorschlag",
+  "accept": "Übernehmen",
+  "discard": "Verwerfen",
+  "privacy": "An die KI geht nur der Text des Lebenslaufs (ohne Kontaktdaten und Foto). Antworten werden nicht gespeichert. Prüfe Vorschläge vor der Übernahme.",
+  "tailor": {
+   "title": "Auf eine Stelle zuschneiden",
+   "hint": "Füge eine Stellenanzeige ein. Die KI vergleicht sie mit deinem Lebenslauf wie ein ATS und ein Recruiter.",
+   "placeholder": "Stellenanzeige hier einfügen…",
+   "run": "Passung analysieren",
+   "score": "Passung zwischen Lebenslauf und Anzeige. Nutze die Vorschläge, um sie zu erhöhen.",
+   "missing": "Fehlende Schlüsselwörter",
+   "addSkill": "Zu Kenntnissen hinzufügen",
+   "honest": "Nur hinzufügen, was du wirklich kannst – im Gespräch wird es geprüft.",
+   "matched": "Bereits enthalten",
+   "suggestions": "Vorschläge",
+   "newSummary": "Profil für diese Stelle",
+   "useSummary": "Mein Profil ersetzen"
+  },
+  "translate": {
+   "title": "Lebenslauf übersetzen",
+   "hint": "Die KI übersetzt den ganzen Lebenslauf und passt Berufsbezeichnungen an das Zielland an. Kontaktdaten, Daten und Layout bleiben.",
+   "language": "Sprache",
+   "country": "Land",
+   "run": "Übersetzen",
+   "undo": "Tipp: Vorher exportieren, um beide Versionen zu behalten. Rückgängig ist möglich.",
+   "done": "Lebenslauf übersetzt"
+  }
+ },
+ "country": {
+  "tips": {
+   "consent": "Füge die DSGVO-Einwilligung (RODO) hinzu – viele Arbeitgeber verlangen sie.",
+   "photoOptional": "Ein Foto ist optional; wenn, dann ein professionelles.",
+   "photoExpected": "Ein professionelles Foto wird erwartet.",
+   "photoAvoid": "Kein Foto, Geburtsdatum oder Familienstand angeben.",
+   "twoPages": "Maximal 1–2 Seiten.",
+   "onePage": "Eine Seite wird bevorzugt, besonders zu Karrierebeginn.",
+   "deLebenslauf": "Tabellarischer Lebenslauf, umgekehrt chronologisch; Lücken erklären.",
+   "reverseChrono": "Neueste Erfahrung zuerst.",
+   "noPersonal": "Keine jobfremden persönlichen Daten (Alter, Nationalität).",
+   "usResume": "In den USA heißt es Résumé: kurz, ergebnisorientiert, Format US Letter.",
+   "itConsent": "Italienische Arbeitgeber erwarten oft eine DSGVO-Einwilligung (Reg. UE 2016/679)."
+  }
+ }
+}

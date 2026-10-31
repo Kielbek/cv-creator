@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: cv-creator-api
+  threads:
+    virtual:
+      enabled: true
+  mvc:
+    problemdetails:
+      enabled: true
+
+server:
+  forward-headers-strategy: framework
+  tomcat:
+    max-swallow-size: 1MB
+    max-http-form-post-size: 1MB
+
+app:
+  ai:
+    api-key: ${ANTHROPIC_API_KEY:}
+    model: ${AI_MODEL:claude-opus-5-5}
+    max-tokens: ${AI_MAX_TOKENS:8000}
+    fallbacks: ${AI_FALLBACKS:true}
+  rate-limit:
+    per-minute: ${RATE_LIMIT_PER_MINUTE:8}
+    per-day: ${RATE_LIMIT_PER_DAY:60}
+  cors-origins: ${CORS_ORIGINS:http://localhost:4200}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

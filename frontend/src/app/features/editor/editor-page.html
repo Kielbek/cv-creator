@@ -1,0 +1,134 @@
+@let c = cv();
+<div class="editor-shell">
+  <!-- ===== toolbar ===== -->
+  <header class="no-print flex h-14 shrink-0 items-center gap-2 border-b border-slate-200 bg-white px-3 sm:px-4">
+    <a routerLink="/" class="mr-1 shrink-0" aria-label="Home"><app-logo [dark]="false" [compact]="true" /></a>
+    <div class="hidden items-center gap-2 md:flex">
+      <select class="input w-auto! py-1.5" [value]="c.language" (change)="setLanguage($any($event.target).value)" [attr.aria-label]="'editor.cvLanguage' | translate" [title]="'editor.cvLanguage' | translate">
+        @for (l of languages; track l) {
+          <option [value]="l">{{ langName(l) }}</option>
+        }
+      </select>
+      <select class="input w-auto! py-1.5" [value]="c.country" (change)="setCountry($any($event.target).value)" [attr.aria-label]="'editor.country' | translate" [title]="'editor.country' | translate">
+        @for (co of countries; track co.code) {
+          <option [value]="co.code">{{ countryName(co.code) }}</option>
+        }
+      </select>
+    </div>
+    <div class="flex-1"></div>
+    <button type="button" class="icon-btn" (click)="store.undo()" [disabled]="!store.canUndo()" [title]="'editor.undo' | translate" [attr.aria-label]="'editor.undo' | translate">
+      <lucide-icon [img]="icons.Undo2" class="size-5" />
+    </button>
+    <div class="relative">
+      <button type="button" class="icon-btn" (click)="menuOpen.set(!menuOpen())" [attr.aria-expanded]="menuOpen()" [attr.aria-label]="'editor.menu.more' | translate">
+        <lucide-icon [img]="icons.MoreHorizontal" class="size-5" />
+      </button>
+      @if (menuOpen()) {
+        <div class="absolute right-0 z-30 mt-2 w-60 rounded-xl border border-slate-200 bg-white p-1.5 shadow-xl" (mouseleave)="menuOpen.set(false)">
+          <button type="button" class="menu-item" (click)="exportJson()"><lucide-icon [img]="icons.FileJson" class="size-4" /> {{ 'editor.menu.export' | translate }}</button>
+          <label class="menu-item cursor-pointer"><lucide-icon [img]="icons.FileUp" class="size-4" /> {{ 'editor.menu.import' | translate }}<input type="file" accept="application/json,.json" class="sr-only" (change)="importJson($event)" /></label>
+          <button type="button" class="menu-item" (click)="loadSample()"><lucide-icon [img]="icons.Eye" class="size-4" /> {{ 'editor.menu.sample' | translate }}</button>
+          <button type="button" class="menu-item text-red-600!" (click)="reset()" [attr.data-confirm-reset]="'editor.menu.resetConfirm' | translate"><lucide-icon [img]="icons.RotateCcw" class="size-4" /> {{ 'editor.menu.reset' | translate }}</button>
+          <div class="my-1 border-t border-slate-100"></div>
+          <div class="px-2 py-1"><app-language-switcher [dark]="false" /></div>
+        </div>
+      }
+    </div>
+    <button type="button" class="btn-primary px-3! py-2! text-sm sm:px-4!" (click)="download()">
+      <lucide-icon [img]="icons.Download" class="size-4" /> <span class="hidden sm:inline">{{ 'editor.download' | translate }}</span><span class="sm:hidden">PDF</span>
+    </button>
+  </header>
+
+  <!-- mobile switch -->
+  <div class="no-print flex shrink-0 border-b border-slate-200 bg-white p-1.5 lg:hidden">
+    <button type="button" class="seg" [class.seg-on]="mobileView() === 'edit'" (click)="mobileView.set('edit')"><lucide-icon [img]="icons.PencilLine" class="size-4" /> {{ 'editor.edit' | translate }}</button>
+    <button type="button" class="seg" [class.seg-on]="mobileView() === 'preview'" (click)="mobileView.set('preview')"><lucide-icon [img]="icons.Eye" class="size-4" /> {{ 'editor.preview' | translate }}</button>
+  </div>
+
+  <div class="editor-main">
+    <!-- ===== side panel ===== -->
+    <aside class="no-print editor-side" [class.max-lg:hidden]="mobileView() !== 'edit'">
+      <nav class="sticky top-0 z-10 grid grid-cols-4 gap-1 border-b border-slate-200 bg-white/95 p-2 backdrop-blur" role="tablist">
+        @for (t of tabs; track t.id) {
+          <button type="button" role="tab" class="tab" [class.tab-on]="tab() === t.id" [attr.aria-selected]="tab() === t.id" (click)="tab.set(t.id)">
+            <lucide-icon [img]="t.icon" class="size-4" /> {{ 'editor.tabs.' + t.id | translate }}
+          </button>
+        }
+      </nav>
+
+      <div class="space-y-4 p-3 sm:p-4">
+        <!-- score -->
+        <div class="panel-card p-3">
+          <button type="button" class="flex w-full items-center gap-3 text-left" (click)="showChecklist.set(!showChecklist())" [attr.aria-expanded]="showChecklist()">
+            <div class="flex-1">
+              <div class="flex items-center justify-between text-xs font-medium"><span class="text-slate-600">{{ 'editor.score.title' | translate }}</span><span class="font-bold text-slate-900">{{ score() }}%</span></div>
+              <div class="mt-1.5 h-2 overflow-hidden rounded-full bg-slate-100">
+                <div class="h-full rounded-full bg-gradient-to-r from-brand-500 to-violet-400 transition-all" [style.width.%]="score()"></div>
+              </div>
+            </div>
+          </button>
+          @if (showChecklist()) {
+            <ul class="mt-3 space-y-1.5 text-xs">
+              @for (ch of checklist(); track ch.key) {
+                <li class="flex items-start gap-2" [class]="ch.ok ? 'text-slate-400' : 'text-slate-700'">
+                  <lucide-icon [img]="ch.ok ? icons.CircleCheck : icons.Circle" class="mt-px size-3.5 shrink-0" [class]="ch.ok ? 'text-emerald-500' : 'text-slate-300'" />
+                  {{ 'editor.score.' + ch.key | translate }}
+                </li>
+              }
+            </ul>
+            <div class="mt-3 rounded-lg bg-slate-50 p-2.5 text-xs text-slate-600">
+              <p class="mb-1 flex items-center gap-1.5 font-semibold text-slate-700"><lucide-icon [img]="icons.Lightbulb" class="size-3.5 text-amber-500" /> {{ 'editor.tipsFor' | translate: { country: countryName(c.country) } }}</p>
+              <ul class="list-disc space-y-0.5 pl-4">
+                @for (t of store.country().tips; track t) {
+                  <li>{{ 'country.tips.' + t | translate }}</li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+
+        <!-- mobile: language/country -->
+        <div class="grid grid-cols-2 gap-2 md:hidden">
+          <select class="input" [value]="c.language" (change)="setLanguage($any($event.target).value)" [attr.aria-label]="'editor.cvLanguage' | translate">
+            @for (l of languages; track l) {
+              <option [value]="l">{{ langName(l) }}</option>
+            }
+          </select>
+          <select class="input" [value]="c.country" (change)="setCountry($any($event.target).value)" [attr.aria-label]="'editor.country' | translate">
+            @for (co of countries; track co.code) {
+              <option [value]="co.code">{{ countryName(co.code) }}</option>
+            }
+          </select>
+        </div>
+
+        @switch (tab()) {
+          @case ('content') {
+            <app-content-panel />
+          }
+          @case ('layout') {
+            <app-layout-panel />
+          }
+          @case ('design') {
+            <app-design-panel />
+          }
+          @case ('ai') {
+            <app-ai-panel />
+          }
+        }
+      </div>
+    </aside>
+
+    <!-- ===== preview ===== -->
+    <main class="editor-preview" [class.max-lg:hidden]="mobileView() !== 'preview'">
+      <div class="no-print sticky top-3 z-10 mx-auto mb-4 flex w-fit items-center gap-1 rounded-full border border-slate-200 bg-white/90 px-2 py-1 text-xs text-slate-600 shadow-sm backdrop-blur">
+        <button type="button" class="icon-btn size-7!" (click)="zoomBy(-0.1)" [attr.aria-label]="'editor.zoomOut' | translate"><lucide-icon [img]="icons.Minus" class="size-3.5" /></button>
+        <span class="w-10 text-center tabular-nums">{{ (zoom() * 100).toFixed(0) }}%</span>
+        <button type="button" class="icon-btn size-7!" (click)="zoomBy(0.1)" [attr.aria-label]="'editor.zoomIn' | translate"><lucide-icon [img]="icons.Plus" class="size-3.5" /></button>
+        <span class="mx-1 h-4 w-px bg-slate-200"></span>
+        <span class="px-1">{{ 'editor.pages' | translate: { count: pageCount() } }}</span>
+      </div>
+      <cv-document [cv]="c" [style.zoom]="zoom()" (pageCount)="pageCount.set($event)" />
+    </main>
+  </div>
+</div>
+<app-toasts />
