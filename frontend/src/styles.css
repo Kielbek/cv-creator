@@ -469,3 +469,174 @@ select.input,
   box-shadow: 0 0 0 1px rgb(0 0 0 / 0.08);
   flex: none;
 }
+
+/* =====================================================================================================================
+ * Friendly theme (Canva / Kickresume direction): light, colourful, generous radii, filled inputs, soft shadows.
+ * ================================================================================================================== */
+.btn-primary {
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2563eb 0%, #6d4aff 100%);
+  box-shadow: 0 6px 16px -6px rgb(79 70 229 / 0.55), inset 0 1px 0 rgb(255 255 255 / 0.18);
+  font-weight: 600;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #5b3cf0 100%);
+}
+.btn-ghost {
+  border-radius: 999px;
+  border-color: #e2e7f0;
+  font-weight: 600;
+}
+.btn-sm {
+  border-radius: 999px;
+}
+
+.input,
+.field-group,
+.tag-box {
+  height: 48px;
+  border-radius: 14px;
+  border: 1.5px solid transparent;
+  background-color: #f2f5fa;
+  font-size: 14.5px;
+}
+.tag-box {
+  height: auto;
+  min-height: 48px;
+  padding: 7px 10px;
+}
+.input:hover,
+.field-group:hover,
+.tag-box:hover {
+  border-color: transparent;
+  background-color: #ebeff6;
+}
+.input:focus,
+.field-group:focus-within,
+.tag-box:focus-within {
+  background-color: #fff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgb(37 99 235 / 0.12);
+}
+.field-group.is-disabled {
+  background: #f6f8fb;
+  opacity: 0.7;
+}
+.field-sep {
+  margin: 12px 0;
+  background: #dfe5ee;
+}
+textarea.input {
+  height: auto;
+  padding: 12px 14px;
+}
+.label {
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+.hint {
+  color: #8b95a7;
+}
+.tag {
+  height: 30px;
+  border-radius: 999px;
+  padding: 0 6px 0 12px;
+  background: #e8efff;
+  color: #1e40af;
+  font-weight: 500;
+}
+.tag-x:hover {
+  background: #d4e1ff;
+}
+.checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border-width: 1.5px;
+}
+
+/* entries as soft cards */
+.entries {
+  border: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.entries > div[cdkdroplist],
+.entries > .cdk-drop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.entry,
+.entry + .entry {
+  border: 1px solid #edf0f6;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.04), 0 4px 14px -6px rgb(16 24 40 / 0.08);
+}
+.entry-head {
+  padding: 16px 16px 16px 10px;
+  border-radius: 18px;
+}
+.entry-head:hover {
+  background: #f8faff;
+}
+.add-row,
+.entries:empty + .add-row,
+.add-row:first-child {
+  justify-content: center;
+  border: 1.5px dashed #c9d6f0;
+  border-radius: 18px;
+  padding: 16px;
+  background: #f7f9ff;
+  font-weight: 600;
+}
+.add-row:hover {
+  background: #eef3ff;
+  border-color: #2563eb;
+}
+.chip {
+  height: 40px;
+  padding: 0 16px;
+  border: 1.5px solid #e2e7f0;
+  font-weight: 500;
+}
+.panel-card {
+  border-radius: 20px;
+  border-color: #edf0f6;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.04);
+}
+.seg {
+  border-radius: 999px;
+}
+.layout-row {
+  height: 40px;
+  border-radius: 12px;
+  border-color: #edf0f6;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.04);
+}
+
+/* coloured icon tiles */
+.tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border-radius: 12px;
+  background: var(--tile-bg);
+  color: var(--tile-fg);
+}
+.tip {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff8e6;
+  color: #6b4e00;
+  font-size: 13.5px;
+  line-height: 1.55;
+}

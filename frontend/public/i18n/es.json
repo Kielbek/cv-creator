@@ -393,7 +393,8 @@
   "skillsInputHint": "P. ej. Excel, atención al cliente, carné B. Lo ideal son 6–12.",
   "cefrHint": "Niveles MCER: A1–A2 básico, B1–B2 intermedio, C1–C2 avanzado.",
   "interestsPh": "p. ej. fotografía, correr, voluntariado",
-  "zoomFit": "Ajustar al ancho"
+  "zoomFit": "Ajustar al ancho",
+  "progress": "Tu progreso"
  },
  "ai": {
   "done": "Hecho – puedes deshacer este cambio",

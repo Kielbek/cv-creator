@@ -80,6 +80,7 @@ export class EditorPage {
   protected readonly nudge = signal<'experience' | 'education' | null>(null);
   private readonly introSteps = ['experience', 'education', 'skills', 'summary'];
 
+  protected readonly doneCount = computed(() => STEPS.slice(0, -1).filter((_, i) => this.done(i)).length);
   protected readonly languages = CV_LANGUAGES;
   protected readonly countries = COUNTRIES;
   protected readonly checklist = computed(() => checks(this.cv()));
