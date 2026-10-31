@@ -146,14 +146,15 @@
    "3": "3 columns"
   },
   "arrange": "Arrange sections",
-  "arrangeHint": "Drag sections between columns or change their order. Pages are added automatically.",
+  "arrangeHint": "Drag sections to change their order or column. The number of columns comes from the template. Grey sections are still empty.",
   "column": "Column",
   "sidebar": "sidebar",
   "hide": "Hide section",
   "show": "Show section",
-  "hidden": "Not shown",
+  "hidden": "Hidden sections – click to add",
   "allShown": "All sections are shown",
-  "contactInHeader": "Contact details are shown in the header when the Contact section is not placed."
+  "contactInHeader": "Contact details are shown in the header when the Contact section is not placed.",
+  "headerArea": "Header: name, photo, contact"
  },
  "design": {
   "template": "Template",
@@ -225,7 +226,9 @@
     "expected": "A photo is common in this country.",
     "optional": "A photo is optional in this country.",
     "avoid": "Leave out the photo for this country – it can lead to rejection."
-   }
+   },
+   "upload": "Add photo",
+   "change": "Change photo"
   },
   "f": {
    "firstName": "First name",
@@ -257,7 +260,15 @@
    "link": "Link",
    "certName": "Certificate",
    "issuer": "Issued by",
-   "date": "Date"
+   "date": "Date",
+   "month": "Month",
+   "year": "Year",
+   "positionPh": "e.g. Cashier",
+   "companyPh": "e.g. ABC Ltd",
+   "newPosition": "New position",
+   "newEducation": "New school",
+   "newProject": "New project",
+   "newCertificate": "New certificate"
   },
   "add": {
    "experience": "Add position",
@@ -299,19 +310,22 @@
     "nav": "Experience",
     "title1": "Tell us about",
     "title2": "your experience",
-    "intro": "Start with your most recent job. Describe results, not just duties – AI can help turn them into strong bullet points."
+    "intro": "Start with your most recent job. Describe results, not just duties – AI can help turn them into strong bullet points.",
+    "lead": "Now let's add your work experience."
    },
    "education": {
     "nav": "Education",
     "title1": "Add your",
     "title2": "education",
-    "intro": "Your highest or most relevant degree first. Add courses or a thesis only if they matter for the job."
+    "intro": "Your highest or most relevant degree first. Add courses or a thesis only if they matter for the job.",
+    "lead": "Next, let's fill in your education."
    },
    "skills": {
     "nav": "Skills",
     "title1": "What are",
     "title2": "your skills?",
-    "intro": "List tools, technologies and soft skills that match the jobs you apply for. 6–12 skills work best."
+    "intro": "List tools, technologies and soft skills that match the jobs you apply for. 6–12 skills work best.",
+    "lead": "Now it's time for your skills."
    },
    "languages": {
     "nav": "Languages",
@@ -323,7 +337,8 @@
     "nav": "Summary",
     "title1": "Write your",
     "title2": "profile summary",
-    "intro": "2–4 sentences at the top of your CV: who you are, what you are best at and what you are looking for. Let AI write a first draft from your experience."
+    "intro": "2–4 sentences at the top of your CV: who you are, what you are best at and what you are looking for. Let AI write a first draft from your experience.",
+    "lead": "Finally, a short profile summary."
    },
    "extra": {
     "nav": "More sections",
@@ -337,7 +352,47 @@
     "title2": "download your CV",
     "intro": "Choose the template, arrange its sections, tailor the CV to a job offer with AI and download a PDF."
    }
-  }
+  },
+  "praise": {
+   "0": "Great!",
+   "1": "Very good!",
+   "2": "Nice work!"
+  },
+  "nudge": {
+   "later": "Maybe later",
+   "experience": {
+    "title": "Add your experience",
+    "text": "Most employers expect experience in at least one position. Start with your most recent job.",
+    "add": "Add experience"
+   },
+   "education": {
+    "title": "Add your education",
+    "text": "Recruiters usually check education. Your highest completed level is enough.",
+    "add": "Add education"
+   }
+  },
+  "allEntries": {
+   "experience": "All positions",
+   "education": "All education",
+   "projects": "All projects",
+   "certificates": "All certificates"
+  },
+  "saveEntry": "Save and back to list",
+  "schoolPick": "Choose the option that best describes your education:",
+  "school": {
+   "highSchool": "High school",
+   "technical": "Technical school",
+   "university": "University",
+   "postSecondary": "Post-secondary school",
+   "vocational": "Vocational school",
+   "other": "Other"
+  },
+  "linksTitle": "Links (optional)",
+  "bulletsHint": "Each line becomes a bullet point. Start with a verb and show the result, ideally in numbers.",
+  "skillsInputPh": "Type a skill and press Enter",
+  "skillsInputHint": "E.g. Excel, customer service, driving licence. 6–12 items work best.",
+  "cefrHint": "CEFR levels: A1–A2 basic, B1–B2 intermediate, C1–C2 advanced.",
+  "interestsPh": "e.g. photography, running, volunteering"
  },
  "ai": {
   "done": "Done – you can undo this change",
@@ -387,7 +442,8 @@
    "run": "Translate",
    "undo": "Tip: export your CV first to keep both versions. Undo is also available.",
    "done": "CV translated"
-  }
+  },
+  "working": "Working…"
  },
  "country": {
   "tips": {

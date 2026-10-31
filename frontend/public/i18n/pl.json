@@ -146,14 +146,15 @@
    "3": "3 kolumny"
   },
   "arrange": "Rozmieszczenie sekcji",
-  "arrangeHint": "Przeciągaj sekcje między kolumnami lub zmieniaj ich kolejność. Strony dodają się automatycznie.",
+  "arrangeHint": "Przeciągnij sekcje, aby zmienić kolejność lub kolumnę. Liczba kolumn wynika z szablonu. Szare sekcje są jeszcze puste.",
   "column": "Kolumna",
   "sidebar": "pasek boczny",
   "hide": "Ukryj sekcję",
   "show": "Pokaż sekcję",
-  "hidden": "Niewidoczne",
+  "hidden": "Ukryte sekcje – kliknij, aby dodać",
   "allShown": "Wszystkie sekcje są widoczne",
-  "contactInHeader": "Gdy sekcja Kontakt nie jest umieszczona, dane kontaktowe pokazują się w nagłówku."
+  "contactInHeader": "Gdy sekcja Kontakt nie jest umieszczona, dane kontaktowe pokazują się w nagłówku.",
+  "headerArea": "Nagłówek: imię, zdjęcie, kontakt"
  },
  "design": {
   "template": "Szablon",
@@ -225,7 +226,9 @@
     "expected": "W tym kraju zdjęcie jest standardem.",
     "optional": "W tym kraju zdjęcie jest opcjonalne.",
     "avoid": "W tym kraju lepiej pominąć zdjęcie – może skutkować odrzuceniem."
-   }
+   },
+   "upload": "Dodaj zdjęcie",
+   "change": "Zmień zdjęcie"
   },
   "f": {
    "firstName": "Imię",
@@ -257,7 +260,15 @@
    "link": "Link",
    "certName": "Certyfikat",
    "issuer": "Wydawca",
-   "date": "Data"
+   "date": "Data",
+   "month": "Miesiąc",
+   "year": "Rok",
+   "positionPh": "np. Kasjer(ka)",
+   "companyPh": "np. Firma ABC",
+   "newPosition": "Nowe stanowisko",
+   "newEducation": "Nowa szkoła",
+   "newProject": "Nowy projekt",
+   "newCertificate": "Nowy certyfikat"
   },
   "add": {
    "experience": "Dodaj stanowisko",
@@ -299,19 +310,22 @@
     "nav": "Doświadczenie",
     "title1": "Opowiedz o swoim",
     "title2": "doświadczeniu",
-    "intro": "Zacznij od ostatniego miejsca pracy. Opisuj efekty, nie tylko obowiązki – AI pomoże zamienić je w mocne punkty."
+    "intro": "Zacznij od ostatniego miejsca pracy. Opisuj efekty, nie tylko obowiązki – AI pomoże zamienić je w mocne punkty.",
+    "lead": "Dodajmy teraz Twoje doświadczenie zawodowe."
    },
    "education": {
     "nav": "Wykształcenie",
     "title1": "Dodaj swoje",
     "title2": "wykształcenie",
-    "intro": "Najpierw najwyższy lub najbardziej związany z pracą poziom. Kursy i temat pracy dyplomowej dodaj tylko, jeśli mają znaczenie."
+    "intro": "Najpierw najwyższy lub najbardziej związany z pracą poziom. Kursy i temat pracy dyplomowej dodaj tylko, jeśli mają znaczenie.",
+    "lead": "Uzupełnijmy teraz sekcję edukacji."
    },
    "skills": {
     "nav": "Umiejętności",
     "title1": "Jakie masz",
     "title2": "umiejętności?",
-    "intro": "Wymień narzędzia, technologie i kompetencje miękkie pasujące do ofert, na które aplikujesz. Najlepiej 6–12."
+    "intro": "Wymień narzędzia, technologie i kompetencje miękkie pasujące do ofert, na które aplikujesz. Najlepiej 6–12.",
+    "lead": "Teraz czas na Twoje umiejętności."
    },
    "languages": {
     "nav": "Języki obce",
@@ -323,7 +337,8 @@
     "nav": "Podsumowanie",
     "title1": "Napisz swoje",
     "title2": "podsumowanie zawodowe",
-    "intro": "2–4 zdania na górze CV: kim jesteś, w czym jesteś najlepszy i czego szukasz. AI może przygotować pierwszą wersję na podstawie Twojego doświadczenia."
+    "intro": "2–4 zdania na górze CV: kim jesteś, w czym jesteś najlepszy i czego szukasz. AI może przygotować pierwszą wersję na podstawie Twojego doświadczenia.",
+    "lead": "Na koniec krótkie podsumowanie zawodowe."
    },
    "extra": {
     "nav": "Dodatkowe sekcje",
@@ -337,7 +352,47 @@
     "title2": "pobierz swoje CV",
     "intro": "Wybierz szablon, ułóż sekcje, dopasuj CV do oferty z pomocą AI i pobierz PDF."
    }
-  }
+  },
+  "praise": {
+   "0": "Świetnie!",
+   "1": "Bardzo dobrze!",
+   "2": "Dobra robota!"
+  },
+  "nudge": {
+   "later": "Może później",
+   "experience": {
+    "title": "Dodaj swoje doświadczenie",
+    "text": "Większość pracodawców oczekuje doświadczenia na co najmniej jednym stanowisku. Na początek dodaj swoją ostatnią pracę.",
+    "add": "Dodaj doświadczenie"
+   },
+   "education": {
+    "title": "Dodaj wykształcenie",
+    "text": "Rekruterzy zwykle sprawdzają wykształcenie. Wystarczy najwyższy ukończony poziom.",
+    "add": "Dodaj wykształcenie"
+   }
+  },
+  "allEntries": {
+   "experience": "Wszystkie stanowiska",
+   "education": "Całe wykształcenie",
+   "projects": "Wszystkie projekty",
+   "certificates": "Wszystkie certyfikaty"
+  },
+  "saveEntry": "Zapisz i wróć do listy",
+  "schoolPick": "Wybierz opcję, która najlepiej opisuje Twoje wykształcenie:",
+  "school": {
+   "highSchool": "Liceum ogólnokształcące",
+   "technical": "Technikum",
+   "university": "Uczelnia wyższa",
+   "postSecondary": "Szkoła policealna",
+   "vocational": "Szkoła branżowa",
+   "other": "Inne"
+  },
+  "linksTitle": "Linki (opcjonalnie)",
+  "bulletsHint": "Każda linia to osobny punkt na CV. Zacznij od czasownika i podaj efekt, najlepiej w liczbach.",
+  "skillsInputPh": "Wpisz umiejętność i naciśnij Enter",
+  "skillsInputHint": "Np. Excel, obsługa kasy fiskalnej, prawo jazdy kat. B. Najlepiej 6–12 pozycji.",
+  "cefrHint": "Poziomy wg skali CEFR: A1–A2 podstawowy, B1–B2 średni, C1–C2 zaawansowany.",
+  "interestsPh": "np. fotografia, bieganie, wolontariat"
  },
  "ai": {
   "done": "Gotowe – możesz cofnąć tę zmianę",
@@ -387,7 +442,8 @@
    "run": "Przetłumacz",
    "undo": "Wskazówka: najpierw wyeksportuj CV, by zachować obie wersje. Możesz też cofnąć zmianę.",
    "done": "CV przetłumaczone"
-  }
+  },
+  "working": "Pracuję…"
  },
  "country": {
   "tips": {

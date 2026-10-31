@@ -23,6 +23,7 @@ import {
   X,
 } from 'lucide-angular';
 import { CvStore, migrate } from '../../core/cv/cv.store';
+import { hasContent } from '../../core/cv/cv.model';
 import { CvDocument } from '../../cv-render/cv-document';
 import { CV_LANGUAGES } from '../../core/cv/cv-labels';
 import { COUNTRIES } from '../../core/cv/countries';
@@ -70,6 +71,11 @@ export class EditorPage {
   protected readonly mobilePreview = signal(false);
   protected readonly menuOpen = signal(false);
   protected readonly pageCount = signal(1);
+  /** "Well done! Now let's add…" screen shown before a section the first time */
+  protected readonly intro = signal(false);
+  /** reminder when leaving an essential section empty */
+  protected readonly nudge = signal<'experience' | 'education' | null>(null);
+  private readonly introSteps = ['experience', 'education', 'skills', 'summary'];
 
   protected readonly languages = CV_LANGUAGES;
   protected readonly countries = COUNTRIES;
@@ -90,8 +96,38 @@ export class EditorPage {
     inject(DestroyRef).onDestroy(() => observer.disconnect());
   }
 
+  /** "Next": reminds about an empty essential section first */
+  protected next(): void {
+    const id = this.step().id;
+    if (!this.intro() && (id === 'experience' || id === 'education') && !this.done(this.stepIndex())) {
+      this.nudge.set(id);
+      return;
+    }
+    if (this.intro()) {
+      this.intro.set(false);
+      return;
+    }
+    this.go(this.stepIndex() + 1);
+  }
+
+  protected skipNudge(): void {
+    this.nudge.set(null);
+    this.go(this.stepIndex() + 1);
+  }
+
+  protected back(): void {
+    if (this.intro()) {
+      this.intro.set(false);
+      this.go(this.stepIndex() - 1);
+      return;
+    }
+    this.go(this.stepIndex() - 1);
+  }
+
   protected go(i: number): void {
     const next = Math.max(0, Math.min(STEPS.length - 1, i));
+    this.store.pruneBlank();
+    this.intro.set(next > this.stepIndex() && this.introSteps.includes(STEPS[next].id) && !this.done(next));
     this.stepIndex.set(next);
     try {
       sessionStorage.setItem(STEP_KEY, String(next));
@@ -108,9 +144,9 @@ export class EditorPage {
       case 'header':
         return !!(c.personal.firstName && c.personal.lastName && c.personal.email);
       case 'experience':
-        return c.experience.length > 0;
+        return hasContent(c, 'experience');
       case 'education':
-        return c.education.length > 0;
+        return hasContent(c, 'education');
       case 'skills':
         return c.skills.length > 0;
       case 'languages':

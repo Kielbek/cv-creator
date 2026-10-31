@@ -1,7 +1,7 @@
 import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LucideAngularModule, GripVertical, EyeOff, Eye } from 'lucide-angular';
+import { LucideAngularModule, GripVertical, Plus, X } from 'lucide-angular';
 import { CvStore } from '../../../core/cv/cv.store';
 import { ALL_SECTIONS, SectionId, hasContent } from '../../../core/cv/cv.model';
 
@@ -14,51 +14,51 @@ import { ALL_SECTIONS, SectionId, hasContent } from '../../../core/cv/cv.model';
   imports: [TranslatePipe, LucideAngularModule, CdkDropListGroup, CdkDropList, CdkDrag, CdkDragHandle],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="space-y-5">
-      <div class="panel-card p-4" cdkDropListGroup>
-        <h3 class="text-[14px] font-medium text-ink">{{ 'layout.arrange' | translate }}</h3>
-        <p class="mb-3 text-xs text-slate-500">{{ 'layout.arrangeHint' | translate }}</p>
-        <div class="grid gap-2" [style.grid-template-columns]="gridCols()">
+    <div>
+      <p class="text-[13.5px] leading-relaxed text-muted">{{ 'layout.arrangeHint' | translate }}</p>
+
+      <!-- page schematic -->
+      <div class="mt-6 rounded-lg border border-line bg-white p-3 shadow-[0_1px_2px_rgb(0_0_0/0.04)]" cdkDropListGroup>
+        @if (geo().header !== 'sidebar') {
+          <div class="mb-3 flex h-9 items-center rounded-md bg-paper-2 px-3 text-[12px] text-faint">{{ 'layout.headerArea' | translate }}</div>
+        }
+        <div class="grid gap-3" [style.grid-template-columns]="gridCols()">
           @for (col of columns(); track $index; let ci = $index) {
-            <div>
-              <p class="mb-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-400">
-                {{ 'layout.column' | translate }} {{ ci + 1 }}
-                @if (ci === geo().sidebarIndex && geo().columns > 1) {
-                  · {{ 'layout.sidebar' | translate }}
-                }
-              </p>
-              <div
-                cdkDropList
-                [cdkDropListData]="col"
-                [id]="'col-' + ci"
-                (cdkDropListDropped)="drop($event, ci)"
-                class="min-h-24 space-y-1.5 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50/60 p-1.5"
-              >
-                @for (s of col; track s) {
-                  <div cdkDrag [cdkDragData]="s" class="section-chip" [class.opacity-50]="!filled(s)">
-                    <lucide-icon cdkDragHandle [img]="icons.GripVertical" class="size-4 shrink-0 cursor-grab text-slate-400" />
-                    <span class="min-w-0 flex-1 truncate">{{ 'editor.sections.' + s | translate }}</span>
-                    <button type="button" class="text-slate-400 hover:text-slate-700" (click)="hide(s)" [attr.aria-label]="'layout.hide' | translate"><lucide-icon [img]="icons.EyeOff" class="size-3.5" /></button>
-                  </div>
-                }
-              </div>
+            <div
+              cdkDropList
+              [cdkDropListData]="col"
+              [id]="'col-' + ci"
+              (cdkDropListDropped)="drop($event, ci)"
+              class="min-h-40 space-y-1.5 rounded-md bg-paper-2 p-1.5"
+            >
+              @if (geo().header === 'sidebar' && ci === geo().sidebarIndex) {
+                <div class="flex h-9 items-center rounded px-2 text-[12px] text-faint">{{ 'layout.headerArea' | translate }}</div>
+              }
+              @for (s of col; track s) {
+                <div cdkDrag [cdkDragData]="s" class="layout-row group" [class.is-empty]="!filled(s)">
+                  <lucide-icon cdkDragHandle [img]="icons.GripVertical" class="size-3.5 shrink-0 cursor-grab text-faint" />
+                  <span class="min-w-0 flex-1 truncate">{{ 'editor.sections.' + s | translate }}</span>
+                  <button type="button" class="layout-row-x" (click)="hide(s)" [attr.aria-label]="'layout.hide' | translate"><lucide-icon [img]="icons.X" class="size-3.5" /></button>
+                </div>
+              }
             </div>
           }
         </div>
+      </div>
 
-        <p class="mb-1.5 mt-4 text-[11px] font-medium uppercase tracking-wide text-slate-400">{{ 'layout.hidden' | translate }}</p>
-        <div cdkDropList [cdkDropListData]="unused()" id="unused" (cdkDropListDropped)="drop($event, -1)" class="flex min-h-12 flex-wrap gap-1.5 rounded-xl border-2 border-dashed border-slate-200 p-1.5">
+      <div class="mt-8">
+        <p class="text-[13px] font-medium text-ink">{{ 'layout.hidden' | translate }}</p>
+        <div cdkDropList [cdkDropListData]="unused()" id="unused" (cdkDropListDropped)="drop($event, -1)" class="mt-3 flex min-h-10 flex-wrap gap-2">
           @for (s of unused(); track s) {
-            <div cdkDrag [cdkDragData]="s" class="section-chip w-auto! cursor-grab">
-              <span>{{ 'editor.sections.' + s | translate }}</span>
-              <button type="button" class="text-slate-400 hover:text-brand-600" (click)="show(s)" [attr.aria-label]="'layout.show' | translate"><lucide-icon [img]="icons.Eye" class="size-3.5" /></button>
-            </div>
+            <button type="button" cdkDrag [cdkDragData]="s" class="chip h-8! text-[13px]!" (click)="show(s)">
+              <lucide-icon [img]="icons.Plus" class="size-3.5" /> {{ 'editor.sections.' + s | translate }}
+            </button>
           } @empty {
-            <span class="px-2 py-1.5 text-xs text-slate-400">{{ 'layout.allShown' | translate }}</span>
+            <span class="text-[13px] text-faint">{{ 'layout.allShown' | translate }}</span>
           }
         </div>
         @if (unused().includes('contact')) {
-          <p class="mt-2 text-xs text-slate-400">{{ 'layout.contactInHeader' | translate }}</p>
+          <p class="hint">{{ 'layout.contactInHeader' | translate }}</p>
         }
       </div>
     </div>
@@ -66,7 +66,7 @@ import { ALL_SECTIONS, SectionId, hasContent } from '../../../core/cv/cv.model';
 })
 export class LayoutPanel {
   protected readonly store = inject(CvStore);
-  protected readonly icons = { GripVertical, EyeOff, Eye };
+  protected readonly icons = { GripVertical, Plus, X };
   protected readonly geo = this.store.geometry;
   protected readonly columns = computed(() => this.store.cv().design.layout.map((c) => [...c]));
   protected readonly unused = computed(() => {

@@ -1,4 +1,4 @@
-import { Cv, SectionId, hasContent } from '../core/cv/cv.model';
+import { Cv, SectionId, hasContent, isBlank } from '../core/cv/cv.model';
 import { Geometry } from '../core/cv/templates';
 
 /**
@@ -24,7 +24,8 @@ export function sectionBlocks(cv: Cv, s: SectionId): Block[] {
   if (!hasContent(cv, s)) return [];
   if (!LIST_SECTIONS.has(s)) return [{ key: s, kind: 'whole', section: s, index: 0 }];
   const items = cv[s as 'experience' | 'education' | 'projects' | 'certificates'];
-  return items.map((_, i) => ({ key: `${s}:${i}`, kind: i === 0 ? 'first' : 'item', section: s, index: i }));
+  const visible = items.map((item, i) => ({ item, i })).filter(({ item }) => !isBlank(item));
+  return visible.map(({ i }, n) => ({ key: `${s}:${i}`, kind: n === 0 ? 'first' : 'item', section: s, index: i }));
 }
 
 export function buildColumns(cv: Cv, g: Geometry): Block[][] {

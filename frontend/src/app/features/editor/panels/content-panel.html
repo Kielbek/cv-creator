@@ -1,280 +1,349 @@
 @let c = cv();
-<div class="space-y-8">
-  <!-- ============ personal ============ -->
+<div class="space-y-12">
+  <!-- ================= personal ================= -->
   @if (has('personal')) {
-  <section class="wizard-section">
-    @if (multi()) {
-      <h2 class="mb-3 text-base font-medium text-slate-900">{{ 'editor.sections.personal' | translate }}</h2>
-    }
-      <div class="space-y-4">
-        <div class="flex items-center gap-4">
-          <label class="group relative flex size-20 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-md border-2 border-dashed border-slate-300 bg-slate-50 text-slate-400 hover:border-brand-400">
+    <section>
+      <div class="flex items-center gap-5">
+        <div class="flex size-[72px] shrink-0 items-center justify-center overflow-hidden rounded-md border border-line bg-paper-2 text-[22px] text-faint serif">
+          @if (c.personal.photo) {
+            <img [src]="c.personal.photo" alt="" class="size-full object-cover" />
+          } @else {
+            {{ (c.personal.firstName[0] || '') + (c.personal.lastName[0] || '') || '—' }}
+          }
+        </div>
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-center gap-3">
+            <label class="btn-ghost btn-sm cursor-pointer">
+              {{ (c.personal.photo ? 'editor.photo.change' : 'editor.photo.upload') | translate }}
+              <input type="file" accept="image/*" class="sr-only" (change)="onPhoto($event)" />
+            </label>
             @if (c.personal.photo) {
-              <img [src]="c.personal.photo" alt="" class="size-full object-cover" />
-            } @else {
-              <lucide-icon [img]="icons.ImagePlus" class="size-6" />
-            }
-            <input type="file" accept="image/*" class="sr-only" (change)="onPhoto($event)" />
-          </label>
-          <div class="text-sm text-slate-500">
-            <p class="font-medium text-slate-700">{{ 'editor.photo.title' | translate }}</p>
-            <p>{{ 'editor.photo.hint.' + store.country().photo | translate }}</p>
-            @if (c.personal.photo) {
-              <div class="mt-1 flex gap-3">
-                <label class="inline-flex items-center gap-1.5 text-xs">
-                  <input type="checkbox" [checked]="c.design.showPhoto" (change)="setShow($event)" />
-                  {{ 'editor.photo.show' | translate }}
-                </label>
-                <button type="button" class="text-xs text-red-600 hover:underline" (click)="set(cv => cv.personal.photo = '')">{{ 'common.remove' | translate }}</button>
-              </div>
+              <button type="button" class="text-action" (click)="set(cv => cv.personal.photo = '')">{{ 'common.remove' | translate }}</button>
             }
           </div>
+          <p class="hint">{{ 'editor.photo.hint.' + store.country().photo | translate }}</p>
         </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div><label class="label" for="fn">{{ 'editor.f.firstName' | translate }}</label><input id="fn" class="input" [value]="c.personal.firstName" (input)="setPersonal('firstName', $event)" autocomplete="given-name" /></div>
-          <div><label class="label" for="ln">{{ 'editor.f.lastName' | translate }}</label><input id="ln" class="input" [value]="c.personal.lastName" (input)="setPersonal('lastName', $event)" autocomplete="family-name" /></div>
-          <div class="col-span-2"><label class="label" for="hl">{{ 'editor.f.headline' | translate }}</label><input id="hl" class="input" [value]="c.personal.headline" (input)="setPersonal('headline', $event)" [placeholder]="'editor.f.headlinePh' | translate" /></div>
-          <div><label class="label" for="em">{{ 'editor.f.email' | translate }}</label><input id="em" type="email" class="input" [value]="c.personal.email" (input)="setPersonal('email', $event)" autocomplete="email" /></div>
-          <div><label class="label" for="ph">{{ 'editor.f.phone' | translate }}</label><input id="ph" type="tel" class="input" [value]="c.personal.phone" (input)="setPersonal('phone', $event)" autocomplete="tel" /></div>
-          <div class="col-span-2"><label class="label" for="lo">{{ 'editor.f.location' | translate }}</label><input id="lo" class="input" [value]="c.personal.location" (input)="setPersonal('location', $event)" [placeholder]="'editor.f.locationPh' | translate" /></div>
-          <div><label class="label" for="li">LinkedIn</label><input id="li" class="input" [value]="c.personal.linkedin" (input)="setPersonal('linkedin', $event)" placeholder="linkedin.com/in/…" /></div>
-          <div><label class="label" for="ws">{{ 'editor.f.website' | translate }}</label><input id="ws" class="input" [value]="c.personal.website" (input)="setPersonal('website', $event)" /></div>
-          <div class="col-span-2"><label class="label" for="gh">GitHub</label><input id="gh" class="input" [value]="c.personal.github" (input)="setPersonal('github', $event)" placeholder="github.com/…" /></div>
-        </div>
+        @if (c.personal.photo) {
+          <ui-switch class="ml-auto hidden sm:block" [checked]="c.design.showPhoto" (checkedChange)="set(cv => cv.design.showPhoto = $event)">{{ 'editor.photo.show' | translate }}</ui-switch>
+        }
       </div>
-  </section>
+
+      <div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-5">
+        <div><label class="label" for="fn">{{ 'editor.f.firstName' | translate }}</label><input id="fn" class="input" [value]="c.personal.firstName" (input)="setPersonal('firstName', $event)" autocomplete="given-name" /></div>
+        <div><label class="label" for="ln">{{ 'editor.f.lastName' | translate }}</label><input id="ln" class="input" [value]="c.personal.lastName" (input)="setPersonal('lastName', $event)" autocomplete="family-name" /></div>
+        <div class="col-span-2"><label class="label" for="hl">{{ 'editor.f.headline' | translate }}</label><input id="hl" class="input" [value]="c.personal.headline" (input)="setPersonal('headline', $event)" [placeholder]="'editor.f.headlinePh' | translate" /></div>
+        <div><label class="label" for="em">{{ 'editor.f.email' | translate }}</label><input id="em" type="email" class="input" [value]="c.personal.email" (input)="setPersonal('email', $event)" autocomplete="email" /></div>
+        <div><label class="label" for="ph">{{ 'editor.f.phone' | translate }}</label><input id="ph" type="tel" class="input" [value]="c.personal.phone" (input)="setPersonal('phone', $event)" autocomplete="tel" /></div>
+        <div class="col-span-2"><label class="label" for="lo">{{ 'editor.f.location' | translate }}</label><input id="lo" class="input" [value]="c.personal.location" (input)="setPersonal('location', $event)" [placeholder]="'editor.f.locationPh' | translate" /></div>
+      </div>
+
+      <p class="mt-10 mb-4 text-[13px] font-medium text-muted">{{ 'editor.linksTitle' | translate }}</p>
+      <div class="grid grid-cols-1 gap-y-5 sm:grid-cols-2 sm:gap-x-4">
+        <div><label class="label" for="li">LinkedIn</label><input id="li" class="input" [value]="c.personal.linkedin" (input)="setPersonal('linkedin', $event)" placeholder="linkedin.com/in/…" /></div>
+        <div><label class="label" for="ws">{{ 'editor.f.website' | translate }}</label><input id="ws" class="input" [value]="c.personal.website" (input)="setPersonal('website', $event)" placeholder="www…" /></div>
+        <div><label class="label" for="gh">GitHub</label><input id="gh" class="input" [value]="c.personal.github" (input)="setPersonal('github', $event)" placeholder="github.com/…" /></div>
+      </div>
+    </section>
   }
 
-  <!-- ============ summary ============ -->
+  <!-- ================= summary ================= -->
   @if (has('summary')) {
-  <section class="wizard-section">
-    @if (multi()) {
-      <h2 class="mb-3 text-base font-medium text-slate-900">{{ 'editor.sections.summary' | translate }}</h2>
-    }
-      <div class="space-y-4">
-        <textarea class="input min-h-32" [value]="c.summary" (input)="set(cv => cv.summary = val($event))" [placeholder]="'editor.f.summaryPh' | translate"></textarea>
-        <div class="flex flex-wrap items-center gap-2">
-          <select class="input w-auto! py-1.5" [value]="tone()" (change)="tone.set(val($event))" [attr.aria-label]="'ai.tone.label' | translate">
+    <section>
+      <div class="mb-1.5 flex items-center justify-between gap-3">
+        <label class="label mb-0!" for="sum">{{ 'editor.sections.summary' | translate }}</label>
+        <span class="text-[12px] tabular-nums" [class]="c.summary.length > 600 ? 'text-ink' : 'text-faint'">{{ c.summary.length }} / 600</span>
+      </div>
+      <textarea id="sum" class="input min-h-40!" [value]="c.summary" (input)="set(cv => cv.summary = val($event))" [placeholder]="'editor.f.summaryPh' | translate"></textarea>
+      <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-md bg-paper px-4 py-3">
+        <lucide-icon [img]="icons.Sparkles" class="size-4 text-ink" />
+        <span class="text-[13px] text-ink-2">{{ 'ai.summaryHint' | translate }}</span>
+        <div class="ml-auto flex items-center gap-2">
+          <select class="field-select h-8 rounded-md border border-line-2 bg-white text-[13px]" (change)="tone.set(val($event))" [attr.aria-label]="'ai.tone.label' | translate">
             @for (t of ['professional', 'confident', 'friendly', 'concise']; track t) {
-              <option [value]="t" [selected]="t == tone()">{{ 'ai.tone.' + t | translate }}</option>
+              <option [value]="t" [selected]="t === tone()">{{ 'ai.tone.' + t | translate }}</option>
             }
           </select>
-          <button type="button" class="ai-btn" (click)="generateSummary()" [disabled]="busy() === 'summary'">
-            <lucide-icon [img]="icons.Sparkles" class="size-4" [class.animate-spin]="busy() === 'summary'" />
-            {{ (c.summary ? 'ai.rewriteSummary' : 'ai.writeSummary') | translate }}
+          <button type="button" class="btn-primary btn-sm" (click)="generateSummary()" [disabled]="busy() === 'summary'">
+            {{ busy() === 'summary' ? ('ai.working' | translate) : ((c.summary ? 'ai.rewriteSummary' : 'ai.writeSummary') | translate) }}
           </button>
         </div>
-        <p class="text-xs text-slate-400">{{ 'ai.summaryHint' | translate }}</p>
       </div>
-  </section>
+    </section>
   }
 
-  <!-- ============ experience ============ -->
+  <!-- ================= experience ================= -->
   @if (has('experience')) {
-  <section class="wizard-section">
-    @if (multi()) {
-      <h2 class="mb-3 text-base font-medium text-slate-900">{{ 'editor.sections.experience' | translate }}</h2>
-    }
-      <div class="space-y-4">
-        @for (e of c.experience; track e.id; let i = $index, first = $first, last = $last) {
-          <div class="item-card">
-            <div class="item-tools">
-              <button type="button" (click)="move('experience', i, -1)" [disabled]="first" [attr.aria-label]="'common.up' | translate"><lucide-icon [img]="icons.ArrowUp" class="size-4" /></button>
-              <button type="button" (click)="move('experience', i, 1)" [disabled]="last" [attr.aria-label]="'common.down' | translate"><lucide-icon [img]="icons.ArrowDown" class="size-4" /></button>
-              <button type="button" class="hover:text-red-600!" (click)="remove('experience', i)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.Trash2" class="size-4" /></button>
+    <section>
+      @let ei = editing('experience');
+      @if (ei >= 0) {
+        @let e = c.experience[ei];
+        <button type="button" class="text-action mb-6" (click)="close()"><lucide-icon [img]="icons.ArrowLeft" class="size-3.5" /> {{ 'editor.allEntries.experience' | translate }}</button>
+        <div class="grid grid-cols-2 gap-x-4 gap-y-5">
+          <div><label class="label">{{ 'editor.f.position' | translate }}</label><input class="input" [value]="e.position" (input)="setItem('experience', ei, 'position', val($event))" [placeholder]="'editor.f.positionPh' | translate" /></div>
+          <div><label class="label">{{ 'editor.f.company' | translate }}</label><input class="input" [value]="e.company" (input)="setItem('experience', ei, 'company', val($event))" [placeholder]="'editor.f.companyPh' | translate" /></div>
+          <div><label class="label">{{ 'editor.f.city' | translate }}</label><input class="input" [value]="e.location" (input)="setItem('experience', ei, 'location', val($event))" /></div>
+          <div></div>
+          <div><label class="label">{{ 'editor.f.start' | translate }}</label><ui-month-picker [value]="e.start" (valueChange)="setItem('experience', ei, 'start', $event)" [monthLabel]="'editor.f.month' | translate" [yearLabel]="'editor.f.year' | translate" /></div>
+          <div><label class="label">{{ 'editor.f.end' | translate }}</label><ui-month-picker [value]="e.end" [disabled]="e.current" (valueChange)="setItem('experience', ei, 'end', $event)" [monthLabel]="'editor.f.month' | translate" [yearLabel]="'editor.f.year' | translate" />
+            <label class="mt-2.5 flex cursor-pointer items-center gap-2 text-[13.5px] text-ink-2"><input type="checkbox" class="checkbox" [checked]="e.current" (change)="setItem('experience', ei, 'current', $any($event.target).checked)" /> {{ 'editor.f.current' | translate }}</label>
+          </div>
+          <div class="col-span-2 mt-2">
+            <div class="mb-1.5 flex items-center justify-between gap-3">
+              <label class="label mb-0!">{{ 'editor.f.achievements' | translate }}</label>
+              <button type="button" class="text-action" (click)="improve(e)" [disabled]="busy() === e.id"><lucide-icon [img]="icons.Sparkles" class="size-3.5" /> {{ busy() === e.id ? ('ai.working' | translate) : ('ai.improve' | translate) }}</button>
             </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div class="col-span-2"><label class="label">{{ 'editor.f.position' | translate }}</label><input class="input" [value]="e.position" (input)="setItem('experience', i, 'position', val($event))" /></div>
-              <div><label class="label">{{ 'editor.f.company' | translate }}</label><input class="input" [value]="e.company" (input)="setItem('experience', i, 'company', val($event))" /></div>
-              <div><label class="label">{{ 'editor.f.city' | translate }}</label><input class="input" [value]="e.location" (input)="setItem('experience', i, 'location', val($event))" /></div>
-              <div><label class="label">{{ 'editor.f.start' | translate }}</label><input type="month" class="input" [value]="e.start" (input)="setItem('experience', i, 'start', val($event))" placeholder="YYYY-MM" /></div>
-              <div>
-                <label class="label">{{ 'editor.f.end' | translate }}</label>
-                <input type="month" class="input" [value]="e.end" [disabled]="e.current" (input)="setItem('experience', i, 'end', val($event))" placeholder="YYYY-MM" />
-                <label class="mt-1 flex items-center gap-1.5 text-xs text-slate-500"><input type="checkbox" [checked]="e.current" (change)="setItem('experience', i, 'current', $any($event.target).checked)" /> {{ 'editor.f.current' | translate }}</label>
+            <textarea class="input" [value]="e.description" (input)="setItem('experience', ei, 'description', val($event))" [placeholder]="'editor.f.achievementsPh' | translate"></textarea>
+            <p class="hint">{{ 'editor.bulletsHint' | translate }}</p>
+            @if (proposals()[e.id]; as bullets) {
+              <div class="mt-4 rounded-md border border-line bg-paper p-4">
+                <p class="mb-2 text-[12.5px] font-medium text-muted">{{ 'ai.proposal' | translate }}</p>
+                <ul class="list-disc space-y-1 pl-5 text-[14px] text-ink">
+                  @for (b of bullets; track $index) {
+                    <li>{{ b }}</li>
+                  }
+                </ul>
+                <div class="mt-4 flex gap-2">
+                  <button type="button" class="btn-primary btn-sm" (click)="accept(ei, e.id)">{{ 'ai.accept' | translate }}</button>
+                  <button type="button" class="btn-ghost btn-sm" (click)="discard(e.id)">{{ 'ai.discard' | translate }}</button>
+                </div>
               </div>
-              <div class="col-span-2">
-                <label class="label">{{ 'editor.f.achievements' | translate }}</label>
-                <textarea class="input min-h-28" [value]="e.description" (input)="setItem('experience', i, 'description', val($event))" [placeholder]="'editor.f.achievementsPh' | translate"></textarea>
-                <button type="button" class="ai-btn mt-2" (click)="improve(e)" [disabled]="busy() === e.id">
-                  <lucide-icon [img]="icons.Wand2" class="size-4" [class.animate-pulse]="busy() === e.id" /> {{ 'ai.improve' | translate }}
-                </button>
-                @if (proposals()[e.id]; as bullets) {
-                  <div class="mt-3 rounded-xl border border-brand-200 bg-brand-50 p-3 text-sm">
-                    <p class="mb-2 flex items-center gap-1.5 font-medium text-brand-800"><lucide-icon [img]="icons.Sparkles" class="size-4" /> {{ 'ai.proposal' | translate }}</p>
-                    <ul class="list-disc space-y-1 pl-5 text-slate-700">
-                      @for (b of bullets; track $index) {
-                        <li>{{ b }}</li>
-                      }
-                    </ul>
-                    <div class="mt-3 flex gap-2">
-                      <button type="button" class="btn-primary px-3! py-1.5! text-sm" (click)="accept(i, e.id)">{{ 'ai.accept' | translate }}</button>
-                      <button type="button" class="btn-ghost px-3! py-1.5! text-sm" (click)="discard(e.id)">{{ 'ai.discard' | translate }}</button>
-                    </div>
+            }
+          </div>
+        </div>
+        <div class="mt-8 flex items-center justify-between">
+          <button type="button" class="text-action text-muted!" (click)="remove('experience', ei)"><lucide-icon [img]="icons.Trash2" class="size-3.5" /> {{ 'common.remove' | translate }}</button>
+          <button type="button" class="btn-ghost btn-sm" (click)="close()">{{ 'editor.saveEntry' | translate }}</button>
+        </div>
+      } @else {
+        @if (multi()) {
+          <h2 class="mb-4 text-[15px] font-medium">{{ 'editor.sections.experience' | translate }}</h2>
+        }
+
+        <div class="entries">
+          <div cdkDropList (cdkDropListDropped)="reorder('experience', $event)">
+            @for (e of c.experience; track e.id; let i = $index) {
+              <div class="entry" cdkDrag cdkDragLockAxis="y">
+                <div class="entry-head" (click)="open(e.id)">
+                  <span class="entry-grip" cdkDragHandle (click)="$event.stopPropagation()"><lucide-icon [img]="icons.GripVertical" class="size-4" /></span>
+                  <div class="min-w-0 flex-1">
+                    <p class="truncate text-[14px] font-medium" [class.text-faint]="!e.position">{{ e.position || ('editor.f.newPosition' | translate) }}</p>
+                    <p class="mt-0.5 truncate text-[13px] text-muted">{{ join(e.company, range(e.start, e.end, e.current)) || '—' }}</p>
                   </div>
-                }
+                  <button type="button" class="entry-action" (click)="remove('experience', i, $event)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.Trash2" class="size-4" /></button>
+                  <lucide-icon [img]="icons.ChevronRight" class="size-4 text-faint" />
+                </div>
               </div>
-            </div>
+            }
           </div>
-        }
-        <button type="button" class="add-btn" (click)="add('experience')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.experience' | translate }}</button>
-      </div>
-  </section>
+          <button type="button" class="add-row" (click)="add('experience')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.experience' | translate }}</button>
+        </div>
+      }
+    </section>
   }
 
-  <!-- ============ education ============ -->
+  <!-- ================= education ================= -->
   @if (has('education')) {
-  <section class="wizard-section">
-    @if (multi()) {
-      <h2 class="mb-3 text-base font-medium text-slate-900">{{ 'editor.sections.education' | translate }}</h2>
-    }
-      <div class="space-y-4">
-        @for (e of c.education; track e.id; let i = $index, first = $first, last = $last) {
-          <div class="item-card">
-            <div class="item-tools">
-              <button type="button" (click)="move('education', i, -1)" [disabled]="first" [attr.aria-label]="'common.up' | translate"><lucide-icon [img]="icons.ArrowUp" class="size-4" /></button>
-              <button type="button" (click)="move('education', i, 1)" [disabled]="last" [attr.aria-label]="'common.down' | translate"><lucide-icon [img]="icons.ArrowDown" class="size-4" /></button>
-              <button type="button" class="hover:text-red-600!" (click)="remove('education', i)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.Trash2" class="size-4" /></button>
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div class="col-span-2"><label class="label">{{ 'editor.f.degree' | translate }}</label><input class="input" [value]="e.degree" (input)="setItem('education', i, 'degree', val($event))" /></div>
-              <div><label class="label">{{ 'editor.f.school' | translate }}</label><input class="input" [value]="e.school" (input)="setItem('education', i, 'school', val($event))" /></div>
-              <div><label class="label">{{ 'editor.f.city' | translate }}</label><input class="input" [value]="e.location" (input)="setItem('education', i, 'location', val($event))" /></div>
-              <div><label class="label">{{ 'editor.f.start' | translate }}</label><input type="month" class="input" [value]="e.start" (input)="setItem('education', i, 'start', val($event))" placeholder="YYYY-MM" /></div>
-              <div>
-                <label class="label">{{ 'editor.f.end' | translate }}</label>
-                <input type="month" class="input" [value]="e.end" [disabled]="e.current" (input)="setItem('education', i, 'end', val($event))" placeholder="YYYY-MM" />
-                <label class="mt-1 flex items-center gap-1.5 text-xs text-slate-500"><input type="checkbox" [checked]="e.current" (change)="setItem('education', i, 'current', $any($event.target).checked)" /> {{ 'editor.f.currentStudy' | translate }}</label>
+    <section>
+      @let ei = editing('education');
+      @if (ei >= 0) {
+        @let e = c.education[ei];
+        <button type="button" class="text-action mb-6" (click)="close()"><lucide-icon [img]="icons.ArrowLeft" class="size-3.5" /> {{ 'editor.allEntries.education' | translate }}</button>
+        <div class="grid grid-cols-2 gap-x-4 gap-y-5">
+          <div class="col-span-2"><label class="label">{{ 'editor.f.degree' | translate }}</label><input class="input" [value]="e.degree" (input)="setItem('education', ei, 'degree', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.school' | translate }}</label><input class="input" [value]="e.school" (input)="setItem('education', ei, 'school', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.city' | translate }}</label><input class="input" [value]="e.location" (input)="setItem('education', ei, 'location', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.start' | translate }}</label><ui-month-picker [value]="e.start" (valueChange)="setItem('education', ei, 'start', $event)" [monthLabel]="'editor.f.month' | translate" [yearLabel]="'editor.f.year' | translate" /></div>
+          <div><label class="label">{{ 'editor.f.end' | translate }}</label><ui-month-picker [value]="e.end" [disabled]="e.current" (valueChange)="setItem('education', ei, 'end', $event)" [monthLabel]="'editor.f.month' | translate" [yearLabel]="'editor.f.year' | translate" />
+            <label class="mt-2.5 flex cursor-pointer items-center gap-2 text-[13.5px] text-ink-2"><input type="checkbox" class="checkbox" [checked]="e.current" (change)="setItem('education', ei, 'current', $any($event.target).checked)" /> {{ 'editor.f.currentStudy' | translate }}</label>
+          </div>
+          <div class="col-span-2 mt-2"><label class="label">{{ 'editor.f.description' | translate }}</label><textarea class="input min-h-24!" [value]="e.description" (input)="setItem('education', ei, 'description', val($event))"></textarea></div>
+        </div>
+        <div class="mt-8 flex items-center justify-between">
+          <button type="button" class="text-action text-muted!" (click)="remove('education', ei)"><lucide-icon [img]="icons.Trash2" class="size-3.5" /> {{ 'common.remove' | translate }}</button>
+          <button type="button" class="btn-ghost btn-sm" (click)="close()">{{ 'editor.saveEntry' | translate }}</button>
+        </div>
+      } @else {
+        @if (multi()) {
+          <h2 class="mb-4 text-[15px] font-medium">{{ 'editor.sections.education' | translate }}</h2>
+        }
+        @if (!c.education.length) {
+          <p class="mb-4 text-[13.5px] text-muted">{{ 'editor.schoolPick' | translate }}</p>
+          <div class="mb-8 flex flex-wrap gap-2">
+            @for (t of schoolTypes; track t) {
+              @let schoolLabel = 'editor.school.' + t | translate;
+              <button type="button" class="chip" (click)="addSchool(t, schoolLabel)">{{ 'editor.school.' + t | translate }} <lucide-icon [img]="icons.Plus" class="size-3.5" /></button>
+            }
+          </div>
+        }
+        @if (c.education.length) {
+        <div class="entries">
+          <div cdkDropList (cdkDropListDropped)="reorder('education', $event)">
+            @for (e of c.education; track e.id; let i = $index) {
+              <div class="entry" cdkDrag cdkDragLockAxis="y">
+                <div class="entry-head" (click)="open(e.id)">
+                  <span class="entry-grip" cdkDragHandle (click)="$event.stopPropagation()"><lucide-icon [img]="icons.GripVertical" class="size-4" /></span>
+                  <div class="min-w-0 flex-1">
+                    <p class="truncate text-[14px] font-medium" [class.text-faint]="!e.degree">{{ e.degree || ('editor.f.newEducation' | translate) }}</p>
+                    <p class="mt-0.5 truncate text-[13px] text-muted">{{ join(e.school, range(e.start, e.end, e.current)) || '—' }}</p>
+                  </div>
+                  <button type="button" class="entry-action" (click)="remove('education', i, $event)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.Trash2" class="size-4" /></button>
+                  <lucide-icon [img]="icons.ChevronRight" class="size-4 text-faint" />
+                </div>
               </div>
-              <div class="col-span-2"><label class="label">{{ 'editor.f.description' | translate }}</label><textarea class="input min-h-20" [value]="e.description" (input)="setItem('education', i, 'description', val($event))"></textarea></div>
-            </div>
+            }
           </div>
+          <button type="button" class="add-row" (click)="add('education')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.education' | translate }}</button>
+        </div>
         }
-        <button type="button" class="add-btn" (click)="add('education')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.education' | translate }}</button>
-      </div>
-  </section>
+      }
+    </section>
   }
 
-  <!-- ============ skills ============ -->
+  <!-- ================= skills ================= -->
   @if (has('skills')) {
-  <section class="wizard-section">
-    @if (multi()) {
-      <h2 class="mb-3 text-base font-medium text-slate-900">{{ 'editor.sections.skills' | translate }}</h2>
-    }
-      <div class="space-y-4">
-        @for (s of c.skills; track s.id; let i = $index) {
-          <div class="flex items-center gap-2">
-            <input class="input" [value]="s.name" (input)="setItem('skills', i, 'name', val($event))" [placeholder]="'editor.f.skillPh' | translate" />
-            <select class="input w-28!" [value]="s.level" (change)="setItem('skills', i, 'level', +val($event))" [attr.aria-label]="'editor.f.level' | translate">
-              <option [value]="0" [selected]="0 == s.level">—</option>
-              @for (l of [1, 2, 3, 4, 5]; track l) {
-                <option [value]="l" [selected]="l == s.level">{{ 'editor.skillLevel.' + l | translate }}</option>
-              }
-            </select>
-            <button type="button" class="icon-btn hover:text-red-600" (click)="remove('skills', i)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.X" class="size-4" /></button>
-          </div>
-        }
-        <button type="button" class="add-btn" (click)="add('skills')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.skill' | translate }}</button>
-        <p class="text-xs text-slate-400">{{ 'editor.skillHint' | translate }}</p>
-      </div>
-  </section>
+    <section>
+      <label class="label">{{ 'editor.sections.skills' | translate }}</label>
+      <ui-tag-input [tags]="c.skills" [placeholder]="'editor.skillsInputPh' | translate" [removeLabel]="'common.remove' | translate" (add)="addSkill($event)" (remove)="removeSkill($event)" />
+      <p class="hint">{{ 'editor.skillsInputHint' | translate }}</p>
+      @if (showSkillLevels() && c.skills.length) {
+        <p class="mt-8 mb-3 text-[13px] font-medium text-ink">{{ 'editor.f.level' | translate }}</p>
+        <div class="entries">
+          @for (s of c.skills; track s.id; let i = $index) {
+            <div class="entry flex items-center justify-between gap-4 px-4 py-2.5">
+              <span class="truncate text-[14px]">{{ s.name }}</span>
+              <span class="rating" role="radiogroup" [attr.aria-label]="s.name">
+                @for (l of [1, 2, 3, 4, 5]; track l) {
+                  <button type="button" role="radio" [attr.aria-checked]="s.level === l" [class.on]="l <= s.level" (click)="rate(i, l)" [title]="'editor.skillLevel.' + l | translate"></button>
+                }
+              </span>
+            </div>
+          }
+        </div>
+      }
+    </section>
   }
 
-  <!-- ============ languages ============ -->
+  <!-- ================= languages ================= -->
   @if (has('languages')) {
-  <section class="wizard-section">
-    @if (multi()) {
-      <h2 class="mb-3 text-base font-medium text-slate-900">{{ 'editor.sections.languages' | translate }}</h2>
-    }
-      <div class="space-y-4">
+    <section>
+      <div class="entries">
         @for (l of c.languages; track l.id; let i = $index) {
-          <div class="flex items-center gap-2">
-            <input class="input" [value]="l.name" (input)="setItem('languages', i, 'name', val($event))" [placeholder]="'editor.f.languagePh' | translate" />
-            <select class="input w-36!" [value]="l.level" (change)="setItem('languages', i, 'level', val($event))" [attr.aria-label]="'editor.f.level' | translate">
+          <div class="entry flex items-center gap-3 px-3 py-2.5">
+            <input class="input h-9! flex-1 border-transparent! px-2! hover:border-line-2! focus:border-ink!" [value]="l.name" (input)="setItem('languages', i, 'name', val($event))" [placeholder]="'editor.f.languagePh' | translate" />
+            <select class="field-select h-9 max-w-40 flex-none rounded-md border border-line-2 text-[13.5px]" (change)="setItem('languages', i, 'level', val($event))" [attr.aria-label]="'editor.f.level' | translate">
               @for (lv of levels; track lv) {
-                <option [value]="lv" [selected]="lv == l.level">{{ lv === 'native' ? ('editor.native' | translate) : lv }}</option>
+                <option [value]="lv" [selected]="lv === l.level">{{ lv === 'native' ? ('editor.native' | translate) : lv }}</option>
               }
             </select>
-            <button type="button" class="icon-btn hover:text-red-600" (click)="remove('languages', i)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.X" class="size-4" /></button>
+            <button type="button" class="entry-action opacity-100!" (click)="remove('languages', i)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.X" class="size-4" /></button>
           </div>
         }
-        <button type="button" class="add-btn" (click)="add('languages')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.language' | translate }}</button>
+        <button type="button" class="add-row" (click)="add('languages')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.language' | translate }}</button>
       </div>
-  </section>
+      <p class="hint">{{ 'editor.cefrHint' | translate }}</p>
+    </section>
   }
 
-  <!-- ============ projects ============ -->
+  <!-- ================= projects ================= -->
   @if (has('projects')) {
-  <section class="wizard-section">
-    @if (multi()) {
-      <h2 class="mb-3 text-base font-medium text-slate-900">{{ 'editor.sections.projects' | translate }}</h2>
-    }
-      <div class="space-y-4">
-        @for (p of c.projects; track p.id; let i = $index, first = $first, last = $last) {
-          <div class="item-card">
-            <div class="item-tools">
-              <button type="button" (click)="move('projects', i, -1)" [disabled]="first" [attr.aria-label]="'common.up' | translate"><lucide-icon [img]="icons.ArrowUp" class="size-4" /></button>
-              <button type="button" (click)="move('projects', i, 1)" [disabled]="last" [attr.aria-label]="'common.down' | translate"><lucide-icon [img]="icons.ArrowDown" class="size-4" /></button>
-              <button type="button" class="hover:text-red-600!" (click)="remove('projects', i)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.Trash2" class="size-4" /></button>
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div><label class="label">{{ 'editor.f.projectName' | translate }}</label><input class="input" [value]="p.name" (input)="setItem('projects', i, 'name', val($event))" /></div>
-              <div><label class="label">{{ 'editor.f.link' | translate }}</label><input class="input" [value]="p.link" (input)="setItem('projects', i, 'link', val($event))" /></div>
-              <div class="col-span-2"><label class="label">{{ 'editor.f.description' | translate }}</label><textarea class="input min-h-20" [value]="p.description" (input)="setItem('projects', i, 'description', val($event))"></textarea></div>
-            </div>
-          </div>
+    <section>
+      @let ei = editing('projects');
+      @if (ei >= 0) {
+        @let e = c.projects[ei];
+        <button type="button" class="text-action mb-6" (click)="close()"><lucide-icon [img]="icons.ArrowLeft" class="size-3.5" /> {{ 'editor.allEntries.projects' | translate }}</button>
+        <div class="grid grid-cols-2 gap-x-4 gap-y-5">
+          <div><label class="label">{{ 'editor.f.projectName' | translate }}</label><input class="input" [value]="e.name" (input)="setItem('projects', ei, 'name', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.link' | translate }}</label><input class="input" [value]="e.link" (input)="setItem('projects', ei, 'link', val($event))" /></div>
+          <div class="col-span-2"><label class="label">{{ 'editor.f.description' | translate }}</label><textarea class="input min-h-24!" [value]="e.description" (input)="setItem('projects', ei, 'description', val($event))"></textarea></div>
+        </div>
+        <div class="mt-8 flex items-center justify-between">
+          <button type="button" class="text-action text-muted!" (click)="remove('projects', ei)"><lucide-icon [img]="icons.Trash2" class="size-3.5" /> {{ 'common.remove' | translate }}</button>
+          <button type="button" class="btn-ghost btn-sm" (click)="close()">{{ 'editor.saveEntry' | translate }}</button>
+        </div>
+      } @else {
+        @if (multi()) {
+          <h2 class="mb-4 text-[15px] font-medium">{{ 'editor.sections.projects' | translate }}</h2>
         }
-        <button type="button" class="add-btn" (click)="add('projects')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.project' | translate }}</button>
-      </div>
-  </section>
+
+        <div class="entries">
+          <div cdkDropList (cdkDropListDropped)="reorder('projects', $event)">
+            @for (e of c.projects; track e.id; let i = $index) {
+              <div class="entry" cdkDrag cdkDragLockAxis="y">
+                <div class="entry-head" (click)="open(e.id)">
+                  <span class="entry-grip" cdkDragHandle (click)="$event.stopPropagation()"><lucide-icon [img]="icons.GripVertical" class="size-4" /></span>
+                  <div class="min-w-0 flex-1">
+                    <p class="truncate text-[14px] font-medium" [class.text-faint]="!e.name">{{ e.name || ('editor.f.newProject' | translate) }}</p>
+                    <p class="mt-0.5 truncate text-[13px] text-muted">{{ e.link || '—' }}</p>
+                  </div>
+                  <button type="button" class="entry-action" (click)="remove('projects', i, $event)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.Trash2" class="size-4" /></button>
+                  <lucide-icon [img]="icons.ChevronRight" class="size-4 text-faint" />
+                </div>
+              </div>
+            }
+          </div>
+          <button type="button" class="add-row" (click)="add('projects')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.projects' | translate }}</button>
+        </div>
+      }
+    </section>
   }
 
-  <!-- ============ certificates ============ -->
+  <!-- ================= certificates ================= -->
   @if (has('certificates')) {
-  <section class="wizard-section">
-    @if (multi()) {
-      <h2 class="mb-3 text-base font-medium text-slate-900">{{ 'editor.sections.certificates' | translate }}</h2>
-    }
-      <div class="space-y-4">
-        @for (p of c.certificates; track p.id; let i = $index) {
-          <div class="item-card">
-            <div class="item-tools">
-              <button type="button" class="hover:text-red-600!" (click)="remove('certificates', i)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.Trash2" class="size-4" /></button>
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div class="col-span-2"><label class="label">{{ 'editor.f.certName' | translate }}</label><input class="input" [value]="p.name" (input)="setItem('certificates', i, 'name', val($event))" /></div>
-              <div><label class="label">{{ 'editor.f.issuer' | translate }}</label><input class="input" [value]="p.issuer" (input)="setItem('certificates', i, 'issuer', val($event))" /></div>
-              <div><label class="label">{{ 'editor.f.date' | translate }}</label><input type="month" class="input" [value]="p.date" (input)="setItem('certificates', i, 'date', val($event))" placeholder="YYYY-MM" /></div>
-            </div>
-          </div>
+    <section>
+      @let ei = editing('certificates');
+      @if (ei >= 0) {
+        @let e = c.certificates[ei];
+        <button type="button" class="text-action mb-6" (click)="close()"><lucide-icon [img]="icons.ArrowLeft" class="size-3.5" /> {{ 'editor.allEntries.certificates' | translate }}</button>
+        <div class="grid grid-cols-2 gap-x-4 gap-y-5">
+          <div class="col-span-2"><label class="label">{{ 'editor.f.certName' | translate }}</label><input class="input" [value]="e.name" (input)="setItem('certificates', ei, 'name', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.issuer' | translate }}</label><input class="input" [value]="e.issuer" (input)="setItem('certificates', ei, 'issuer', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.date' | translate }}</label><ui-month-picker [value]="e.date" (valueChange)="setItem('certificates', ei, 'date', $event)" [monthLabel]="'editor.f.month' | translate" [yearLabel]="'editor.f.year' | translate" /></div>
+        </div>
+        <div class="mt-8 flex items-center justify-between">
+          <button type="button" class="text-action text-muted!" (click)="remove('certificates', ei)"><lucide-icon [img]="icons.Trash2" class="size-3.5" /> {{ 'common.remove' | translate }}</button>
+          <button type="button" class="btn-ghost btn-sm" (click)="close()">{{ 'editor.saveEntry' | translate }}</button>
+        </div>
+      } @else {
+        @if (multi()) {
+          <h2 class="mb-4 text-[15px] font-medium">{{ 'editor.sections.certificates' | translate }}</h2>
         }
-        <button type="button" class="add-btn" (click)="add('certificates')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.certificate' | translate }}</button>
-      </div>
-  </section>
+
+        <div class="entries">
+          <div cdkDropList (cdkDropListDropped)="reorder('certificates', $event)">
+            @for (e of c.certificates; track e.id; let i = $index) {
+              <div class="entry" cdkDrag cdkDragLockAxis="y">
+                <div class="entry-head" (click)="open(e.id)">
+                  <span class="entry-grip" cdkDragHandle (click)="$event.stopPropagation()"><lucide-icon [img]="icons.GripVertical" class="size-4" /></span>
+                  <div class="min-w-0 flex-1">
+                    <p class="truncate text-[14px] font-medium" [class.text-faint]="!e.name">{{ e.name || ('editor.f.newCertificate' | translate) }}</p>
+                    <p class="mt-0.5 truncate text-[13px] text-muted">{{ join(e.issuer, month(e.date)) || '—' }}</p>
+                  </div>
+                  <button type="button" class="entry-action" (click)="remove('certificates', i, $event)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.Trash2" class="size-4" /></button>
+                  <lucide-icon [img]="icons.ChevronRight" class="size-4 text-faint" />
+                </div>
+              </div>
+            }
+          </div>
+          <button type="button" class="add-row" (click)="add('certificates')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.certificates' | translate }}</button>
+        </div>
+      }
+    </section>
   }
 
-  <!-- ============ interests ============ -->
+  <!-- ================= interests ================= -->
   @if (has('interests')) {
-  <section class="wizard-section">
-    @if (multi()) {
-      <h2 class="mb-3 text-base font-medium text-slate-900">{{ 'editor.sections.interests' | translate }}</h2>
-    }
-      <div class="space-y-4">
-        <textarea class="input min-h-20" [value]="c.interests" (input)="set(cv => cv.interests = val($event))"></textarea>
-      </div>
-  </section>
+    <section>
+      <label class="label" for="int">{{ 'editor.sections.interests' | translate }}</label>
+      <input id="int" class="input" [value]="c.interests" (input)="set(cv => cv.interests = val($event))" [placeholder]="'editor.interestsPh' | translate" />
+    </section>
   }
 
-  <!-- ============ consent ============ -->
+  <!-- ================= consent ================= -->
   @if (has('consent')) {
-  <section class="wizard-section">
-    @if (multi()) {
-      <h2 class="mb-3 text-base font-medium text-slate-900">{{ 'editor.sections.consent' | translate }}</h2>
-    }
-      <div class="space-y-4">
-        <textarea class="input min-h-24 text-xs" [value]="c.consent" (input)="set(cv => cv.consent = val($event))"></textarea>
-        <p class="text-xs text-slate-400">{{ 'editor.consentHint' | translate }}</p>
-      </div>
-  </section>
+    <section>
+      <label class="label" for="con">{{ 'editor.sections.consent' | translate }}</label>
+      <textarea id="con" class="input min-h-24! text-[13px]!" [value]="c.consent" (input)="set(cv => cv.consent = val($event))"></textarea>
+      <p class="hint">{{ 'editor.consentHint' | translate }}</p>
+    </section>
   }
 </div>

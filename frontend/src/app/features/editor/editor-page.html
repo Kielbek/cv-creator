@@ -69,11 +69,18 @@
     </div>
 
     <div class="mx-auto w-full max-w-[640px] px-5 pb-32 pt-12 sm:px-10 sm:pt-16">
+      @if (intro()) {
+        <div class="flex min-h-[52vh] flex-col justify-center">
+          <p class="text-[15px] text-muted">{{ 'editor.praise.' + (stepIndex() % 3) | translate }}</p>
+          <h1 class="serif mt-3 text-[2.6rem] leading-[1.1] text-balance text-ink sm:text-[3.2rem]">{{ 'editor.steps.' + step().id + '.lead' | translate }}</h1>
+          <p class="mt-5 max-w-[30rem] text-[15px] leading-relaxed text-muted">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
+        </div>
+      } @else {
       <p class="eyebrow">{{ 'editor.stepOf' | translate: { n: stepIndex() + 1, total: steps.length } }}</p>
-      <h1 class="serif text-balance mt-4 text-[2rem] leading-[1.12] text-ink sm:text-[2.4rem]">
-        {{ 'editor.steps.' + step().id + '.title1' | translate }} {{ 'editor.steps.' + step().id + '.title2' | translate }}
-      </h1>
-      <p class="mt-3 max-w-[32rem] text-[15px] leading-relaxed text-muted">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
+        <h1 class="serif text-balance mt-4 text-[2rem] leading-[1.12] text-ink sm:text-[2.4rem]">
+          {{ 'editor.steps.' + step().id + '.title1' | translate }} {{ 'editor.steps.' + step().id + '.title2' | translate }}
+        </h1>
+        <p class="mt-3 max-w-[32rem] text-[15px] leading-relaxed text-muted">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
 
       <div class="mt-10">
         @if (!isFinish()) {
@@ -129,12 +136,14 @@
         }
       </div>
 
+      }
+
       <div class="mt-14 flex items-center justify-between gap-4 border-t border-line pt-6">
-        <button type="button" class="btn-ghost" (click)="go(stepIndex() - 1)" [disabled]="stepIndex() === 0">
+        <button type="button" class="btn-ghost" (click)="back()" [disabled]="stepIndex() === 0 && !intro()">
           <lucide-icon [img]="icons.ArrowLeft" class="size-4" /> {{ 'editor.back' | translate }}
         </button>
-        @if (!isFinish()) {
-          <button type="button" class="btn-primary px-6!" (click)="go(stepIndex() + 1)">
+        @if (!isFinish() || intro()) {
+          <button type="button" class="btn-primary px-6!" (click)="next()">
             {{ 'editor.next' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" />
           </button>
         } @else {
@@ -172,4 +181,16 @@
     <lucide-icon [img]="icons.Eye" class="size-4" /> {{ 'editor.preview' | translate }}
   </button>
 </div>
+@if (nudge(); as n) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/25 p-4" (click)="nudge.set(null)">
+    <div class="w-full max-w-md rounded-xl bg-white p-7 shadow-[0_24px_60px_-12px_rgb(0_0_0/0.3)]" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <h2 class="serif text-[1.6rem] leading-tight">{{ 'editor.nudge.' + n + '.title' | translate }}</h2>
+      <p class="mt-3 text-[14px] leading-relaxed text-muted">{{ 'editor.nudge.' + n + '.text' | translate }}</p>
+      <div class="mt-8 flex items-center justify-between">
+        <button type="button" class="text-action text-[13.5px]!" (click)="skipNudge()">{{ 'editor.nudge.later' | translate }}</button>
+        <button type="button" class="btn-primary" (click)="nudge.set(null)">{{ 'editor.nudge.' + n + '.add' | translate }}</button>
+      </div>
+    </div>
+  </div>
+}
 <app-toasts />

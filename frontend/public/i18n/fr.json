@@ -146,14 +146,15 @@
    "3": "3 colonnes"
   },
   "arrange": "Organiser les sections",
-  "arrangeHint": "Glissez les sections entre les colonnes ou changez leur ordre. Les pages s'ajoutent automatiquement.",
+  "arrangeHint": "Glissez les sections pour changer leur ordre ou leur colonne. Le nombre de colonnes dépend du modèle. Les sections grisées sont encore vides.",
   "column": "Colonne",
   "sidebar": "barre latérale",
   "hide": "Masquer la section",
   "show": "Afficher la section",
-  "hidden": "Non affichées",
+  "hidden": "Sections masquées – cliquez pour ajouter",
   "allShown": "Toutes les sections sont affichées",
-  "contactInHeader": "Sans section Contact, les coordonnées s'affichent dans l'en-tête."
+  "contactInHeader": "Sans section Contact, les coordonnées s'affichent dans l'en-tête.",
+  "headerArea": "En-tête : nom, photo, contact"
  },
  "design": {
   "template": "Modèle",
@@ -225,7 +226,9 @@
     "expected": "Une photo est courante dans ce pays.",
     "optional": "Une photo est facultative dans ce pays.",
     "avoid": "Mieux vaut éviter la photo pour ce pays – elle peut entraîner un rejet."
-   }
+   },
+   "upload": "Ajouter une photo",
+   "change": "Changer la photo"
   },
   "f": {
    "firstName": "Prénom",
@@ -257,7 +260,15 @@
    "link": "Lien",
    "certName": "Certification",
    "issuer": "Délivré par",
-   "date": "Date"
+   "date": "Date",
+   "month": "Mois",
+   "year": "Année",
+   "positionPh": "ex. Caissier/ère",
+   "companyPh": "ex. Société ABC",
+   "newPosition": "Nouveau poste",
+   "newEducation": "Nouvelle formation",
+   "newProject": "Nouveau projet",
+   "newCertificate": "Nouvelle certification"
   },
   "add": {
    "experience": "Ajouter un poste",
@@ -299,19 +310,22 @@
     "nav": "Expérience",
     "title1": "Parlez-nous de",
     "title2": "votre expérience",
-    "intro": "Commencez par le poste le plus récent. Décrivez des résultats, pas seulement des missions – l'IA peut vous aider."
+    "intro": "Commencez par le poste le plus récent. Décrivez des résultats, pas seulement des missions – l'IA peut vous aider.",
+    "lead": "Ajoutons maintenant votre expérience professionnelle."
    },
    "education": {
     "nav": "Formation",
     "title1": "Ajoutez votre",
     "title2": "formation",
-    "intro": "Le diplôme le plus élevé ou le plus pertinent d'abord. Cours ou mémoire uniquement s'ils comptent pour le poste."
+    "intro": "Le diplôme le plus élevé ou le plus pertinent d'abord. Cours ou mémoire uniquement s'ils comptent pour le poste.",
+    "lead": "Passons à votre formation."
    },
    "skills": {
     "nav": "Compétences",
     "title1": "Quelles sont",
     "title2": "vos compétences ?",
-    "intro": "Outils, technologies et savoir-être adaptés aux offres visées. 6 à 12 compétences, c'est idéal."
+    "intro": "Outils, technologies et savoir-être adaptés aux offres visées. 6 à 12 compétences, c'est idéal.",
+    "lead": "Place à vos compétences."
    },
    "languages": {
     "nav": "Langues",
@@ -323,7 +337,8 @@
     "nav": "Profil",
     "title1": "Rédigez votre",
     "title2": "profil professionnel",
-    "intro": "2 à 4 phrases en haut du CV : qui vous êtes, vos points forts et ce que vous cherchez. L'IA peut rédiger un premier jet."
+    "intro": "2 à 4 phrases en haut du CV : qui vous êtes, vos points forts et ce que vous cherchez. L'IA peut rédiger un premier jet.",
+    "lead": "Pour finir, un court profil professionnel."
    },
    "extra": {
     "nav": "Sections en plus",
@@ -337,7 +352,47 @@
     "title2": "téléchargez votre CV",
     "intro": "Choisissez le modèle, organisez ses sections, adaptez le CV à une offre avec l'IA et téléchargez le PDF."
    }
-  }
+  },
+  "praise": {
+   "0": "Super !",
+   "1": "Très bien !",
+   "2": "Beau travail !"
+  },
+  "nudge": {
+   "later": "Plus tard",
+   "experience": {
+    "title": "Ajoutez votre expérience",
+    "text": "La plupart des employeurs attendent au moins une expérience. Commencez par votre dernier poste.",
+    "add": "Ajouter une expérience"
+   },
+   "education": {
+    "title": "Ajoutez votre formation",
+    "text": "Les recruteurs regardent généralement la formation. Votre plus haut diplôme suffit.",
+    "add": "Ajouter une formation"
+   }
+  },
+  "allEntries": {
+   "experience": "Tous les postes",
+   "education": "Toute la formation",
+   "projects": "Tous les projets",
+   "certificates": "Toutes les certifications"
+  },
+  "saveEntry": "Enregistrer et revenir à la liste",
+  "schoolPick": "Choisissez ce qui décrit le mieux votre formation :",
+  "school": {
+   "highSchool": "Lycée",
+   "technical": "Lycée technique",
+   "university": "Université",
+   "postSecondary": "BTS / post-bac",
+   "vocational": "Lycée professionnel",
+   "other": "Autre"
+  },
+  "linksTitle": "Liens (facultatif)",
+  "bulletsHint": "Chaque ligne devient une puce. Commencez par un verbe et montrez le résultat, idéalement chiffré.",
+  "skillsInputPh": "Saisissez une compétence puis Entrée",
+  "skillsInputHint": "Ex. Excel, relation client, permis B. Idéalement 6 à 12.",
+  "cefrHint": "Niveaux CECRL : A1–A2 élémentaire, B1–B2 indépendant, C1–C2 expérimenté.",
+  "interestsPh": "ex. photographie, course à pied, bénévolat"
  },
  "ai": {
   "done": "Terminé – vous pouvez annuler ce changement",
@@ -387,7 +442,8 @@
    "run": "Traduire",
    "undo": "Astuce : exportez d'abord pour garder les deux versions. L'annulation est possible.",
    "done": "CV traduit"
-  }
+  },
+  "working": "En cours…"
  },
  "country": {
   "tips": {

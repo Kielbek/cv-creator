@@ -146,14 +146,15 @@
    "3": "3 Spalten"
   },
   "arrange": "Abschnitte anordnen",
-  "arrangeHint": "Abschnitte zwischen Spalten ziehen oder Reihenfolge ändern. Seiten werden automatisch hinzugefügt.",
+  "arrangeHint": "Abschnitte ziehen, um Reihenfolge oder Spalte zu ändern. Die Spaltenzahl gibt die Vorlage vor. Graue Abschnitte sind noch leer.",
   "column": "Spalte",
   "sidebar": "Seitenleiste",
   "hide": "Abschnitt ausblenden",
   "show": "Abschnitt einblenden",
-  "hidden": "Nicht angezeigt",
+  "hidden": "Ausgeblendete Abschnitte – zum Hinzufügen klicken",
   "allShown": "Alle Abschnitte werden angezeigt",
-  "contactInHeader": "Ohne Abschnitt Kontakt stehen die Kontaktdaten in der Kopfzeile."
+  "contactInHeader": "Ohne Abschnitt Kontakt stehen die Kontaktdaten in der Kopfzeile.",
+  "headerArea": "Kopfzeile: Name, Foto, Kontakt"
  },
  "design": {
   "template": "Vorlage",
@@ -225,7 +226,9 @@
     "expected": "In diesem Land ist ein Foto üblich.",
     "optional": "In diesem Land ist ein Foto optional.",
     "avoid": "Für dieses Land besser ohne Foto – es kann zur Ablehnung führen."
-   }
+   },
+   "upload": "Foto hinzufügen",
+   "change": "Foto ändern"
   },
   "f": {
    "firstName": "Vorname",
@@ -257,7 +260,15 @@
    "link": "Link",
    "certName": "Zertifikat",
    "issuer": "Aussteller",
-   "date": "Datum"
+   "date": "Datum",
+   "month": "Monat",
+   "year": "Jahr",
+   "positionPh": "z. B. Kassierer/in",
+   "companyPh": "z. B. Firma ABC",
+   "newPosition": "Neue Position",
+   "newEducation": "Neue Schule",
+   "newProject": "Neues Projekt",
+   "newCertificate": "Neues Zertifikat"
   },
   "add": {
    "experience": "Position hinzufügen",
@@ -299,19 +310,22 @@
     "nav": "Erfahrung",
     "title1": "Erzähl uns von",
     "title2": "deiner Erfahrung",
-    "intro": "Beginne mit der aktuellsten Stelle. Beschreibe Ergebnisse, nicht nur Aufgaben – die KI hilft dabei."
+    "intro": "Beginne mit der aktuellsten Stelle. Beschreibe Ergebnisse, nicht nur Aufgaben – die KI hilft dabei.",
+    "lead": "Jetzt fügen wir deine Berufserfahrung hinzu."
    },
    "education": {
     "nav": "Ausbildung",
     "title1": "Füge deine",
     "title2": "Ausbildung hinzu",
-    "intro": "Höchster oder relevantester Abschluss zuerst. Kurse oder Abschlussarbeit nur, wenn sie für die Stelle zählen."
+    "intro": "Höchster oder relevantester Abschluss zuerst. Kurse oder Abschlussarbeit nur, wenn sie für die Stelle zählen.",
+    "lead": "Als Nächstes deine Ausbildung."
    },
    "skills": {
     "nav": "Kenntnisse",
     "title1": "Was sind",
     "title2": "deine Kenntnisse?",
-    "intro": "Tools, Technologien und Soft Skills passend zu den Stellen. 6–12 sind ideal."
+    "intro": "Tools, Technologien und Soft Skills passend zu den Stellen. 6–12 sind ideal.",
+    "lead": "Jetzt geht es um deine Kenntnisse."
    },
    "languages": {
     "nav": "Sprachen",
@@ -323,7 +337,8 @@
     "nav": "Profil",
     "title1": "Schreibe dein",
     "title2": "Kurzprofil",
-    "intro": "2–4 Sätze oben im Lebenslauf: wer du bist, was du am besten kannst und was du suchst. Die KI schreibt einen ersten Entwurf."
+    "intro": "2–4 Sätze oben im Lebenslauf: wer du bist, was du am besten kannst und was du suchst. Die KI schreibt einen ersten Entwurf.",
+    "lead": "Zum Schluss ein kurzes Profil."
    },
    "extra": {
     "nav": "Weitere Abschnitte",
@@ -337,7 +352,47 @@
     "title2": "Download",
     "intro": "Vorlage wählen, Abschnitte anordnen, mit KI auf eine Stelle zuschneiden und als PDF herunterladen."
    }
-  }
+  },
+  "praise": {
+   "0": "Super!",
+   "1": "Sehr gut!",
+   "2": "Gute Arbeit!"
+  },
+  "nudge": {
+   "later": "Vielleicht später",
+   "experience": {
+    "title": "Füge deine Erfahrung hinzu",
+    "text": "Die meisten Arbeitgeber erwarten Erfahrung in mindestens einer Position. Beginne mit deiner letzten Stelle.",
+    "add": "Erfahrung hinzufügen"
+   },
+   "education": {
+    "title": "Füge deine Ausbildung hinzu",
+    "text": "Recruiter prüfen meist die Ausbildung. Der höchste Abschluss genügt.",
+    "add": "Ausbildung hinzufügen"
+   }
+  },
+  "allEntries": {
+   "experience": "Alle Positionen",
+   "education": "Gesamte Ausbildung",
+   "projects": "Alle Projekte",
+   "certificates": "Alle Zertifikate"
+  },
+  "saveEntry": "Speichern und zurück zur Liste",
+  "schoolPick": "Wähle, was deine Ausbildung am besten beschreibt:",
+  "school": {
+   "highSchool": "Gymnasium",
+   "technical": "Fachoberschule",
+   "university": "Hochschule",
+   "postSecondary": "Fachschule",
+   "vocational": "Berufsschule",
+   "other": "Andere"
+  },
+  "linksTitle": "Links (optional)",
+  "bulletsHint": "Jede Zeile wird ein Stichpunkt. Beginne mit einem Verb und nenne das Ergebnis, am besten in Zahlen.",
+  "skillsInputPh": "Kenntnis eingeben und Enter drücken",
+  "skillsInputHint": "Z. B. Excel, Kundenservice, Führerschein Klasse B. Ideal sind 6–12.",
+  "cefrHint": "GER-Niveaus: A1–A2 Grundkenntnisse, B1–B2 mittel, C1–C2 fortgeschritten.",
+  "interestsPh": "z. B. Fotografie, Laufen, Ehrenamt"
  },
  "ai": {
   "done": "Fertig – du kannst die Änderung rückgängig machen",
@@ -387,7 +442,8 @@
    "run": "Übersetzen",
    "undo": "Tipp: Vorher exportieren, um beide Versionen zu behalten. Rückgängig ist möglich.",
    "done": "Lebenslauf übersetzt"
-  }
+  },
+  "working": "Wird erstellt…"
  },
  "country": {
   "tips": {

@@ -140,6 +140,11 @@ export const newLanguage = (): LanguageItem => ({ id: uid(), name: '', level: 'B
 export const newProject = (): ProjectItem => ({ id: uid(), name: '', link: '', description: '' });
 export const newCertificate = (): CertificateItem => ({ id: uid(), name: '', issuer: '', date: '' });
 
+/** An entry nobody has typed into yet (a fresh draft) – never printed. */
+export function isBlank(item: object): boolean {
+  return Object.entries(item).every(([k, v]) => k === 'id' || k === 'current' || k === 'level' || v === '' || v == null || v === false);
+}
+
 /** Does the section have anything to print? Empty sections are skipped by the renderer. */
 export function hasContent(cv: Cv, s: SectionId): boolean {
   switch (s) {
@@ -152,7 +157,7 @@ export function hasContent(cv: Cv, s: SectionId): boolean {
     case 'interests':
       return !!cv.interests.trim();
     default:
-      return cv[s].length > 0;
+      return (cv[s] as object[]).some((i) => !isBlank(i));
   }
 }
 

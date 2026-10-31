@@ -13,13 +13,13 @@ import { CvThumb } from '../../../cv-render/cv-thumb';
   template: `
     @let c = store.cv();
     @let g = store.geometry();
-    <div class="space-y-5">
-      <div class="panel-card p-4">
-        <h3 class="mb-3 text-[14px] font-medium text-ink">{{ 'design.template' | translate }}</h3>
+    <div class="space-y-10">
+      <div>
+        <h3 class="mb-4 text-[13px] font-medium text-ink">{{ 'design.template' | translate }}</h3>
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
           @for (t of templates; track t.id) {
             <button type="button" class="group text-left" (click)="store.setTemplate(t.id)" [attr.aria-pressed]="c.design.templateId === t.id">
-              <div class="relative overflow-hidden rounded-lg border-2 transition" [class]="c.design.templateId === t.id ? 'border-brand-500 ring-4 ring-brand-100' : 'border-slate-200 group-hover:border-brand-300'">
+              <div class="relative overflow-hidden rounded-md border transition" [class]="c.design.templateId === t.id ? 'border-ink shadow-[0_0_0_1px_var(--color-ink)]' : 'border-line group-hover:border-line-2'">
                 <cv-thumb [templateId]="t.id" [cv]="c" [width]="132" class="mx-auto" />
                 @if (c.design.templateId === t.id) {
                   <span class="absolute right-1.5 top-1.5 rounded-full bg-brand-500 p-0.5 text-white"><lucide-icon [img]="icons.Check" class="size-3.5" /></span>
@@ -28,7 +28,7 @@ import { CvThumb } from '../../../cv-render/cv-thumb';
               <div class="mt-1.5 flex items-center justify-between gap-1 text-xs">
                 <span class="font-medium text-slate-700">{{ t.name }}</span>
                 @if (t.ats) {
-                  <span class="inline-flex items-center gap-0.5 rounded bg-paper-2 px-1.5 py-0.5 text-[10px] font-medium text-ink-2"><lucide-icon [img]="icons.ShieldCheck" class="size-3" />ATS</span>
+                  <span class="text-[11.5px] text-faint">ATS</span>
                 }
               </div>
             </button>
@@ -36,7 +36,7 @@ import { CvThumb } from '../../../cv-render/cv-thumb';
         </div>
       </div>
 
-      <div class="panel-card space-y-4 p-4">
+      <div class="space-y-6">
         <div>
           <h3 class="mb-2 text-[14px] font-medium text-ink">{{ 'design.accent' | translate }}</h3>
           <div class="flex flex-wrap items-center gap-2">

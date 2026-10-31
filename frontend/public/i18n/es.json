@@ -146,14 +146,15 @@
    "3": "3 columnas"
   },
   "arrange": "Organizar secciones",
-  "arrangeHint": "Arrastra secciones entre columnas o cambia su orden. Las páginas se añaden solas.",
+  "arrangeHint": "Arrastra las secciones para cambiar su orden o columna. El número de columnas depende de la plantilla. Las secciones grises aún están vacías.",
   "column": "Columna",
   "sidebar": "barra lateral",
   "hide": "Ocultar sección",
   "show": "Mostrar sección",
-  "hidden": "No mostradas",
+  "hidden": "Secciones ocultas – haz clic para añadir",
   "allShown": "Todas las secciones están visibles",
-  "contactInHeader": "Sin la sección Contacto, los datos de contacto aparecen en la cabecera."
+  "contactInHeader": "Sin la sección Contacto, los datos de contacto aparecen en la cabecera.",
+  "headerArea": "Cabecera: nombre, foto, contacto"
  },
  "design": {
   "template": "Plantilla",
@@ -225,7 +226,9 @@
     "expected": "En este país la foto es habitual.",
     "optional": "En este país la foto es opcional.",
     "avoid": "Mejor sin foto para este país – puede causar un descarte."
-   }
+   },
+   "upload": "Añadir foto",
+   "change": "Cambiar foto"
   },
   "f": {
    "firstName": "Nombre",
@@ -257,7 +260,15 @@
    "link": "Enlace",
    "certName": "Certificación",
    "issuer": "Emisor",
-   "date": "Fecha"
+   "date": "Fecha",
+   "month": "Mes",
+   "year": "Año",
+   "positionPh": "p. ej. Cajero/a",
+   "companyPh": "p. ej. Empresa ABC",
+   "newPosition": "Nuevo puesto",
+   "newEducation": "Nueva formación",
+   "newProject": "Nuevo proyecto",
+   "newCertificate": "Nueva certificación"
   },
   "add": {
    "experience": "Añadir puesto",
@@ -299,19 +310,22 @@
     "nav": "Experiencia",
     "title1": "Cuéntanos tu",
     "title2": "experiencia",
-    "intro": "Empieza por el empleo más reciente. Describe resultados, no solo tareas – la IA puede ayudarte."
+    "intro": "Empieza por el empleo más reciente. Describe resultados, no solo tareas – la IA puede ayudarte.",
+    "lead": "Ahora añadamos tu experiencia profesional."
    },
    "education": {
     "nav": "Formación",
     "title1": "Añade tu",
     "title2": "formación",
-    "intro": "Primero el título más alto o más relevante. Cursos o trabajo final solo si importan para el puesto."
+    "intro": "Primero el título más alto o más relevante. Cursos o trabajo final solo si importan para el puesto.",
+    "lead": "Ahora completemos tu formación."
    },
    "skills": {
     "nav": "Habilidades",
     "title1": "¿Cuáles son",
     "title2": "tus habilidades?",
-    "intro": "Herramientas, tecnologías y habilidades blandas acordes con las ofertas. Entre 6 y 12 es lo ideal."
+    "intro": "Herramientas, tecnologías y habilidades blandas acordes con las ofertas. Entre 6 y 12 es lo ideal.",
+    "lead": "Es el turno de tus habilidades."
    },
    "languages": {
     "nav": "Idiomas",
@@ -323,7 +337,8 @@
     "nav": "Perfil",
     "title1": "Escribe tu",
     "title2": "perfil profesional",
-    "intro": "2–4 frases al inicio del CV: quién eres, en qué destacas y qué buscas. La IA puede escribir un primer borrador."
+    "intro": "2–4 frases al inicio del CV: quién eres, en qué destacas y qué buscas. La IA puede escribir un primer borrador.",
+    "lead": "Para terminar, un breve perfil profesional."
    },
    "extra": {
     "nav": "Más secciones",
@@ -337,7 +352,47 @@
     "title2": "descarga tu CV",
     "intro": "Elige la plantilla, organiza sus secciones, adapta el CV a una oferta con IA y descarga el PDF."
    }
-  }
+  },
+  "praise": {
+   "0": "¡Genial!",
+   "1": "¡Muy bien!",
+   "2": "¡Buen trabajo!"
+  },
+  "nudge": {
+   "later": "Quizá más tarde",
+   "experience": {
+    "title": "Añade tu experiencia",
+    "text": "La mayoría de empleadores esperan experiencia en al menos un puesto. Empieza por tu último empleo.",
+    "add": "Añadir experiencia"
+   },
+   "education": {
+    "title": "Añade tu formación",
+    "text": "Los reclutadores suelen revisar la formación. Basta con tu nivel más alto.",
+    "add": "Añadir formación"
+   }
+  },
+  "allEntries": {
+   "experience": "Todos los puestos",
+   "education": "Toda la formación",
+   "projects": "Todos los proyectos",
+   "certificates": "Todas las certificaciones"
+  },
+  "saveEntry": "Guardar y volver a la lista",
+  "schoolPick": "Elige la opción que mejor describe tu formación:",
+  "school": {
+   "highSchool": "Bachillerato",
+   "technical": "Formación técnica",
+   "university": "Universidad",
+   "postSecondary": "Ciclo formativo superior",
+   "vocational": "Formación profesional",
+   "other": "Otro"
+  },
+  "linksTitle": "Enlaces (opcional)",
+  "bulletsHint": "Cada línea es un punto del CV. Empieza con un verbo y muestra el resultado, mejor con cifras.",
+  "skillsInputPh": "Escribe una habilidad y pulsa Enter",
+  "skillsInputHint": "P. ej. Excel, atención al cliente, carné B. Lo ideal son 6–12.",
+  "cefrHint": "Niveles MCER: A1–A2 básico, B1–B2 intermedio, C1–C2 avanzado.",
+  "interestsPh": "p. ej. fotografía, correr, voluntariado"
  },
  "ai": {
   "done": "Hecho – puedes deshacer este cambio",
@@ -387,7 +442,8 @@
    "run": "Traducir",
    "undo": "Consejo: exporta antes para conservar ambas versiones. También puedes deshacer.",
    "done": "CV traducido"
-  }
+  },
+  "working": "Trabajando…"
  },
  "country": {
   "tips": {

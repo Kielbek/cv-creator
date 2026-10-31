@@ -1,36 +1,31 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
+import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal, untracked } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LucideAngularModule, ArrowDown, ArrowUp, ImagePlus, Plus, Sparkles, Trash2, Wand2, X } from 'lucide-angular';
+import { LucideAngularModule, ArrowLeft, ChevronRight, GripVertical, Plus, Sparkles, Trash2, X } from 'lucide-angular';
 import { CvStore } from '../../../core/cv/cv.store';
-import {
-  Cv,
-  ExperienceItem,
-  newCertificate,
-  newEducation,
-  newExperience,
-  newLanguage,
-  newProject,
-  newSkill,
-} from '../../../core/cv/cv.model';
+import { Cv, ExperienceItem, newCertificate, newEducation, newExperience, newLanguage, newProject, uid } from '../../../core/cv/cv.model';
+import { formatRange, formatMonth } from '../../../core/cv/cv-labels';
 import { AiError, AiService } from '../../../core/ai/ai.service';
 import { Toasts } from '../../../shared/toasts';
+import { MonthPicker } from '../../../shared/form/month-picker';
+import { Switch } from '../../../shared/form/switch';
+import { TagInput } from '../../../shared/form/tag-input';
 
 type ListKey = 'experience' | 'education' | 'skills' | 'languages' | 'projects' | 'certificates';
 export type Panel = 'personal' | 'summary' | ListKey | 'interests' | 'consent';
 
-const FACTORIES: Record<ListKey, () => { id: string }> = {
+const FACTORIES = {
   experience: newExperience,
   education: newEducation,
-  skills: newSkill,
   languages: newLanguage,
   projects: newProject,
   certificates: newCertificate,
-};
+} as const;
 
-/** All the content forms. Every keystroke goes straight to the store → live preview. */
+/** The content forms of one wizard step. Every keystroke goes straight to the store → live preview. */
 @Component({
   selector: 'app-content-panel',
-  imports: [TranslatePipe, LucideAngularModule],
+  imports: [TranslatePipe, LucideAngularModule, CdkDropList, CdkDrag, CdkDragHandle, MonthPicker, Switch, TagInput],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './content-panel.html',
 })
@@ -39,17 +34,33 @@ export class ContentPanel {
   protected readonly ai = inject(AiService);
   private readonly toasts = inject(Toasts);
   protected readonly cv = this.store.cv;
-  protected readonly icons = { ArrowDown, ArrowUp, ImagePlus, Plus, Sparkles, Trash2, Wand2, X };
+  protected readonly icons = { ArrowLeft, ChevronRight, GripVertical, Plus, Sparkles, Trash2, X };
 
   /** Which sections to show (the wizard step). */
   readonly sections = input<Panel[]>(['personal']);
   protected readonly multi = computed(() => this.sections().length > 1);
+
+  /** id of the entry whose form is expanded */
+  protected readonly openId = signal<string | null>(null);
   protected readonly busy = signal<string | null>(null);
   protected readonly tone = signal('professional');
-  /** AI bullet proposals per experience id */
   protected readonly proposals = signal<Record<string, string[]>>({});
-
   protected readonly levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'native'];
+  protected readonly showSkillLevels = computed(() => ['bars', 'dots'].includes(this.store.geometry().template.skills));
+
+  /** education types offered before the first school is added */
+  protected readonly schoolTypes = ['highSchool', 'technical', 'university', 'postSecondary', 'vocational', 'other'];
+
+  constructor() {
+    // the experience step opens straight into the form of the first job
+    effect(() => {
+      const sections = this.sections();
+      untracked(() => {
+        this.openId.set(null);
+        if (sections.includes('experience') && this.cv().experience.length === 0) this.add('experience');
+      });
+    });
+  }
 
   protected has(p: Panel): boolean {
     return this.sections().includes(p);
@@ -68,37 +79,78 @@ export class ContentPanel {
     this.set((cv) => (cv.personal[key] = v));
   }
 
-  protected setShow(e: Event): void {
-    const checked = (e.target as HTMLInputElement).checked;
-    this.set((cv) => (cv.design.showPhoto = checked));
-  }
-
   protected setItem(list: ListKey, i: number, key: string, value: string | number | boolean): void {
     this.set((cv) => ((cv[list][i] as unknown as Record<string, unknown>)[key] = value));
   }
 
-  protected add(list: ListKey): void {
-    this.set((cv) => (cv[list] as { id: string }[]).push(FACTORIES[list]()));
+  // ---- entries -----------------------------------------------------------------------------------------------------
+
+  protected open(id: string): void {
+    this.openId.set(id);
   }
 
-  protected remove(list: ListKey, i: number): void {
+  /** index of the entry of `list` currently being edited, or -1 */
+  protected editing(list: 'experience' | 'education' | 'projects' | 'certificates'): number {
+    const id = this.openId();
+    return id ? this.cv()[list].findIndex((e) => e.id === id) : -1;
+  }
+
+  protected close(): void {
+    this.openId.set(null);
+    this.store.pruneBlank();
+  }
+
+  protected addSchool(type: string, label: string): void {
+    const item = newEducation();
+    if (type !== 'other') item.degree = label;
+    this.set((cv) => cv.education.push(item));
+    this.openId.set(item.id);
+  }
+
+  protected add(list: keyof typeof FACTORIES): void {
+    const item = FACTORIES[list]();
+    this.set((cv) => (cv[list] as { id: string }[]).push(item));
+    this.openId.set(item.id);
+  }
+
+  protected remove(list: ListKey, i: number, e?: Event): void {
+    e?.stopPropagation();
     this.store.update((cv) => cv[list].splice(i, 1), true);
+    this.openId.set(null);
   }
 
-  protected move(list: ListKey, i: number, dir: -1 | 1): void {
-    this.set((cv) => {
-      const arr = cv[list] as unknown[];
-      const j = i + dir;
-      if (j < 0 || j >= arr.length) return;
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    });
+  protected reorder(list: ListKey, e: CdkDragDrop<unknown>): void {
+    if (e.previousIndex === e.currentIndex) return;
+    this.set((cv) => moveItemInArray(cv[list] as unknown[], e.previousIndex, e.currentIndex));
   }
 
-  protected count(list: ListKey): number {
-    return this.cv()[list].length;
+  protected range(start: string, end: string, current: boolean): string {
+    return formatRange(start, end, current, this.cv().language);
   }
 
-  // ---- photo: resized in the browser, stored as data URL, never uploaded -----------------------------------------
+  protected month(v: string): string {
+    return formatMonth(v, this.cv().language);
+  }
+
+  protected join(...parts: string[]): string {
+    return parts.filter(Boolean).join(' · ');
+  }
+
+  // ---- skills ------------------------------------------------------------------------------------------------------
+
+  protected addSkill(name: string): void {
+    this.set((cv) => cv.skills.push({ id: uid(), name, level: 0 }));
+  }
+
+  protected removeSkill(id: string): void {
+    this.set((cv) => (cv.skills = cv.skills.filter((s) => s.id !== id)));
+  }
+
+  protected rate(i: number, level: number): void {
+    this.set((cv) => (cv.skills[i].level = cv.skills[i].level === level ? 0 : level));
+  }
+
+  // ---- photo: resized in the browser, stored as data URL, never uploaded -------------------------------------------
 
   protected async onPhoto(e: Event): Promise<void> {
     const file = (e.target as HTMLInputElement).files?.[0];
@@ -110,15 +162,17 @@ export class ContentPanel {
     const canvas = document.createElement('canvas');
     canvas.width = size;
     canvas.height = size;
-    const ctx = canvas.getContext('2d')!;
     const w = bitmap.width * scale;
     const h = bitmap.height * scale;
-    ctx.drawImage(bitmap, (size - w) / 2, (size - h) / 2, w, h);
+    canvas.getContext('2d')!.drawImage(bitmap, (size - w) / 2, (size - h) / 2, w, h);
     const url = canvas.toDataURL('image/jpeg', 0.86);
-    this.set((cv) => (cv.personal.photo = url));
+    this.set((cv) => {
+      cv.personal.photo = url;
+      cv.design.showPhoto = true;
+    });
   }
 
-  // ---- AI --------------------------------------------------------------------------------------------------------
+  // ---- AI ----------------------------------------------------------------------------------------------------------
 
   protected async generateSummary(): Promise<void> {
     if (!this.ensureAi()) return;
@@ -136,10 +190,7 @@ export class ContentPanel {
 
   protected async improve(item: ExperienceItem): Promise<void> {
     if (!this.ensureAi()) return;
-    if (!item.description.trim()) {
-      this.toasts.show('ai.needText', 'warn');
-      return;
-    }
+    if (!item.description.trim()) return this.toasts.show('ai.needText', 'warn');
     this.busy.set(item.id);
     try {
       const r = await this.ai.improve(this.cv(), item.position, item.company, item.description);
@@ -168,7 +219,6 @@ export class ContentPanel {
   }
 
   private fail(e: unknown): void {
-    const code = e instanceof AiError ? e.code : 'ai_unavailable';
-    this.toasts.show(`ai.error.${code}`, 'error');
+    this.toasts.show(`ai.error.${e instanceof AiError ? e.code : 'ai_unavailable'}`, 'error');
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable, computed, effect, signal } from '@angular/core';
-import { Cv, SectionId } from './cv.model';
+import { Cv, SectionId, isBlank } from './cv.model';
 import { emptyCv, defaultDesign } from './sample';
 import { clampColumns, dedupe, defaultLayout, findTemplate, geometry, refitLayout } from './templates';
 import { findCountry } from './countries';
@@ -66,6 +66,14 @@ export class CvStore {
       cv.design.font = null;
       cv.design.layout = refitLayout(cv.design.layout, t, t.columns);
     }, true);
+  }
+
+  /** Drops untouched draft entries (called when leaving a step). */
+  pruneBlank(): void {
+    const cv = this.state();
+    const lists = ['experience', 'education', 'projects', 'certificates', 'languages'] as const;
+    if (!lists.some((k) => (cv[k] as object[]).some((i) => isBlank(i)))) return;
+    this.update((d) => lists.forEach((k) => ((d[k] as object[]) = (d[k] as object[]).filter((i) => !isBlank(i)))));
   }
 
   setLayout(layout: SectionId[][]): void {
