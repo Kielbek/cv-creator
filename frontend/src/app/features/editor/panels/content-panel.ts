@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LucideAngularModule, ArrowDown, ArrowUp, ChevronDown, ImagePlus, Plus, Sparkles, Trash2, Wand2, X } from 'lucide-angular';
+import { LucideAngularModule, ArrowDown, ArrowUp, ImagePlus, Plus, Sparkles, Trash2, Wand2, X } from 'lucide-angular';
 import { CvStore } from '../../../core/cv/cv.store';
 import {
   Cv,
@@ -16,7 +16,7 @@ import { AiError, AiService } from '../../../core/ai/ai.service';
 import { Toasts } from '../../../shared/toasts';
 
 type ListKey = 'experience' | 'education' | 'skills' | 'languages' | 'projects' | 'certificates';
-type Panel = 'personal' | 'summary' | ListKey | 'interests' | 'consent';
+export type Panel = 'personal' | 'summary' | ListKey | 'interests' | 'consent';
 
 const FACTORIES: Record<ListKey, () => { id: string }> = {
   experience: newExperience,
@@ -39,9 +39,11 @@ export class ContentPanel {
   protected readonly ai = inject(AiService);
   private readonly toasts = inject(Toasts);
   protected readonly cv = this.store.cv;
-  protected readonly icons = { ArrowDown, ArrowUp, ChevronDown, ImagePlus, Plus, Sparkles, Trash2, Wand2, X };
+  protected readonly icons = { ArrowDown, ArrowUp, ImagePlus, Plus, Sparkles, Trash2, Wand2, X };
 
-  protected readonly open = signal<Panel | null>('personal');
+  /** Which sections to show (the wizard step). */
+  readonly sections = input<Panel[]>(['personal']);
+  protected readonly multi = computed(() => this.sections().length > 1);
   protected readonly busy = signal<string | null>(null);
   protected readonly tone = signal('professional');
   /** AI bullet proposals per experience id */
@@ -49,8 +51,8 @@ export class ContentPanel {
 
   protected readonly levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'native'];
 
-  protected toggle(p: Panel): void {
-    this.open.update((o) => (o === p ? null : p));
+  protected has(p: Panel): boolean {
+    return this.sections().includes(p);
   }
 
   protected set(fn: (cv: Cv) => void): void {
@@ -77,7 +79,6 @@ export class ContentPanel {
 
   protected add(list: ListKey): void {
     this.set((cv) => (cv[list] as { id: string }[]).push(FACTORIES[list]()));
-    this.open.set(list);
   }
 
   protected remove(list: ListKey, i: number): void {

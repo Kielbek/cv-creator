@@ -15,7 +15,7 @@ import { CvContactList } from './cv-contact';
       }
       <div class="cv-header-text">
         <h1 class="cv-name">
-          <span>{{ cv().personal.firstName }}</span> <span class="cv-name-last">{{ cv().personal.lastName }}</span>
+          {{ cv().personal.firstName }} <span class="cv-name-last">{{ cv().personal.lastName }}</span>
         </h1>
         @if (cv().personal.headline) {
           <p class="cv-headline">{{ cv().personal.headline }}</p>

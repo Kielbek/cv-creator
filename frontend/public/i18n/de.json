@@ -2,7 +2,8 @@
  "common": {
   "remove": "Entfernen",
   "up": "Nach oben",
-  "down": "Nach unten"
+  "down": "Nach unten",
+  "close": "Schließen"
  },
  "nav": {
   "templates": "Vorlagen",
@@ -274,7 +275,68 @@
   },
   "skillHint": "Das Niveau erscheint nur in Vorlagen, die es anzeigen (Balken oder Punkte).",
   "native": "Muttersprache",
-  "consentHint": "Viele polnische Arbeitgeber verlangen diese Klausel. Leer lassen, wenn das Zielland sie nicht braucht."
+  "consentHint": "Viele polnische Arbeitgeber verlangen diese Klausel. Leer lassen, wenn das Zielland sie nicht braucht.",
+  "collapse": "Menü einklappen",
+  "stepsLabel": "Schritte",
+  "autosave": "Automatisch gespeichert",
+  "stepOf": "Schritt {{n}} von {{total}}",
+  "back": "Zurück",
+  "next": "Weiter",
+  "readyTitle": "Dein Lebenslauf ist bereit zum Download",
+  "improveList": "Schnelle Verbesserungen",
+  "livePreview": "Live-Vorschau",
+  "previewNote": "Vorlage, Layout, Schrift und Farben kannst du im letzten Schritt ändern.",
+  "changeTemplate": "Vorlage ändern",
+  "steps": {
+   "header": {
+    "nav": "Kopfzeile",
+    "title1": "Beginnen wir mit",
+    "title2": "deinen Kontaktdaten",
+    "intro": "Vollständiger Name und Kontaktdaten, damit Recruiter dich erreichen. Füge ein Foto hinzu, wenn es im Zielland üblich ist."
+   },
+   "experience": {
+    "nav": "Erfahrung",
+    "title1": "Erzähl uns von",
+    "title2": "deiner Erfahrung",
+    "intro": "Beginne mit der aktuellsten Stelle. Beschreibe Ergebnisse, nicht nur Aufgaben – die KI hilft dabei."
+   },
+   "education": {
+    "nav": "Ausbildung",
+    "title1": "Füge deine",
+    "title2": "Ausbildung hinzu",
+    "intro": "Höchster oder relevantester Abschluss zuerst. Kurse oder Abschlussarbeit nur, wenn sie für die Stelle zählen."
+   },
+   "skills": {
+    "nav": "Kenntnisse",
+    "title1": "Was sind",
+    "title2": "deine Kenntnisse?",
+    "intro": "Tools, Technologien und Soft Skills passend zu den Stellen. 6–12 sind ideal."
+   },
+   "languages": {
+    "nav": "Sprachen",
+    "title1": "Welche Sprachen",
+    "title2": "sprichst du?",
+    "intro": "Nutze die GER-Skala (A1–C2) – sie wird in ganz Europa verstanden."
+   },
+   "summary": {
+    "nav": "Profil",
+    "title1": "Schreibe dein",
+    "title2": "Kurzprofil",
+    "intro": "2–4 Sätze oben im Lebenslauf: wer du bist, was du am besten kannst und was du suchst. Die KI schreibt einen ersten Entwurf."
+   },
+   "extra": {
+    "nav": "Weitere Abschnitte",
+    "title1": "Füge etwas",
+    "title2": "Besonderes hinzu",
+    "intro": "Projekte, Zertifikate und Interessen können den Unterschied machen. Alles optional – leere Abschnitte werden nicht gedruckt."
+   },
+   "finish": {
+    "nav": "Fertigstellen",
+    "title1": "Feinschliff und",
+    "title2": "Download",
+    "intro": "Vorlage wählen, Abschnitte in 1–3 Spalten anordnen, mit KI auf eine Stelle zuschneiden und als PDF herunterladen."
+   }
+  }
  },
  "ai": {
   "done": "Fertig – du kannst die Änderung rückgängig machen",

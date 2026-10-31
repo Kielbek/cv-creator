@@ -61,15 +61,15 @@ import { CvThumb } from '../../../cv-render/cv-thumb';
             <label class="label" for="font">{{ 'design.font' | translate }}</label>
             <select id="font" class="input" [value]="g.font" (change)="setFont($any($event.target).value)">
               @for (f of fonts; track f.id) {
-                <option [value]="f.id">{{ f.name }}</option>
+                <option [value]="f.id" [selected]="f.id == g.font">{{ f.name }}</option>
               }
             </select>
           </div>
           <div>
             <label class="label" for="ps">{{ 'design.pageSize' | translate }}</label>
             <select id="ps" class="input" [value]="c.design.pageSize" (change)="setPage($any($event.target).value)">
-              <option value="A4">A4</option>
-              <option value="LETTER">US Letter</option>
+              <option value="A4" [selected]="'A4' == c.design.pageSize">A4</option>
+              <option value="LETTER" [selected]="'LETTER' == c.design.pageSize">US Letter</option>
             </select>
           </div>
         </div>

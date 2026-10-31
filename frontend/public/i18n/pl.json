@@ -2,7 +2,8 @@
  "common": {
   "remove": "Usuń",
   "up": "Przesuń wyżej",
-  "down": "Przesuń niżej"
+  "down": "Przesuń niżej",
+  "close": "Zamknij"
  },
  "nav": {
   "templates": "Szablony",
@@ -274,7 +275,68 @@
   },
   "skillHint": "Poziom jest widoczny tylko w szablonach, które go pokazują (paski lub kropki).",
   "native": "Ojczysty",
-  "consentHint": "Wielu polskich pracodawców wymaga tej klauzuli. Zostaw puste, jeśli kraj docelowy jej nie potrzebuje."
+  "consentHint": "Wielu polskich pracodawców wymaga tej klauzuli. Zostaw puste, jeśli kraj docelowy jej nie potrzebuje.",
+  "collapse": "Zwiń menu",
+  "stepsLabel": "Kroki tworzenia CV",
+  "autosave": "Zapisuje się automatycznie",
+  "stepOf": "Krok {{n}} z {{total}}",
+  "back": "Wstecz",
+  "next": "Dalej",
+  "readyTitle": "Twoje CV jest gotowe do pobrania",
+  "improveList": "Szybkie poprawki, które wzmocnią CV",
+  "livePreview": "Podgląd na żywo",
+  "previewNote": "Zmiana szablonu, układu sekcji, czcionki i kolorów będzie możliwa w ostatnim kroku.",
+  "changeTemplate": "Zmień szablon",
+  "steps": {
+   "header": {
+    "nav": "Nagłówek",
+    "title1": "Zacznijmy od nagłówka",
+    "title2": "Twojego CV",
+    "intro": "Podaj pełne imię i nazwisko oraz dane kontaktowe, aby rekruter mógł do Ciebie napisać lub zadzwonić. Dodaj zdjęcie, jeśli w kraju docelowym jest to przyjęte."
+   },
+   "experience": {
+    "nav": "Doświadczenie",
+    "title1": "Opowiedz o swoim",
+    "title2": "doświadczeniu",
+    "intro": "Zacznij od ostatniego miejsca pracy. Opisuj efekty, nie tylko obowiązki – AI pomoże zamienić je w mocne punkty."
+   },
+   "education": {
+    "nav": "Wykształcenie",
+    "title1": "Dodaj swoje",
+    "title2": "wykształcenie",
+    "intro": "Najpierw najwyższy lub najbardziej związany z pracą poziom. Kursy i temat pracy dyplomowej dodaj tylko, jeśli mają znaczenie."
+   },
+   "skills": {
+    "nav": "Umiejętności",
+    "title1": "Jakie masz",
+    "title2": "umiejętności?",
+    "intro": "Wymień narzędzia, technologie i kompetencje miękkie pasujące do ofert, na które aplikujesz. Najlepiej 6–12."
+   },
+   "languages": {
+    "nav": "Języki obce",
+    "title1": "Jakie znasz",
+    "title2": "języki obce?",
+    "intro": "Używaj skali CEFR (A1–C2) – rozumieją ją rekruterzy w całej Europie."
+   },
+   "summary": {
+    "nav": "Podsumowanie",
+    "title1": "Napisz swoje",
+    "title2": "podsumowanie zawodowe",
+    "intro": "2–4 zdania na górze CV: kim jesteś, w czym jesteś najlepszy i czego szukasz. AI może przygotować pierwszą wersję na podstawie Twojego doświadczenia."
+   },
+   "extra": {
+    "nav": "Dodatkowe sekcje",
+    "title1": "Dodaj coś",
+    "title2": "ekstra",
+    "intro": "Projekty, certyfikaty i zainteresowania mogą przesądzić o wyborze. Wszystko jest opcjonalne – puste sekcje nie są drukowane."
+   },
+   "finish": {
+    "nav": "Zakończ",
+    "title1": "Dopracuj i",
+    "title2": "pobierz swoje CV",
+    "intro": "Wybierz szablon, rozmieść sekcje w 1–3 kolumnach, dopasuj CV do oferty z pomocą AI i pobierz PDF."
+   }
+  }
  },
  "ai": {
   "done": "Gotowe – możesz cofnąć tę zmianę",

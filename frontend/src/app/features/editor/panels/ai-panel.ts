@@ -91,7 +91,7 @@ import { UiLanguage } from '../../../core/i18n/ui-language';
             <label class="label" for="tl">{{ 'ai.translate.language' | translate }}</label>
             <select id="tl" class="input" [value]="targetLang()" (change)="targetLang.set($any($event.target).value)">
               @for (l of languages; track l) {
-                <option [value]="l" [disabled]="l === store.cv().language">{{ langName(l) }}</option>
+                <option [value]="l" [disabled]="l === store.cv().language" [selected]="l == targetLang()">{{ langName(l) }}</option>
               }
             </select>
           </div>
@@ -99,7 +99,7 @@ import { UiLanguage } from '../../../core/i18n/ui-language';
             <label class="label" for="tc">{{ 'ai.translate.country' | translate }}</label>
             <select id="tc" class="input" [value]="targetCountry()" (change)="targetCountry.set($any($event.target).value)">
               @for (c of countries; track c.code) {
-                <option [value]="c.code">{{ countryName(c.code) }}</option>
+                <option [value]="c.code" [selected]="c.code == targetCountry()">{{ countryName(c.code) }}</option>
               }
             </select>
           </div>

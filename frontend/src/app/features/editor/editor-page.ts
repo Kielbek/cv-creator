@@ -1,24 +1,26 @@
-import { ChangeDetectionStrategy, Component, DOCUMENT, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DOCUMENT, DestroyRef, ElementRef, afterNextRender, computed, inject, signal, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import {
   LucideAngularModule,
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  ChevronLeft,
   Download,
   Eye,
   FileJson,
   FileUp,
   LayoutGrid,
   Lightbulb,
-  Minus,
   MoreHorizontal,
   Palette,
-  PencilLine,
-  Plus,
   RotateCcw,
   Sparkles,
   Undo2,
   CircleCheck,
   Circle,
+  X,
 } from 'lucide-angular';
 import { CvStore, migrate } from '../../core/cv/cv.store';
 import { CvDocument } from '../../cv-render/cv-document';
@@ -34,9 +36,15 @@ import { Toasts, ToastsHost } from '../../shared/toasts';
 import { LanguageSwitcher } from '../../shared/language-switcher';
 import { Logo } from '../../shared/logo';
 import { checks, score } from './completeness';
+import { STEPS } from './steps';
 
-type Tab = 'content' | 'layout' | 'design' | 'ai';
+type FinishTab = 'design' | 'layout' | 'ai';
+const STEP_KEY = 'cv-creator:step';
 
+/**
+ * Step-by-step editor: dark step rail on the left, the form of the current step in the middle, the live,
+ * paginated preview on the right. Steps can be visited in any order; "Finish" holds design, layout, AI and download.
+ */
 @Component({
   selector: 'app-editor-page',
   imports: [TranslatePipe, LucideAngularModule, RouterLink, CvDocument, ContentPanel, LayoutPanel, DesignPanel, AiPanel, ToastsHost, LanguageSwitcher, Logo],
@@ -48,28 +56,73 @@ export class EditorPage {
   protected readonly store = inject(CvStore);
   private readonly toasts = inject(Toasts);
   private readonly ui = inject(UiLanguage);
+  private readonly translate = inject(TranslateService);
   private readonly document = inject(DOCUMENT);
-  protected readonly icons = { Download, Eye, FileJson, FileUp, LayoutGrid, Lightbulb, Minus, MoreHorizontal, Palette, PencilLine, Plus, RotateCcw, Sparkles, Undo2, CircleCheck, Circle };
+  protected readonly icons = { ArrowLeft, ArrowRight, Check, ChevronLeft, Download, Eye, FileJson, FileUp, LayoutGrid, Lightbulb, MoreHorizontal, Palette, RotateCcw, Sparkles, Undo2, CircleCheck, Circle, X };
 
   protected readonly cv = this.store.cv;
-  protected readonly tab = signal<Tab>('content');
-  protected readonly mobileView = signal<'edit' | 'preview'>('edit');
-  protected readonly zoom = signal(0.8);
+  protected readonly steps = STEPS;
+  protected readonly stepIndex = signal(readStep());
+  protected readonly step = computed(() => STEPS[this.stepIndex()]);
+  protected readonly isFinish = computed(() => this.step().id === 'finish');
+  protected readonly finishTab = signal<FinishTab>('design');
+  protected readonly railCollapsed = signal(false);
+  protected readonly mobilePreview = signal(false);
   protected readonly menuOpen = signal(false);
-  protected readonly showChecklist = signal(false);
-
-  protected readonly tabs: { id: Tab; icon: typeof PencilLine }[] = [
-    { id: 'content', icon: PencilLine },
-    { id: 'layout', icon: LayoutGrid },
-    { id: 'design', icon: Palette },
-    { id: 'ai', icon: Sparkles },
-  ];
+  protected readonly pageCount = signal(1);
 
   protected readonly languages = CV_LANGUAGES;
   protected readonly countries = COUNTRIES;
   protected readonly checklist = computed(() => checks(this.cv()));
   protected readonly score = computed(() => score(this.checklist()));
-  protected readonly pageCount = signal(1);
+
+  /** preview scaled to the width of its column */
+  private readonly previewBox = viewChild<ElementRef<HTMLElement>>('previewBox');
+  private readonly previewWidth = signal(420);
+  protected readonly previewZoom = computed(() => Math.min(1, Math.max(0.3, (this.previewWidth() - 8) / 794)));
+
+  constructor() {
+    const observer = new ResizeObserver((entries) => this.previewWidth.set(entries[0].contentRect.width));
+    afterNextRender(() => {
+      const el = this.previewBox()?.nativeElement;
+      if (el) observer.observe(el);
+    });
+    inject(DestroyRef).onDestroy(() => observer.disconnect());
+  }
+
+  protected go(i: number): void {
+    const next = Math.max(0, Math.min(STEPS.length - 1, i));
+    this.stepIndex.set(next);
+    try {
+      sessionStorage.setItem(STEP_KEY, String(next));
+    } catch {
+      /* ignore */
+    }
+    this.document.querySelector('.wizard-main')?.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /** a step is "done" when its sections have content (just a visual hint) */
+  protected done(i: number): boolean {
+    const c = this.cv();
+    switch (STEPS[i].id) {
+      case 'header':
+        return !!(c.personal.firstName && c.personal.lastName && c.personal.email);
+      case 'experience':
+        return c.experience.length > 0;
+      case 'education':
+        return c.education.length > 0;
+      case 'skills':
+        return c.skills.length > 0;
+      case 'languages':
+        return c.languages.length > 0;
+      case 'summary':
+        return !!c.summary.trim();
+      case 'extra':
+        return c.projects.length + c.certificates.length > 0 || !!c.interests.trim();
+      default:
+        return false;
+    }
+  }
 
   protected langName(code: string): string {
     return new Intl.DisplayNames([this.ui.current()], { type: 'language' }).of(code) ?? code;
@@ -87,10 +140,6 @@ export class EditorPage {
     this.store.setCountry(code, false);
   }
 
-  protected zoomBy(d: number): void {
-    this.zoom.update((z) => Math.min(1.5, Math.max(0.4, Math.round((z + d) * 10) / 10)));
-  }
-
   /** Browser print → "Save as PDF": vector text (ATS-readable), exact page size, no server round-trip. */
   protected download(): void {
     const cv = this.cv();
@@ -106,7 +155,6 @@ export class EditorPage {
       window.removeEventListener('afterprint', restore);
     };
     window.addEventListener('afterprint', restore);
-    this.mobileView.set('preview');
     setTimeout(() => window.print(), 50);
   }
 
@@ -144,13 +192,19 @@ export class EditorPage {
 
   protected reset(): void {
     this.menuOpen.set(false);
-    if (!confirm(this.translateConfirm())) return;
+    if (!confirm(this.translate.instant('editor.menu.resetConfirm'))) return;
     const cv = this.cv();
     this.store.reset(cv.language, cv.country);
+    this.go(0);
     this.toasts.show('editor.menu.resetDone');
   }
+}
 
-  private translateConfirm(): string {
-    return this.document.querySelector<HTMLElement>('[data-confirm-reset]')?.dataset['confirmReset'] ?? 'Reset?';
+function readStep(): number {
+  try {
+    const n = Number(sessionStorage.getItem(STEP_KEY));
+    return Number.isInteger(n) && n >= 0 && n < STEPS.length ? n : 0;
+  } catch {
+    return 0;
   }
 }

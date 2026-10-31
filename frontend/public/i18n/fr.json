@@ -2,7 +2,8 @@
  "common": {
   "remove": "Supprimer",
   "up": "Monter",
-  "down": "Descendre"
+  "down": "Descendre",
+  "close": "Fermer"
  },
  "nav": {
   "templates": "Modèles",
@@ -274,7 +275,68 @@
   },
   "skillHint": "Le niveau n'apparaît que dans les modèles qui l'affichent (barres ou points).",
   "native": "Langue maternelle",
-  "consentHint": "De nombreux employeurs polonais exigent cette clause. Laissez vide si le pays visé n'en a pas besoin."
+  "consentHint": "De nombreux employeurs polonais exigent cette clause. Laissez vide si le pays visé n'en a pas besoin.",
+  "collapse": "Réduire le menu",
+  "stepsLabel": "Étapes du CV",
+  "autosave": "Enregistré automatiquement",
+  "stepOf": "Étape {{n}} sur {{total}}",
+  "back": "Retour",
+  "next": "Suivant",
+  "readyTitle": "Votre CV est prêt à être téléchargé",
+  "improveList": "Améliorations rapides",
+  "livePreview": "Aperçu en direct",
+  "previewNote": "Vous pourrez changer de modèle, de mise en page, de police et de couleurs à la dernière étape.",
+  "changeTemplate": "Changer de modèle",
+  "steps": {
+   "header": {
+    "nav": "En-tête",
+    "title1": "Commençons par",
+    "title2": "l'en-tête de votre CV",
+    "intro": "Votre nom complet et vos coordonnées pour que le recruteur puisse vous contacter. Ajoutez une photo si c'est l'usage dans le pays visé."
+   },
+   "experience": {
+    "nav": "Expérience",
+    "title1": "Parlez-nous de",
+    "title2": "votre expérience",
+    "intro": "Commencez par le poste le plus récent. Décrivez des résultats, pas seulement des missions – l'IA peut vous aider."
+   },
+   "education": {
+    "nav": "Formation",
+    "title1": "Ajoutez votre",
+    "title2": "formation",
+    "intro": "Le diplôme le plus élevé ou le plus pertinent d'abord. Cours ou mémoire uniquement s'ils comptent pour le poste."
+   },
+   "skills": {
+    "nav": "Compétences",
+    "title1": "Quelles sont",
+    "title2": "vos compétences ?",
+    "intro": "Outils, technologies et savoir-être adaptés aux offres visées. 6 à 12 compétences, c'est idéal."
+   },
+   "languages": {
+    "nav": "Langues",
+    "title1": "Quelles langues",
+    "title2": "parlez-vous ?",
+    "intro": "Utilisez l'échelle CECRL (A1–C2), comprise partout en Europe."
+   },
+   "summary": {
+    "nav": "Profil",
+    "title1": "Rédigez votre",
+    "title2": "profil professionnel",
+    "intro": "2 à 4 phrases en haut du CV : qui vous êtes, vos points forts et ce que vous cherchez. L'IA peut rédiger un premier jet."
+   },
+   "extra": {
+    "nav": "Sections en plus",
+    "title1": "Ajoutez un petit",
+    "title2": "plus",
+    "intro": "Projets, certifications et centres d'intérêt peuvent faire la différence. Tout est facultatif – les sections vides ne sont pas imprimées."
+   },
+   "finish": {
+    "nav": "Terminer",
+    "title1": "Peaufinez et",
+    "title2": "téléchargez votre CV",
+    "intro": "Choisissez le modèle, organisez les sections sur 1 à 3 colonnes, adaptez le CV à une offre avec l'IA et téléchargez le PDF."
+   }
+  }
  },
  "ai": {
   "done": "Terminé – vous pouvez annuler ce changement",

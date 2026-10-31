@@ -2,7 +2,8 @@
  "common": {
   "remove": "Eliminar",
   "up": "Subir",
-  "down": "Bajar"
+  "down": "Bajar",
+  "close": "Cerrar"
  },
  "nav": {
   "templates": "Plantillas",
@@ -274,7 +275,68 @@
   },
   "skillHint": "El nivel solo aparece en plantillas que lo muestran (barras o puntos).",
   "native": "Nativo",
-  "consentHint": "Muchos empleadores polacos exigen esta cláusula. Déjala vacía si el país de destino no la necesita."
+  "consentHint": "Muchos empleadores polacos exigen esta cláusula. Déjala vacía si el país de destino no la necesita.",
+  "collapse": "Contraer menú",
+  "stepsLabel": "Pasos del CV",
+  "autosave": "Se guarda automáticamente",
+  "stepOf": "Paso {{n}} de {{total}}",
+  "back": "Atrás",
+  "next": "Siguiente",
+  "readyTitle": "Tu CV está listo para descargar",
+  "improveList": "Mejoras rápidas",
+  "livePreview": "Vista previa en vivo",
+  "previewNote": "Podrás cambiar la plantilla, el diseño, la fuente y los colores en el último paso.",
+  "changeTemplate": "Cambiar plantilla",
+  "steps": {
+   "header": {
+    "nav": "Cabecera",
+    "title1": "Empecemos por",
+    "title2": "la cabecera de tu CV",
+    "intro": "Tu nombre completo y datos de contacto para que el reclutador pueda escribirte o llamarte. Añade foto si es habitual en el país de destino."
+   },
+   "experience": {
+    "nav": "Experiencia",
+    "title1": "Cuéntanos tu",
+    "title2": "experiencia",
+    "intro": "Empieza por el empleo más reciente. Describe resultados, no solo tareas – la IA puede ayudarte."
+   },
+   "education": {
+    "nav": "Formación",
+    "title1": "Añade tu",
+    "title2": "formación",
+    "intro": "Primero el título más alto o más relevante. Cursos o trabajo final solo si importan para el puesto."
+   },
+   "skills": {
+    "nav": "Habilidades",
+    "title1": "¿Cuáles son",
+    "title2": "tus habilidades?",
+    "intro": "Herramientas, tecnologías y habilidades blandas acordes con las ofertas. Entre 6 y 12 es lo ideal."
+   },
+   "languages": {
+    "nav": "Idiomas",
+    "title1": "¿Qué idiomas",
+    "title2": "hablas?",
+    "intro": "Usa la escala MCER (A1–C2), conocida en toda Europa."
+   },
+   "summary": {
+    "nav": "Perfil",
+    "title1": "Escribe tu",
+    "title2": "perfil profesional",
+    "intro": "2–4 frases al inicio del CV: quién eres, en qué destacas y qué buscas. La IA puede escribir un primer borrador."
+   },
+   "extra": {
+    "nav": "Más secciones",
+    "title1": "Añade algo",
+    "title2": "extra",
+    "intro": "Proyectos, certificaciones e intereses pueden marcar la diferencia. Todo es opcional – las secciones vacías no se imprimen."
+   },
+   "finish": {
+    "nav": "Finalizar",
+    "title1": "Pule y",
+    "title2": "descarga tu CV",
+    "intro": "Elige la plantilla, organiza las secciones en 1–3 columnas, adapta el CV a una oferta con IA y descarga el PDF."
+   }
+  }
  },
  "ai": {
   "done": "Hecho – puedes deshacer este cambio",

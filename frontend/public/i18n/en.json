@@ -2,7 +2,8 @@
  "common": {
   "remove": "Remove",
   "up": "Move up",
-  "down": "Move down"
+  "down": "Move down",
+  "close": "Close"
  },
  "nav": {
   "templates": "Templates",
@@ -274,7 +275,68 @@
   },
   "skillHint": "The level is shown only in templates that display it (bars or dots).",
   "native": "Native",
-  "consentHint": "Many Polish employers require this clause. Leave it empty if the target country does not need it."
+  "consentHint": "Many Polish employers require this clause. Leave it empty if the target country does not need it.",
+  "collapse": "Collapse menu",
+  "stepsLabel": "CV steps",
+  "autosave": "Saved automatically",
+  "stepOf": "Step {{n}} of {{total}}",
+  "back": "Back",
+  "next": "Next",
+  "readyTitle": "Your CV is ready to download",
+  "improveList": "Quick wins to strengthen your CV",
+  "livePreview": "Live preview",
+  "previewNote": "You can change the template, layout, fonts and colours in the last step.",
+  "changeTemplate": "Change template",
+  "steps": {
+   "header": {
+    "nav": "Header",
+    "title1": "Let's start with",
+    "title2": "your CV header",
+    "intro": "Your name and contact details, so a recruiter can e-mail or call you. Add a photo if it is common in the target country."
+   },
+   "experience": {
+    "nav": "Experience",
+    "title1": "Tell us about",
+    "title2": "your experience",
+    "intro": "Start with your most recent job. Describe results, not just duties – AI can help turn them into strong bullet points."
+   },
+   "education": {
+    "nav": "Education",
+    "title1": "Add your",
+    "title2": "education",
+    "intro": "Your highest or most relevant degree first. Add courses or a thesis only if they matter for the job."
+   },
+   "skills": {
+    "nav": "Skills",
+    "title1": "What are",
+    "title2": "your skills?",
+    "intro": "List tools, technologies and soft skills that match the jobs you apply for. 6–12 skills work best."
+   },
+   "languages": {
+    "nav": "Languages",
+    "title1": "Which languages",
+    "title2": "do you speak?",
+    "intro": "Use the CEFR scale (A1–C2) – recruiters across Europe understand it."
+   },
+   "summary": {
+    "nav": "Summary",
+    "title1": "Write your",
+    "title2": "profile summary",
+    "intro": "2–4 sentences at the top of your CV: who you are, what you are best at and what you are looking for. Let AI write a first draft from your experience."
+   },
+   "extra": {
+    "nav": "More sections",
+    "title1": "Add something",
+    "title2": "extra",
+    "intro": "Projects, certificates and interests can make the difference. Everything is optional – empty sections are not printed."
+   },
+   "finish": {
+    "nav": "Finish",
+    "title1": "Polish and",
+    "title2": "download your CV",
+    "intro": "Choose the template, arrange sections in 1–3 columns, tailor the CV to a job offer with AI and download a PDF."
+   }
+  }
  },
  "ai": {
   "done": "Done – you can undo this change",

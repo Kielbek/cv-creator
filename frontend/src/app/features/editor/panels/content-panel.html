@@ -1,13 +1,12 @@
 @let c = cv();
-<div class="space-y-3">
+<div class="space-y-8">
   <!-- ============ personal ============ -->
-  <section class="panel-card">
-    <button type="button" class="panel-head" (click)="toggle('personal')" [attr.aria-expanded]="open() === 'personal'">
-      <span>{{ 'editor.sections.personal' | translate }}</span>
-      <lucide-icon [img]="icons.ChevronDown" class="size-4 transition" [class.rotate-180]="open() === 'personal'" />
-    </button>
-    @if (open() === 'personal') {
-      <div class="panel-body">
+  @if (has('personal')) {
+  <section class="wizard-section">
+    @if (multi()) {
+      <h2 class="mb-3 text-base font-semibold text-slate-900">{{ 'editor.sections.personal' | translate }}</h2>
+    }
+      <div class="space-y-4">
         <div class="flex items-center gap-4">
           <label class="group relative flex size-20 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full border-2 border-dashed border-slate-300 bg-slate-50 text-slate-400 hover:border-brand-400">
             @if (c.personal.photo) {
@@ -43,22 +42,21 @@
           <div class="col-span-2"><label class="label" for="gh">GitHub</label><input id="gh" class="input" [value]="c.personal.github" (input)="setPersonal('github', $event)" placeholder="github.com/…" /></div>
         </div>
       </div>
-    }
   </section>
+  }
 
   <!-- ============ summary ============ -->
-  <section class="panel-card">
-    <button type="button" class="panel-head" (click)="toggle('summary')" [attr.aria-expanded]="open() === 'summary'">
-      <span>{{ 'editor.sections.summary' | translate }}</span>
-      <lucide-icon [img]="icons.ChevronDown" class="size-4 transition" [class.rotate-180]="open() === 'summary'" />
-    </button>
-    @if (open() === 'summary') {
-      <div class="panel-body">
+  @if (has('summary')) {
+  <section class="wizard-section">
+    @if (multi()) {
+      <h2 class="mb-3 text-base font-semibold text-slate-900">{{ 'editor.sections.summary' | translate }}</h2>
+    }
+      <div class="space-y-4">
         <textarea class="input min-h-32" [value]="c.summary" (input)="set(cv => cv.summary = val($event))" [placeholder]="'editor.f.summaryPh' | translate"></textarea>
         <div class="flex flex-wrap items-center gap-2">
           <select class="input w-auto! py-1.5" [value]="tone()" (change)="tone.set(val($event))" [attr.aria-label]="'ai.tone.label' | translate">
             @for (t of ['professional', 'confident', 'friendly', 'concise']; track t) {
-              <option [value]="t">{{ 'ai.tone.' + t | translate }}</option>
+              <option [value]="t" [selected]="t == tone()">{{ 'ai.tone.' + t | translate }}</option>
             }
           </select>
           <button type="button" class="ai-btn" (click)="generateSummary()" [disabled]="busy() === 'summary'">
@@ -68,17 +66,16 @@
         </div>
         <p class="text-xs text-slate-400">{{ 'ai.summaryHint' | translate }}</p>
       </div>
-    }
   </section>
+  }
 
   <!-- ============ experience ============ -->
-  <section class="panel-card">
-    <button type="button" class="panel-head" (click)="toggle('experience')" [attr.aria-expanded]="open() === 'experience'">
-      <span>{{ 'editor.sections.experience' | translate }} <span class="count">{{ count('experience') }}</span></span>
-      <lucide-icon [img]="icons.ChevronDown" class="size-4 transition" [class.rotate-180]="open() === 'experience'" />
-    </button>
-    @if (open() === 'experience') {
-      <div class="panel-body">
+  @if (has('experience')) {
+  <section class="wizard-section">
+    @if (multi()) {
+      <h2 class="mb-3 text-base font-semibold text-slate-900">{{ 'editor.sections.experience' | translate }}</h2>
+    }
+      <div class="space-y-4">
         @for (e of c.experience; track e.id; let i = $index, first = $first, last = $last) {
           <div class="item-card">
             <div class="item-tools">
@@ -122,17 +119,16 @@
         }
         <button type="button" class="add-btn" (click)="add('experience')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.experience' | translate }}</button>
       </div>
-    }
   </section>
+  }
 
   <!-- ============ education ============ -->
-  <section class="panel-card">
-    <button type="button" class="panel-head" (click)="toggle('education')" [attr.aria-expanded]="open() === 'education'">
-      <span>{{ 'editor.sections.education' | translate }} <span class="count">{{ count('education') }}</span></span>
-      <lucide-icon [img]="icons.ChevronDown" class="size-4 transition" [class.rotate-180]="open() === 'education'" />
-    </button>
-    @if (open() === 'education') {
-      <div class="panel-body">
+  @if (has('education')) {
+  <section class="wizard-section">
+    @if (multi()) {
+      <h2 class="mb-3 text-base font-semibold text-slate-900">{{ 'editor.sections.education' | translate }}</h2>
+    }
+      <div class="space-y-4">
         @for (e of c.education; track e.id; let i = $index, first = $first, last = $last) {
           <div class="item-card">
             <div class="item-tools">
@@ -156,24 +152,23 @@
         }
         <button type="button" class="add-btn" (click)="add('education')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.education' | translate }}</button>
       </div>
-    }
   </section>
+  }
 
   <!-- ============ skills ============ -->
-  <section class="panel-card">
-    <button type="button" class="panel-head" (click)="toggle('skills')" [attr.aria-expanded]="open() === 'skills'">
-      <span>{{ 'editor.sections.skills' | translate }} <span class="count">{{ count('skills') }}</span></span>
-      <lucide-icon [img]="icons.ChevronDown" class="size-4 transition" [class.rotate-180]="open() === 'skills'" />
-    </button>
-    @if (open() === 'skills') {
-      <div class="panel-body">
+  @if (has('skills')) {
+  <section class="wizard-section">
+    @if (multi()) {
+      <h2 class="mb-3 text-base font-semibold text-slate-900">{{ 'editor.sections.skills' | translate }}</h2>
+    }
+      <div class="space-y-4">
         @for (s of c.skills; track s.id; let i = $index) {
           <div class="flex items-center gap-2">
             <input class="input" [value]="s.name" (input)="setItem('skills', i, 'name', val($event))" [placeholder]="'editor.f.skillPh' | translate" />
             <select class="input w-28!" [value]="s.level" (change)="setItem('skills', i, 'level', +val($event))" [attr.aria-label]="'editor.f.level' | translate">
-              <option [value]="0">—</option>
+              <option [value]="0" [selected]="0 == s.level">—</option>
               @for (l of [1, 2, 3, 4, 5]; track l) {
-                <option [value]="l">{{ 'editor.skillLevel.' + l | translate }}</option>
+                <option [value]="l" [selected]="l == s.level">{{ 'editor.skillLevel.' + l | translate }}</option>
               }
             </select>
             <button type="button" class="icon-btn hover:text-red-600" (click)="remove('skills', i)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.X" class="size-4" /></button>
@@ -182,23 +177,22 @@
         <button type="button" class="add-btn" (click)="add('skills')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.skill' | translate }}</button>
         <p class="text-xs text-slate-400">{{ 'editor.skillHint' | translate }}</p>
       </div>
-    }
   </section>
+  }
 
   <!-- ============ languages ============ -->
-  <section class="panel-card">
-    <button type="button" class="panel-head" (click)="toggle('languages')" [attr.aria-expanded]="open() === 'languages'">
-      <span>{{ 'editor.sections.languages' | translate }} <span class="count">{{ count('languages') }}</span></span>
-      <lucide-icon [img]="icons.ChevronDown" class="size-4 transition" [class.rotate-180]="open() === 'languages'" />
-    </button>
-    @if (open() === 'languages') {
-      <div class="panel-body">
+  @if (has('languages')) {
+  <section class="wizard-section">
+    @if (multi()) {
+      <h2 class="mb-3 text-base font-semibold text-slate-900">{{ 'editor.sections.languages' | translate }}</h2>
+    }
+      <div class="space-y-4">
         @for (l of c.languages; track l.id; let i = $index) {
           <div class="flex items-center gap-2">
             <input class="input" [value]="l.name" (input)="setItem('languages', i, 'name', val($event))" [placeholder]="'editor.f.languagePh' | translate" />
             <select class="input w-36!" [value]="l.level" (change)="setItem('languages', i, 'level', val($event))" [attr.aria-label]="'editor.f.level' | translate">
               @for (lv of levels; track lv) {
-                <option [value]="lv">{{ lv === 'native' ? ('editor.native' | translate) : lv }}</option>
+                <option [value]="lv" [selected]="lv == l.level">{{ lv === 'native' ? ('editor.native' | translate) : lv }}</option>
               }
             </select>
             <button type="button" class="icon-btn hover:text-red-600" (click)="remove('languages', i)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.X" class="size-4" /></button>
@@ -206,17 +200,16 @@
         }
         <button type="button" class="add-btn" (click)="add('languages')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.language' | translate }}</button>
       </div>
-    }
   </section>
+  }
 
   <!-- ============ projects ============ -->
-  <section class="panel-card">
-    <button type="button" class="panel-head" (click)="toggle('projects')" [attr.aria-expanded]="open() === 'projects'">
-      <span>{{ 'editor.sections.projects' | translate }} <span class="count">{{ count('projects') }}</span></span>
-      <lucide-icon [img]="icons.ChevronDown" class="size-4 transition" [class.rotate-180]="open() === 'projects'" />
-    </button>
-    @if (open() === 'projects') {
-      <div class="panel-body">
+  @if (has('projects')) {
+  <section class="wizard-section">
+    @if (multi()) {
+      <h2 class="mb-3 text-base font-semibold text-slate-900">{{ 'editor.sections.projects' | translate }}</h2>
+    }
+      <div class="space-y-4">
         @for (p of c.projects; track p.id; let i = $index, first = $first, last = $last) {
           <div class="item-card">
             <div class="item-tools">
@@ -233,17 +226,16 @@
         }
         <button type="button" class="add-btn" (click)="add('projects')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.project' | translate }}</button>
       </div>
-    }
   </section>
+  }
 
   <!-- ============ certificates ============ -->
-  <section class="panel-card">
-    <button type="button" class="panel-head" (click)="toggle('certificates')" [attr.aria-expanded]="open() === 'certificates'">
-      <span>{{ 'editor.sections.certificates' | translate }} <span class="count">{{ count('certificates') }}</span></span>
-      <lucide-icon [img]="icons.ChevronDown" class="size-4 transition" [class.rotate-180]="open() === 'certificates'" />
-    </button>
-    @if (open() === 'certificates') {
-      <div class="panel-body">
+  @if (has('certificates')) {
+  <section class="wizard-section">
+    @if (multi()) {
+      <h2 class="mb-3 text-base font-semibold text-slate-900">{{ 'editor.sections.certificates' | translate }}</h2>
+    }
+      <div class="space-y-4">
         @for (p of c.certificates; track p.id; let i = $index) {
           <div class="item-card">
             <div class="item-tools">
@@ -258,33 +250,31 @@
         }
         <button type="button" class="add-btn" (click)="add('certificates')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.certificate' | translate }}</button>
       </div>
-    }
   </section>
+  }
 
   <!-- ============ interests ============ -->
-  <section class="panel-card">
-    <button type="button" class="panel-head" (click)="toggle('interests')" [attr.aria-expanded]="open() === 'interests'">
-      <span>{{ 'editor.sections.interests' | translate }}</span>
-      <lucide-icon [img]="icons.ChevronDown" class="size-4 transition" [class.rotate-180]="open() === 'interests'" />
-    </button>
-    @if (open() === 'interests') {
-      <div class="panel-body">
+  @if (has('interests')) {
+  <section class="wizard-section">
+    @if (multi()) {
+      <h2 class="mb-3 text-base font-semibold text-slate-900">{{ 'editor.sections.interests' | translate }}</h2>
+    }
+      <div class="space-y-4">
         <textarea class="input min-h-20" [value]="c.interests" (input)="set(cv => cv.interests = val($event))"></textarea>
       </div>
-    }
   </section>
+  }
 
   <!-- ============ consent ============ -->
-  <section class="panel-card">
-    <button type="button" class="panel-head" (click)="toggle('consent')" [attr.aria-expanded]="open() === 'consent'">
-      <span>{{ 'editor.sections.consent' | translate }}</span>
-      <lucide-icon [img]="icons.ChevronDown" class="size-4 transition" [class.rotate-180]="open() === 'consent'" />
-    </button>
-    @if (open() === 'consent') {
-      <div class="panel-body">
+  @if (has('consent')) {
+  <section class="wizard-section">
+    @if (multi()) {
+      <h2 class="mb-3 text-base font-semibold text-slate-900">{{ 'editor.sections.consent' | translate }}</h2>
+    }
+      <div class="space-y-4">
         <textarea class="input min-h-24 text-xs" [value]="c.consent" (input)="set(cv => cv.consent = val($event))"></textarea>
         <p class="text-xs text-slate-400">{{ 'editor.consentHint' | translate }}</p>
       </div>
-    }
   </section>
+  }
 </div>
