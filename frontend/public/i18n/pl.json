@@ -51,7 +51,7 @@
    },
    "layout": {
     "title": "Twój układ, Twoje zasady",
-    "text": "1, 2 lub 3 kolumny. Przeciągaj sekcje gdzie chcesz – nowe strony A4 tworzą się automatycznie."
+    "text": "Szablony 1-, 2- i 3-kolumnowe. Przeciągaj sekcje w obrębie układu – nowe strony A4 tworzą się automatycznie."
    },
    "tailor": {
     "title": "Dopasuj do oferty",
@@ -126,7 +126,7 @@
  },
  "templates": {
   "title": "Szablony CV",
-  "subtitle": "Każdy szablon działa w układzie 1, 2 lub 3 kolumn i z dowolną kolejnością sekcji. Szablony oznaczone ATS są najbezpieczniejsze przy aplikowaniu online.",
+  "subtitle": "Każdy szablon ma własny, stały układ (1, 2 lub 3 kolumny) – sekcje nadal możesz przenosić między jego kolumnami. Szablony oznaczone ATS są najbezpieczniejsze przy aplikowaniu online.",
   "use": "Użyj szablonu",
   "filter": {
    "all": "Wszystkie",
@@ -138,7 +138,6 @@
   }
  },
  "layout": {
-  "skeleton": "Szkielet strony",
   "columns": {
    "1": "1 kolumna",
    "2": "2 kolumny",
@@ -334,7 +333,7 @@
     "nav": "Zakończ",
     "title1": "Dopracuj i",
     "title2": "pobierz swoje CV",
-    "intro": "Wybierz szablon, rozmieść sekcje w 1–3 kolumnach, dopasuj CV do oferty z pomocą AI i pobierz PDF."
+    "intro": "Wybierz szablon, ułóż sekcje, dopasuj CV do oferty z pomocą AI i pobierz PDF."
    }
   }
  },

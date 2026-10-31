@@ -94,8 +94,6 @@ export type PageSize = 'A4' | 'LETTER';
 
 export interface CvDesign {
   templateId: string;
-  /** 1-3; null = the template's own skeleton */
-  columns: number | null;
   /** section ids per column, in reading order; a section missing here is not printed ('contact' then goes to the header) */
   layout: SectionId[][];
   accent: string | null;

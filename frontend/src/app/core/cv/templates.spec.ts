@@ -12,9 +12,10 @@ describe('templates', () => {
     }
   });
 
-  it('sidebar header falls back to a top header with one column', () => {
-    expect(geometry({ templateId: 'nova', columns: 1 } as never).header).toBe('left');
-    expect(geometry({ templateId: 'nova', columns: null } as never).header).toBe('sidebar');
+  it('the skeleton always comes from the template', () => {
+    expect(geometry({ templateId: 'nova', accent: null, font: null }).columns).toBe(2);
+    expect(geometry({ templateId: 'trio', accent: null, font: null }).columns).toBe(3);
+    expect(geometry({ templateId: 'atlas', accent: null, font: null }).header).toBe('left');
   });
 
   it('refit keeps user order, moves sections home and keeps removed sections removed', () => {

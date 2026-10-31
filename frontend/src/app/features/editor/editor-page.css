@@ -20,6 +20,8 @@
   min-height: 0;
   overflow-y: auto;
   color: #fff;
+  background: #111111;
+  border-right: 1px solid #1f1f1f;
 }
 .rail-icon-only {
   display: none;
@@ -37,9 +39,9 @@
   width: 30px;
   height: 30px;
   border-radius: 999px;
-  background: rgb(255 255 255 / 0.1);
-  color: #fff;
-  border: 1px solid rgb(255 255 255 / 0.15);
+  background: transparent;
+  color: rgb(255 255 255 / 0.7);
+  border: 1px solid rgb(255 255 255 / 0.14);
   flex: none;
 }
 .rail-toggle:hover {
@@ -62,9 +64,10 @@
   width: 100%;
   padding: 9px 12px;
   border-radius: 14px;
-  color: rgb(255 255 255 / 0.68);
-  font-size: 14.5px;
-  font-weight: 500;
+  color: rgb(255 255 255 / 0.55);
+  font-size: 14px;
+  font-weight: 450;
+  letter-spacing: -0.005em;
   text-align: left;
   transition: background 0.15s, color 0.15s;
 }
@@ -73,9 +76,8 @@
   color: #fff;
 }
 .wizard-step.is-active {
-  background: rgb(255 255 255 / 0.12);
+  background: rgb(255 255 255 / 0.07);
   color: #fff;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12), 0 8px 24px -10px rgb(109 93 252 / 0.8);
 }
 .step-icon {
   display: inline-flex;
@@ -85,12 +87,12 @@
   height: 34px;
   flex: none;
   border-radius: 999px;
-  border: 1.5px solid rgb(255 255 255 / 0.22);
+  border: 1px solid rgb(255 255 255 / 0.16);
 }
 .wizard-step.is-active .step-icon {
-  border-color: transparent;
-  background: linear-gradient(135deg, #6d7dff, #a855f7);
-  color: #fff;
+  border-color: #fff;
+  background: #fff;
+  color: #111;
 }
 .rail-collapsed .wizard-step {
   justify-content: center;
@@ -101,9 +103,7 @@
 .wizard-main {
   min-height: 0;
   overflow-y: auto;
-  background:
-    radial-gradient(60% 40% at 100% 0%, rgb(167 139 250 / 0.08), transparent 70%),
-    #fff;
+  background: #fff;
 }
 .wizard-back {
   display: inline-flex;
@@ -111,14 +111,14 @@
   gap: 8px;
   padding: 12px 26px;
   border-radius: 999px;
-  border: 1.5px solid #cbd5e1;
-  font-weight: 600;
-  color: #1e1b4b;
+  border: 1px solid #dcdcdc;
+  font-weight: 500;
+  color: #161616;
   transition: border-color 0.15s, color 0.15s;
 }
 .wizard-back:hover:not(:disabled) {
-  border-color: var(--color-brand-400);
-  color: var(--color-brand-700);
+  border-color: #161616;
+  color: #000;
 }
 .wizard-back:disabled {
   opacity: 0.35;
@@ -129,8 +129,8 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
-  background: linear-gradient(180deg, #f4f3ff, #eef0fb);
-  border-left: 1px solid #e7e5f7;
+  background: #f4f4f4;
+  border-left: 1px solid #ebebeb;
 }
 .preview-scroll {
   flex: 1;

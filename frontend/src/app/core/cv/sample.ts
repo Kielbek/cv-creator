@@ -14,7 +14,6 @@ export function defaultDesign(templateId = 'atlas', country = 'PL'): CvDesign {
   const t = findTemplate(templateId);
   return {
     templateId: t.id,
-    columns: null,
     layout: defaultLayout(t, t.columns),
     accent: null,
     font: null,

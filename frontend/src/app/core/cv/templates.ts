@@ -6,7 +6,7 @@ import { CvDesign, FontId, SectionId } from './cv.model';
  * no component code needed. To add a new visual variant (e.g. a new heading style), add the value to the union
  * type below and a matching `[data-heading='...']` rule to cv.css.
  *
- * Users can override the skeleton (1/2/3 columns) and move sections freely; the template only gives defaults.
+ * The skeleton (number of columns) is fixed by the template; users only move sections within its columns.
  */
 export type HeaderStyle = 'left' | 'center' | 'banner' | 'sidebar';
 export type HeadingStyle = 'underline' | 'caps' | 'bar' | 'pill' | 'line' | 'minimal';
@@ -69,9 +69,14 @@ export interface Geometry {
   font: FontId;
 }
 
-export function geometry(design: CvDesign): Geometry {
+export function geometry(design: Pick<CvDesign, 'templateId' | 'accent' | 'font'>): Geometry {
   const template = findTemplate(design.templateId);
-  const columns = clampColumns(design.columns ?? template.columns);
+  return geometryFor(template, template.columns, design.accent, design.font);
+}
+
+/** Geometry of a template at a given column count (used when re-fitting a layout from another template). */
+function geometryFor(template: CvTemplate, cols: number, accent: string | null = null, font: FontId | null = null): Geometry {
+  const columns = clampColumns(cols);
   let widths: number[];
   let sidebarIndex = 0;
   if (columns === 1) {
@@ -94,8 +99,8 @@ export function geometry(design: CvDesign): Geometry {
     header,
     sidebarIndex,
     mainIndex,
-    accent: design.accent ?? template.accent,
-    font: design.font ?? template.font,
+    accent: accent ?? template.accent,
+    font: font ?? template.font,
   };
 }
 
@@ -110,7 +115,7 @@ const MAIN: SectionId[] = ['summary', 'experience', 'education', 'projects'];
 export function defaultLayout(t: CvTemplate, columns: 1 | 2 | 3): SectionId[][] {
   const explicit = t.layouts?.[columns];
   if (explicit) return explicit.map((c) => [...c]);
-  const g = geometry({ templateId: t.id, columns } as CvDesign);
+  const g = geometryFor(t, columns);
   // in a top/banner header the contact line sits in the header; as a section it is only needed in a sidebar
   const contactInSidebar = g.header === 'sidebar';
   const side = SIDE.filter((s) => s !== 'contact' || contactInSidebar);
@@ -130,14 +135,14 @@ export function defaultLayout(t: CvTemplate, columns: 1 | 2 | 3): SectionId[][] 
 }
 
 /**
- * Re-fit an existing (possibly user-arranged) layout to a new column count. With the same number of columns the
+ * Re-fit an existing (possibly user-arranged) layout when switching templates. With the same number of columns the
  * user's arrangement is kept as is; otherwise sections keep their relative order and move to the column they
  * "belong" to in the new skeleton. Sections the user removed stay removed.
  */
 export function refitLayout(layout: SectionId[][], t: CvTemplate, columns: 1 | 2 | 3): SectionId[][] {
   if (layout.length === columns) return dedupe(layout);
   const target = defaultLayout(t, columns);
-  const g = geometry({ templateId: t.id, columns } as CvDesign);
+  const g = geometryFor(t, columns);
   const homeOf = new Map<SectionId, number>();
   target.forEach((col, i) => col.forEach((s) => homeOf.set(s, i)));
   const out: SectionId[][] = Array.from({ length: columns }, () => []);

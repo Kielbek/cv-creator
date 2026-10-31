@@ -1,10 +1,10 @@
 @let c = cv();
-<div class="wizard" [class.rail-collapsed]="railCollapsed()">
+<div class="wizard theme-mono" [class.rail-collapsed]="railCollapsed()">
   <!-- ================= step rail ================= -->
-  <aside class="wizard-rail hero-bg no-print">
+  <aside class="wizard-rail no-print">
     <div class="flex items-center justify-between gap-2 px-5 pb-6 pt-5">
-      <a routerLink="/" aria-label="Home" class="rail-label"><app-logo [dark]="true" /></a>
-      <a routerLink="/" aria-label="Home" class="rail-icon-only"><app-logo [dark]="true" [compact]="true" /></a>
+      <a routerLink="/" aria-label="Home" class="rail-label"><app-logo [dark]="true" [mono]="true" /></a>
+      <a routerLink="/" aria-label="Home" class="rail-icon-only"><app-logo [dark]="true" [compact]="true" [mono]="true" /></a>
       <button type="button" class="rail-toggle" (click)="railCollapsed.set(!railCollapsed())" [attr.aria-label]="'editor.collapse' | translate">
         <lucide-icon [img]="icons.ChevronLeft" class="size-4 transition" [class.rotate-180]="railCollapsed()" />
       </button>
@@ -26,10 +26,10 @@
     </nav>
 
     <div class="rail-label mt-auto space-y-4 px-5 pb-5">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur">
+      <div class="rounded-xl border border-white/10 p-3.5">
         <div class="flex items-center justify-between text-xs text-white/70"><span>{{ 'editor.score.title' | translate }}</span><span class="font-bold text-white">{{ score() }}%</span></div>
         <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-          <div class="h-full rounded-full bg-gradient-to-r from-brand-400 to-fuchsia-400 transition-all" [style.width.%]="score()"></div>
+          <div class="h-full rounded-full bg-white transition-all" [style.width.%]="score()"></div>
         </div>
       </div>
       <div class="flex items-center justify-between">
@@ -43,7 +43,7 @@
   <main class="wizard-main no-print">
     <div class="sticky top-0 z-20 flex items-center gap-2 border-b border-slate-200/70 bg-white/85 px-4 py-2.5 backdrop-blur sm:px-8">
       <label class="flex min-w-0 items-center gap-2 text-xs text-slate-500">
-        <span class="hidden 2xl:inline">{{ 'editor.cvLanguage' | translate }}</span>
+        <span class="hidden whitespace-nowrap 2xl:inline">{{ 'editor.cvLanguage' | translate }}</span>
         <select class="input w-auto! py-1.5 max-sm:max-w-[6.5rem]" [value]="c.language" (change)="setLanguage($any($event.target).value)" [attr.aria-label]="'editor.cvLanguage' | translate">
           @for (l of languages; track l) {
             <option [value]="l" [selected]="l == c.language">{{ langName(l) }}</option>
@@ -51,7 +51,7 @@
         </select>
       </label>
       <label class="flex min-w-0 items-center gap-2 text-xs text-slate-500">
-        <span class="hidden 2xl:inline">{{ 'editor.country' | translate }}</span>
+        <span class="hidden whitespace-nowrap 2xl:inline">{{ 'editor.country' | translate }}</span>
         <select class="input w-auto! max-w-40 py-1.5 max-sm:max-w-[6.5rem]" [value]="c.country" (change)="setCountry($any($event.target).value)" [attr.aria-label]="'editor.country' | translate">
           @for (co of countries; track co.code) {
             <option [value]="co.code" [selected]="co.code == c.country">{{ countryName(co.code) }}</option>
@@ -80,20 +80,20 @@
       </button>
     </div>
 
-    <div class="mx-auto w-full max-w-[720px] px-4 pb-32 pt-8 sm:px-8 sm:pt-12">
-      <p class="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">{{ 'editor.stepOf' | translate: { n: stepIndex() + 1, total: steps.length } }}</p>
-      <h1 class="text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-[2.6rem]">
+    <div class="mx-auto w-full max-w-[680px] px-5 pb-32 pt-10 sm:px-10 sm:pt-16">
+      <p class="mb-3 text-[13px] text-slate-400">{{ 'editor.stepOf' | translate: { n: stepIndex() + 1, total: steps.length } }}</p>
+      <h1 class="text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.03em] text-slate-900 sm:text-[2.35rem]">
         {{ 'editor.steps.' + step().id + '.title1' | translate }}<br />
         <span class="text-gradient">{{ 'editor.steps.' + step().id + '.title2' | translate }}</span>
       </h1>
-      <p class="mt-4 max-w-xl text-[15px] leading-relaxed text-slate-600">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
+      <p class="mt-4 max-w-xl text-[15px] leading-relaxed text-slate-500">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
 
-      <div class="mt-8">
+      <div class="mt-10">
         @if (!isFinish()) {
           <app-content-panel [sections]="step().sections" />
         } @else {
           <!-- finish: download + design, layout, AI -->
-          <div class="mb-6 flex flex-col gap-4 rounded-2xl border border-brand-100 bg-gradient-to-br from-brand-50 to-violet-50 p-5 sm:flex-row sm:items-center">
+          <div class="mb-6 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:flex-row sm:items-center">
             <div class="flex-1">
               <p class="font-semibold text-slate-900">{{ 'editor.readyTitle' | translate }}</p>
               <p class="text-sm text-slate-600">{{ 'editor.pages' | translate: { count: pageCount() } }} · {{ 'editor.score.title' | translate }} {{ score() }}%</p>

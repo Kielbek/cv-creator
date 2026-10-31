@@ -62,19 +62,9 @@ export class CvStore {
     this.update((cv) => {
       const t = findTemplate(id);
       cv.design.templateId = t.id;
-      cv.design.columns = null;
       cv.design.accent = null;
       cv.design.font = null;
       cv.design.layout = refitLayout(cv.design.layout, t, t.columns);
-    }, true);
-  }
-
-  setColumns(n: number): void {
-    this.update((cv) => {
-      const t = findTemplate(cv.design.templateId);
-      const columns = clampColumns(n);
-      cv.design.columns = columns === t.columns ? null : columns;
-      cv.design.layout = refitLayout(cv.design.layout, t, columns);
     }, true);
   }
 
@@ -114,6 +104,7 @@ export function migrate(input: Partial<Cv>): Cv {
   const base = emptyCv(input.language ?? 'en', input.country ?? 'PL');
   const cv: Cv = { ...base, ...input, personal: { ...base.personal, ...input.personal }, version: 1 } as Cv;
   cv.design = { ...defaultDesign(cv.design?.templateId ?? 'atlas', cv.country), ...input.design } as Cv['design'];
+  delete (cv.design as unknown as Record<string, unknown>)['columns']; // older saves could override the skeleton
   for (const k of ['experience', 'education', 'skills', 'languages', 'projects', 'certificates'] as const) {
     if (!Array.isArray(cv[k])) (cv as unknown as Record<string, unknown[]>)[k] = [];
   }

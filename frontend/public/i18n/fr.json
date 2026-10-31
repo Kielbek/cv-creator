@@ -51,7 +51,7 @@
    },
    "layout": {
     "title": "Votre mise en page",
-    "text": "1, 2 ou 3 colonnes. Déplacez les sections où vous voulez – les pages A4 s'ajoutent automatiquement."
+    "text": "Modèles à 1, 2 ou 3 colonnes. Déplacez les sections dans la mise en page – les pages A4 s'ajoutent automatiquement."
    },
    "tailor": {
     "title": "Adapté à l'offre",
@@ -126,7 +126,7 @@
  },
  "templates": {
   "title": "Modèles de CV",
-  "subtitle": "Chaque modèle fonctionne en 1, 2 ou 3 colonnes avec n'importe quel ordre de sections. Les modèles ATS sont les plus sûrs pour postuler en ligne.",
+  "subtitle": "Chaque modèle a sa propre mise en page fixe (1, 2 ou 3 colonnes) – vous pouvez toujours déplacer les sections entre ses colonnes. Les modèles ATS sont les plus sûrs pour postuler en ligne.",
   "use": "Utiliser ce modèle",
   "filter": {
    "all": "Tous",
@@ -138,7 +138,6 @@
   }
  },
  "layout": {
-  "skeleton": "Structure de page",
   "columns": {
    "1": "1 colonne",
    "2": "2 colonnes",
@@ -334,7 +333,7 @@
     "nav": "Terminer",
     "title1": "Peaufinez et",
     "title2": "téléchargez votre CV",
-    "intro": "Choisissez le modèle, organisez les sections sur 1 à 3 colonnes, adaptez le CV à une offre avec l'IA et téléchargez le PDF."
+    "intro": "Choisissez le modèle, organisez ses sections, adaptez le CV à une offre avec l'IA et téléchargez le PDF."
    }
   }
  },

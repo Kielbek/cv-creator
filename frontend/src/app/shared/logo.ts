@@ -11,9 +11,9 @@ export const BRAND = 'CV Creator';
         <defs>
           <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6d7dff" /><stop offset="1" stop-color="#a855f7" /></linearGradient>
         </defs>
-        <rect width="32" height="32" rx="9" fill="url(#lg)" />
-        <path d="M10 8.5h8.5l4 4V23.5H10z" fill="#fff" opacity=".95" />
-        <path d="M13 16h6.5M13 19.5h4.5" stroke="#6d5dfc" stroke-width="1.8" stroke-linecap="round" />
+        <rect width="32" height="32" rx="9" [attr.fill]="mono() ? (dark() ? '#fff' : '#161616') : 'url(#lg)'" />
+        <path d="M10 8.5h8.5l4 4V23.5H10z" [attr.fill]="mono() && dark() ? '#161616' : '#fff'" opacity=".95" />
+        <path d="M13 16h6.5M13 19.5h4.5" [attr.stroke]="mono() ? (dark() ? '#fff' : '#161616') : '#6d5dfc'" stroke-width="1.8" stroke-linecap="round" />
       </svg>
       @if (!compact()) {
         <span class="text-lg">{{ brand }}</span>
@@ -26,5 +26,7 @@ export const BRAND = 'CV Creator';
 export class Logo {
   readonly dark = input(true);
   readonly compact = input(false);
+  /** greyscale variant (editor) */
+  readonly mono = input(false);
   protected readonly brand = BRAND;
 }

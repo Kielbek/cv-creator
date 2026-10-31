@@ -51,7 +51,7 @@
    },
    "layout": {
     "title": "Tu diseño, a tu manera",
-    "text": "1, 2 o 3 columnas. Arrastra secciones donde quieras – las páginas A4 se crean solas."
+    "text": "Plantillas de 1, 2 o 3 columnas. Arrastra secciones dentro del diseño – las páginas A4 se crean solas."
    },
    "tailor": {
     "title": "Ajusta a una oferta",
@@ -126,7 +126,7 @@
  },
  "templates": {
   "title": "Plantillas de CV",
-  "subtitle": "Cada plantilla funciona con 1, 2 o 3 columnas y cualquier orden de secciones. Las marcadas ATS son las más seguras para candidaturas online.",
+  "subtitle": "Cada plantilla tiene su propio diseño fijo (1, 2 o 3 columnas); aun así puedes mover secciones entre sus columnas. Las plantillas ATS son las más seguras para candidaturas online.",
   "use": "Usar plantilla",
   "filter": {
    "all": "Todas",
@@ -138,7 +138,6 @@
   }
  },
  "layout": {
-  "skeleton": "Estructura de página",
   "columns": {
    "1": "1 columna",
    "2": "2 columnas",
@@ -334,7 +333,7 @@
     "nav": "Finalizar",
     "title1": "Pule y",
     "title2": "descarga tu CV",
-    "intro": "Elige la plantilla, organiza las secciones en 1–3 columnas, adapta el CV a una oferta con IA y descarga el PDF."
+    "intro": "Elige la plantilla, organiza sus secciones, adapta el CV a una oferta con IA y descarga el PDF."
    }
   }
  },

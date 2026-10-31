@@ -1,12 +1,12 @@
 import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LucideAngularModule, Columns2, Columns3, GripVertical, RectangleVertical, EyeOff, Eye } from 'lucide-angular';
+import { LucideAngularModule, GripVertical, EyeOff, Eye } from 'lucide-angular';
 import { CvStore } from '../../../core/cv/cv.store';
 import { ALL_SECTIONS, SectionId, hasContent } from '../../../core/cv/cv.model';
 
 /**
- * Free arrangement: pick a skeleton (1-3 columns), then drag sections between columns or into "not shown".
+ * Free arrangement within the template's columns: drag sections between columns or into "not shown".
  * Pagination follows automatically.
  */
 @Component({
@@ -15,28 +15,6 @@ import { ALL_SECTIONS, SectionId, hasContent } from '../../../core/cv/cv.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="space-y-5">
-      <div class="panel-card p-4">
-        <h3 class="mb-3 text-sm font-semibold text-slate-800">{{ 'layout.skeleton' | translate }}</h3>
-        <div class="grid grid-cols-3 gap-2">
-          @for (n of [1, 2, 3]; track n) {
-            <button
-              type="button"
-              class="flex flex-col items-center gap-2 rounded-xl border-2 p-3 text-xs font-medium transition"
-              [class]="geo().columns === n ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-slate-200 text-slate-600 hover:border-brand-300'"
-              (click)="store.setColumns(n)"
-              [attr.aria-pressed]="geo().columns === n"
-            >
-              <span class="flex h-12 w-10 gap-0.5 rounded border border-current p-1 opacity-80">
-                @for (w of preview(n); track $index) {
-                  <span class="rounded-sm bg-current opacity-40" [style.flex]="w"></span>
-                }
-              </span>
-              {{ 'layout.columns.' + n | translate }}
-            </button>
-          }
-        </div>
-      </div>
-
       <div class="panel-card p-4" cdkDropListGroup>
         <h3 class="text-sm font-semibold text-slate-800">{{ 'layout.arrange' | translate }}</h3>
         <p class="mb-3 text-xs text-slate-500">{{ 'layout.arrangeHint' | translate }}</p>
@@ -88,7 +66,7 @@ import { ALL_SECTIONS, SectionId, hasContent } from '../../../core/cv/cv.model';
 })
 export class LayoutPanel {
   protected readonly store = inject(CvStore);
-  protected readonly icons = { Columns2, Columns3, GripVertical, RectangleVertical, EyeOff, Eye };
+  protected readonly icons = { GripVertical, EyeOff, Eye };
   protected readonly geo = this.store.geometry;
   protected readonly columns = computed(() => this.store.cv().design.layout.map((c) => [...c]));
   protected readonly unused = computed(() => {
@@ -97,9 +75,6 @@ export class LayoutPanel {
   });
   protected readonly gridCols = computed(() => this.geo().widths.map((w) => `minmax(0, ${Math.max(w, 0.3)}fr)`).join(' '));
 
-  protected preview(n: number): number[] {
-    return n === 1 ? [1] : n === 2 ? [1, 2] : [1, 1.7, 1];
-  }
 
   protected filled(s: SectionId): boolean {
     return hasContent(this.store.cv(), s);
