@@ -177,6 +177,17 @@
    "f4": {
     "title": "Supera el filtro ATS",
     "text": "Nuestros PDF contienen texto real y seleccionable en orden lógico. Las plantillas ATS tienen una estructura que los sistemas leen sin errores."
+   },
+   "people": {
+    "eyebrow": "Para todos",
+    "title": "Un CV para cada sector y etapa profesional",
+    "text": "Del primer empleo a puestos directivos: plantillas y sugerencias de IA que se adaptan a tu puesto.",
+    "roles": {
+     "marketing": "Marketing",
+     "it": "TI y tecnología",
+     "sales": "Ventas y atención al cliente",
+     "finance": "Finanzas y administración"
+    }
    }
   }
  },

@@ -177,6 +177,17 @@
    "f4": {
     "title": "Passez le filtre ATS",
     "text": "Nos PDF contiennent du vrai texte sélectionnable dans un ordre logique. Les modèles ATS ont une structure que les logiciels de recrutement lisent sans erreur."
+   },
+   "people": {
+    "eyebrow": "Pour tous",
+    "title": "Un CV pour chaque secteur et chaque étape de carrière",
+    "text": "Du premier emploi aux postes de direction – modèles et suggestions IA s'adaptent à votre rôle.",
+    "roles": {
+     "marketing": "Marketing",
+     "it": "IT & technologie",
+     "sales": "Vente & relation client",
+     "finance": "Finance & administration"
+    }
    }
   }
  },

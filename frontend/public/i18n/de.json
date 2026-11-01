@@ -177,6 +177,17 @@
    "f4": {
     "title": "Durch den ATS-Filter kommen",
     "text": "Unsere PDFs enthalten echten, markierbaren Text in logischer Reihenfolge. ATS-Vorlagen haben eine Struktur, die Bewerbersysteme fehlerfrei lesen."
+   },
+   "people": {
+    "eyebrow": "Für alle",
+    "title": "Ein Lebenslauf für jede Branche und Karrierestufe",
+    "text": "Vom ersten Job bis zur Führungsposition – Vorlagen und KI-Vorschläge passen sich deiner Rolle an.",
+    "roles": {
+     "marketing": "Marketing",
+     "it": "IT & Technologie",
+     "sales": "Vertrieb & Kundenservice",
+     "finance": "Finanzen & Verwaltung"
+    }
    }
   }
  },

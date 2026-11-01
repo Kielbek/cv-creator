@@ -177,6 +177,17 @@
    "f4": {
     "title": "Przejdź przez filtr ATS",
     "text": "Nasze PDF-y zawierają prawdziwy, zaznaczalny tekst w logicznej kolejności. Szablony oznaczone ATS mają strukturę, którą systemy rekrutacyjne czytają bez błędów."
+   },
+   "people": {
+    "eyebrow": "Dla każdego",
+    "title": "CV dla każdej branży i każdego etapu kariery",
+    "text": "Od pierwszej pracy po stanowiska kierownicze – szablony i podpowiedzi AI dopasowują się do Twojej roli.",
+    "roles": {
+     "marketing": "Marketing",
+     "it": "IT i technologie",
+     "sales": "Sprzedaż i obsługa klienta",
+     "finance": "Finanse i administracja"
+    }
    }
   }
  },

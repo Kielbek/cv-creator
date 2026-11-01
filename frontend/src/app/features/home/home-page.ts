@@ -9,6 +9,7 @@ import { TEMPLATES } from '../../core/cv/templates';
 import { UiLanguage } from '../../core/i18n/ui-language';
 import { CV_LANGUAGES } from '../../core/cv/cv-labels';
 import { COUNTRIES } from '../../core/cv/countries';
+import { HOME_PHOTOS } from './home-photos';
 
 @Component({
   selector: 'app-home-page',
@@ -20,7 +21,13 @@ import { COUNTRIES } from '../../core/cv/countries';
 export class HomePage {
   protected readonly ui = inject(UiLanguage);
   protected readonly icons = { ArrowRight, Check, FileUp, Plus, ShieldCheck, Sparkles, Target, Globe2, PenLine, LayoutTemplate, Download };
+  protected readonly photos = HOME_PHOTOS;
   protected readonly templates = TEMPLATES;
+
+  /** a photo that fails to load leaves the neutral placeholder background instead of a broken icon */
+  protected hide(e: Event): void {
+    (e.target as HTMLImageElement).style.opacity = '0';
+  }
   protected readonly stats = [
     { value: String(TEMPLATES.length), key: 'templates' },
     { value: String(CV_LANGUAGES.length), key: 'languages' },

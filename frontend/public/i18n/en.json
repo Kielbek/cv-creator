@@ -177,6 +177,17 @@
    "f4": {
     "title": "Get past the ATS filter",
     "text": "Our PDFs contain real, selectable text in a logical order. ATS-marked templates use a structure applicant tracking systems read without errors."
+   },
+   "people": {
+    "eyebrow": "For everyone",
+    "title": "A CV for every industry and career stage",
+    "text": "From a first job to leadership roles – templates and AI suggestions adapt to your role.",
+    "roles": {
+     "marketing": "Marketing",
+     "it": "IT & technology",
+     "sales": "Sales & customer service",
+     "finance": "Finance & administration"
+    }
    }
   }
  },
