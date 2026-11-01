@@ -1,44 +1,42 @@
-<div class="hero-blue relative overflow-hidden text-white">
-  <div class="hero-grid pointer-events-none absolute inset-0"></div>
-  <app-site-nav [dark]="true" />
+<div class="relative border-b border-[#e4e8f1] bg-white text-[#1e2532]">
+  <app-site-nav />
 
   <!-- hero -->
   <section class="relative mx-auto grid max-w-6xl items-center gap-14 px-5 pt-14 pb-24 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:pt-20 lg:pb-28">
     <div>
-      <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[12.5px] text-white/80">
-        <span class="size-1.5 rounded-full bg-brand-400"></span> {{ 'home.badge' | translate }}
-      </span>
-      <h1 class="mt-6 text-[2.9rem] leading-[1.02] font-semibold tracking-[-0.045em] text-balance sm:text-[4rem]">
-        {{ 'home.title1' | translate }} <span class="text-brand-300">{{ 'home.title2' | translate }}</span>
+      <p class="eyebrow">{{ 'home.badge' | translate }}</p>
+      <h1 class="mt-5 text-[2.8rem] leading-[1.05] font-semibold tracking-[-0.04em] text-balance sm:text-[3.6rem]">
+        {{ 'home.title1' | translate }} <span class="text-[#1f6feb]">{{ 'home.title2' | translate }}</span>
       </h1>
-      <p class="mt-6 max-w-[34rem] text-[17px] leading-relaxed text-white/70">{{ 'home.subtitle' | translate }}</p>
+      <p class="mt-6 max-w-[34rem] text-[17px] leading-relaxed text-[#6b7489]">{{ 'home.subtitle' | translate }}</p>
       <div class="mt-9 flex flex-wrap items-center gap-3">
         <a routerLink="/start" class="btn-primary h-12! px-6! text-[15px]!">{{ 'home.cta' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" /></a>
-        <a routerLink="/templates" class="inline-flex h-12 items-center gap-2 rounded-lg border border-white/20 px-5 text-[15px] font-medium text-white transition hover:bg-white/10">{{ 'home.ctaTemplates' | translate }}</a>
+        <a routerLink="/templates" class="btn-ghost h-12! px-5! text-[15px]!">{{ 'home.ctaTemplates' | translate }}</a>
       </div>
-      <dl class="mt-14 grid max-w-md grid-cols-3 gap-6 border-t border-white/10 pt-6">
+      <dl class="mt-14 grid max-w-md grid-cols-3 gap-6 border-t border-[#e4e8f1] pt-6">
         <div>
           <dt class="text-[28px] leading-none font-semibold tracking-tight">{{ templateCount }}</dt>
-          <dd class="mt-2 text-[12.5px] text-white/55">{{ 'nav.templates' | translate }}</dd>
+          <dd class="mt-2 text-[12.5px] text-[#6b7489]">{{ 'nav.templates' | translate }}</dd>
         </div>
         <div>
           <dt class="text-[28px] leading-none font-semibold tracking-tight">{{ cvLanguageCount }}</dt>
-          <dd class="mt-2 text-[12.5px] text-white/55">{{ 'home.statLanguages' | translate }}</dd>
+          <dd class="mt-2 text-[12.5px] text-[#6b7489]">{{ 'home.statLanguages' | translate }}</dd>
         </div>
         <div>
           <dt class="text-[28px] leading-none font-semibold tracking-tight">0 €</dt>
-          <dd class="mt-2 text-[12.5px] text-white/55">{{ 'home.statPrice' | translate }}</dd>
+          <dd class="mt-2 text-[12.5px] text-[#6b7489]">{{ 'home.statPrice' | translate }}</dd>
         </div>
       </dl>
     </div>
 
     <div class="relative mx-auto">
-      <div class="absolute -inset-8 rounded-[2rem] bg-brand-500/25 blur-3xl"></div>
-      <div class="relative overflow-hidden rounded-xl bg-white shadow-[0_40px_80px_-30px_rgb(0_0_0/0.6)] ring-1 ring-white/10">
-        <cv-thumb templateId="nova" [lang]="ui.current()" [width]="400" />
+      <div class="rounded-lg bg-[#5b6375] p-8 sm:p-10">
+      <div class="relative overflow-hidden rounded-sm bg-white shadow-[0_2px_6px_rgb(0_0_0/0.12),0_20px_50px_-20px_rgb(0_0_0/0.45)]">
+        <cv-thumb templateId="nova" [lang]="ui.current()" [width]="380" />
       </div>
-      <div class="absolute -bottom-5 -left-6 hidden items-center gap-3 rounded-xl bg-white px-4 py-3 text-ink shadow-xl sm:flex">
-        <span class="flex size-9 items-center justify-center rounded-lg bg-primary-soft text-primary"><lucide-icon [img]="icons.ShieldCheck" class="size-5" /></span>
+      </div>
+      <div class="absolute -bottom-5 -left-6 hidden items-center gap-3 rounded-md border border-[#e4e8f1] bg-white px-4 py-3 text-ink shadow-[0_8px_24px_-8px_rgb(0_0_0/0.2)] sm:flex">
+        <span class="flex size-9 items-center justify-center rounded bg-[#eff2f9] text-[#1f6feb]"><lucide-icon [img]="icons.ShieldCheck" class="size-5" /></span>
         <span>
           <span class="block text-[13.5px] font-semibold">{{ 'home.atsCard.title' | translate }}</span>
           <span class="block text-[12px] text-muted">{{ 'home.atsCard.text' | translate }}</span>
@@ -117,7 +115,7 @@
 
 <!-- final cta -->
 <section class="px-5 pb-20 sm:px-8">
-  <div class="hero-blue mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 rounded-2xl px-8 py-14 text-white sm:px-12 md:flex-row md:items-center">
+  <div class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 rounded-lg bg-[#1e2532] px-8 py-14 text-white sm:px-12 md:flex-row md:items-center">
     <div>
       <h2 class="serif text-[2rem] leading-tight">{{ 'home.final.title' | translate }}</h2>
       <p class="mt-2 text-[15px] text-white/70">{{ 'home.final.text' | translate }}</p>

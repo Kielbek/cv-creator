@@ -2,37 +2,39 @@
 <div class="wizard" [class.rail-collapsed]="railCollapsed()">
   <!-- ================= step rail ================= -->
   <aside class="wizard-rail no-print">
-    <div class="flex h-16 items-center justify-between px-5">
+    <div class="flex h-16 items-center justify-between px-6">
       <a routerLink="/" aria-label="Home"><app-logo [compact]="railCollapsed()" /></a>
       <button type="button" class="rail-toggle" (click)="railCollapsed.set(!railCollapsed())" [attr.aria-label]="'editor.collapse' | translate">
         <lucide-icon [img]="icons.ChevronLeft" class="size-4 transition" [class.rotate-180]="railCollapsed()" />
       </button>
     </div>
 
-    <div class="rail-label mx-4 mb-4 rounded-2xl bg-gradient-to-br from-[#eef3ff] to-[#f4efff] p-4">
-      <div class="flex items-center justify-between text-[12.5px] font-semibold text-slate-700">
-        <span>{{ 'editor.progress' | translate }}</span><span class="text-primary">{{ doneCount() }}/{{ steps.length - 1 }}</span>
-      </div>
-      <div class="mt-2.5 h-2 overflow-hidden rounded-full bg-white">
-        <div class="h-full rounded-full bg-gradient-to-r from-[#2563eb] to-[#8b5cf6] transition-all" [style.width.%]="(doneCount() / (steps.length - 1)) * 100"></div>
-      </div>
-    </div>
-
     <nav class="wizard-steps" [attr.aria-label]="'editor.stepsLabel' | translate">
-      @for (s of steps; track s.id; let i = $index) {
-        <button type="button" class="wizard-step" [class.is-active]="i === stepIndex()" [attr.aria-current]="i === stepIndex() ? 'step' : null" (click)="go(i)" [title]="'editor.steps.' + s.id + '.nav' | translate">
-          <span class="tile size-8" [style.--tile-bg]="s.bg" [style.--tile-fg]="s.fg"><lucide-icon [img]="s.icon" class="size-4" /></span>
+      @for (s of steps; track s.id; let i = $index; let last = $last) {
+        <button type="button" class="wizard-step" [class.is-active]="i === stepIndex()" [class.is-done]="done(i) && i !== stepIndex()" [attr.aria-current]="i === stepIndex() ? 'step' : null" (click)="go(i)" [title]="'editor.steps.' + s.id + '.nav' | translate">
+          <span class="step-dot">
+            @if (done(i) && i !== stepIndex()) {
+              <lucide-icon [img]="icons.Check" class="size-3" [strokeWidth]="3" />
+            } @else {
+              {{ i + 1 }}
+            }
+          </span>
           <span class="rail-label min-w-0 flex-1 truncate">{{ 'editor.steps.' + s.id + '.nav' | translate }}</span>
-          @if (done(i)) {
-            <span class="rail-label flex size-5 items-center justify-center rounded-full bg-[#dcfce7] text-[#16a34a]"><lucide-icon [img]="icons.Check" class="size-3" [strokeWidth]="3" /></span>
-          }
         </button>
       }
     </nav>
 
-    <div class="rail-label mt-auto flex items-center justify-between px-4 py-4">
-      <span class="text-[12px] text-faint">{{ 'editor.autosave' | translate }}</span>
-      <app-language-switcher [up]="true" />
+    <div class="rail-label mt-auto px-6 pb-5">
+      <div class="flex items-center justify-between text-[12.5px] text-[#6b7489]">
+        <span>{{ 'editor.score.title' | translate }}</span><span class="font-medium text-[#1e2532] tabular-nums">{{ score() }}%</span>
+      </div>
+      <div class="mt-2 h-1 overflow-hidden rounded-full bg-[#e4e8f1]">
+        <div class="h-full rounded-full bg-[#1f6feb] transition-all" [style.width.%]="score()"></div>
+      </div>
+      <div class="mt-5 flex items-center justify-between">
+        <span class="text-[12px] text-[#9aa2b6]">{{ 'editor.autosave' | translate }}</span>
+        <app-language-switcher [up]="true" />
+      </div>
     </div>
   </aside>
 
@@ -77,32 +79,17 @@
       </button>
     </div>
 
-    <div class="mx-auto w-full max-w-[760px] px-4 pb-24 pt-8 sm:px-8 sm:pt-10">
-     <div class="wizard-card">
+    <div class="mx-auto w-full max-w-[680px] px-5 pb-24 pt-10 sm:px-10 sm:pt-14">
+     <div>
       @if (intro()) {
-        <div class="flex min-h-[50vh] flex-col items-center justify-center text-center">
-          <div class="relative">
-            <span class="absolute -top-3 -left-6 size-3 rounded-full bg-[#fbbf24]"></span>
-            <span class="absolute -right-7 top-2 size-2.5 rounded-full bg-[#f472b6]"></span>
-            <span class="absolute -bottom-2 -right-4 size-2 rounded-full bg-[#34d399]"></span>
-            <span class="tile size-24 rounded-[28px]" [style.--tile-bg]="step().bg" [style.--tile-fg]="step().fg"><lucide-icon [img]="step().icon" class="size-11" [strokeWidth]="1.6" /></span>
-          </div>
-          <p class="mt-8 text-[15px] font-semibold" [style.color]="step().fg">{{ 'editor.praise.' + (stepIndex() % 3) | translate }}</p>
-          <h1 class="mt-2 max-w-lg text-[2.1rem] leading-[1.15] font-bold tracking-[-0.03em] text-balance text-ink sm:text-[2.5rem]">{{ 'editor.steps.' + step().id + '.lead' | translate }}</h1>
-          <p class="mt-4 max-w-md text-[15px] leading-relaxed text-muted">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
+        <div class="flex min-h-[52vh] flex-col justify-center">
+          <p class="text-[14px] font-medium text-[#1f6feb]">{{ 'editor.praise.' + (stepIndex() % 3) | translate }}</p>
+          <h1 class="mt-3 max-w-xl text-[2.5rem] leading-[1.12] font-semibold tracking-[-0.03em] text-balance text-[#1e2532]">{{ 'editor.steps.' + step().id + '.lead' | translate }}</h1>
+          <p class="mt-4 max-w-md text-[15px] leading-relaxed text-[#6b7489]">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
         </div>
       } @else {
-        <div class="flex items-center gap-4">
-          <span class="tile size-14 rounded-2xl" [style.--tile-bg]="step().bg" [style.--tile-fg]="step().fg"><lucide-icon [img]="step().icon" class="size-6" /></span>
-          <div class="min-w-0">
-            <p class="text-[12.5px] font-semibold text-faint">{{ 'editor.stepOf' | translate: { n: stepIndex() + 1, total: steps.length } }}</p>
-            <h1 class="mt-0.5 text-[1.65rem] leading-tight font-bold tracking-[-0.03em] text-balance text-ink sm:text-[1.9rem]">{{ 'editor.steps.' + step().id + '.title1' | translate }} {{ 'editor.steps.' + step().id + '.title2' | translate }}</h1>
-          </div>
-        </div>
-        <div class="tip mt-6">
-          <lucide-icon [img]="icons.Lightbulb" class="mt-0.5 size-4 shrink-0 text-[#d99a00]" />
-          <span>{{ 'editor.steps.' + step().id + '.intro' | translate }}</span>
-        </div>
+        <h1 class="text-[1.9rem] leading-tight font-semibold tracking-[-0.03em] text-balance text-[#1e2532]">{{ 'editor.steps.' + step().id + '.title1' | translate }} {{ 'editor.steps.' + step().id + '.title2' | translate }}</h1>
+        <p class="mt-2 max-w-[34rem] text-[15px] leading-relaxed text-[#6b7489]">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
 
       <div class="mt-9">
         @if (!isFinish()) {
@@ -160,16 +147,16 @@
 
       }
 
-      <div class="mt-12 flex items-center justify-between gap-4">
-        <button type="button" class="btn-ghost h-11! px-5!" (click)="back()" [disabled]="stepIndex() === 0 && !intro()">
+      <div class="mt-12 flex items-center justify-between gap-4 border-t border-[#e4e8f1] pt-6">
+        <button type="button" class="btn-ghost px-5!" (click)="back()" [disabled]="stepIndex() === 0 && !intro()">
           <lucide-icon [img]="icons.ArrowLeft" class="size-4" /> {{ 'editor.back' | translate }}
         </button>
         @if (!isFinish() || intro()) {
-          <button type="button" class="btn-primary h-11! px-7!" (click)="next()">
+          <button type="button" class="btn-primary px-7!" (click)="next()">
             {{ 'editor.next' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" />
           </button>
         } @else {
-          <button type="button" class="btn-primary h-11! px-7!" (click)="download()">
+          <button type="button" class="btn-primary px-7!" (click)="download()">
             <lucide-icon [img]="icons.Download" class="size-4" /> {{ 'editor.download' | translate }}
           </button>
         }
@@ -182,16 +169,16 @@
   <section class="wizard-preview" [class.is-open]="mobilePreview()" [attr.aria-label]="'editor.preview' | translate">
     <div class="no-print flex items-center justify-between gap-3 px-8 pb-5 pt-7">
       <div>
-        <p class="eyebrow">{{ 'editor.livePreview' | translate }}</p>
-        <p class="mt-1 text-[13px] text-muted">{{ store.geometry().template.name }} · {{ 'editor.pages' | translate: { count: pageCount() } }}</p>
+        <p class="text-[13px] font-medium text-white">{{ 'editor.livePreview' | translate }}</p>
+        <p class="mt-0.5 text-[12.5px] text-white/55">{{ store.geometry().template.name }} · {{ 'editor.pages' | translate: { count: pageCount() } }}</p>
       </div>
       <div class="flex items-center gap-2">
-        <div class="flex items-center rounded-lg border border-line bg-white p-0.5 shadow-[0_1px_2px_rgb(10_26_63/0.06)]">
-          <button type="button" class="icon-btn size-8!" (click)="zoomBy(-0.1)" [disabled]="previewZoom() <= 0.31" [attr.aria-label]="'editor.zoomOut' | translate" [title]="'editor.zoomOut' | translate"><lucide-icon [img]="icons.Minus" class="size-4" /></button>
-          <button type="button" class="h-8 min-w-14 rounded-md px-1 text-[12.5px] font-medium text-ink-2 tabular-nums hover:bg-paper-2" (click)="zoomFit()" [title]="'editor.zoomFit' | translate">{{ (previewZoom() * 100).toFixed(0) }}%</button>
-          <button type="button" class="icon-btn size-8!" (click)="zoomBy(0.1)" [disabled]="previewZoom() >= 1.99" [attr.aria-label]="'editor.zoomIn' | translate" [title]="'editor.zoomIn' | translate"><lucide-icon [img]="icons.Plus" class="size-4" /></button>
-          <span class="mx-0.5 h-4 w-px bg-line"></span>
-          <button type="button" class="icon-btn size-8!" (click)="zoomFit()" [attr.aria-label]="'editor.zoomFit' | translate" [title]="'editor.zoomFit' | translate"><lucide-icon [img]="icons.Maximize2" class="size-3.5" /></button>
+        <div class="flex items-center rounded-md bg-white/10 p-0.5 text-white">
+          <button type="button" class="icon-btn size-8! text-white/80! hover:bg-white/10! hover:text-white!" (click)="zoomBy(-0.1)" [disabled]="previewZoom() <= 0.31" [attr.aria-label]="'editor.zoomOut' | translate" [title]="'editor.zoomOut' | translate"><lucide-icon [img]="icons.Minus" class="size-4" /></button>
+          <button type="button" class="h-8 min-w-14 rounded px-1 text-[12.5px] font-medium text-white tabular-nums hover:bg-white/10" (click)="zoomFit()" [title]="'editor.zoomFit' | translate">{{ (previewZoom() * 100).toFixed(0) }}%</button>
+          <button type="button" class="icon-btn size-8! text-white/80! hover:bg-white/10! hover:text-white!" (click)="zoomBy(0.1)" [disabled]="previewZoom() >= 1.99" [attr.aria-label]="'editor.zoomIn' | translate" [title]="'editor.zoomIn' | translate"><lucide-icon [img]="icons.Plus" class="size-4" /></button>
+          <span class="mx-0.5 h-4 w-px bg-white/20"></span>
+          <button type="button" class="icon-btn size-8! text-white/80! hover:bg-white/10! hover:text-white!" (click)="zoomFit()" [attr.aria-label]="'editor.zoomFit' | translate" [title]="'editor.zoomFit' | translate"><lucide-icon [img]="icons.Maximize2" class="size-3.5" /></button>
         </div>
         <button type="button" class="preview-close icon-btn" (click)="mobilePreview.set(false)" [attr.aria-label]="'common.close' | translate"><lucide-icon [img]="icons.X" class="size-5" /></button>
       </div>
@@ -202,8 +189,8 @@
       </div>
       @if (!isFinish()) {
         <div class="no-print mx-auto mt-5 max-w-sm pb-8 text-center">
-          <p class="text-[12.5px] text-faint">{{ 'editor.previewNote' | translate }}</p>
-          <button type="button" class="link mt-2 text-[13px] font-medium" (click)="go(steps.length - 1); mobilePreview.set(false)">{{ 'editor.changeTemplate' | translate }}</button>
+          <p class="text-[12.5px] text-white/50">{{ 'editor.previewNote' | translate }}</p>
+          <button type="button" class="mt-2 text-[13px] font-medium text-white underline underline-offset-4" (click)="go(steps.length - 1); mobilePreview.set(false)">{{ 'editor.changeTemplate' | translate }}</button>
         </div>
       }
     </div>

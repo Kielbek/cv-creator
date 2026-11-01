@@ -640,3 +640,184 @@ textarea.input {
   font-size: 13.5px;
   line-height: 1.55;
 }
+
+/* =====================================================================================================================
+ * PROFESSIONAL THEME (final layer – overrides everything above).
+ * One accent (blue), neutral greys, 4–6px radii, hairlines instead of shadows, no gradients, no pastel tiles.
+ * ================================================================================================================== */
+:root {
+  --pro-text: #1e2532;
+  --pro-muted: #6b7489;
+  --pro-faint: #9aa2b6;
+  --pro-line: #e4e8f1;
+  --pro-fill: #eff2f9;
+  --pro-fill-hover: #e7ebf5;
+  --pro-blue: #1f6feb;
+  --pro-blue-hover: #1659c7;
+}
+body {
+  color: var(--pro-text);
+}
+.btn-primary {
+  height: 44px;
+  border-radius: 6px;
+  background: var(--pro-blue);
+  box-shadow: none;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+.btn-primary:hover {
+  background: var(--pro-blue-hover);
+}
+.btn-ghost {
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid var(--pro-line);
+  background: #fff;
+  color: var(--pro-text);
+  font-weight: 500;
+}
+.btn-ghost:hover {
+  border-color: var(--pro-blue);
+  color: var(--pro-blue);
+}
+.btn-sm {
+  height: 34px;
+  border-radius: 5px;
+}
+
+/* inputs: filled, square-ish, blue underline on focus */
+.input,
+.field-group,
+.tag-box {
+  height: 48px;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--pro-fill);
+  box-shadow: inset 0 -2px 0 transparent;
+  transition: box-shadow 0.15s, background-color 0.15s;
+  font-size: 15px;
+  color: var(--pro-text);
+}
+.tag-box {
+  height: auto;
+  min-height: 48px;
+}
+.input:hover,
+.field-group:hover,
+.tag-box:hover {
+  background-color: var(--pro-fill-hover);
+}
+.input:focus,
+.field-group:focus-within,
+.tag-box:focus-within {
+  background-color: var(--pro-fill);
+  box-shadow: inset 0 -2px 0 var(--pro-blue);
+  border: 0;
+}
+textarea.input {
+  padding: 12px 14px;
+}
+.field-sep {
+  background: #d9deea;
+}
+.label {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--pro-muted);
+}
+.hint {
+  font-size: 12.5px;
+  color: var(--pro-faint);
+}
+.tag {
+  height: 30px;
+  border-radius: 3px;
+  padding: 0 6px 0 10px;
+  background: #fff;
+  color: var(--pro-text);
+  box-shadow: 0 0 0 1px var(--pro-line);
+  font-weight: 400;
+}
+.checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid #c3cad9;
+}
+.checkbox:checked {
+  background: var(--pro-blue);
+  border-color: var(--pro-blue);
+}
+
+/* entries: bordered rows, plain "add" link */
+.entries {
+  gap: 8px;
+}
+.entry,
+.entry + .entry {
+  border: 1px solid var(--pro-line);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.entry-head {
+  border-radius: 6px;
+  padding: 16px 16px 16px 10px;
+}
+.entry-head:hover {
+  background: #f8f9fc;
+}
+.add-row,
+.entries:empty + .add-row,
+.add-row:first-child {
+  justify-content: flex-start;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 10px 2px;
+  font-weight: 500;
+  color: var(--pro-blue) !important;
+}
+.add-row:hover {
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.chip {
+  height: 38px;
+  border-radius: 4px;
+  border: 1px solid var(--pro-line);
+  font-weight: 400;
+}
+.chip:hover {
+  border-color: var(--pro-blue);
+  background: #fff;
+  color: var(--pro-blue);
+}
+.panel-card {
+  border-radius: 6px;
+  border-color: var(--pro-line);
+  box-shadow: none;
+}
+.seg {
+  border-radius: 4px;
+}
+.layout-row {
+  border-radius: 4px;
+  box-shadow: none;
+  border-color: var(--pro-line);
+}
+.text-action {
+  color: var(--pro-blue);
+}
+.link {
+  color: var(--pro-blue);
+}
+.eyebrow {
+  color: var(--pro-blue);
+  letter-spacing: 0.08em;
+}
+.rating button.on {
+  background: var(--pro-blue);
+}

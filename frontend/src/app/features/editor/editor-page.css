@@ -20,7 +20,7 @@
   min-height: 0;
   overflow-y: auto;
   background: #fff;
-  border-right: 1px solid #edf0f6;
+  border-right: 1px solid #e4e8f1;
 }
 .rail-collapsed .rail-label {
   display: none;
@@ -52,27 +52,50 @@
   padding: 0 12px;
 }
 .wizard-step {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
   width: 100%;
-  height: 46px;
-  padding: 0 10px 0 8px;
-  border-radius: 14px;
-  color: #475569;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 4px;
+  color: #6b7489;
   font-size: 14px;
-  font-weight: 500;
   text-align: left;
   transition: background 0.12s, color 0.12s;
 }
 .wizard-step:hover {
-  background: #f6f8fc;
-  color: var(--color-ink);
+  color: #1e2532;
+  background: #f6f8fb;
 }
 .wizard-step.is-active {
-  background: #eef3ff;
-  color: var(--color-ink);
-  font-weight: 600;
+  color: #1e2532;
+  font-weight: 500;
+  background: #f1f5fd;
+}
+.step-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid #cfd5e2;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #6b7489;
+  font-variant-numeric: tabular-nums;
+}
+.wizard-step.is-active .step-dot {
+  border-color: #1f6feb;
+  background: #1f6feb;
+  color: #fff;
+}
+.wizard-step.is-done .step-dot {
+  border-color: #1f6feb;
+  color: #1f6feb;
 }
 .step-num {
   width: 18px;
@@ -93,7 +116,7 @@
 .wizard-main {
   min-height: 0;
   overflow-y: auto;
-  background: #f5f7fb;
+  background: #fff;
 }
 .wizard-card {
   background: #fff;
@@ -113,8 +136,7 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
-  background: #eef2f8;
-  border-left: 1px solid #e6ebf3;
+  background: #5b6375;
 }
 .preview-scroll {
   flex: 1;
@@ -131,7 +153,7 @@
 }
 
 .preview-box ::ng-deep .cv-page {
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05), 0 12px 32px -12px rgb(0 0 0 / 0.14);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.12), 0 20px 50px -20px rgb(0 0 0 / 0.4);
 }
 .preview-close,
 .preview-fab {
