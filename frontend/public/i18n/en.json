@@ -4,7 +4,8 @@
   "up": "Move up",
   "down": "Move down",
   "close": "Close",
-  "search": "Search…"
+  "search": "Search…",
+  "cancel": "Cancel"
  },
  "nav": {
   "templates": "Templates",
@@ -603,7 +604,9 @@
    "continue": {
     "title": "Continue my CV",
     "text": "Go back to the CV saved in this browser with the new template."
-   }
+   },
+   "lead": "Choose how you want to start. You can change everything later in the editor.",
+   "go": "Let’s start"
   },
   "upload": {
    "title": "Upload your current CV",
@@ -616,7 +619,16 @@
    "pastePlaceholder": "Paste the full text of your CV here…",
    "run": "Move to template",
    "onlyPdf": "Only PDF files are supported",
-   "tooBig": "The file is larger than 5 MB"
+   "tooBig": "The file is larger than 5 MB",
+   "tabFile": "PDF file",
+   "tabText": "Paste text",
+   "verified": "Verified PDF · {{size}} KB",
+   "checking": "Checking the file…",
+   "browse": "Choose file",
+   "minChars": "At least {{n}} more characters",
+   "security": "The file is sent over an encrypted connection (HTTPS). AI only reads the CV content — we don’t store the file or share it with anyone.",
+   "broken": "We couldn’t read this file. Try saving it again as a PDF.",
+   "notRealPdf": "This file is not a real PDF document."
   },
   "loading": {
    "new": "Preparing your CV",
@@ -629,6 +641,24 @@
     "read": "Reading the document",
     "structure": "Organising sections and dates"
    }
+  },
+  "progress": "Progress",
+  "steps": {
+   "template": "Template",
+   "method": "Method",
+   "ready": "Ready"
+  },
+  "secure": "Secure · no sign-up",
+  "kicker": {
+   "template": "Step 1 of 3",
+   "method": "Step 2 of 3",
+   "upload": "AI import"
+  },
+  "change": "Change",
+  "trust": {
+   "local": "Your data stays in your browser",
+   "files": "Files are never stored on our servers",
+   "free": "Free, no account"
   }
  },
  "mm": {

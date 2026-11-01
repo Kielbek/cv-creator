@@ -4,7 +4,8 @@
   "up": "Przesuń wyżej",
   "down": "Przesuń niżej",
   "close": "Zamknij",
-  "search": "Szukaj…"
+  "search": "Szukaj…",
+  "cancel": "Anuluj"
  },
  "nav": {
   "templates": "Szablony",
@@ -603,7 +604,9 @@
    "continue": {
     "title": "Kontynuuj moje CV",
     "text": "Wróć do CV zapisanego w tej przeglądarce z nowym szablonem."
-   }
+   },
+   "lead": "Wybierz, od czego zaczynasz. W edytorze wszystko możesz jeszcze zmienić.",
+   "go": "Zaczynamy"
   },
   "upload": {
    "title": "Wgraj swoje obecne CV",
@@ -616,7 +619,16 @@
    "pastePlaceholder": "Wklej tutaj pełny tekst swojego CV…",
    "run": "Przenieś do szablonu",
    "onlyPdf": "Obsługujemy tylko pliki PDF",
-   "tooBig": "Plik jest większy niż 5 MB"
+   "tooBig": "Plik jest większy niż 5 MB",
+   "tabFile": "Plik PDF",
+   "tabText": "Wklej tekst",
+   "verified": "Sprawdzony plik PDF · {{size}} KB",
+   "checking": "Sprawdzamy plik…",
+   "browse": "Wybierz plik",
+   "minChars": "Jeszcze co najmniej {{n}} znaków",
+   "security": "Plik przesyłamy szyfrowanym połączeniem (HTTPS). AI odczytuje z niego tylko treść CV — nie zapisujemy pliku ani nie udostępniamy go nikomu.",
+   "broken": "Nie udało się odczytać pliku. Spróbuj zapisać go ponownie jako PDF.",
+   "notRealPdf": "Ten plik nie jest prawdziwym dokumentem PDF."
   },
   "loading": {
    "new": "Przygotowujemy Twoje CV",
@@ -629,6 +641,24 @@
     "read": "Odczytywanie dokumentu",
     "structure": "Porządkowanie sekcji i dat"
    }
+  },
+  "progress": "Postęp",
+  "steps": {
+   "template": "Szablon",
+   "method": "Sposób",
+   "ready": "Gotowe"
+  },
+  "secure": "Bezpiecznie · bez rejestracji",
+  "kicker": {
+   "template": "Krok 1 z 3",
+   "method": "Krok 2 z 3",
+   "upload": "Import z AI"
+  },
+  "change": "Zmień",
+  "trust": {
+   "local": "Dane zostają w Twojej przeglądarce",
+   "files": "Pliki nie są zapisywane na serwerze",
+   "free": "Za darmo, bez konta"
   }
  },
  "mm": {

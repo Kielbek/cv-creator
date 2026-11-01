@@ -4,7 +4,8 @@
   "up": "Nach oben",
   "down": "Nach unten",
   "close": "Schließen",
-  "search": "Suchen…"
+  "search": "Suchen…",
+  "cancel": "Abbrechen"
  },
  "nav": {
   "templates": "Vorlagen",
@@ -603,7 +604,9 @@
    "continue": {
     "title": "Meinen Lebenslauf fortsetzen",
     "text": "Mit der neuen Vorlage zum gespeicherten Lebenslauf zurückkehren."
-   }
+   },
+   "lead": "Wähle, wie du starten möchtest. Im Editor kannst du alles noch ändern.",
+   "go": "Los geht’s"
   },
   "upload": {
    "title": "Lade deinen aktuellen Lebenslauf hoch",
@@ -616,7 +619,16 @@
    "pastePlaceholder": "Füge hier den vollständigen Text deines Lebenslaufs ein…",
    "run": "In Vorlage übertragen",
    "onlyPdf": "Nur PDF-Dateien werden unterstützt",
-   "tooBig": "Die Datei ist größer als 5 MB"
+   "tooBig": "Die Datei ist größer als 5 MB",
+   "tabFile": "PDF-Datei",
+   "tabText": "Text einfügen",
+   "verified": "Geprüfte PDF · {{size}} KB",
+   "checking": "Datei wird geprüft…",
+   "browse": "Datei wählen",
+   "minChars": "Noch mindestens {{n}} Zeichen",
+   "security": "Die Datei wird verschlüsselt (HTTPS) übertragen. Die KI liest nur den Inhalt des Lebenslaufs – wir speichern die Datei nicht und geben sie nicht weiter.",
+   "broken": "Die Datei konnte nicht gelesen werden. Speichere sie erneut als PDF.",
+   "notRealPdf": "Diese Datei ist kein echtes PDF-Dokument."
   },
   "loading": {
    "new": "Dein Lebenslauf wird vorbereitet",
@@ -629,6 +641,24 @@
     "read": "Dokument wird gelesen",
     "structure": "Abschnitte und Daten werden geordnet"
    }
+  },
+  "progress": "Fortschritt",
+  "steps": {
+   "template": "Vorlage",
+   "method": "Methode",
+   "ready": "Fertig"
+  },
+  "secure": "Sicher · ohne Anmeldung",
+  "kicker": {
+   "template": "Schritt 1 von 3",
+   "method": "Schritt 2 von 3",
+   "upload": "KI-Import"
+  },
+  "change": "Ändern",
+  "trust": {
+   "local": "Deine Daten bleiben im Browser",
+   "files": "Dateien werden nicht auf dem Server gespeichert",
+   "free": "Kostenlos, ohne Konto"
   }
  },
  "mm": {

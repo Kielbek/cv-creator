@@ -4,7 +4,8 @@
   "up": "Subir",
   "down": "Bajar",
   "close": "Cerrar",
-  "search": "Buscar…"
+  "search": "Buscar…",
+  "cancel": "Cancelar"
  },
  "nav": {
   "templates": "Plantillas",
@@ -603,7 +604,9 @@
    "continue": {
     "title": "Continuar mi CV",
     "text": "Vuelve al CV guardado en este navegador con la nueva plantilla."
-   }
+   },
+   "lead": "Elige cómo empezar. Podrás cambiarlo todo en el editor.",
+   "go": "Empezar"
   },
   "upload": {
    "title": "Sube tu CV actual",
@@ -616,7 +619,16 @@
    "pastePlaceholder": "Pega aquí el texto completo de tu CV…",
    "run": "Pasar a la plantilla",
    "onlyPdf": "Solo se admiten archivos PDF",
-   "tooBig": "El archivo supera los 5 MB"
+   "tooBig": "El archivo supera los 5 MB",
+   "tabFile": "Archivo PDF",
+   "tabText": "Pegar texto",
+   "verified": "PDF verificado · {{size}} KB",
+   "checking": "Comprobando el archivo…",
+   "browse": "Elegir archivo",
+   "minChars": "Faltan al menos {{n}} caracteres",
+   "security": "El archivo se envía por una conexión cifrada (HTTPS). La IA solo lee el contenido del CV: no guardamos ni compartimos el archivo.",
+   "broken": "No pudimos leer el archivo. Vuelve a guardarlo como PDF.",
+   "notRealPdf": "Este archivo no es un documento PDF real."
   },
   "loading": {
    "new": "Preparando tu CV",
@@ -629,6 +641,24 @@
     "read": "Leyendo el documento",
     "structure": "Ordenando secciones y fechas"
    }
+  },
+  "progress": "Progreso",
+  "steps": {
+   "template": "Plantilla",
+   "method": "Método",
+   "ready": "Listo"
+  },
+  "secure": "Seguro · sin registro",
+  "kicker": {
+   "template": "Paso 1 de 3",
+   "method": "Paso 2 de 3",
+   "upload": "Importar con IA"
+  },
+  "change": "Cambiar",
+  "trust": {
+   "local": "Tus datos se quedan en tu navegador",
+   "files": "Los archivos no se guardan en el servidor",
+   "free": "Gratis, sin cuenta"
   }
  },
  "mm": {

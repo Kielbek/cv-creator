@@ -4,7 +4,8 @@
   "up": "Monter",
   "down": "Descendre",
   "close": "Fermer",
-  "search": "Rechercher…"
+  "search": "Rechercher…",
+  "cancel": "Annuler"
  },
  "nav": {
   "templates": "Modèles",
@@ -603,7 +604,9 @@
    "continue": {
     "title": "Continuer mon CV",
     "text": "Reprendre le CV enregistré dans ce navigateur avec le nouveau modèle."
-   }
+   },
+   "lead": "Choisissez comment commencer. Tout reste modifiable dans l’éditeur.",
+   "go": "C’est parti"
   },
   "upload": {
    "title": "Importez votre CV actuel",
@@ -616,7 +619,16 @@
    "pastePlaceholder": "Collez ici le texte complet de votre CV…",
    "run": "Transférer dans le modèle",
    "onlyPdf": "Seuls les fichiers PDF sont acceptés",
-   "tooBig": "Le fichier dépasse 5 Mo"
+   "tooBig": "Le fichier dépasse 5 Mo",
+   "tabFile": "Fichier PDF",
+   "tabText": "Coller le texte",
+   "verified": "PDF vérifié · {{size}} Ko",
+   "checking": "Vérification du fichier…",
+   "browse": "Choisir un fichier",
+   "minChars": "Encore au moins {{n}} caractères",
+   "security": "Le fichier est envoyé via une connexion chiffrée (HTTPS). L’IA lit uniquement le contenu du CV — nous ne stockons ni ne partageons le fichier.",
+   "broken": "Impossible de lire ce fichier. Réenregistrez-le au format PDF.",
+   "notRealPdf": "Ce fichier n’est pas un vrai document PDF."
   },
   "loading": {
    "new": "Préparation de votre CV",
@@ -629,6 +641,24 @@
     "read": "Lecture du document",
     "structure": "Organisation des sections et des dates"
    }
+  },
+  "progress": "Progression",
+  "steps": {
+   "template": "Modèle",
+   "method": "Méthode",
+   "ready": "Prêt"
+  },
+  "secure": "Sécurisé · sans inscription",
+  "kicker": {
+   "template": "Étape 1 sur 3",
+   "method": "Étape 2 sur 3",
+   "upload": "Import IA"
+  },
+  "change": "Changer",
+  "trust": {
+   "local": "Vos données restent dans votre navigateur",
+   "files": "Les fichiers ne sont pas stockés sur nos serveurs",
+   "free": "Gratuit, sans compte"
   }
  },
  "mm": {

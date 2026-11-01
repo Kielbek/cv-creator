@@ -1,171 +1,271 @@
-<div class="flex min-h-dvh flex-col bg-paper">
-  <header class="border-b border-line">
-    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-      <a routerLink="/" aria-label="Home"><app-logo /></a>
-      @if (stage() !== 'template' && stage() !== 'loading') {
-        <span class="text-[13px] text-muted">{{ 'start.chosen' | translate }}: <span class="font-medium text-ink">{{ template().name }}</span></span>
-      }
+@let tpl = template();
+<div class="st" [class.is-back]="dir() === 'back'">
+  <!-- ================= header ================= -->
+  <header class="st-head">
+    <div class="st-head-in">
+      <a routerLink="/" aria-label="Home" class="shrink-0"><app-logo /></a>
+
+      <ol class="st-steps" [attr.aria-label]="'start.progress' | translate">
+        @for (s of ['template', 'method', 'ready']; track s; let i = $index) {
+          <li [class.done]="i < stepIndex()" [class.current]="i === stepIndex()" [attr.aria-current]="i === stepIndex() ? 'step' : null">
+            <span class="st-dot">
+              @if (i < stepIndex()) {
+                <lucide-icon [img]="icons.Check" class="size-3.5" [strokeWidth]="3" />
+              } @else {
+                {{ i + 1 }}
+              }
+            </span>
+            <span class="st-step-label">{{ 'start.steps.' + s | translate }}</span>
+          </li>
+          @if (i < 2) {
+            <li class="st-bar" aria-hidden="true"><span [style.width.%]="i < stepIndex() ? 100 : 0"></span></li>
+          }
+        }
+      </ol>
+
+      <span class="st-secure"><lucide-icon [img]="icons.Lock" class="size-3.5" /> <span>{{ 'start.secure' | translate }}</span></span>
     </div>
   </header>
 
-  <main class="flex-1">
+  <main class="st-main">
     @switch (stage()) {
-      <!-- ============ 1. template ============ -->
+      <!-- ================= 1. template ================= -->
       @case ('template') {
-        <div class="mx-auto max-w-6xl px-5 pt-14 pb-24 sm:px-8">
-          <div class="mx-auto max-w-2xl text-center">
-            <h1 class="serif text-balance text-[2.4rem] leading-tight sm:text-[2.8rem]">{{ 'start.template.title' | translate }}</h1>
-            <p class="mt-4 text-[15px] leading-relaxed text-muted">{{ 'start.template.subtitle' | translate }}</p>
+        <section class="st-stage st-wide">
+          <div class="st-intro">
+            <span class="st-kicker">{{ 'start.kicker.template' | translate }}</span>
+            <h1 class="st-title">{{ 'start.template.title' | translate }}</h1>
+            <p class="st-lead">{{ 'start.template.subtitle' | translate }}</p>
           </div>
 
-          <div class="mt-10 flex flex-wrap items-center justify-center gap-2.5" role="radiogroup" [attr.aria-label]="'design.accent' | translate">
-            @for (c of swatches; track $index) {
-              <button
-                type="button"
-                role="radio"
-                [attr.aria-checked]="accent() === c"
-                class="flex size-7 items-center justify-center rounded-full ring-offset-2 ring-offset-paper transition"
-                [class.ring-1]="accent() === c"
-                [class.ring-primary]="accent() === c"
-                [style.background]="c ?? '#fff'"
-                [class.border]="!c"
-                [class.border-line-2]="!c"
-                (click)="accent.set(c)"
-                [attr.aria-label]="c ?? ('start.template.defaultColor' | translate)"
-                [title]="c ?? ('start.template.defaultColor' | translate)"
-              >
-                @if (!c) {
-                  <span class="block h-px w-4 rotate-45 bg-faint"></span>
-                }
-              </button>
-            }
+          <div class="st-toolbar">
+            <div class="st-chips" role="tablist">
+              @for (f of filters; track f) {
+                <button type="button" role="tab" class="st-chip" [class.on]="filter() === f" [attr.aria-selected]="filter() === f" (click)="filter.set(f)">
+                  {{ 'templates.filter.' + f | translate }}
+                </button>
+              }
+            </div>
+            <div class="st-swatches" role="radiogroup" [attr.aria-label]="'design.accent' | translate">
+              @for (c of swatches; track $index) {
+                <button
+                  type="button"
+                  role="radio"
+                  class="st-swatch"
+                  [class.on]="accent() === c"
+                  [class.is-default]="!c"
+                  [style.--sw]="c ?? '#fff'"
+                  [attr.aria-checked]="accent() === c"
+                  [attr.aria-label]="c ?? ('start.template.defaultColor' | translate)"
+                  [title]="c ?? ('start.template.defaultColor' | translate)"
+                  (click)="accent.set(c)"
+                ></button>
+              }
+            </div>
           </div>
 
-          <div class="mt-8 flex flex-wrap justify-center gap-6 border-b border-line text-[14px]" role="tablist">
-            @for (f of filters; track f) {
-              <button type="button" role="tab" [attr.aria-selected]="filter() === f" class="-mb-px border-b pb-3 transition" [class]="filter() === f ? 'border-primary text-primary' : 'border-transparent text-muted hover:text-ink'" (click)="filter.set(f)">
-                {{ 'templates.filter.' + f | translate }}
-              </button>
-            }
-          </div>
-
-          <div class="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
-            @for (t of templates(); track t.id) {
-              <button type="button" class="group text-left" (click)="pick(t.id)">
-                <div class="relative overflow-hidden rounded-lg border bg-white transition" [class]="templateId() === t.id ? 'border-primary shadow-[0_0_0_1px_var(--color-primary)]' : 'border-line group-hover:border-line-2'">
-                  <cv-thumb [templateId]="t.id" [accent]="accent()" [lang]="ui.current()" [width]="260" class="w-full! [&_cv-document]:w-full" />
-                  <div class="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-black/25 to-transparent p-4 opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
-                    <span class="btn-primary btn-sm">{{ 'start.template.choose' | translate }}</span>
-                  </div>
+          <div class="st-grid">
+            @for (t of templates(); track t.id; let i = $index) {
+              <button type="button" class="st-card" [class.on]="templateId() === t.id" [style.--i]="i" (click)="pick(t.id)">
+                <div class="st-card-paper">
+                  <cv-thumb [templateId]="t.id" [accent]="accent()" [lang]="ui.current()" [width]="thumbW" class="w-full! [&_cv-document]:w-full" />
+                  @if (templateId() === t.id) {
+                    <span class="st-card-badge"><lucide-icon [img]="icons.Check" class="size-3.5" [strokeWidth]="3" /></span>
+                  }
+                  <span class="st-card-cta">{{ 'start.template.choose' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" /></span>
                 </div>
-                <div class="mt-3 flex items-center justify-between text-[13.5px]">
-                  <span class="font-medium text-ink">{{ t.name }}</span>
-                  <span class="text-[12px] text-faint">{{ 'layout.columns.' + t.columns | translate }}{{ t.ats ? ' · ATS' : '' }}</span>
+                <div class="st-card-meta">
+                  <span class="font-semibold text-[#111218]">{{ t.name }}</span>
+                  <span class="st-card-tags">
+                    {{ 'layout.columns.' + t.columns | translate }}
+                    @if (t.ats) {
+                      <span class="st-ats">ATS</span>
+                    }
+                  </span>
                 </div>
               </button>
             }
           </div>
-        </div>
+        </section>
       }
 
-      <!-- ============ 2. method ============ -->
+      <!-- ================= 2. method ================= -->
       @case ('method') {
-        <div class="mx-auto max-w-4xl px-5 pt-16 pb-24 sm:px-8">
-          <h1 class="serif text-balance text-center text-[2.2rem] leading-tight sm:text-[2.6rem]">{{ 'start.method.title' | translate }}</h1>
-          <div class="mt-12 grid gap-4" [class.md:grid-cols-3]="hasSaved()" [class.md:grid-cols-2]="!hasSaved()" role="radiogroup">
-            @if (hasSaved()) {
-              <ng-container *ngTemplateOutlet="choice; context: { id: 'continue', icon: icons.FilePen }" />
-            }
-            <ng-container *ngTemplateOutlet="choice; context: { id: 'new', icon: icons.FilePlus2 }" />
-            <ng-container *ngTemplateOutlet="choice; context: { id: 'import', icon: icons.FileUp }" />
+        <section class="st-stage st-split">
+          <div>
+            <span class="st-kicker">{{ 'start.kicker.method' | translate }}</span>
+            <h1 class="st-title text-left!">{{ 'start.method.title' | translate }}</h1>
+            <p class="st-lead text-left!">{{ 'start.method.lead' | translate }}</p>
+
+            <div class="st-methods" role="radiogroup" [attr.aria-label]="'start.method.title' | translate" (keydown)="onMethodKey($event)">
+              @for (m of methods(); track m.id; let i = $index) {
+                <button
+                  type="button"
+                  role="radio"
+                  class="st-method"
+                  [class.on]="method() === m.id"
+                  [style.--i]="i"
+                  [attr.data-method]="m.id"
+                  [attr.aria-checked]="method() === m.id"
+                  [attr.tabindex]="method() === m.id ? 0 : -1"
+                  (click)="method.set(m.id)"
+                >
+                  <span class="st-method-ic"><lucide-icon [img]="m.icon" class="size-5" [strokeWidth]="1.8" /></span>
+                  <span class="min-w-0 flex-1">
+                    <span class="flex items-center gap-2 text-[16px] font-semibold text-[#111218]">
+                      {{ 'start.method.' + m.id + '.title' | translate }}
+                      @if (m.id === 'import') {
+                        <span class="st-ai"><lucide-icon [img]="icons.Sparkles" class="size-3" /> AI</span>
+                      }
+                    </span>
+                    <span class="mt-1 block text-[14px] leading-relaxed text-[#5b5d6b]">{{ 'start.method.' + m.id + '.text' | translate }}</span>
+                  </span>
+                  <span class="st-radio" aria-hidden="true"></span>
+                </button>
+              }
+            </div>
+
+            <ul class="st-trust">
+              <li><lucide-icon [img]="icons.Lock" class="size-4" /> {{ 'start.trust.local' | translate }}</li>
+              <li><lucide-icon [img]="icons.ShieldCheck" class="size-4" /> {{ 'start.trust.files' | translate }}</li>
+              <li><lucide-icon [img]="icons.BadgeCheck" class="size-4" /> {{ 'start.trust.free' | translate }}</li>
+            </ul>
+
+            <div class="st-actions">
+              <button type="button" class="btn-ghost" (click)="back()"><lucide-icon [img]="icons.ArrowLeft" class="size-4" /> {{ 'editor.back' | translate }}</button>
+              <button type="button" class="btn-primary" (click)="next()">{{ (method() === 'import' ? 'editor.next' : 'start.method.go') | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" /></button>
+            </div>
           </div>
-          <p class="mt-6 text-center text-[12.5px] text-faint">{{ 'start.method.privacy' | translate }}</p>
-          <div class="mt-14 flex items-center justify-between border-t border-line pt-6">
-            <button type="button" class="btn-ghost" (click)="back()"><lucide-icon [img]="icons.ArrowLeft" class="size-4" /> {{ 'editor.back' | translate }}</button>
-            <button type="button" class="btn-primary px-6!" (click)="next()">{{ 'editor.next' | translate }}</button>
-          </div>
-        </div>
+
+          <aside class="st-preview" aria-hidden="true">
+            <div class="st-preview-paper">
+              <cv-thumb [templateId]="tpl.id" [accent]="accent()" [lang]="ui.current()" [width]="340" class="w-full! [&_cv-document]:w-full" />
+            </div>
+            <div class="mt-4 flex items-center justify-between text-[13.5px]">
+              <span><span class="text-[#5b5d6b]">{{ 'start.chosen' | translate }}:</span> <b class="ml-1 text-[#111218]">{{ tpl.name }}</b></span>
+              <button type="button" class="st-link" tabindex="-1" (click)="back()">{{ 'start.change' | translate }}</button>
+            </div>
+          </aside>
+        </section>
       }
 
-      <!-- ============ 3. upload ============ -->
+      <!-- ================= 3. upload ================= -->
       @case ('upload') {
-        <div class="mx-auto max-w-2xl px-5 pt-16 pb-24 sm:px-8">
-          <h1 class="serif text-balance text-center text-[2.2rem] leading-tight">{{ 'start.upload.title' | translate }}</h1>
-          <p class="mx-auto mt-4 max-w-lg text-center text-[15px] leading-relaxed text-muted">{{ 'start.upload.subtitle' | translate }}</p>
+        <section class="st-stage st-narrow">
+          <div class="st-intro">
+            <span class="st-kicker">{{ 'start.kicker.upload' | translate }}</span>
+            <h1 class="st-title">{{ 'start.upload.title' | translate }}</h1>
+            <p class="st-lead">{{ 'start.upload.subtitle' | translate }}</p>
+          </div>
 
-          <div class="mt-10">
-            @if (!pasteMode()) {
+          <div class="st-tabs" role="tablist">
+            <button type="button" role="tab" [class.on]="!pasteMode()" [attr.aria-selected]="!pasteMode()" (click)="pasteMode.set(false); error.set(null)">
+              <lucide-icon [img]="icons.FileUp" class="size-4" /> {{ 'start.upload.tabFile' | translate }}
+            </button>
+            <button type="button" role="tab" [class.on]="pasteMode()" [attr.aria-selected]="pasteMode()" (click)="pasteMode.set(true); error.set(null)">
+              <lucide-icon [img]="icons.FileText" class="size-4" /> {{ 'start.upload.tabText' | translate }}
+            </button>
+          </div>
+
+          @if (!pasteMode()) {
+            @if (file(); as f) {
+              <div class="st-file">
+                <span class="st-file-ic"><lucide-icon [img]="icons.FileText" class="size-5" /></span>
+                <span class="min-w-0 flex-1">
+                  <span class="block truncate text-[15px] font-semibold text-[#111218]">{{ f.name }}</span>
+                  <span class="mt-0.5 flex items-center gap-1.5 text-[13px] text-[#14804a]"><lucide-icon [img]="icons.ShieldCheck" class="size-3.5" /> {{ 'start.upload.verified' | translate: { size: (f.size / 1024).toFixed(0) } }}</span>
+                </span>
+                <button type="button" class="st-icon-btn" (click)="removeFile()" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.Trash2" class="size-4" /></button>
+              </div>
+            } @else {
               <label
-                class="flex cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed px-6 py-14 text-center transition"
-                [class]="dragging() ? 'border-ink bg-white' : 'border-line-2 bg-white hover:border-ink'"
+                class="st-drop"
+                [class.over]="dragging()"
+                [class.busy]="checking()"
                 (dragover)="$event.preventDefault(); dragging.set(true)"
                 (dragleave)="dragging.set(false)"
                 (drop)="onDrop($event)"
               >
-                <lucide-icon [img]="icons.Upload" class="size-6 text-faint" />
-                @if (file(); as f) {
-                  <p class="mt-4 text-[15px] font-medium text-ink">{{ f.name }}</p>
-                  <p class="mt-1 text-[13px] text-muted">{{ (f.size / 1024).toFixed(0) }} KB · {{ 'start.upload.change' | translate }}</p>
-                } @else {
-                  <p class="mt-4 text-[15px] font-medium text-ink">{{ 'start.upload.drop' | translate }}</p>
-                  <p class="mt-1 text-[13px] text-muted">{{ 'start.upload.limits' | translate }}</p>
-                }
+                <span class="st-drop-ic"><lucide-icon [img]="icons.Upload" class="size-6" /></span>
+                <span class="mt-4 text-[16px] font-semibold text-[#111218]">{{ (checking() ? 'start.upload.checking' : 'start.upload.drop') | translate }}</span>
+                <span class="mt-1 text-[13.5px] text-[#5b5d6b]">{{ 'start.upload.limits' | translate }}</span>
+                <span class="btn-ghost btn-sm mt-5">{{ 'start.upload.browse' | translate }}</span>
                 <input type="file" accept="application/pdf,.pdf" class="sr-only" (change)="onFile($event)" />
               </label>
-              <button type="button" class="link mt-4 block text-[13.5px]" (click)="pasteMode.set(true)">{{ 'start.upload.pasteInstead' | translate }}</button>
-            } @else {
-              <textarea class="input min-h-64" [value]="pasted()" (input)="pasted.set($any($event.target).value)" [placeholder]="'start.upload.pastePlaceholder' | translate"></textarea>
-              <button type="button" class="link mt-4 block text-[13.5px]" (click)="pasteMode.set(false)">{{ 'start.upload.fileInstead' | translate }}</button>
             }
+          } @else {
+            <div class="relative">
+              <textarea
+                class="input min-h-64! pb-8!"
+                [value]="pasted()"
+                [attr.maxlength]="pasteMax"
+                (input)="setPasted($any($event.target).value)"
+                [placeholder]="'start.upload.pastePlaceholder' | translate"
+                [attr.aria-describedby]="'paste-count'"
+              ></textarea>
+              <span id="paste-count" class="st-count" [class.ok]="pasteLength() >= pasteMin">
+                {{ pasteLength() < pasteMin ? ('start.upload.minChars' | translate: { n: pasteMin - pasteLength() }) : pasteLength() + ' / ' + pasteMax }}
+              </span>
+            </div>
+          }
+
+          @if (error(); as err) {
+            <p class="st-error" role="alert"><lucide-icon [img]="icons.CircleAlert" class="size-4 shrink-0" /> {{ err | translate }}</p>
+          }
+
+          <div class="st-note">
+            <lucide-icon [img]="icons.ShieldCheck" class="mt-0.5 size-4 shrink-0" />
+            <span>{{ 'start.upload.security' | translate }}</span>
           </div>
 
-          <div class="mt-14 flex items-center justify-between border-t border-line pt-6">
+          <div class="st-actions">
             <button type="button" class="btn-ghost" (click)="back()"><lucide-icon [img]="icons.ArrowLeft" class="size-4" /> {{ 'editor.back' | translate }}</button>
-            <button type="button" class="btn-primary px-6!" (click)="runImport()" [disabled]="!canImport()">{{ 'start.upload.run' | translate }}</button>
+            <button type="button" class="btn-primary" (click)="runImport()" [disabled]="!canImport()"><lucide-icon [img]="icons.Sparkles" class="size-4" /> {{ 'start.upload.run' | translate }}</button>
           </div>
-        </div>
+        </section>
       }
 
-      <!-- ============ 4. loading ============ -->
+      <!-- ================= 4. loading ================= -->
       @case ('loading') {
-        <div class="mx-auto flex max-w-md flex-col items-center px-5 pt-[18vh] pb-24 text-center" role="status" aria-live="polite">
-          <h1 class="serif text-balance text-[1.9rem] leading-tight">{{ (method() === 'import' ? 'start.loading.import' : 'start.loading.new') | translate }}</h1>
-          <div class="mt-8 h-[3px] w-full overflow-hidden rounded-full bg-line">
-            <div class="h-full rounded-full bg-primary transition-[width] duration-200" [style.width.%]="progress()"></div>
+        <section class="st-stage st-loading" role="status" aria-live="polite">
+          <div class="st-build" aria-hidden="true">
+            <div class="st-build-paper" [style.--accent]="accent() ?? '#1f6bff'">
+              <span class="b-photo"></span>
+              <span class="b-l b-name"></span>
+              <span class="b-l b-sub"></span>
+              <span class="b-l b-h"></span>
+              <span class="b-l"></span>
+              <span class="b-l"></span>
+              <span class="b-l b-short"></span>
+              <span class="b-l b-h"></span>
+              <span class="b-l"></span>
+              <span class="b-l b-short"></span>
+              <span class="b-scan"></span>
+            </div>
+            <span class="st-build-pct">{{ progress() }}%</span>
           </div>
-          <ul class="mt-10 w-full max-w-xs space-y-3.5 text-left text-[14px]">
+
+          <h1 class="st-title mt-10 text-[2rem]!">{{ (method() === 'import' ? 'start.loading.import' : 'start.loading.new') | translate }}</h1>
+          <div class="st-progress"><span [style.width.%]="progress()"></span></div>
+
+          <ul class="st-checklist">
             @for (s of loadingSteps(); track s; let i = $index) {
-              <li class="flex items-center gap-3 transition" [class]="i < doneItems() ? 'text-ink' : 'text-faint'">
-                <span class="flex size-[18px] shrink-0 items-center justify-center rounded-full border transition" [class]="i < doneItems() ? 'border-primary bg-primary text-white' : 'border-line-2'">
+              <li [class.done]="i < doneItems()" [class.active]="i === doneItems()">
+                <span class="st-check">
                   @if (i < doneItems()) {
-                    <lucide-icon [img]="icons.Check" class="size-3" />
+                    <lucide-icon [img]="icons.Check" class="size-3" [strokeWidth]="3" />
                   }
                 </span>
-                {{ 'start.loading.steps.' + s | translate: { template: template().name } }}
+                {{ 'start.loading.steps.' + s | translate: { template: tpl.name } }}
               </li>
             }
           </ul>
-        </div>
+
+          @if (method() === 'import') {
+            <button type="button" class="st-link mt-8" (click)="cancelImport()">{{ 'common.cancel' | translate }}</button>
+          }
+        </section>
       }
     }
   </main>
 </div>
-
-<ng-template #choice let-id="id" let-icon="icon">
-  <button
-    type="button"
-    role="radio"
-    [attr.aria-checked]="method() === id"
-    class="flex items-start gap-4 rounded-xl border bg-white p-6 text-left transition"
-    [class]="method() === id ? 'border-primary shadow-[0_0_0_1px_var(--color-primary)]' : 'border-line hover:border-line-2'"
-    (click)="method.set(id)"
-    (dblclick)="method.set(id); next()"
-  >
-    <lucide-icon [img]="icon" class="mt-0.5 size-6 shrink-0 text-ink" [strokeWidth]="1.5" />
-    <span>
-      <span class="block text-[16px] font-medium text-ink">{{ 'start.method.' + id + '.title' | translate }}</span>
-      <span class="mt-1.5 block text-[13.5px] leading-relaxed text-muted">{{ 'start.method.' + id + '.text' | translate }}</span>
-    </span>
-  </button>
-</ng-template>
-<app-toasts />
