@@ -12,7 +12,7 @@
 .wizard {
   --rail: 76px;
   display: grid;
-  grid-template-columns: var(--rail) minmax(0, 1fr) minmax(380px, 42%);
+  grid-template-columns: var(--rail) minmax(0, 1fr) minmax(360px, 38%);
   height: 100dvh;
   background: #fff;
   transition: grid-template-columns 0.25s ease;

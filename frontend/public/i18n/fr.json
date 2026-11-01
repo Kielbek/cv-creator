@@ -394,7 +394,12 @@
   "cefrHint": "Niveaux CECRL : A1–A2 élémentaire, B1–B2 indépendant, C1–C2 expérimenté.",
   "interestsPh": "ex. photographie, course à pied, bénévolat",
   "zoomFit": "Ajuster à la largeur",
-  "progress": "Votre progression"
+  "progress": "Votre progression",
+  "validation": {
+   "required": "Ce champ est obligatoire",
+   "email": "Saisissez une adresse e-mail valide",
+   "phone": "Saisissez un numéro de téléphone valide"
+  }
  },
  "ai": {
   "done": "Terminé – vous pouvez annuler ce changement",

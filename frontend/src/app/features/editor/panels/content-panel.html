@@ -45,11 +45,23 @@
             }
           </select>
         </div>
-        <div><label class="label" for="fn">{{ 'editor.f.firstName' | translate }}</label><input id="fn" class="input" [value]="c.personal.firstName" (input)="setPersonal('firstName', $event)" autocomplete="given-name" /></div>
-        <div><label class="label" for="ln">{{ 'editor.f.lastName' | translate }}</label><input id="ln" class="input" [value]="c.personal.lastName" (input)="setPersonal('lastName', $event)" autocomplete="family-name" /></div>
+        <div><label class="label" for="fn">{{ 'editor.f.firstName' | translate }} <span class="req">*</span></label><input placeholder=" " id="fn" required [class.is-invalid]="errors().firstName" class="input" [value]="c.personal.firstName" (input)="setPersonal('firstName', $event)" autocomplete="given-name" />
+          @if (errors().firstName; as err) {
+            <p class="field-error">{{ 'editor.validation.' + err | translate }}</p>
+          }</div>
+        <div><label class="label" for="ln">{{ 'editor.f.lastName' | translate }} <span class="req">*</span></label><input placeholder=" " id="ln" required [class.is-invalid]="errors().lastName" class="input" [value]="c.personal.lastName" (input)="setPersonal('lastName', $event)" autocomplete="family-name" />
+          @if (errors().lastName; as err) {
+            <p class="field-error">{{ 'editor.validation.' + err | translate }}</p>
+          }</div>
         <div class="col-span-2"><label class="label" for="hl">{{ 'editor.f.headline' | translate }}</label><input id="hl" class="input" [value]="c.personal.headline" (input)="setPersonal('headline', $event)" [placeholder]="'editor.f.headlinePh' | translate" /></div>
-        <div><label class="label" for="em">{{ 'editor.f.email' | translate }}</label><input id="em" type="email" class="input" [value]="c.personal.email" (input)="setPersonal('email', $event)" autocomplete="email" /></div>
-        <div><label class="label" for="ph">{{ 'editor.f.phone' | translate }}</label><input id="ph" type="tel" class="input" [value]="c.personal.phone" (input)="setPersonal('phone', $event)" autocomplete="tel" /></div>
+        <div><label class="label" for="em">{{ 'editor.f.email' | translate }} <span class="req">*</span></label><input placeholder=" " id="em" required [class.is-invalid]="errors().email" type="email" class="input" [value]="c.personal.email" (input)="setPersonal('email', $event)" autocomplete="email" />
+          @if (errors().email; as err) {
+            <p class="field-error">{{ 'editor.validation.' + err | translate }}</p>
+          }</div>
+        <div><label class="label" for="ph">{{ 'editor.f.phone' | translate }} <span class="req">*</span></label><input placeholder=" " id="ph" required [class.is-invalid]="errors().phone" type="tel" class="input" [value]="c.personal.phone" (input)="setPersonal('phone', $event)" autocomplete="tel" />
+          @if (errors().phone; as err) {
+            <p class="field-error">{{ 'editor.validation.' + err | translate }}</p>
+          }</div>
         <div class="col-span-2"><label class="label" for="lo">{{ 'editor.f.location' | translate }}</label><input id="lo" class="input" [value]="c.personal.location" (input)="setPersonal('location', $event)" [placeholder]="'editor.f.locationPh' | translate" /></div>
       </div>
 
@@ -97,7 +109,7 @@
         <div class="grid grid-cols-2 gap-x-4 gap-y-5">
           <div><label class="label">{{ 'editor.f.position' | translate }}</label><input class="input" [value]="e.position" (input)="setItem('experience', ei, 'position', val($event))" [placeholder]="'editor.f.positionPh' | translate" /></div>
           <div><label class="label">{{ 'editor.f.company' | translate }}</label><input class="input" [value]="e.company" (input)="setItem('experience', ei, 'company', val($event))" [placeholder]="'editor.f.companyPh' | translate" /></div>
-          <div><label class="label">{{ 'editor.f.city' | translate }}</label><input class="input" [value]="e.location" (input)="setItem('experience', ei, 'location', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.city' | translate }}</label><input placeholder=" " class="input" [value]="e.location" (input)="setItem('experience', ei, 'location', val($event))" /></div>
           <div></div>
           <div><label class="label">{{ 'editor.f.start' | translate }}</label><ui-month-picker [value]="e.start" (valueChange)="setItem('experience', ei, 'start', $event)" [monthLabel]="'editor.f.month' | translate" [yearLabel]="'editor.f.year' | translate" /></div>
           <div><label class="label">{{ 'editor.f.end' | translate }}</label><ui-month-picker [value]="e.end" [disabled]="e.current" (valueChange)="setItem('experience', ei, 'end', $event)" [monthLabel]="'editor.f.month' | translate" [yearLabel]="'editor.f.year' | translate" />
@@ -165,9 +177,9 @@
         @let e = c.education[ei];
         <button type="button" class="text-action mb-6" (click)="close()"><lucide-icon [img]="icons.ArrowLeft" class="size-3.5" /> {{ 'editor.allEntries.education' | translate }}</button>
         <div class="grid grid-cols-2 gap-x-4 gap-y-5">
-          <div class="col-span-2"><label class="label">{{ 'editor.f.degree' | translate }}</label><input class="input" [value]="e.degree" (input)="setItem('education', ei, 'degree', val($event))" /></div>
-          <div><label class="label">{{ 'editor.f.school' | translate }}</label><input class="input" [value]="e.school" (input)="setItem('education', ei, 'school', val($event))" /></div>
-          <div><label class="label">{{ 'editor.f.city' | translate }}</label><input class="input" [value]="e.location" (input)="setItem('education', ei, 'location', val($event))" /></div>
+          <div class="col-span-2"><label class="label">{{ 'editor.f.degree' | translate }}</label><input placeholder=" " class="input" [value]="e.degree" (input)="setItem('education', ei, 'degree', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.school' | translate }}</label><input placeholder=" " class="input" [value]="e.school" (input)="setItem('education', ei, 'school', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.city' | translate }}</label><input placeholder=" " class="input" [value]="e.location" (input)="setItem('education', ei, 'location', val($event))" /></div>
           <div><label class="label">{{ 'editor.f.start' | translate }}</label><ui-month-picker [value]="e.start" (valueChange)="setItem('education', ei, 'start', $event)" [monthLabel]="'editor.f.month' | translate" [yearLabel]="'editor.f.year' | translate" /></div>
           <div><label class="label">{{ 'editor.f.end' | translate }}</label><ui-month-picker [value]="e.end" [disabled]="e.current" (valueChange)="setItem('education', ei, 'end', $event)" [monthLabel]="'editor.f.month' | translate" [yearLabel]="'editor.f.year' | translate" />
             <label class="mt-2.5 flex cursor-pointer items-center gap-2 text-[13.5px] text-ink-2"><input type="checkbox" class="checkbox" [checked]="e.current" (change)="setItem('education', ei, 'current', $any($event.target).checked)" /> {{ 'editor.f.currentStudy' | translate }}</label>
@@ -268,8 +280,8 @@
         @let e = c.projects[ei];
         <button type="button" class="text-action mb-6" (click)="close()"><lucide-icon [img]="icons.ArrowLeft" class="size-3.5" /> {{ 'editor.allEntries.projects' | translate }}</button>
         <div class="grid grid-cols-2 gap-x-4 gap-y-5">
-          <div><label class="label">{{ 'editor.f.projectName' | translate }}</label><input class="input" [value]="e.name" (input)="setItem('projects', ei, 'name', val($event))" /></div>
-          <div><label class="label">{{ 'editor.f.link' | translate }}</label><input class="input" [value]="e.link" (input)="setItem('projects', ei, 'link', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.projectName' | translate }}</label><input placeholder=" " class="input" [value]="e.name" (input)="setItem('projects', ei, 'name', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.link' | translate }}</label><input placeholder=" " class="input" [value]="e.link" (input)="setItem('projects', ei, 'link', val($event))" /></div>
           <div class="col-span-2"><label class="label">{{ 'editor.f.description' | translate }}</label><textarea class="input min-h-24!" [value]="e.description" (input)="setItem('projects', ei, 'description', val($event))"></textarea></div>
         </div>
         <div class="mt-8 flex items-center justify-between">
@@ -311,8 +323,8 @@
         @let e = c.certificates[ei];
         <button type="button" class="text-action mb-6" (click)="close()"><lucide-icon [img]="icons.ArrowLeft" class="size-3.5" /> {{ 'editor.allEntries.certificates' | translate }}</button>
         <div class="grid grid-cols-2 gap-x-4 gap-y-5">
-          <div class="col-span-2"><label class="label">{{ 'editor.f.certName' | translate }}</label><input class="input" [value]="e.name" (input)="setItem('certificates', ei, 'name', val($event))" /></div>
-          <div><label class="label">{{ 'editor.f.issuer' | translate }}</label><input class="input" [value]="e.issuer" (input)="setItem('certificates', ei, 'issuer', val($event))" /></div>
+          <div class="col-span-2"><label class="label">{{ 'editor.f.certName' | translate }}</label><input placeholder=" " class="input" [value]="e.name" (input)="setItem('certificates', ei, 'name', val($event))" /></div>
+          <div><label class="label">{{ 'editor.f.issuer' | translate }}</label><input placeholder=" " class="input" [value]="e.issuer" (input)="setItem('certificates', ei, 'issuer', val($event))" /></div>
           <div><label class="label">{{ 'editor.f.date' | translate }}</label><ui-month-picker [value]="e.date" (valueChange)="setItem('certificates', ei, 'date', $event)" [monthLabel]="'editor.f.month' | translate" [yearLabel]="'editor.f.year' | translate" /></div>
         </div>
         <div class="mt-8 flex items-center justify-between">
@@ -350,7 +362,7 @@
   @if (has('interests')) {
     <section>
       <label class="label" for="int">{{ 'editor.sections.interests' | translate }}</label>
-      <input id="int" class="input" [value]="c.interests" (input)="set(cv => cv.interests = val($event))" [placeholder]="'editor.interestsPh' | translate" />
+      <input placeholder=" " id="int" class="input" [value]="c.interests" (input)="set(cv => cv.interests = val($event))" [placeholder]="'editor.interestsPh' | translate" />
     </section>
   }
 

@@ -394,7 +394,12 @@
   "cefrHint": "CEFR levels: A1–A2 basic, B1–B2 intermediate, C1–C2 advanced.",
   "interestsPh": "e.g. photography, running, volunteering",
   "zoomFit": "Fit to width",
-  "progress": "Your progress"
+  "progress": "Your progress",
+  "validation": {
+   "required": "This field is required",
+   "email": "Enter a valid e-mail address",
+   "phone": "Enter a valid phone number"
+  }
  },
  "ai": {
   "done": "Done – you can undo this change",

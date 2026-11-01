@@ -394,7 +394,12 @@
   "cefrHint": "Niveles MCER: A1–A2 básico, B1–B2 intermedio, C1–C2 avanzado.",
   "interestsPh": "p. ej. fotografía, correr, voluntariado",
   "zoomFit": "Ajustar al ancho",
-  "progress": "Tu progreso"
+  "progress": "Tu progreso",
+  "validation": {
+   "required": "Este campo es obligatorio",
+   "email": "Introduce un e-mail válido",
+   "phone": "Introduce un teléfono válido"
+  }
  },
  "ai": {
   "done": "Hecho – puedes deshacer este cambio",

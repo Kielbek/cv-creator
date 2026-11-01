@@ -26,7 +26,7 @@ import {
   Maximize2,
 } from 'lucide-angular';
 import { CvStore, migrate } from '../../core/cv/cv.store';
-import { hasContent } from '../../core/cv/cv.model';
+import { hasContent, headerErrors } from '../../core/cv/cv.model';
 import { CvDocument } from '../../cv-render/cv-document';
 import { CV_LANGUAGES } from '../../core/cv/cv-labels';
 import { COUNTRIES } from '../../core/cv/countries';
@@ -79,6 +79,9 @@ export class EditorPage {
   /** reminder when leaving an essential section empty */
   protected readonly nudge = signal<'experience' | 'education' | null>(null);
   private readonly introSteps = ['experience', 'education', 'skills', 'summary'];
+  /** show validation messages of the header step */
+  protected readonly showErrors = signal(false);
+  protected readonly headerValid = computed(() => Object.keys(headerErrors(this.cv())).length === 0);
 
   protected readonly doneCount = computed(() => STEPS.slice(0, -1).filter((_, i) => this.done(i)).length);
   protected readonly languages = CV_LANGUAGES;
@@ -115,6 +118,15 @@ export class EditorPage {
   /** "Next": reminds about an empty essential section first */
   protected next(): void {
     const id = this.step().id;
+    if (id === 'header' && !this.headerValid()) {
+      this.showErrors.set(true);
+      setTimeout(() => {
+        const el = this.document.querySelector<HTMLElement>('.input.is-invalid');
+        el?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        el?.focus({ preventScroll: true });
+      });
+      return;
+    }
     if (!this.intro() && (id === 'experience' || id === 'education') && !this.done(this.stepIndex())) {
       this.nudge.set(id);
       return;
@@ -123,12 +135,12 @@ export class EditorPage {
       this.intro.set(false);
       return;
     }
-    this.go(this.stepIndex() + 1);
+    this.go(this.stepIndex() + 1, true);
   }
 
   protected skipNudge(): void {
     this.nudge.set(null);
-    this.go(this.stepIndex() + 1);
+    this.go(this.stepIndex() + 1, true);
   }
 
   protected back(): void {
@@ -140,10 +152,20 @@ export class EditorPage {
     this.go(this.stepIndex() - 1);
   }
 
-  protected go(i: number): void {
+  /**
+   * @param viaNext only the "Next" button plays a section's intro, and only the first time
+   */
+  protected go(i: number, viaNext = false): void {
     const next = Math.max(0, Math.min(STEPS.length - 1, i));
+    if (this.step().id === 'header' && next > this.stepIndex() && !this.headerValid()) {
+      this.showErrors.set(true);
+      return;
+    }
     this.store.pruneBlank();
-    this.intro.set(next > this.stepIndex() && this.introSteps.includes(STEPS[next].id) && !this.done(next));
+    const id = STEPS[next].id;
+    const playIntro = viaNext && next > this.stepIndex() && this.introSteps.includes(id) && !seenIntros().has(id);
+    if (playIntro) markIntroSeen(id);
+    this.intro.set(playIntro);
     this.stepIndex.set(next);
     try {
       sessionStorage.setItem(STEP_KEY, String(next));
@@ -251,6 +273,12 @@ export class EditorPage {
     if (!confirm(this.translate.instant('editor.menu.resetConfirm'))) return;
     const cv = this.cv();
     this.store.reset(cv.language, cv.country);
+    try {
+      localStorage.removeItem(INTROS_KEY);
+    } catch {
+      /* ignore */
+    }
+    this.showErrors.set(false);
     this.go(0);
     this.toasts.show('editor.menu.resetDone');
   }
@@ -262,5 +290,23 @@ function readStep(): number {
     return Number.isInteger(n) && n >= 0 && n < STEPS.length ? n : 0;
   } catch {
     return 0;
+  }
+}
+
+const INTROS_KEY = 'cv-creator:intros-seen';
+
+function seenIntros(): Set<string> {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(INTROS_KEY) ?? '[]'));
+  } catch {
+    return new Set();
+  }
+}
+
+function markIntroSeen(id: string): void {
+  try {
+    localStorage.setItem(INTROS_KEY, JSON.stringify([...seenIntros().add(id)]));
+  } catch {
+    /* ignore */
   }
 }

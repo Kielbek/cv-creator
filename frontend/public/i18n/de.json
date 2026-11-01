@@ -394,7 +394,12 @@
   "cefrHint": "GER-Niveaus: A1–A2 Grundkenntnisse, B1–B2 mittel, C1–C2 fortgeschritten.",
   "interestsPh": "z. B. Fotografie, Laufen, Ehrenamt",
   "zoomFit": "An Breite anpassen",
-  "progress": "Dein Fortschritt"
+  "progress": "Dein Fortschritt",
+  "validation": {
+   "required": "Dieses Feld ist erforderlich",
+   "email": "Gib eine gültige E-Mail-Adresse ein",
+   "phone": "Gib eine gültige Telefonnummer ein"
+  }
  },
  "ai": {
   "done": "Fertig – du kannst die Änderung rückgängig machen",

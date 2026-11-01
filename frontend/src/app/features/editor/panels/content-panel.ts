@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, effect, inject, input, si
 import { TranslatePipe } from '@ngx-translate/core';
 import { LucideAngularModule, ArrowLeft, ChevronRight, GripVertical, Plus, Sparkles, Trash2, X } from 'lucide-angular';
 import { CvStore } from '../../../core/cv/cv.store';
-import { Cv, ExperienceItem, newCertificate, newEducation, newExperience, newLanguage, newProject, uid } from '../../../core/cv/cv.model';
+import { Cv, ExperienceItem, headerErrors, newCertificate, newEducation, newExperience, newLanguage, newProject, uid } from '../../../core/cv/cv.model';
 import { formatRange, formatMonth } from '../../../core/cv/cv-labels';
 import { AiError, AiService } from '../../../core/ai/ai.service';
 import { Toasts } from '../../../shared/toasts';
@@ -56,6 +56,9 @@ export class ContentPanel {
 
   /** Which sections to show (the wizard step). */
   readonly sections = input<Panel[]>(['personal']);
+  /** show the header step's validation messages */
+  readonly showErrors = input(false);
+  protected readonly errors = computed(() => (this.showErrors() ? headerErrors(this.cv()) : {}));
   protected readonly multi = computed(() => this.sections().length > 1);
 
   /** id of the entry whose form is expanded */

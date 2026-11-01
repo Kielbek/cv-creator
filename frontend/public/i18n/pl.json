@@ -394,7 +394,12 @@
   "cefrHint": "Poziomy wg skali CEFR: A1–A2 podstawowy, B1–B2 średni, C1–C2 zaawansowany.",
   "interestsPh": "np. fotografia, bieganie, wolontariat",
   "zoomFit": "Dopasuj do szerokości",
-  "progress": "Twoje postępy"
+  "progress": "Twoje postępy",
+  "validation": {
+   "required": "To pole jest wymagane",
+   "email": "Podaj poprawny adres e-mail",
+   "phone": "Podaj poprawny numer telefonu"
+  }
  },
  "ai": {
   "done": "Gotowe – możesz cofnąć tę zmianę",

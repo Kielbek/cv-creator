@@ -167,3 +167,17 @@ export function lines(text: string): string[] {
     .map((l) => l.replace(/^\s*[-•*–]\s*/, '').trim())
     .filter(Boolean);
 }
+
+/** Required fields of the header step → i18n key of the error (empty object = valid). */
+export type HeaderField = 'firstName' | 'lastName' | 'email' | 'phone';
+export function headerErrors(cv: Cv): Partial<Record<HeaderField, string>> {
+  const p = cv.personal;
+  const e: Partial<Record<HeaderField, string>> = {};
+  if (!p.firstName.trim()) e.firstName = 'required';
+  if (!p.lastName.trim()) e.lastName = 'required';
+  if (!p.email.trim()) e.email = 'required';
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(p.email.trim())) e.email = 'email';
+  if (!p.phone.trim()) e.phone = 'required';
+  else if (p.phone.replace(/\D/g, '').length < 6) e.phone = 'phone';
+  return e;
+}
