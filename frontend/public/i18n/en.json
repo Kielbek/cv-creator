@@ -14,7 +14,10 @@
  },
  "footer": {
   "tagline": "Free CV builder with AI and ATS-friendly templates. Your data stays in your browser.",
-  "rights": "CV Creator. All rights reserved."
+  "rights": "CV Creator. All rights reserved.",
+  "product": "Product",
+  "help": "Help",
+  "language": "Language"
  },
  "home": {
   "badge": "Fast • Professional • Multilingual",
@@ -125,7 +128,57 @@
    "text": "Create a professional CV now – it only takes a moment."
   },
   "statLanguages": "CV languages",
-  "statPrice": "forever"
+  "statPrice": "forever",
+  "v2": {
+   "title": "A CV that gets you interviews",
+   "subtitle": "Pick a professional template, add your experience and let AI sharpen every bullet point. Download an ATS-ready PDF in the language and format of the country you apply in.",
+   "ctaCreate": "Create your CV for free",
+   "ctaUpload": "Upload my CV",
+   "trust": {
+    "noSignup": "No sign-up",
+    "ats": "ATS-friendly",
+    "pdf": "PDF with real text"
+   },
+   "float": {
+    "ai": "AI assistant",
+    "before": "Responsible for advertising campaigns.",
+    "after": "Ran Google Ads campaigns with a PLN 200k budget, increasing conversion by 28%.",
+    "match": "Job match",
+    "matchSub": "8 of 10 keywords"
+   },
+   "stats": {
+    "templates": "CV templates",
+    "languages": "CV content languages",
+    "countries": "countries with presets",
+    "price": "for every feature"
+   },
+   "stepsTitle": "A professional CV in three simple steps",
+   "f1": {
+    "eyebrow": "AI assistant",
+    "title": "Turn duties into achievements",
+    "text": "Describe what you did – AI suggests specific, measurable bullet points and writes your profile summary. You decide what goes into the CV.",
+    "a": "Improve experience bullets in one click",
+    "b": "Profile summary in the tone you choose",
+    "c": "Only facts from your CV – the AI never invents",
+    "demo1": "Ran Google Ads and Meta campaigns with a monthly budget of PLN 200k",
+    "demo2": "Increased store conversion by 28% through A/B tests",
+    "demo3": "Coordinated the agency and an 8-person sales team"
+   },
+   "f2": {
+    "eyebrow": "Job match",
+    "title": "See how your CV compares to the job ad",
+    "text": "Paste a job offer. You get a match score, missing keywords and ready-to-use suggestions – the way an ATS and a recruiter would judge it."
+   },
+   "f3": {
+    "eyebrow": "Many countries",
+    "title": "Every country has its rules – we know them",
+    "text": "Heading language, date format, page size, photo and consent clause follow the target country. AI translates the whole CV and adapts job titles."
+   },
+   "f4": {
+    "title": "Get past the ATS filter",
+    "text": "Our PDFs contain real, selectable text in a logical order. ATS-marked templates use a structure applicant tracking systems read without errors."
+   }
+  }
  },
  "templates": {
   "title": "CV templates",

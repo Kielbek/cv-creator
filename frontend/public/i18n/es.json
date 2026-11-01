@@ -14,7 +14,10 @@
  },
  "footer": {
   "tagline": "Creador de CV gratuito con IA y plantillas compatibles con ATS. Tus datos se quedan en tu navegador.",
-  "rights": "CV Creator. Todos los derechos reservados."
+  "rights": "CV Creator. Todos los derechos reservados.",
+  "product": "Producto",
+  "help": "Ayuda",
+  "language": "Idioma"
  },
  "home": {
   "badge": "Rápido • Profesional • Multilingüe",
@@ -125,7 +128,57 @@
    "text": "Crea ya tu CV profesional – solo lleva un momento."
   },
   "statLanguages": "idiomas de CV",
-  "statPrice": "para siempre"
+  "statPrice": "para siempre",
+  "v2": {
+   "title": "Un CV que consigue entrevistas",
+   "subtitle": "Elige una plantilla profesional, añade tu experiencia y deja que la IA pula cada punto. Descarga un PDF listo para ATS en el idioma y formato del país donde te postulas.",
+   "ctaCreate": "Crea tu CV gratis",
+   "ctaUpload": "Subir mi CV",
+   "trust": {
+    "noSignup": "Sin registro",
+    "ats": "Compatible con ATS",
+    "pdf": "PDF con texto real"
+   },
+   "float": {
+    "ai": "Asistente IA",
+    "before": "Responsable de campañas publicitarias.",
+    "after": "Gestioné campañas de Google Ads con 200.000 PLN, aumentando la conversión un 28 %.",
+    "match": "Coincidencia con la oferta",
+    "matchSub": "8 de 10 palabras clave"
+   },
+   "stats": {
+    "templates": "plantillas de CV",
+    "languages": "idiomas de contenido",
+    "countries": "países configurados",
+    "price": "por todas las funciones"
+   },
+   "stepsTitle": "Un CV profesional en tres pasos",
+   "f1": {
+    "eyebrow": "Asistente IA",
+    "title": "Convierte tareas en logros",
+    "text": "Describe lo que hacías: la IA propone puntos concretos y medibles y escribe tu perfil. Tú decides qué entra en el CV.",
+    "a": "Mejora los puntos de experiencia con un clic",
+    "b": "Perfil profesional en el tono que elijas",
+    "c": "Solo datos de tu CV: la IA no inventa nada",
+    "demo1": "Gestioné campañas de Google Ads y Meta con un presupuesto mensual de 200.000 PLN",
+    "demo2": "Aumenté la conversión de la tienda un 28 % con tests A/B",
+    "demo3": "Coordiné la agencia con un equipo de ventas de 8 personas"
+   },
+   "f2": {
+    "eyebrow": "Coincidencia con la oferta",
+    "title": "Compara tu CV con la oferta",
+    "text": "Pega una oferta de empleo: verás la puntuación, las palabras clave que faltan y sugerencias listas para usar, como lo valorarían un ATS y un reclutador."
+   },
+   "f3": {
+    "eyebrow": "Muchos países",
+    "title": "Cada país tiene sus reglas y las conocemos",
+    "text": "Idioma de los títulos, formato de fecha, tamaño de página, foto y cláusula de consentimiento según el país. La IA traduce todo el CV."
+   },
+   "f4": {
+    "title": "Supera el filtro ATS",
+    "text": "Nuestros PDF contienen texto real y seleccionable en orden lógico. Las plantillas ATS tienen una estructura que los sistemas leen sin errores."
+   }
+  }
  },
  "templates": {
   "title": "Plantillas de CV",

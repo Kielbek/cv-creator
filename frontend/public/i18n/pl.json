@@ -14,7 +14,10 @@
  },
  "footer": {
   "tagline": "Darmowy kreator CV z AI i szablonami przyjaznymi dla ATS. Twoje dane zostają w przeglądarce.",
-  "rights": "CV Creator. Wszelkie prawa zastrzeżone."
+  "rights": "CV Creator. Wszelkie prawa zastrzeżone.",
+  "product": "Produkt",
+  "help": "Pomoc",
+  "language": "Język strony"
  },
  "home": {
   "badge": "Szybko • Profesjonalnie • W wielu językach",
@@ -125,7 +128,57 @@
    "text": "Stwórz swoje profesjonalne CV już teraz – to zajmie tylko chwilę."
   },
   "statLanguages": "języków CV",
-  "statPrice": "zawsze"
+  "statPrice": "zawsze",
+  "v2": {
+   "title": "CV, które otwiera drzwi do rozmów",
+   "subtitle": "Wybierz profesjonalny szablon, wpisz swoje doświadczenie, a AI pomoże dopracować każdy punkt. Pobierz PDF gotowy na systemy ATS – w języku i formacie kraju, w którym aplikujesz.",
+   "ctaCreate": "Stwórz CV za darmo",
+   "ctaUpload": "Wgraj obecne CV",
+   "trust": {
+    "noSignup": "Bez rejestracji",
+    "ats": "Zgodne z ATS",
+    "pdf": "PDF z prawdziwym tekstem"
+   },
+   "float": {
+    "ai": "Asystent AI",
+    "before": "Odpowiadałam za kampanie reklamowe.",
+    "after": "Prowadziłam kampanie Google Ads z budżetem 200 tys. zł, zwiększając konwersję o 28%.",
+    "match": "Dopasowanie do oferty",
+    "matchSub": "8 z 10 słów kluczowych"
+   },
+   "stats": {
+    "templates": "szablonów CV",
+    "languages": "języków treści CV",
+    "countries": "krajów z ustawieniami",
+    "price": "za wszystkie funkcje"
+   },
+   "stepsTitle": "Profesjonalne CV w trzech prostych krokach",
+   "f1": {
+    "eyebrow": "Asystent AI",
+    "title": "Zamień obowiązki w osiągnięcia",
+    "text": "Wpisz, czym się zajmowałeś – AI zaproponuje konkretne, mierzalne punkty i napisze podsumowanie zawodowe. Ty decydujesz, co trafi do CV.",
+    "a": "Ulepszanie punktów doświadczenia jednym kliknięciem",
+    "b": "Podsumowanie zawodowe w wybranym tonie",
+    "c": "Tylko fakty z Twojego CV – AI niczego nie zmyśla",
+    "demo1": "Prowadziłam kampanie Google Ads i Meta z miesięcznym budżetem 200 tys. zł",
+    "demo2": "Zwiększyłam konwersję sklepu o 28% dzięki testom A/B",
+    "demo3": "Koordynowałam współpracę agencji z 8-osobowym zespołem sprzedaży"
+   },
+   "f2": {
+    "eyebrow": "Dopasowanie do oferty",
+    "title": "Sprawdź, jak Twoje CV wypada na tle ogłoszenia",
+    "text": "Wklej treść oferty pracy. Zobaczysz wynik dopasowania, brakujące słowa kluczowe i gotowe sugestie zmian – tak jak ocenia to system ATS i rekruter."
+   },
+   "f3": {
+    "eyebrow": "Wiele krajów",
+    "title": "Każdy kraj ma swoje zasady – znamy je",
+    "text": "Język nagłówków, format dat, rozmiar strony, zdjęcie i klauzula RODO dopasowują się do kraju docelowego. AI przetłumaczy całe CV i dobierze nazwy stanowisk."
+   },
+   "f4": {
+    "title": "Przejdź przez filtr ATS",
+    "text": "Nasze PDF-y zawierają prawdziwy, zaznaczalny tekst w logicznej kolejności. Szablony oznaczone ATS mają strukturę, którą systemy rekrutacyjne czytają bez błędów."
+   }
+  }
  },
  "templates": {
   "title": "Szablony CV",

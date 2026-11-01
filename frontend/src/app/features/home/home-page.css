@@ -1,0 +1,76 @@
+:host {
+  display: block;
+  background: #fff;
+  color: #111;
+}
+.fan {
+  position: relative;
+  height: 560px;
+}
+.fan-card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 30px 60px -25px rgb(0 0 0 / 0.35);
+  transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.2, 1);
+}
+.fan-card.c1 {
+  transform: translateX(-50%) translateX(-170px) translateY(50px) rotate(-6deg) scale(0.86);
+}
+.fan-card.c2 {
+  transform: translateX(-50%) translateX(170px) translateY(50px) rotate(6deg) scale(0.86);
+}
+.fan-card.c3 {
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.fan:hover .c1 {
+  transform: translateX(-50%) translateX(-200px) translateY(40px) rotate(-8deg) scale(0.86);
+}
+.fan:hover .c2 {
+  transform: translateX(-50%) translateX(200px) translateY(40px) rotate(8deg) scale(0.86);
+}
+.float {
+  position: absolute;
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 0 0 1px #e6e6e6, 0 18px 40px -18px rgb(0 0 0 / 0.35);
+  animation: bob 6s ease-in-out infinite;
+}
+.float.f2 {
+  animation-delay: -3s;
+}
+@keyframes bob {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.carousel {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 8px 0 24px;
+  scrollbar-width: thin;
+}
+.carousel > * {
+  scroll-snap-align: start;
+  flex: none;
+}
+.ring {
+  --v: 86;
+  background: conic-gradient(#111 calc(var(--v) * 1%), #e6e6e6 0);
+}
+@media (max-width: 1023px) {
+  .fan {
+    height: 470px;
+    transform: scale(0.85);
+    transform-origin: top center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float {
+    animation: none;
+  }
+}

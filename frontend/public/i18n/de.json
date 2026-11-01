@@ -14,7 +14,10 @@
  },
  "footer": {
   "tagline": "Kostenloser Lebenslauf-Editor mit KI und ATS-freundlichen Vorlagen. Deine Daten bleiben in deinem Browser.",
-  "rights": "CV Creator. Alle Rechte vorbehalten."
+  "rights": "CV Creator. Alle Rechte vorbehalten.",
+  "product": "Produkt",
+  "help": "Hilfe",
+  "language": "Sprache"
  },
  "home": {
   "badge": "Schnell • Professionell • Mehrsprachig",
@@ -125,7 +128,57 @@
    "text": "Erstelle jetzt deinen professionellen Lebenslauf – es dauert nur einen Moment."
   },
   "statLanguages": "CV-Sprachen",
-  "statPrice": "für immer"
+  "statPrice": "für immer",
+  "v2": {
+   "title": "Ein Lebenslauf, der Türen öffnet",
+   "subtitle": "Wähle eine professionelle Vorlage, trage deine Erfahrung ein und lass die KI jeden Punkt schärfen. Lade ein ATS-taugliches PDF in Sprache und Format deines Ziellandes herunter.",
+   "ctaCreate": "Kostenlos erstellen",
+   "ctaUpload": "Lebenslauf hochladen",
+   "trust": {
+    "noSignup": "Ohne Anmeldung",
+    "ats": "ATS-tauglich",
+    "pdf": "PDF mit echtem Text"
+   },
+   "float": {
+    "ai": "KI-Assistent",
+    "before": "Verantwortlich für Werbekampagnen.",
+    "after": "Google-Ads-Kampagnen mit 200.000 PLN Budget geleitet, Conversion um 28 % gesteigert.",
+    "match": "Passung zur Stelle",
+    "matchSub": "8 von 10 Schlüsselwörtern"
+   },
+   "stats": {
+    "templates": "Vorlagen",
+    "languages": "Sprachen für Inhalte",
+    "countries": "Länder mit Vorgaben",
+    "price": "für alle Funktionen"
+   },
+   "stepsTitle": "Ein professioneller Lebenslauf in drei Schritten",
+   "f1": {
+    "eyebrow": "KI-Assistent",
+    "title": "Aus Aufgaben werden Erfolge",
+    "text": "Beschreibe deine Tätigkeit – die KI schlägt konkrete, messbare Stichpunkte vor und schreibt dein Profil. Du entscheidest, was übernommen wird.",
+    "a": "Stichpunkte per Klick verbessern",
+    "b": "Profil im gewünschten Ton",
+    "c": "Nur Fakten aus deinem Lebenslauf – die KI erfindet nichts",
+    "demo1": "Google-Ads- und Meta-Kampagnen mit 200.000 PLN Monatsbudget geleitet",
+    "demo2": "Conversion des Shops durch A/B-Tests um 28 % gesteigert",
+    "demo3": "Zusammenarbeit von Agentur und 8-köpfigem Vertriebsteam koordiniert"
+   },
+   "f2": {
+    "eyebrow": "Stellenabgleich",
+    "title": "So schneidet dein Lebenslauf bei der Anzeige ab",
+    "text": "Füge eine Stellenanzeige ein. Du siehst Passung, fehlende Schlüsselwörter und konkrete Vorschläge – so wie ein ATS und ein Recruiter urteilen."
+   },
+   "f3": {
+    "eyebrow": "Viele Länder",
+    "title": "Jedes Land hat seine Regeln – wir kennen sie",
+    "text": "Sprache der Überschriften, Datumsformat, Seitengröße, Foto und Einwilligung richten sich nach dem Zielland. Die KI übersetzt den ganzen Lebenslauf."
+   },
+   "f4": {
+    "title": "Durch den ATS-Filter kommen",
+    "text": "Unsere PDFs enthalten echten, markierbaren Text in logischer Reihenfolge. ATS-Vorlagen haben eine Struktur, die Bewerbersysteme fehlerfrei lesen."
+   }
+  }
  },
  "templates": {
   "title": "Lebenslauf-Vorlagen",

@@ -73,6 +73,7 @@ export class StartPage {
       this.stage.set('method');
     }
     if (this.hasSaved()) this.method.set('continue');
+    if (q.get('mode') === 'import') this.method.set('import');
     inject(DestroyRef).onDestroy(() => this.timers.forEach(clearInterval));
   }
 

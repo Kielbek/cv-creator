@@ -14,7 +14,10 @@
  },
  "footer": {
   "tagline": "Créateur de CV gratuit avec IA et modèles compatibles ATS. Vos données restent dans votre navigateur.",
-  "rights": "CV Creator. Tous droits réservés."
+  "rights": "CV Creator. Tous droits réservés.",
+  "product": "Produit",
+  "help": "Aide",
+  "language": "Langue"
  },
  "home": {
   "badge": "Rapide • Professionnel • Multilingue",
@@ -125,7 +128,57 @@
    "text": "Créez votre CV professionnel maintenant – cela ne prend qu'un instant."
   },
   "statLanguages": "langues de CV",
-  "statPrice": "pour toujours"
+  "statPrice": "pour toujours",
+  "v2": {
+   "title": "Un CV qui décroche des entretiens",
+   "subtitle": "Choisissez un modèle professionnel, ajoutez votre expérience et laissez l'IA affiner chaque point. Téléchargez un PDF compatible ATS dans la langue et le format du pays visé.",
+   "ctaCreate": "Créer mon CV gratuitement",
+   "ctaUpload": "Importer mon CV",
+   "trust": {
+    "noSignup": "Sans inscription",
+    "ats": "Compatible ATS",
+    "pdf": "PDF avec vrai texte"
+   },
+   "float": {
+    "ai": "Assistant IA",
+    "before": "Responsable des campagnes publicitaires.",
+    "after": "Pilotage de campagnes Google Ads (200 000 PLN), conversion +28 %.",
+    "match": "Adéquation à l'offre",
+    "matchSub": "8 mots-clés sur 10"
+   },
+   "stats": {
+    "templates": "modèles de CV",
+    "languages": "langues de contenu",
+    "countries": "pays configurés",
+    "price": "pour toutes les fonctions"
+   },
+   "stepsTitle": "Un CV professionnel en trois étapes",
+   "f1": {
+    "eyebrow": "Assistant IA",
+    "title": "Transformez vos missions en réalisations",
+    "text": "Décrivez ce que vous faisiez – l'IA propose des points concrets et mesurables et rédige votre profil. Vous décidez de ce qui figure dans le CV.",
+    "a": "Améliorer les points d'expérience en un clic",
+    "b": "Profil dans le ton de votre choix",
+    "c": "Uniquement les faits de votre CV – l'IA n'invente rien",
+    "demo1": "Pilotage de campagnes Google Ads et Meta avec un budget mensuel de 200 000 PLN",
+    "demo2": "Conversion de la boutique +28 % grâce aux tests A/B",
+    "demo3": "Coordination de l'agence et d'une équipe commerciale de 8 personnes"
+   },
+   "f2": {
+    "eyebrow": "Adéquation à l'offre",
+    "title": "Comparez votre CV à l'annonce",
+    "text": "Collez une offre d'emploi : score d'adéquation, mots-clés manquants et suggestions prêtes à l'emploi – comme le jugeraient un ATS et un recruteur."
+   },
+   "f3": {
+    "eyebrow": "Plusieurs pays",
+    "title": "Chaque pays a ses règles – nous les connaissons",
+    "text": "Langue des titres, format des dates, taille de page, photo et clause de consentement suivent le pays visé. L'IA traduit tout le CV."
+   },
+   "f4": {
+    "title": "Passez le filtre ATS",
+    "text": "Nos PDF contiennent du vrai texte sélectionnable dans un ordre logique. Les modèles ATS ont une structure que les logiciels de recrutement lisent sans erreur."
+   }
+  }
  },
  "templates": {
   "title": "Modèles de CV",
