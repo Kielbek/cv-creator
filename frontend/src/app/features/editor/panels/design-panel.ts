@@ -5,10 +5,11 @@ import { CvStore } from '../../../core/cv/cv.store';
 import { TEMPLATES } from '../../../core/cv/templates';
 import { FontId, PageSize } from '../../../core/cv/cv.model';
 import { CvThumb } from '../../../cv-render/cv-thumb';
+import { Select, SelectOption } from '../../../shared/form/select';
 
 @Component({
   selector: 'app-design-panel',
-  imports: [TranslatePipe, LucideAngularModule, CvThumb],
+  imports: [TranslatePipe, LucideAngularModule, CvThumb, Select],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @let c = store.cv();
@@ -59,18 +60,11 @@ import { CvThumb } from '../../../cv-render/cv-thumb';
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="label" for="font">{{ 'design.font' | translate }}</label>
-            <select id="font" class="input" [value]="g.font" (change)="setFont($any($event.target).value)">
-              @for (f of fonts; track f.id) {
-                <option [value]="f.id" [selected]="f.id == g.font">{{ f.name }}</option>
-              }
-            </select>
+            <ui-select inputId="font" [options]="fontOptions" [value]="g.font" (valueChange)="setFont($any($event))" />
           </div>
           <div>
             <label class="label" for="ps">{{ 'design.pageSize' | translate }}</label>
-            <select id="ps" class="input" [value]="c.design.pageSize" (change)="setPage($any($event.target).value)">
-              <option value="A4" [selected]="'A4' == c.design.pageSize">A4</option>
-              <option value="LETTER" [selected]="'LETTER' == c.design.pageSize">US Letter</option>
-            </select>
+            <ui-select inputId="ps" [options]="pageOptions" [value]="c.design.pageSize" (valueChange)="setPage($any($event))" />
           </div>
         </div>
         <div>
@@ -92,6 +86,11 @@ export class DesignPanel {
     { id: 'system', name: 'System Sans' },
     { id: 'lora', name: 'Lora (serif)' },
     { id: 'georgia', name: 'Georgia (serif)' },
+  ];
+  protected readonly fontOptions: SelectOption[] = this.fonts.map((f) => ({ value: f.id, label: f.name }));
+  protected readonly pageOptions: SelectOption[] = [
+    { value: 'A4', label: 'A4' },
+    { value: 'LETTER', label: 'US Letter' },
   ];
   protected readonly scalePct = computed(() => Math.round(this.store.cv().design.fontScale * 100));
 

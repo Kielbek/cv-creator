@@ -1,9 +1,9 @@
 import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal, untracked } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LucideAngularModule, ArrowLeft, ChevronRight, GripVertical, Plus, Sparkles, Trash2, X } from 'lucide-angular';
 import { CvStore } from '../../../core/cv/cv.store';
-import { Cv, ExperienceItem, headerErrors, newCertificate, newEducation, newExperience, newLanguage, newProject, uid } from '../../../core/cv/cv.model';
+import { Cv, ExperienceItem, headerErrors, isBlank, newCertificate, newEducation, newExperience, newLanguage, newProject, uid } from '../../../core/cv/cv.model';
 import { formatRange, formatMonth } from '../../../core/cv/cv-labels';
 import { AiError, AiService } from '../../../core/ai/ai.service';
 import { Toasts } from '../../../shared/toasts';
@@ -13,6 +13,8 @@ import { UiLanguage } from '../../../core/i18n/ui-language';
 import { MonthPicker } from '../../../shared/form/month-picker';
 import { Switch } from '../../../shared/form/switch';
 import { TagInput } from '../../../shared/form/tag-input';
+import { Select, SelectOption } from '../../../shared/form/select';
+import { LevelSlider } from '../../../shared/form/level-slider';
 
 type ListKey = 'experience' | 'education' | 'skills' | 'languages' | 'projects' | 'certificates';
 export type Panel = 'personal' | 'summary' | ListKey | 'interests' | 'consent';
@@ -28,7 +30,7 @@ const FACTORIES = {
 /** The content forms of one wizard step. Every keystroke goes straight to the store → live preview. */
 @Component({
   selector: 'app-content-panel',
-  imports: [TranslatePipe, LucideAngularModule, CdkDropList, CdkDrag, CdkDragHandle, MonthPicker, Switch, TagInput],
+  imports: [TranslatePipe, LucideAngularModule, CdkDropList, CdkDrag, CdkDragHandle, MonthPicker, Switch, TagInput, Select, LevelSlider],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './content-panel.html',
 })
@@ -37,6 +39,7 @@ export class ContentPanel {
   protected readonly ai = inject(AiService);
   private readonly toasts = inject(Toasts);
   private readonly ui = inject(UiLanguage);
+  private readonly translate = inject(TranslateService);
   protected readonly cvLanguages = CV_LANGUAGES;
   protected readonly countries = COUNTRIES;
 
@@ -46,6 +49,39 @@ export class ContentPanel {
 
   protected countryName(code: string): string {
     return new Intl.DisplayNames([this.ui.current()], { type: 'region' }).of(code) ?? code;
+  }
+
+  private static readonly LANG_FLAG: Record<string, string> = { en: 'gb', cs: 'cz', uk: 'ua' };
+  protected readonly languageOptions = computed<SelectOption[]>(() => {
+    this.ui.current();
+    return this.cvLanguages.map((l) => ({ value: l, label: this.cap(this.langName(l)), flag: ContentPanel.LANG_FLAG[l] ?? l }));
+  });
+  protected readonly countryOptions = computed<SelectOption[]>(() => {
+    this.ui.current();
+    return this.countries
+      .map((c) => ({ value: c.code, label: this.countryName(c.code), flag: c.code.toLowerCase() }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+  });
+  protected readonly toneOptions = computed<SelectOption[]>(() =>
+    ['professional', 'confident', 'friendly', 'concise'].map((t) => ({ value: t, label: this.translate.instant('ai.tone.' + t) })),
+  );
+
+  private cap(s: string): string {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  /**
+   * "Next" while an entry form is open: save it and show the list first (so another one can be added).
+   * @returns true if the click was consumed
+   */
+  handleNext(): boolean {
+    const id = this.openId();
+    if (!id) return false;
+    const lists = ['experience', 'education', 'projects', 'certificates'] as const;
+    const item = lists.flatMap((k) => this.cv()[k] as { id: string }[]).find((e) => e.id === id);
+    const blank = !item || isBlank(item);
+    this.close();
+    return !blank;
   }
 
   protected setLanguage(code: string): void {

@@ -3,7 +3,8 @@
   "remove": "Usuń",
   "up": "Przesuń wyżej",
   "down": "Przesuń niżej",
-  "close": "Zamknij"
+  "close": "Zamknij",
+  "search": "Szukaj…"
  },
  "nav": {
   "templates": "Szablony",
@@ -268,7 +269,8 @@
    "newPosition": "Nowe stanowisko",
    "newEducation": "Nowa szkoła",
    "newProject": "Nowy projekt",
-   "newCertificate": "Nowy certyfikat"
+   "newCertificate": "Nowy certyfikat",
+   "language": "Język"
   },
   "add": {
    "experience": "Dodaj stanowisko",

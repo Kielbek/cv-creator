@@ -1,27 +1,16 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { UiLanguage } from '../../core/i18n/ui-language';
+import { Select, SelectOption } from './select';
 
-/** 'YYYY-MM' as two selects (month, year) in one control – consistent in every browser, unlike <input type="month">. */
+/** 'YYYY-MM' as two styled dropdowns (month, year). */
 @Component({
   selector: 'ui-month-picker',
+  imports: [Select],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'block' },
+  host: { class: 'grid grid-cols-[1.25fr_1fr] gap-2' },
   template: `
-    <div class="field-group" [class.is-disabled]="disabled()">
-      <select class="field-select" [disabled]="disabled()" (change)="setMonth($any($event.target).value)" [attr.aria-label]="monthLabel()">
-        <option value="" [selected]="!month()">{{ monthLabel() }}</option>
-        @for (m of months(); track m.value) {
-          <option [value]="m.value" [selected]="m.value === month()">{{ m.label }}</option>
-        }
-      </select>
-      <span class="field-sep"></span>
-      <select class="field-select" [disabled]="disabled()" (change)="setYear($any($event.target).value)" [attr.aria-label]="yearLabel()">
-        <option value="" [selected]="!year()">{{ yearLabel() }}</option>
-        @for (y of years; track y) {
-          <option [value]="y" [selected]="y === year()">{{ y }}</option>
-        }
-      </select>
-    </div>
+    <ui-select [options]="months()" [value]="month()" [placeholder]="monthLabel()" [ariaLabel]="monthLabel()" [disabled]="disabled()" (valueChange)="setMonth($event)" />
+    <ui-select [options]="years" [value]="year()" [placeholder]="yearLabel()" [ariaLabel]="yearLabel()" [disabled]="disabled()" (valueChange)="setYear($event)" />
   `,
 })
 export class MonthPicker {
@@ -32,10 +21,13 @@ export class MonthPicker {
   readonly valueChange = output<string>();
 
   private readonly ui = inject(UiLanguage);
-  protected readonly years = Array.from({ length: 70 }, (_, i) => String(new Date().getFullYear() + 1 - i));
+  protected readonly years: SelectOption[] = Array.from({ length: 70 }, (_, i) => {
+    const y = String(new Date().getFullYear() + 1 - i);
+    return { value: y, label: y };
+  });
   protected readonly year = computed(() => this.value().split('-')[0] ?? '');
   protected readonly month = computed(() => this.value().split('-')[1] ?? '');
-  protected readonly months = computed(() => {
+  protected readonly months = computed<SelectOption[]>(() => {
     const fmt = new Intl.DateTimeFormat(this.ui.current(), { month: 'long' });
     return Array.from({ length: 12 }, (_, i) => {
       const label = fmt.format(new Date(2020, i, 1));
@@ -45,10 +37,10 @@ export class MonthPicker {
 
   protected setMonth(m: string): void {
     const y = this.year() || String(new Date().getFullYear());
-    this.valueChange.emit(m ? `${y}-${m}` : this.year());
+    this.valueChange.emit(`${y}-${m}`);
   }
 
   protected setYear(y: string): void {
-    this.valueChange.emit(y ? (this.month() ? `${y}-${this.month()}` : y) : '');
+    this.valueChange.emit(this.month() ? `${y}-${this.month()}` : y);
   }
 }

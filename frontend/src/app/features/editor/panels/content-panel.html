@@ -31,19 +31,11 @@
       <div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-5">
         <div>
           <label class="label" for="cvl">{{ 'editor.cvLanguage' | translate }}</label>
-          <select id="cvl" class="input" (change)="setLanguage(val($event))">
-            @for (l of cvLanguages; track l) {
-              <option [value]="l" [selected]="l === c.language">{{ langName(l) }}</option>
-            }
-          </select>
+          <ui-select inputId="cvl" [options]="languageOptions()" [value]="c.language" (valueChange)="setLanguage($event)" [searchPlaceholder]="'common.search' | translate" />
         </div>
         <div>
           <label class="label" for="cvc">{{ 'editor.country' | translate }}</label>
-          <select id="cvc" class="input" (change)="store.setCountry(val($event), false)">
-            @for (co of countries; track co.code) {
-              <option [value]="co.code" [selected]="co.code === c.country">{{ countryName(co.code) }}</option>
-            }
-          </select>
+          <ui-select inputId="cvc" [options]="countryOptions()" [value]="c.country" (valueChange)="store.setCountry($event, false)" [searchPlaceholder]="'common.search' | translate" />
         </div>
         <div><label class="label" for="fn">{{ 'editor.f.firstName' | translate }} <span class="req">*</span></label><input placeholder=" " id="fn" required [class.is-invalid]="errors().firstName" class="input" [value]="c.personal.firstName" (input)="setPersonal('firstName', $event)" autocomplete="given-name" />
           @if (errors().firstName; as err) {
@@ -86,11 +78,7 @@
         <lucide-icon [img]="icons.Sparkles" class="size-4 text-ink" />
         <span class="text-[13px] text-ink-2">{{ 'ai.summaryHint' | translate }}</span>
         <div class="ml-auto flex items-center gap-2">
-          <select class="field-select h-8 rounded-md border border-line-2 bg-white text-[13px]" (change)="tone.set(val($event))" [attr.aria-label]="'ai.tone.label' | translate">
-            @for (t of ['professional', 'confident', 'friendly', 'concise']; track t) {
-              <option [value]="t" [selected]="t === tone()">{{ 'ai.tone.' + t | translate }}</option>
-            }
-          </select>
+          <ui-select class="w-44" [options]="toneOptions()" [value]="tone()" (valueChange)="tone.set($event)" [ariaLabel]="'ai.tone.label' | translate" />
           <button type="button" class="btn-primary btn-sm" (click)="generateSummary()" [disabled]="busy() === 'summary'">
             {{ busy() === 'summary' ? ('ai.working' | translate) : ((c.summary ? 'ai.rewriteSummary' : 'ai.writeSummary') | translate) }}
           </button>
@@ -256,14 +244,18 @@
     <section>
       <div class="entries">
         @for (l of c.languages; track l.id; let i = $index) {
-          <div class="entry flex items-center gap-3 px-3 py-2.5">
-            <input class="input h-9! flex-1 border-transparent! px-2! hover:border-line-2! focus:border-primary!" [value]="l.name" (input)="setItem('languages', i, 'name', val($event))" [placeholder]="'editor.f.languagePh' | translate" />
-            <select class="field-select h-9 max-w-40 flex-none rounded-md border border-line-2 text-[13.5px]" (change)="setItem('languages', i, 'level', val($event))" [attr.aria-label]="'editor.f.level' | translate">
-              @for (lv of levels; track lv) {
-                <option [value]="lv" [selected]="lv === l.level">{{ lv === 'native' ? ('editor.native' | translate) : lv }}</option>
-              }
-            </select>
-            <button type="button" class="entry-action opacity-100!" (click)="remove('languages', i)" [attr.aria-label]="'common.remove' | translate"><lucide-icon [img]="icons.X" class="size-4" /></button>
+          <div class="entry p-5">
+            <div class="flex items-end gap-3">
+              <div class="min-w-0 flex-1">
+                <label class="label">{{ 'editor.f.language' | translate }}</label>
+                <input class="input" placeholder=" " [value]="l.name" (input)="setItem('languages', i, 'name', val($event))" [attr.placeholder]="'editor.f.languagePh' | translate" />
+              </div>
+              <button type="button" class="ptool-light" (click)="remove('languages', i)" [attr.aria-label]="'common.remove' | translate" [title]="'common.remove' | translate"><lucide-icon [img]="icons.Trash2" class="size-4" /></button>
+            </div>
+            <div class="mt-5">
+              <label class="label">{{ 'editor.f.level' | translate }}</label>
+              <ui-level-slider [value]="l.level" [nativeLabel]="'editor.native' | translate" [ariaLabel]="('editor.f.level' | translate) + ' ' + l.name" (valueChange)="setItem('languages', i, 'level', $event)" />
+            </div>
           </div>
         }
         <button type="button" class="add-row" (click)="add('languages')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.language' | translate }}</button>

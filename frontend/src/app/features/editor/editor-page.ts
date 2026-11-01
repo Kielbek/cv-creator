@@ -116,8 +116,15 @@ export class EditorPage {
   }
 
   /** "Next": reminds about an empty essential section first */
+  private readonly panel = viewChild(ContentPanel);
+
   protected next(): void {
     const id = this.step().id;
+    // an open entry form is saved first and the list is shown, so the user can add another one
+    if (!this.intro() && this.panel()?.handleNext()) {
+      this.document.querySelector('.wizard-main')?.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     if (id === 'header' && !this.headerValid()) {
       this.showErrors.set(true);
       setTimeout(() => {

@@ -3,7 +3,8 @@
   "remove": "Eliminar",
   "up": "Subir",
   "down": "Bajar",
-  "close": "Cerrar"
+  "close": "Cerrar",
+  "search": "Buscar…"
  },
  "nav": {
   "templates": "Plantillas",
@@ -268,7 +269,8 @@
    "newPosition": "Nuevo puesto",
    "newEducation": "Nueva formación",
    "newProject": "Nuevo proyecto",
-   "newCertificate": "Nueva certificación"
+   "newCertificate": "Nueva certificación",
+   "language": "Idioma"
   },
   "add": {
    "experience": "Añadir puesto",

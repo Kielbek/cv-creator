@@ -3,7 +3,8 @@
   "remove": "Supprimer",
   "up": "Monter",
   "down": "Descendre",
-  "close": "Fermer"
+  "close": "Fermer",
+  "search": "Rechercher…"
  },
  "nav": {
   "templates": "Modèles",
@@ -268,7 +269,8 @@
    "newPosition": "Nouveau poste",
    "newEducation": "Nouvelle formation",
    "newProject": "Nouveau projet",
-   "newCertificate": "Nouvelle certification"
+   "newCertificate": "Nouvelle certification",
+   "language": "Langue"
   },
   "add": {
    "experience": "Ajouter un poste",

@@ -3,7 +3,8 @@
   "remove": "Entfernen",
   "up": "Nach oben",
   "down": "Nach unten",
-  "close": "Schließen"
+  "close": "Schließen",
+  "search": "Suchen…"
  },
  "nav": {
   "templates": "Vorlagen",
@@ -268,7 +269,8 @@
    "newPosition": "Neue Position",
    "newEducation": "Neue Schule",
    "newProject": "Neues Projekt",
-   "newCertificate": "Neues Zertifikat"
+   "newCertificate": "Neues Zertifikat",
+   "language": "Sprache"
   },
   "add": {
    "experience": "Position hinzufügen",

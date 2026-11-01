@@ -8,10 +8,11 @@ import { COUNTRIES } from '../../../core/cv/countries';
 import { newSkill } from '../../../core/cv/cv.model';
 import { Toasts } from '../../../shared/toasts';
 import { UiLanguage } from '../../../core/i18n/ui-language';
+import { Select, SelectOption } from '../../../shared/form/select';
 
 @Component({
   selector: 'app-ai-panel',
-  imports: [TranslatePipe, LucideAngularModule],
+  imports: [TranslatePipe, LucideAngularModule, Select],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="space-y-5">
@@ -89,19 +90,11 @@ import { UiLanguage } from '../../../core/i18n/ui-language';
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="label" for="tl">{{ 'ai.translate.language' | translate }}</label>
-            <select id="tl" class="input" [value]="targetLang()" (change)="targetLang.set($any($event.target).value)">
-              @for (l of languages; track l) {
-                <option [value]="l" [disabled]="l === store.cv().language" [selected]="l == targetLang()">{{ langName(l) }}</option>
-              }
-            </select>
+            <ui-select inputId="tl" [options]="langOptions()" [value]="targetLang()" (valueChange)="targetLang.set($event)" [searchPlaceholder]="'common.search' | translate" />
           </div>
           <div>
             <label class="label" for="tc">{{ 'ai.translate.country' | translate }}</label>
-            <select id="tc" class="input" [value]="targetCountry()" (change)="targetCountry.set($any($event.target).value)">
-              @for (c of countries; track c.code) {
-                <option [value]="c.code" [selected]="c.code == targetCountry()">{{ countryName(c.code) }}</option>
-              }
-            </select>
+            <ui-select inputId="tc" [options]="countryOptions()" [value]="targetCountry()" (valueChange)="targetCountry.set($event)" [searchPlaceholder]="'common.search' | translate" />
           </div>
         </div>
         <button type="button" class="btn-primary w-full" (click)="translate()" [disabled]="busy() !== null || targetLang() === store.cv().language">
@@ -128,6 +121,19 @@ export class AiPanel {
   protected readonly result = signal<TailorResult | null>(null);
   protected readonly targetLang = signal(this.store.cv().language === 'en' ? 'de' : 'en');
   protected readonly targetCountry = signal(this.store.cv().language === 'en' ? 'DE' : 'GB');
+
+  protected readonly langOptions = computed<SelectOption[]>(() =>
+    this.languages
+      .filter((l) => l !== this.store.cv().language)
+      .map((l) => ({ value: l, label: this.cap(this.langName(l)), flag: ({ en: 'gb', cs: 'cz', uk: 'ua' } as Record<string, string>)[l] ?? l })),
+  );
+  protected readonly countryOptions = computed<SelectOption[]>(() =>
+    this.countries.map((c) => ({ value: c.code, label: this.countryName(c.code), flag: c.code.toLowerCase() })).sort((a, b) => a.label.localeCompare(b.label)),
+  );
+
+  private cap(s: string): string {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
 
   protected readonly scoreColor = computed(() => {
     const s = this.result()?.matchScore ?? 0;
