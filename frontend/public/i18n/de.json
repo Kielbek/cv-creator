@@ -10,7 +10,21 @@
   "templates": "Vorlagen",
   "features": "Funktionen",
   "how": "So funktioniert's",
-  "create": "Lebenslauf erstellen"
+  "create": "Lebenslauf erstellen",
+  "mega": {
+   "exploreTemplates": "Vorlagen entdecken",
+   "professional": "Professionelle Vorlagen",
+   "professionalText": "Klare Layouts für jede Karrierestufe",
+   "modern": "Moderne Vorlagen",
+   "modernText": "Fall auf mit frischem Design",
+   "simple": "Einfache ATS-Vorlagen",
+   "simpleText": "Gut lesbare, ATS-freundliche Formate",
+   "popular": "Beliebt",
+   "allTemplates": "Alle Vorlagen",
+   "promoTitle": "Finde dein perfektes Layout",
+   "promoText": "Wähle eine Vorlage und passe sie mit KI in Minuten an.",
+   "tools": "Werkzeuge"
+  }
  },
  "footer": {
   "tagline": "Kostenloser Lebenslauf-Editor mit KI und ATS-freundlichen Vorlagen. Deine Daten bleiben in deinem Browser.",
@@ -189,6 +203,16 @@
      "finance": "Finanzen & Verwaltung"
     }
    }
+  },
+  "mm": {
+   "proofStrong": "{{count}} Sprachen",
+   "proof": "und Vorgaben für {{countries}} Länder",
+   "title": "Der perfekte Lebenslauf in Minuten – mit KI",
+   "intro": "Erstelle deinen Lebenslauf in wenigen Minuten mit recruiterfreundlichen Vorlagen und unserem KI-Assistenten.",
+   "create": "Lebenslauf erstellen",
+   "import": "Lebenslauf importieren",
+   "checks": "ATS-taugliche Layouts · Schreiben mit KI",
+   "aiPill": "Mit KI erstellen"
   }
  },
  "templates": {

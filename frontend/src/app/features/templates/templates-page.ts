@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SiteNav } from '../../shared/site-nav';
 import { SiteFooter } from '../../shared/site-footer';
@@ -49,7 +49,11 @@ export class TemplatesPage {
   protected readonly ui = inject(UiLanguage);
   private readonly router = inject(Router);
   protected readonly filters: ('all' | TemplateTag)[] = ['all', 'ats', 'modern', 'classic', 'creative', 'minimal'];
-  protected readonly filter = signal<'all' | TemplateTag>('all');
+  protected readonly filter = signal<'all' | TemplateTag>(
+    (['ats', 'modern', 'classic', 'creative', 'minimal'].includes(inject(ActivatedRoute).snapshot.queryParamMap.get('f') ?? '')
+      ? inject(ActivatedRoute).snapshot.queryParamMap.get('f')
+      : 'all') as 'all' | TemplateTag,
+  );
   protected readonly visible = computed(() => {
     const f = this.filter();
     return f === 'all' ? TEMPLATES : TEMPLATES.filter((t) => t.tags.includes(f));

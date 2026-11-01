@@ -10,7 +10,21 @@
   "templates": "Plantillas",
   "features": "Funciones",
   "how": "Cómo funciona",
-  "create": "Crear CV"
+  "create": "Crear CV",
+  "mega": {
+   "exploreTemplates": "Explorar plantillas",
+   "professional": "Plantillas profesionales",
+   "professionalText": "Diseños limpios para cada etapa",
+   "modern": "Plantillas modernas",
+   "modernText": "Destaca con un diseño fresco y cuidado",
+   "simple": "Plantillas simples ATS",
+   "simpleText": "Formatos legibles y compatibles con ATS",
+   "popular": "Populares",
+   "allTemplates": "Ver todas",
+   "promoTitle": "Encuentra tu diseño ideal",
+   "promoText": "Elige una plantilla y personalízala en minutos con IA.",
+   "tools": "Herramientas"
+  }
  },
  "footer": {
   "tagline": "Creador de CV gratuito con IA y plantillas compatibles con ATS. Tus datos se quedan en tu navegador.",
@@ -189,6 +203,16 @@
      "finance": "Finanzas y administración"
     }
    }
+  },
+  "mm": {
+   "proofStrong": "{{count}} idiomas de CV",
+   "proof": "y ajustes para {{countries}} países",
+   "title": "Crea un CV perfecto en minutos con IA",
+   "intro": "Crea tu CV en pocos minutos con plantillas que gustan a los reclutadores y nuestro asistente de IA.",
+   "create": "Crear mi CV",
+   "import": "Importar mi CV",
+   "checks": "Diseños compatibles con ATS · Redacción con IA",
+   "aiPill": "Generar con IA"
   }
  },
  "templates": {

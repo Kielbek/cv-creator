@@ -1,0 +1,90 @@
+<header class="nav">
+  <a routerLink="/" class="shrink-0" aria-label="Home" (click)="close()"><app-logo /></a>
+
+  <nav class="nav-links" [class.mobile-open]="mobile()">
+    <!-- templates -->
+    <div class="nav-item" [class.menu-open]="open() === 'templates'">
+      <button type="button" class="nav-link" [attr.aria-expanded]="open() === 'templates'" (click)="toggle('templates', $event)">
+        {{ 'nav.templates' | translate }} <lucide-icon [img]="icons.ChevronDown" class="chevron size-4" />
+      </button>
+      <div class="mega-menu">
+        <div>
+          <h3>{{ 'nav.mega.exploreTemplates' | translate }}</h3>
+          <a class="mega-link" routerLink="/templates" [queryParams]="{ f: 'classic' }" (click)="close()">
+            <lucide-icon [img]="icons.LayoutTemplate" class="menu-symbol size-5" />
+            <span><strong>{{ 'nav.mega.professional' | translate }}</strong><small>{{ 'nav.mega.professionalText' | translate }}</small></span>
+            <lucide-icon [img]="icons.ChevronRight" class="menu-arrow size-4" />
+          </a>
+          <a class="mega-link" routerLink="/templates" [queryParams]="{ f: 'modern' }" (click)="close()">
+            <lucide-icon [img]="icons.Sparkles" class="menu-symbol size-5" />
+            <span><strong>{{ 'nav.mega.modern' | translate }}</strong><small>{{ 'nav.mega.modernText' | translate }}</small></span>
+            <lucide-icon [img]="icons.ChevronRight" class="menu-arrow size-4" />
+          </a>
+          <a class="mega-link" routerLink="/templates" [queryParams]="{ f: 'ats' }" (click)="close()">
+            <lucide-icon [img]="icons.ShieldCheck" class="menu-symbol size-5" />
+            <span><strong>{{ 'nav.mega.simple' | translate }}</strong><small>{{ 'nav.mega.simpleText' | translate }}</small></span>
+            <lucide-icon [img]="icons.ChevronRight" class="menu-arrow size-4" />
+          </a>
+        </div>
+        <div>
+          <h3>{{ 'nav.mega.popular' | translate }}</h3>
+          @for (t of popular; track t) {
+            <a class="popular-link" routerLink="/start" [queryParams]="{ template: t }" (click)="close()">{{ t.charAt(0).toUpperCase() + t.slice(1) }}</a>
+          }
+          <a class="all-link" routerLink="/templates" (click)="close()">{{ 'nav.mega.allTemplates' | translate }} <lucide-icon [img]="icons.ChevronRight" class="size-4" /></a>
+        </div>
+        <div class="mega-promo">
+          <div class="mini-resume"><span></span><i></i><i></i><b></b><i></i><i></i></div>
+          <strong>{{ 'nav.mega.promoTitle' | translate }}</strong>
+          <p>{{ 'nav.mega.promoText' | translate }}</p>
+          <a routerLink="/start" (click)="close()">{{ 'nav.create' | translate }} <lucide-icon [img]="icons.ChevronRight" class="size-4" /></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- features -->
+    <div class="nav-item" [class.menu-open]="open() === 'features'">
+      <button type="button" class="nav-link" [attr.aria-expanded]="open() === 'features'" (click)="toggle('features', $event)">
+        {{ 'nav.features' | translate }} <lucide-icon [img]="icons.ChevronDown" class="chevron size-4" />
+      </button>
+      <div class="mega-menu compact">
+        <div>
+          <h3>{{ 'nav.mega.tools' | translate }}</h3>
+          <a class="mega-link" routerLink="/" fragment="features" (click)="close()">
+            <lucide-icon [img]="icons.Sparkles" class="menu-symbol size-5" />
+            <span><strong>{{ 'home.features.ai.title' | translate }}</strong><small>{{ 'home.features.ai.text' | translate }}</small></span>
+            <lucide-icon [img]="icons.ChevronRight" class="menu-arrow size-4" />
+          </a>
+          <a class="mega-link" routerLink="/" fragment="features" (click)="close()">
+            <lucide-icon [img]="icons.Target" class="menu-symbol size-5" />
+            <span><strong>{{ 'home.features.tailor.title' | translate }}</strong><small>{{ 'home.features.tailor.text' | translate }}</small></span>
+            <lucide-icon [img]="icons.ChevronRight" class="menu-arrow size-4" />
+          </a>
+        </div>
+        <div>
+          <h3 class="invisible max-[760px]:hidden">.</h3>
+          <a class="mega-link" routerLink="/" fragment="features" (click)="close()">
+            <lucide-icon [img]="icons.Languages" class="menu-symbol size-5" />
+            <span><strong>{{ 'home.features.languages.title' | translate }}</strong><small>{{ 'home.features.languages.text' | translate }}</small></span>
+            <lucide-icon [img]="icons.ChevronRight" class="menu-arrow size-4" />
+          </a>
+          <a class="mega-link" routerLink="/start" [queryParams]="{ mode: 'import' }" (click)="close()">
+            <lucide-icon [img]="icons.FileUp" class="menu-symbol size-5" />
+            <span><strong>{{ 'home.v2.ctaUpload' | translate }}</strong><small>{{ 'start.method.import.text' | translate }}</small></span>
+            <lucide-icon [img]="icons.ChevronRight" class="menu-arrow size-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-item"><a class="nav-link" routerLink="/" fragment="faq" (click)="close()">FAQ</a></div>
+  </nav>
+
+  <div class="nav-actions">
+    <app-language-switcher />
+    <a routerLink="/start" class="header-cta" (click)="close()">{{ 'nav.create' | translate }}</a>
+    <button type="button" class="menu-toggle" (click)="mobile.set(!mobile())" [attr.aria-expanded]="mobile()" aria-label="Menu">
+      <lucide-icon [img]="mobile() ? icons.X : icons.Menu" class="size-5" />
+    </button>
+  </div>
+</header>

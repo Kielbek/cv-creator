@@ -10,7 +10,21 @@
   "templates": "Szablony",
   "features": "Funkcje",
   "how": "Jak to działa",
-  "create": "Stwórz CV"
+  "create": "Stwórz CV",
+  "mega": {
+   "exploreTemplates": "Przeglądaj szablony CV",
+   "professional": "Szablony profesjonalne",
+   "professionalText": "Przejrzyste układy na każdy etap kariery",
+   "modern": "Szablony nowoczesne",
+   "modernText": "Wyróżnij się świeżym, dopracowanym wyglądem",
+   "simple": "Proste szablony ATS",
+   "simpleText": "Czytelne formaty przyjazne systemom ATS",
+   "popular": "Popularne",
+   "allTemplates": "Wszystkie szablony",
+   "promoTitle": "Znajdź idealny układ CV",
+   "promoText": "Wybierz szablon i dopasuj go w kilka minut z pomocą AI.",
+   "tools": "Narzędzia"
+  }
  },
  "footer": {
   "tagline": "Darmowy kreator CV z AI i szablonami przyjaznymi dla ATS. Twoje dane zostają w przeglądarce.",
@@ -189,6 +203,16 @@
      "finance": "Finanse i administracja"
     }
    }
+  },
+  "mm": {
+   "proofStrong": "{{count}} języków CV",
+   "proof": "i ustawienia dla {{countries}} krajów",
+   "title": "Stwórz idealne CV w kilka minut z AI",
+   "intro": "Stwórz CV w kilka minut dzięki szablonom zgodnym z oczekiwaniami rekruterów i naszemu asystentowi AI.",
+   "create": "Stwórz moje CV",
+   "import": "Importuj moje CV",
+   "checks": "Szablony zgodne z ATS · Pisanie CV z pomocą AI",
+   "aiPill": "Generuj z AI"
   }
  },
  "templates": {

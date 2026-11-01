@@ -15,6 +15,7 @@ import { HOME_PHOTOS } from './home-photos';
   selector: 'app-home-page',
   imports: [RouterLink, TranslatePipe, LucideAngularModule, SiteNav, SiteFooter, CvThumb],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'mm' },
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })

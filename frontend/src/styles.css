@@ -1243,3 +1243,24 @@ input.input:not(:placeholder-shown):valid:not(.is-invalid) {
 .field-error {
   color: #d93036;
 }
+
+/* landing page (MakeMyCV design): purple accent for actions inside the page */
+.mm .btn-primary {
+  border-radius: 6px;
+  background: #4d49f5;
+}
+.mm .btn-primary:hover {
+  background: #3d39e0;
+}
+.mm .btn-ghost {
+  border-radius: 6px;
+  border-color: #d9dce5;
+}
+.mm .btn-ghost:hover {
+  background: #fff;
+  color: #4d49f5;
+  border-color: #4d49f5;
+}
+.mm .eyebrow {
+  color: #4d49f5;
+}

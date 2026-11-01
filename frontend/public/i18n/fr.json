@@ -10,7 +10,21 @@
   "templates": "Modèles",
   "features": "Fonctionnalités",
   "how": "Comment ça marche",
-  "create": "Créer un CV"
+  "create": "Créer un CV",
+  "mega": {
+   "exploreTemplates": "Explorer les modèles",
+   "professional": "Modèles professionnels",
+   "professionalText": "Mises en page claires pour chaque étape",
+   "modern": "Modèles modernes",
+   "modernText": "Démarquez-vous avec un design soigné",
+   "simple": "Modèles simples ATS",
+   "simpleText": "Formats lisibles et compatibles ATS",
+   "popular": "Populaires",
+   "allTemplates": "Tous les modèles",
+   "promoTitle": "Trouvez la mise en page idéale",
+   "promoText": "Choisissez un modèle et personnalisez-le en quelques minutes avec l'IA.",
+   "tools": "Outils"
+  }
  },
  "footer": {
   "tagline": "Créateur de CV gratuit avec IA et modèles compatibles ATS. Vos données restent dans votre navigateur.",
@@ -189,6 +203,16 @@
      "finance": "Finance & administration"
     }
    }
+  },
+  "mm": {
+   "proofStrong": "{{count}} langues de CV",
+   "proof": "et réglages pour {{countries}} pays",
+   "title": "Créez un CV parfait en quelques minutes avec l'IA",
+   "intro": "Créez votre CV en quelques minutes grâce à des modèles appréciés des recruteurs et à notre assistant IA.",
+   "create": "Créer mon CV",
+   "import": "Importer mon CV",
+   "checks": "Mises en page compatibles ATS · Rédaction assistée par IA",
+   "aiPill": "Générer avec l'IA"
   }
  },
  "templates": {

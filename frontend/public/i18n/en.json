@@ -10,7 +10,21 @@
   "templates": "Templates",
   "features": "Features",
   "how": "How it works",
-  "create": "Create CV"
+  "create": "Create CV",
+  "mega": {
+   "exploreTemplates": "Explore CV templates",
+   "professional": "Professional templates",
+   "professionalText": "Clean layouts for every career stage",
+   "modern": "Modern templates",
+   "modernText": "Stand out with a fresh, polished design",
+   "simple": "Simple ATS templates",
+   "simpleText": "Readable, ATS-friendly CV formats",
+   "popular": "Popular",
+   "allTemplates": "View all templates",
+   "promoTitle": "Find your perfect CV layout",
+   "promoText": "Choose a template and customise it in minutes with AI.",
+   "tools": "Tools"
+  }
  },
  "footer": {
   "tagline": "Free CV builder with AI and ATS-friendly templates. Your data stays in your browser.",
@@ -189,6 +203,16 @@
      "finance": "Finance & administration"
     }
    }
+  },
+  "mm": {
+   "proofStrong": "{{count}} CV languages",
+   "proof": "and presets for {{countries}} countries",
+   "title": "Create a perfect CV in minutes with AI",
+   "intro": "Create a CV in just a few minutes with recruiter-friendly templates and our AI assistant.",
+   "create": "Create my CV",
+   "import": "Import my CV",
+   "checks": "ATS-friendly layouts · AI-powered CV writing",
+   "aiPill": "Generate with AI"
   }
  },
  "templates": {
