@@ -176,6 +176,10 @@ export class EditorPage {
     }
   }
 
+  protected words(text: string): string[] {
+    return text.split(/\s+/).filter(Boolean);
+  }
+
   protected langName(code: string): string {
     return new Intl.DisplayNames([this.ui.current()], { type: 'language' }).of(code) ?? code;
   }
