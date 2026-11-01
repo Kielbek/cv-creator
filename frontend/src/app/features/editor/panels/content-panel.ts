@@ -7,6 +7,9 @@ import { Cv, ExperienceItem, newCertificate, newEducation, newExperience, newLan
 import { formatRange, formatMonth } from '../../../core/cv/cv-labels';
 import { AiError, AiService } from '../../../core/ai/ai.service';
 import { Toasts } from '../../../shared/toasts';
+import { CV_LANGUAGES } from '../../../core/cv/cv-labels';
+import { COUNTRIES } from '../../../core/cv/countries';
+import { UiLanguage } from '../../../core/i18n/ui-language';
 import { MonthPicker } from '../../../shared/form/month-picker';
 import { Switch } from '../../../shared/form/switch';
 import { TagInput } from '../../../shared/form/tag-input';
@@ -33,6 +36,21 @@ export class ContentPanel {
   protected readonly store = inject(CvStore);
   protected readonly ai = inject(AiService);
   private readonly toasts = inject(Toasts);
+  private readonly ui = inject(UiLanguage);
+  protected readonly cvLanguages = CV_LANGUAGES;
+  protected readonly countries = COUNTRIES;
+
+  protected langName(code: string): string {
+    return new Intl.DisplayNames([this.ui.current()], { type: 'language' }).of(code) ?? code;
+  }
+
+  protected countryName(code: string): string {
+    return new Intl.DisplayNames([this.ui.current()], { type: 'region' }).of(code) ?? code;
+  }
+
+  protected setLanguage(code: string): void {
+    this.store.update((cv) => (cv.language = code), true);
+  }
   protected readonly cv = this.store.cv;
   protected readonly icons = { ArrowLeft, ChevronRight, GripVertical, Plus, Sparkles, Trash2, X };
 

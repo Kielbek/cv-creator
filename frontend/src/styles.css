@@ -652,8 +652,8 @@ textarea.input {
   --pro-line: #e4e8f1;
   --pro-fill: #eff2f9;
   --pro-fill-hover: #e7ebf5;
-  --pro-blue: #1f6feb;
-  --pro-blue-hover: #1659c7;
+  --pro-blue: #3365f5;
+  --pro-blue-hover: #2552e0;
 }
 body {
   color: var(--pro-text);

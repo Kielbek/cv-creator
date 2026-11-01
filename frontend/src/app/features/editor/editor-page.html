@@ -1,22 +1,18 @@
 @let c = cv();
-<div class="wizard" [class.rail-collapsed]="railCollapsed()" [class.is-intro]="intro()">
+<div class="wizard" [class.rail-open]="railOpen()" [class.is-intro]="intro()">
   <!-- ================= step rail ================= -->
   <aside class="wizard-rail no-print">
-    <div class="flex h-16 items-center justify-between px-6">
-      <a routerLink="/" aria-label="Home"><app-logo [compact]="railCollapsed()" [dark]="intro()" /></a>
-      <button type="button" class="rail-toggle" (click)="railCollapsed.set(!railCollapsed())" [attr.aria-label]="'editor.collapse' | translate">
-        <lucide-icon [img]="icons.ChevronLeft" class="size-4 transition" [class.rotate-180]="railCollapsed()" />
-      </button>
+    <div class="rail-head">
+      <a routerLink="/" aria-label="Home"><app-logo [compact]="!railOpen()" [dark]="true" /></a>
     </div>
 
     <nav class="wizard-steps" [attr.aria-label]="'editor.stepsLabel' | translate">
-      @for (s of steps; track s.id; let i = $index; let last = $last) {
-        <button type="button" class="wizard-step" [class.is-active]="i === stepIndex()" [class.is-done]="done(i) && i !== stepIndex()" [attr.aria-current]="i === stepIndex() ? 'step' : null" (click)="go(i)" [title]="'editor.steps.' + s.id + '.nav' | translate">
-          <span class="step-dot">
+      @for (s of steps; track s.id; let i = $index) {
+        <button type="button" class="wizard-step" [class.is-active]="i === stepIndex()" [attr.aria-current]="i === stepIndex() ? 'step' : null" (click)="go(i)" [title]="'editor.steps.' + s.id + '.nav' | translate">
+          <span class="step-icon">
+            <lucide-icon [img]="s.icon" class="size-[19px]" [strokeWidth]="1.75" />
             @if (done(i) && i !== stepIndex()) {
-              <lucide-icon [img]="icons.Check" class="size-3" [strokeWidth]="3" />
-            } @else {
-              {{ i + 1 }}
+              <span class="step-done"><lucide-icon [img]="icons.Check" class="size-2.5" [strokeWidth]="3.5" /></span>
             }
           </span>
           <span class="rail-label min-w-0 flex-1 truncate">{{ 'editor.steps.' + s.id + '.nav' | translate }}</span>
@@ -24,62 +20,17 @@
       }
     </nav>
 
-    <div class="rail-label mt-auto px-6 pb-5">
-      <div class="rail-foot flex items-center justify-between text-[12.5px]">
-        <span>{{ 'editor.score.title' | translate }}</span><span class="rail-foot-strong font-medium tabular-nums">{{ score() }}%</span>
-      </div>
-      <div class="rail-track mt-2 h-1 overflow-hidden rounded-full">
-        <div class="h-full rounded-full bg-[#1f6feb] transition-all" [style.width.%]="score()"></div>
-      </div>
-      <div class="mt-5 flex items-center justify-between">
-        <span class="rail-foot text-[12px]">{{ 'editor.autosave' | translate }}</span>
-        <app-language-switcher [up]="true" [dark]="intro()" />
-      </div>
+    <div class="mt-auto flex flex-col items-stretch gap-1 p-3">
+      <app-language-switcher [up]="true" [dark]="true" [compact]="!railOpen()" />
+      <button type="button" class="rail-toggle" (click)="railOpen.set(!railOpen())" [attr.aria-label]="'editor.collapse' | translate" [attr.aria-expanded]="railOpen()">
+        <lucide-icon [img]="icons.ChevronLeft" class="size-4 transition" [class.rotate-180]="!railOpen()" />
+      </button>
     </div>
   </aside>
 
   <!-- ================= main column ================= -->
   <main class="wizard-main no-print">
-    <div class="sticky top-0 z-20 flex h-14 items-center gap-2 border-b border-line bg-white/90 px-4 backdrop-blur sm:px-6">
-      <label class="flex min-w-0 items-center gap-2 text-xs text-slate-500">
-        <span class="hidden whitespace-nowrap text-faint 2xl:inline">{{ 'editor.cvLanguage' | translate }}</span>
-        <select class="input h-8! w-auto! border-transparent! bg-transparent! text-[13.5px]! hover:bg-paper-2! max-sm:max-w-[6.5rem]" [value]="c.language" (change)="setLanguage($any($event.target).value)" [attr.aria-label]="'editor.cvLanguage' | translate">
-          @for (l of languages; track l) {
-            <option [value]="l" [selected]="l == c.language">{{ langName(l) }}</option>
-          }
-        </select>
-      </label>
-      <label class="flex min-w-0 items-center gap-2 text-xs text-slate-500">
-        <span class="hidden whitespace-nowrap text-faint 2xl:inline">{{ 'editor.country' | translate }}</span>
-        <select class="input h-8! w-auto! max-w-44 border-transparent! bg-transparent! text-[13.5px]! hover:bg-paper-2! max-sm:max-w-[6.5rem]" [value]="c.country" (change)="setCountry($any($event.target).value)" [attr.aria-label]="'editor.country' | translate">
-          @for (co of countries; track co.code) {
-            <option [value]="co.code" [selected]="co.code == c.country">{{ countryName(co.code) }}</option>
-          }
-        </select>
-      </label>
-      <div class="flex-1"></div>
-      <button type="button" class="icon-btn" (click)="store.undo()" [disabled]="!store.canUndo()" [title]="'editor.undo' | translate" [attr.aria-label]="'editor.undo' | translate">
-        <lucide-icon [img]="icons.Undo2" class="size-5" />
-      </button>
-      <div class="relative">
-        <button type="button" class="icon-btn" (click)="menuOpen.set(!menuOpen())" [attr.aria-expanded]="menuOpen()" [attr.aria-label]="'editor.menu.more' | translate">
-          <lucide-icon [img]="icons.MoreHorizontal" class="size-5" />
-        </button>
-        @if (menuOpen()) {
-          <div class="absolute right-0 z-30 mt-1 w-60 rounded-xl border border-line bg-white p-1 shadow-[0_8px_30px_rgb(0_0_0/0.08)]" (mouseleave)="menuOpen.set(false)">
-            <button type="button" class="menu-item" (click)="exportJson()"><lucide-icon [img]="icons.FileJson" class="size-4" /> {{ 'editor.menu.export' | translate }}</button>
-            <label class="menu-item cursor-pointer"><lucide-icon [img]="icons.FileUp" class="size-4" /> {{ 'editor.menu.import' | translate }}<input type="file" accept="application/json,.json" class="sr-only" (change)="importJson($event)" /></label>
-            <button type="button" class="menu-item" (click)="loadSample()"><lucide-icon [img]="icons.Eye" class="size-4" /> {{ 'editor.menu.sample' | translate }}</button>
-            <button type="button" class="menu-item text-red-600!" (click)="reset()"><lucide-icon [img]="icons.RotateCcw" class="size-4" /> {{ 'editor.menu.reset' | translate }}</button>
-          </div>
-        }
-      </div>
-      <button type="button" class="btn-primary btn-sm shrink-0" (click)="download()">
-        <lucide-icon [img]="icons.Download" class="size-4" /> <span class="hidden sm:inline">{{ 'editor.download' | translate }}</span><span class="sm:hidden">PDF</span>
-      </button>
-    </div>
-
-    <div class="mx-auto w-full max-w-[680px] px-5 pb-24 pt-10 sm:px-10 sm:pt-14">
+    <div class="mx-auto w-full max-w-[680px] px-5 pb-24 pt-12 sm:px-10 sm:pt-20">
      <div>
       @if (intro()) {
         <div class="flex min-h-[52vh] flex-col justify-center" aria-live="polite">
@@ -182,20 +133,33 @@
       <path d="M640 60 H520 a90 90 0 0 0 0 180 H600 a90 90 0 0 1 0 180 H470 a110 110 0 0 0 0 220 H640" fill="none" stroke="#2f47c6" stroke-width="64" stroke-linecap="round" opacity="0.55" />
       <path d="M640 120 H560 a60 60 0 0 0 0 120" fill="none" stroke="#5a3fd0" stroke-width="64" stroke-linecap="round" opacity="0.35" />
     </svg>
-    <div class="no-print flex items-center justify-between gap-3 px-8 pb-5 pt-7">
-      <div>
-        <p class="text-[13px] font-medium text-white">{{ 'editor.livePreview' | translate }}</p>
-        <p class="mt-0.5 text-[12.5px] text-white/55">{{ store.geometry().template.name }} · {{ 'editor.pages' | translate: { count: pageCount() } }}</p>
+    <div class="preview-head no-print">
+      <div class="min-w-0">
+        <p class="preview-title">{{ 'editor.livePreview' | translate }}</p>
+        <p class="preview-sub">{{ store.geometry().template.name }} · {{ 'editor.pages' | translate: { count: pageCount() } }}</p>
       </div>
-      <div class="flex items-center gap-2">
-        <div class="flex items-center rounded-md bg-white/10 p-0.5 text-white">
-          <button type="button" class="icon-btn size-8! text-white/80! hover:bg-white/10! hover:text-white!" (click)="zoomBy(-0.1)" [disabled]="previewZoom() <= 0.31" [attr.aria-label]="'editor.zoomOut' | translate" [title]="'editor.zoomOut' | translate"><lucide-icon [img]="icons.Minus" class="size-4" /></button>
-          <button type="button" class="h-8 min-w-14 rounded px-1 text-[12.5px] font-medium text-white tabular-nums hover:bg-white/10" (click)="zoomFit()" [title]="'editor.zoomFit' | translate">{{ (previewZoom() * 100).toFixed(0) }}%</button>
-          <button type="button" class="icon-btn size-8! text-white/80! hover:bg-white/10! hover:text-white!" (click)="zoomBy(0.1)" [disabled]="previewZoom() >= 1.99" [attr.aria-label]="'editor.zoomIn' | translate" [title]="'editor.zoomIn' | translate"><lucide-icon [img]="icons.Plus" class="size-4" /></button>
-          <span class="mx-0.5 h-4 w-px bg-white/20"></span>
-          <button type="button" class="icon-btn size-8! text-white/80! hover:bg-white/10! hover:text-white!" (click)="zoomFit()" [attr.aria-label]="'editor.zoomFit' | translate" [title]="'editor.zoomFit' | translate"><lucide-icon [img]="icons.Maximize2" class="size-3.5" /></button>
+      <div class="flex items-center gap-1.5">
+        <div class="preview-tools">
+          <button type="button" class="ptool" (click)="zoomBy(-0.1)" [disabled]="previewZoom() <= 0.31" [attr.aria-label]="'editor.zoomOut' | translate" [title]="'editor.zoomOut' | translate"><lucide-icon [img]="icons.Minus" class="size-4" /></button>
+          <button type="button" class="ptool w-12! text-[12.5px] font-medium tabular-nums" (click)="zoomFit()" [title]="'editor.zoomFit' | translate">{{ (previewZoom() * 100).toFixed(0) }}%</button>
+          <button type="button" class="ptool" (click)="zoomBy(0.1)" [disabled]="previewZoom() >= 1.99" [attr.aria-label]="'editor.zoomIn' | translate" [title]="'editor.zoomIn' | translate"><lucide-icon [img]="icons.Plus" class="size-4" /></button>
         </div>
-        <button type="button" class="preview-close icon-btn" (click)="mobilePreview.set(false)" [attr.aria-label]="'common.close' | translate"><lucide-icon [img]="icons.X" class="size-5" /></button>
+        <div class="preview-tools">
+          <button type="button" class="ptool" (click)="store.undo()" [disabled]="!store.canUndo()" [attr.aria-label]="'editor.undo' | translate" [title]="'editor.undo' | translate"><lucide-icon [img]="icons.Undo2" class="size-4" /></button>
+          <div class="relative">
+            <button type="button" class="ptool" (click)="menuOpen.set(!menuOpen())" [attr.aria-expanded]="menuOpen()" [attr.aria-label]="'editor.menu.more' | translate" [title]="'editor.menu.more' | translate"><lucide-icon [img]="icons.MoreHorizontal" class="size-4" /></button>
+            @if (menuOpen()) {
+              <div class="absolute right-0 z-30 mt-1 w-60 rounded-lg border border-[#e4e8f1] bg-white p-1 text-[#1e2532] shadow-[0_12px_40px_-8px_rgb(10_20_55/0.25)]" (mouseleave)="menuOpen.set(false)">
+                <button type="button" class="menu-item" (click)="exportJson()"><lucide-icon [img]="icons.FileJson" class="size-4" /> {{ 'editor.menu.export' | translate }}</button>
+                <label class="menu-item cursor-pointer"><lucide-icon [img]="icons.FileUp" class="size-4" /> {{ 'editor.menu.import' | translate }}<input type="file" accept="application/json,.json" class="sr-only" (change)="importJson($event)" /></label>
+                <button type="button" class="menu-item" (click)="loadSample()"><lucide-icon [img]="icons.Eye" class="size-4" /> {{ 'editor.menu.sample' | translate }}</button>
+                <button type="button" class="menu-item text-red-600!" (click)="reset()"><lucide-icon [img]="icons.RotateCcw" class="size-4" /> {{ 'editor.menu.reset' | translate }}</button>
+              </div>
+            }
+          </div>
+        </div>
+        <button type="button" class="btn-primary btn-sm ml-1" (click)="download()"><lucide-icon [img]="icons.Download" class="size-4" /> PDF</button>
+        <button type="button" class="preview-close ptool" (click)="mobilePreview.set(false)" [attr.aria-label]="'common.close' | translate"><lucide-icon [img]="icons.X" class="size-5" /></button>
       </div>
     </div>
     <div class="preview-scroll">
@@ -204,8 +168,8 @@
       </div>
       @if (!isFinish()) {
         <div class="no-print mx-auto mt-5 max-w-sm pb-8 text-center">
-          <p class="text-[12.5px] text-white/50">{{ 'editor.previewNote' | translate }}</p>
-          <button type="button" class="mt-2 text-[13px] font-medium text-white underline underline-offset-4" (click)="go(steps.length - 1); mobilePreview.set(false)">{{ 'editor.changeTemplate' | translate }}</button>
+          <p class="preview-note">{{ 'editor.previewNote' | translate }}</p>
+          <button type="button" class="preview-link mt-2 text-[13px] font-medium underline underline-offset-4" (click)="go(steps.length - 1); mobilePreview.set(false)">{{ 'editor.changeTemplate' | translate }}</button>
         </div>
       }
     </div>

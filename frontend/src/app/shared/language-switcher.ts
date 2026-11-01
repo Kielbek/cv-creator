@@ -10,7 +10,7 @@ import { UI_LANGUAGES, UiLanguage } from '../core/i18n/ui-language';
     <div class="relative">
       <button
         type="button"
-        class="inline-flex h-9 items-center gap-2 rounded-lg px-2.5 text-[13.5px] font-medium transition"
+        class="inline-flex h-10 items-center gap-2 rounded-lg px-2.5 text-[13.5px] font-medium transition" [class.justify-center]="compact()" [class.w-full]="compact()"
         [class]="dark() ? 'text-white/85 hover:bg-white/10' : 'text-ink-2 hover:bg-paper-2'"
         (click)="open.set(!open())"
         [attr.aria-expanded]="open()"
@@ -18,8 +18,10 @@ import { UI_LANGUAGES, UiLanguage } from '../core/i18n/ui-language';
         aria-label="Language"
       >
         <img class="flag" [src]="'flags/' + current().flag + '.svg'" alt="" />
-        {{ current().code.toUpperCase() }}
-        <lucide-icon [img]="icons.ChevronDown" class="size-3.5 opacity-60" />
+        @if (!compact()) {
+          {{ current().code.toUpperCase() }}
+          <lucide-icon [img]="icons.ChevronDown" class="size-3.5 opacity-60" />
+        }
       </button>
       @if (open()) {
         <ul class="absolute z-40 mt-1 w-48 rounded-xl border border-line bg-white p-1.5 text-ink shadow-[0_12px_40px_-8px_rgb(10_26_63/0.25)]" [class]="up() ? 'bottom-full mb-1 left-0' : 'right-0'" role="listbox" (mouseleave)="open.set(false)">
@@ -43,6 +45,8 @@ export class LanguageSwitcher {
   readonly dark = input(false);
   /** open the menu upwards (bottom of a sidebar) */
   readonly up = input(false);
+  /** flag only */
+  readonly compact = input(false);
   private readonly ui = inject(UiLanguage);
   protected readonly icons = { ChevronDown, Check };
   protected readonly langs = UI_LANGUAGES;

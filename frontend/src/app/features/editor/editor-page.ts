@@ -70,7 +70,7 @@ export class EditorPage {
   protected readonly step = computed(() => STEPS[this.stepIndex()]);
   protected readonly isFinish = computed(() => this.step().id === 'finish');
   protected readonly finishTab = signal<FinishTab>('design');
-  protected readonly railCollapsed = signal(false);
+  protected readonly railOpen = signal(false);
   protected readonly mobilePreview = signal(false);
   protected readonly menuOpen = signal(false);
   protected readonly pageCount = signal(1);
