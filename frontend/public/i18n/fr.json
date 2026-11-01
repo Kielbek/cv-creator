@@ -606,5 +606,83 @@
     "structure": "Organisation des sections et des dates"
    }
   }
+ },
+ "mm": {
+  "brand": "Makemycv",
+  "cta": {
+   "create": "Create my CV",
+   "import": "Import my CV"
+  },
+  "hero": {
+   "usersStrong": "+1 million",
+   "users": "satisfied users",
+   "title1": "Create a perfect CV",
+   "title2": "in minutes with AI",
+   "intro": "Create a CV in just a few minutes with our recruiter approved templates and our AI assistant.",
+   "ats": "ATS-friendly layouts",
+   "ai": "AI-powered CV writing",
+   "aiPill": "Generate with AI",
+   "hired": "Our users have been hired by*:"
+  },
+  "nav": {
+   "templates": "CV Templates",
+   "exploreTemplates": "Explore CV templates",
+   "professional": "Professional templates",
+   "professionalText": "Clean layouts for every career stage",
+   "modern": "Modern templates",
+   "modernText": "Stand out with a fresh, polished design",
+   "simple": "Simple templates",
+   "simpleText": "Readable, ATS-friendly CV formats",
+   "popularStyles": "Popular styles",
+   "styles": {
+    "graduate": "Graduate CV",
+    "experienced": "Experienced professional",
+    "careerChange": "Career change",
+    "entry": "Entry-level CV"
+   },
+   "allTemplates": "View all templates",
+   "promoTemplates": "Find your perfect CV layout",
+   "promoTemplatesText": "Choose a template and customise it in minutes with AI.",
+   "buildCv": "Build your CV",
+   "examples": "CV Examples",
+   "byProfession": "Browse by profession",
+   "tech": "Technology",
+   "techText": "Software, data and IT roles",
+   "health": "Healthcare",
+   "healthText": "Nursing and medical careers",
+   "business": "Business",
+   "businessText": "Management, sales and finance",
+   "creative": "Creative",
+   "creativeText": "Design, content and marketing",
+   "mostPopular": "Most popular",
+   "jobs": {
+    "software": "Software Engineer",
+    "customer": "Customer Service",
+    "pm": "Project Manager",
+    "graduate": "Fresh Graduate"
+   },
+   "allExamples": "See all CV examples",
+   "promoExamples": "Get inspired by real examples",
+   "promoExamplesText": "Discover what recruiters look for in a great CV.",
+   "exploreExamples": "Explore examples",
+   "cover": "Cover Letter",
+   "coverTools": "Cover letter tools",
+   "coverBuilder": "Cover letter builder",
+   "coverBuilderText": "Create a tailored letter with AI",
+   "coverExamples": "Cover letter examples",
+   "coverExamplesText": "Get ideas for your next application",
+   "promoCover": "Make every application count",
+   "promoCoverText": "Pair your CV with a persuasive cover letter.",
+   "createCover": "Create a cover letter",
+   "resources": "Resources",
+   "careerResources": "Career resources",
+   "advice": "Career advice",
+   "adviceText": "Practical tips for your job search",
+   "guide": "CV writing guide",
+   "guideText": "Learn how to write each section",
+   "interview": "Interview preparation",
+   "interviewText": "Feel confident in your next interview",
+   "signIn": "Sign in"
+  }
  }
 }

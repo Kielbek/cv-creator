@@ -1,44 +1,37 @@
 <app-site-nav />
 
-<!-- ============================== HERO (MakeMyCV design) ============================== -->
-<section class="mm-hero">
-  <div class="mm-hero-inner">
-    <div class="mm-copy">
-      <div class="social-proof">
-        <span class="flags">
-          @for (f of ['pl', 'gb', 'de', 'fr', 'es']; track f) {
-            <img [src]="'flags/' + f + '.svg'" alt="" />
-          }
-        </span>
-        <span><strong>{{ 'home.mm.proofStrong' | translate: { count: stats[1].value } }}</strong> {{ 'home.mm.proof' | translate: { countries: stats[2].value } }}</span>
-      </div>
-      <h1>{{ 'home.mm.title' | translate }}</h1>
-      <p class="intro">{{ 'home.mm.intro' | translate }}</p>
-      <div class="cta-row">
-        <a routerLink="/start" class="mm-btn mm-btn-primary">{{ 'home.mm.create' | translate }}</a>
-        <a routerLink="/start" [queryParams]="{ mode: 'import' }" class="mm-btn mm-btn-secondary"><lucide-icon [img]="icons.FileUp" class="size-[18px]" /> {{ 'home.mm.import' | translate }}</a>
-      </div>
-      <p class="checks"><span class="check"><lucide-icon [img]="icons.Check" class="size-3" [strokeWidth]="3" /></span> {{ 'home.mm.checks' | translate }}</p>
-    </div>
-
-    <div class="mm-art" aria-hidden="true">
-      <img class="decor-line" src="images/home/hero-line.webp" alt="" />
-      <div class="purple-blob"></div>
-      <div class="cv-card left"><cv-thumb templateId="onyx" [lang]="ui.current()" [width]="220" /></div>
-      <div class="cv-card right"><cv-thumb templateId="executive" [lang]="ui.current()" [width]="220" /></div>
-      <div class="cv-card center"><cv-thumb templateId="atlas" [lang]="ui.current()" [width]="260" /></div>
-      <div class="ai-pill"><lucide-icon [img]="icons.Sparkles" class="size-4" /> {{ 'home.mm.aiPill' | translate }}</div>
-      <img class="woman" src="images/home/hero-woman.webp" alt="" />
-    </div>
+<!-- ============================== HERO – 1:1 MakeMyCV design ============================== -->
+<main class="mmcv">
+<section class="hero" id="builder">
+ <div class="hero-inner">
+  <div class="hero-copy">
+   <div class="social-proof"><div class="avatars" aria-hidden="true"><span class="avatar"></span><span class="avatar"></span><span class="avatar"></span></div><span><strong>{{ 'mm.hero.usersStrong' | translate }}</strong> {{ 'mm.hero.users' | translate }}</span></div>
+   <h1>{{ 'mm.hero.title1' | translate }}<br class="desktop-break" /> {{ 'mm.hero.title2' | translate }}</h1>
+   <p class="intro">{{ 'mm.hero.intro' | translate }}</p>
+   <div class="cta-row">
+    <a class="mmb mmb-primary" routerLink="/start">{{ 'mm.cta.create' | translate }}</a>
+    <a class="mmb mmb-secondary" routerLink="/start" [queryParams]="{ mode: 'import' }"><span class="download" aria-hidden="true">⇩</span> {{ 'mm.cta.import' | translate }}</a>
+   </div>
+   <div class="value-note">
+    <span class="value-check" aria-hidden="true">✓</span>
+    <span>{{ 'mm.hero.ats' | translate }}</span>
+    <span class="value-separator" aria-hidden="true">·</span>
+    <span>{{ 'mm.hero.ai' | translate }}</span>
+   </div>
   </div>
+  <div class="hero-art" aria-hidden="true">
+    <img class="decor-line" src="images/home/hero-line.webp" alt="" />
+    <div class="purple-blob"></div>
+    <div class="cv-card left"><div class="cv-head"><div class="cv-avatar"></div><div class="cv-lines"><div class="cv-line blue"></div><div class="cv-line"></div></div></div><div class="cv-section"></div><div class="cv-row"></div><div class="cv-row mid"></div><div class="cv-row short"></div><div class="cv-section"></div><div class="cv-row"></div><div class="cv-row mid"></div><div class="cv-row"></div><div class="cv-row short"></div></div>
+    <div class="cv-card center"><div class="cv-head"><div class="cv-avatar"></div><div class="cv-lines"><div class="cv-line blue"></div><div class="cv-line dark"></div></div></div><div class="cv-section"></div><div class="cv-row"></div><div class="cv-row mid"></div><div class="cv-row"></div><div class="cv-row short"></div><div class="cv-section"></div><div class="cv-row mid"></div><div class="cv-row"></div><div class="cv-row short"></div></div>
+    <div class="cv-card right"><div class="cv-head"><div class="cv-lines"><div class="cv-line blue"></div><div class="cv-line"></div></div></div><div class="cv-section"></div><div class="cv-row"></div><div class="cv-row short"></div><div class="cv-row mid"></div><div class="cv-section"></div><div class="cv-row"></div><div class="cv-row mid"></div><div class="cv-row short"></div></div>
+    <div class="ai-pill"><span class="sparkle">✧</span> {{ 'mm.hero.aiPill' | translate }}</div>
+    <img class="woman" src="images/home/hero-woman.webp" alt="" />
+  </div>
+ </div>
 </section>
-
-<section class="mm-strip">
-  @for (s of stats; track s.key) {
-    <span><strong>{{ s.value }}</strong> {{ 'home.v2.stats.' + s.key | translate }}</span>
-  }
-  <span><lucide-icon [img]="icons.ShieldCheck" class="size-4" /> {{ 'home.v2.trust.ats' | translate }}</span>
-</section>
+<section class="hired"><span class="hired-label">{{ 'mm.hero.hired' | translate }}</span><div class="brand-track"><div class="brand-set"><span class="brand apple">● Apple</span><span class="brand dhl">▰DHL▰</span><span class="brand">accenture</span><span class="brand amazon">amazon</span><span class="brand tesla">T E S L A</span></div><div class="brand-set" aria-hidden="true"><span class="brand apple">● Apple</span><span class="brand dhl">▰DHL▰</span><span class="brand">accenture</span><span class="brand amazon">amazon</span><span class="brand tesla">T E S L A</span></div></div></section>
+</main>
 
 <!-- ============================== PEOPLE ============================== -->
 <section class="border-b border-[#e6e6e6]">

@@ -606,5 +606,83 @@
     "structure": "Porządkowanie sekcji i dat"
    }
   }
+ },
+ "mm": {
+  "brand": "Makemycv",
+  "cta": {
+   "create": "Stwórz moje CV",
+   "import": "Importuj moje CV"
+  },
+  "hero": {
+   "usersStrong": "+1 milion",
+   "users": "zadowolonych użytkowników",
+   "title1": "Stwórz idealne CV",
+   "title2": "w kilka minut z AI",
+   "intro": "Stwórz CV w kilka minut dzięki szablonom zatwierdzonym przez rekruterów i naszemu asystentowi AI.",
+   "ats": "Układy zgodne z ATS",
+   "ai": "Pisanie CV z pomocą AI",
+   "aiPill": "Generuj z AI",
+   "hired": "Nasi użytkownicy zostali zatrudnieni przez*:"
+  },
+  "nav": {
+   "templates": "Szablony CV",
+   "exploreTemplates": "Przeglądaj szablony CV",
+   "professional": "Szablony profesjonalne",
+   "professionalText": "Przejrzyste układy na każdy etap kariery",
+   "modern": "Szablony nowoczesne",
+   "modernText": "Wyróżnij się świeżym, dopracowanym wyglądem",
+   "simple": "Proste szablony",
+   "simpleText": "Czytelne formaty CV zgodne z ATS",
+   "popularStyles": "Popularne style",
+   "styles": {
+    "graduate": "CV absolwenta",
+    "experienced": "Doświadczony specjalista",
+    "careerChange": "Zmiana branży",
+    "entry": "CV na start"
+   },
+   "allTemplates": "Zobacz wszystkie szablony",
+   "promoTemplates": "Znajdź idealny układ CV",
+   "promoTemplatesText": "Wybierz szablon i dopasuj go w kilka minut z pomocą AI.",
+   "buildCv": "Stwórz swoje CV",
+   "examples": "Przykłady CV",
+   "byProfession": "Według zawodu",
+   "tech": "Technologia",
+   "techText": "Oprogramowanie, dane i IT",
+   "health": "Ochrona zdrowia",
+   "healthText": "Pielęgniarstwo i medycyna",
+   "business": "Biznes",
+   "businessText": "Zarządzanie, sprzedaż i finanse",
+   "creative": "Branże kreatywne",
+   "creativeText": "Design, content i marketing",
+   "mostPopular": "Najpopularniejsze",
+   "jobs": {
+    "software": "Programista",
+    "customer": "Obsługa klienta",
+    "pm": "Kierownik projektu",
+    "graduate": "Absolwent"
+   },
+   "allExamples": "Zobacz wszystkie przykłady",
+   "promoExamples": "Zainspiruj się prawdziwymi przykładami",
+   "promoExamplesText": "Sprawdź, czego rekruterzy szukają w dobrym CV.",
+   "exploreExamples": "Przeglądaj przykłady",
+   "cover": "List motywacyjny",
+   "coverTools": "Narzędzia do listów",
+   "coverBuilder": "Kreator listu motywacyjnego",
+   "coverBuilderText": "Stwórz dopasowany list z AI",
+   "coverExamples": "Przykłady listów",
+   "coverExamplesText": "Pomysły na kolejną aplikację",
+   "promoCover": "Niech każda aplikacja się liczy",
+   "promoCoverText": "Połącz CV z przekonującym listem motywacyjnym.",
+   "createCover": "Stwórz list motywacyjny",
+   "resources": "Poradniki",
+   "careerResources": "Materiały o karierze",
+   "advice": "Porady zawodowe",
+   "adviceText": "Praktyczne wskazówki w szukaniu pracy",
+   "guide": "Jak napisać CV",
+   "guideText": "Dowiedz się, jak napisać każdą sekcję",
+   "interview": "Przygotowanie do rozmowy",
+   "interviewText": "Poczuj się pewnie na rozmowie",
+   "signIn": "Zaloguj się"
+  }
  }
 }
