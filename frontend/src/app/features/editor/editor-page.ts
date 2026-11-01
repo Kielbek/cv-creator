@@ -134,10 +134,6 @@ export class EditorPage {
       });
       return;
     }
-    if (!this.intro() && (id === 'experience' || id === 'education') && !this.done(this.stepIndex())) {
-      this.nudge.set(id);
-      return;
-    }
     if (this.intro()) {
       this.intro.set(false);
       return;

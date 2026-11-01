@@ -13,6 +13,8 @@ export class Toasts {
   private next = 1;
 
   show(key: string, kind: Toast['kind'] = 'info'): void {
+    // confirmations are visible in the UI itself – only problems get a message
+    if (kind === 'info') return;
     const id = this.next++;
     this.items.update((t) => [...t, { id, key, kind }]);
     setTimeout(() => this.items.update((t) => t.filter((x) => x.id !== id)), 4500);

@@ -153,6 +153,9 @@
           </div>
           <button type="button" class="add-row" (click)="add('experience')"><lucide-icon [img]="icons.Plus" class="size-4" /> {{ 'editor.add.experience' | translate }}</button>
         </div>
+        @if (!c.experience.length) {
+          <p class="hint">{{ 'editor.nudge.experience.text' | translate }}</p>
+        }
       }
     </section>
   }
