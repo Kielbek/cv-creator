@@ -7,12 +7,12 @@ export const BRAND = 'cvcreator';
   selector: 'app-logo',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <span class="inline-flex items-baseline text-[20px] leading-none tracking-[-0.04em]" [class]="dark() ? 'text-white' : 'text-[#0b1437]'">
+    <span class="inline-flex items-baseline text-[20px] leading-none tracking-[-0.04em]" [class]="dark() ? 'text-white' : 'text-[#111]'">
       <span class="font-bold">cv</span>
       @if (!compact()) {
         <span class="font-normal">creator</span>
       }
-      <span class="font-bold text-[#3365f5]">.</span>
+      <span class="font-bold">.</span>
     </span>
   `,
 })

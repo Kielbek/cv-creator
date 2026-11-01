@@ -3,7 +3,7 @@
   <!-- ================= step rail ================= -->
   <aside class="wizard-rail no-print">
     <div class="rail-head">
-      <a routerLink="/" aria-label="Home"><app-logo [compact]="!railOpen()" [dark]="true" /></a>
+      <a routerLink="/" aria-label="Home"><app-logo [compact]="!railOpen()" [dark]="intro()" /></a>
     </div>
 
     <nav class="wizard-steps" [attr.aria-label]="'editor.stepsLabel' | translate">
@@ -21,7 +21,7 @@
     </nav>
 
     <div class="mt-auto flex flex-col items-stretch gap-1 p-3">
-      <app-language-switcher [up]="true" [dark]="true" [compact]="!railOpen()" />
+      <app-language-switcher [up]="true" [dark]="intro()" [compact]="!railOpen()" />
       <button type="button" class="rail-toggle" (click)="railOpen.set(!railOpen())" [attr.aria-label]="'editor.collapse' | translate" [attr.aria-expanded]="railOpen()">
         <lucide-icon [img]="icons.ChevronLeft" class="size-4 transition" [class.rotate-180]="!railOpen()" />
       </button>
@@ -34,7 +34,7 @@
      <div>
       @if (intro()) {
         <div class="flex min-h-[52vh] flex-col justify-center" aria-live="polite">
-          <p class="reveal flex items-center gap-2.5 text-[15px] font-medium text-[#8fb0ff]" style="--d: 150ms">
+          <p class="reveal flex items-center gap-2.5 text-[15px] font-medium text-white/70" style="--d: 150ms">
             <span class="praise-line"></span>{{ 'editor.praise.' + (stepIndex() % 3) | translate }}
           </p>
           @let lead = 'editor.steps.' + step().id + '.lead' | translate;
@@ -130,8 +130,8 @@
   <!-- ================= live preview ================= -->
   <section class="wizard-preview" [class.is-open]="mobilePreview()" [attr.aria-label]="'editor.preview' | translate">
     <svg class="waves no-print" viewBox="0 0 600 900" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
-      <path d="M640 60 H520 a90 90 0 0 0 0 180 H600 a90 90 0 0 1 0 180 H470 a110 110 0 0 0 0 220 H640" fill="none" stroke="#2f47c6" stroke-width="64" stroke-linecap="round" opacity="0.55" />
-      <path d="M640 120 H560 a60 60 0 0 0 0 120" fill="none" stroke="#5a3fd0" stroke-width="64" stroke-linecap="round" opacity="0.35" />
+      <path d="M640 60 H520 a90 90 0 0 0 0 180 H600 a90 90 0 0 1 0 180 H470 a110 110 0 0 0 0 220 H640" fill="none" stroke="#262626" stroke-width="64" stroke-linecap="round" opacity="1" />
+      <path d="M640 120 H560 a60 60 0 0 0 0 120" fill="none" stroke="#1c1c1c" stroke-width="64" stroke-linecap="round" opacity="1" />
     </svg>
     <div class="preview-head no-print">
       <div class="min-w-0">
