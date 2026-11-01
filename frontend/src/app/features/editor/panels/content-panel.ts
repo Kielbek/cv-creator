@@ -1,7 +1,7 @@
 import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal, untracked } from '@angular/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { LucideAngularModule, ArrowLeft, ChevronRight, GripVertical, Plus, Sparkles, Trash2, X } from 'lucide-angular';
+import { LucideAngularModule, ArrowLeft, ChevronRight, GripVertical, Plus, Search, Sparkles, Trash2, X, Check, Lightbulb } from 'lucide-angular';
 import { CvStore } from '../../../core/cv/cv.store';
 import { Cv, ExperienceItem, headerErrors, isBlank, newCertificate, newEducation, newExperience, newLanguage, newProject, uid } from '../../../core/cv/cv.model';
 import { formatRange, formatMonth } from '../../../core/cv/cv-labels';
@@ -15,6 +15,7 @@ import { Switch } from '../../../shared/form/switch';
 import { TagInput } from '../../../shared/form/tag-input';
 import { Select, SelectOption } from '../../../shared/form/select';
 import { LevelSlider } from '../../../shared/form/level-slider';
+import { detectField, Field, FIELDS, phraseBank } from '../../../core/cv/phrases';
 
 type ListKey = 'experience' | 'education' | 'skills' | 'languages' | 'projects' | 'certificates';
 export type Panel = 'personal' | 'summary' | ListKey | 'interests' | 'consent';
@@ -88,7 +89,7 @@ export class ContentPanel {
     this.store.update((cv) => (cv.language = code), true);
   }
   protected readonly cv = this.store.cv;
-  protected readonly icons = { ArrowLeft, ChevronRight, GripVertical, Plus, Sparkles, Trash2, X };
+  protected readonly icons = { ArrowLeft, ChevronRight, GripVertical, Plus, Search, Sparkles, Trash2, X, Check, Lightbulb };
 
   /** Which sections to show (the wizard step). */
   readonly sections = input<Panel[]>(['personal']);
@@ -194,6 +195,68 @@ export class ContentPanel {
   }
 
   // ---- skills ------------------------------------------------------------------------------------------------------
+
+  // ---- ready-made suggestions ("interactive form") ---------------------------------------------------------------
+
+  protected readonly bank = computed(() => phraseBank(this.cv().language));
+  /** User-picked field per entry id ('' = auto-detected). */
+  protected readonly fieldPick = signal<Record<string, Field>>({});
+  protected readonly phraseQuery = signal('');
+  protected readonly fieldOptions = computed<SelectOption[]>(() => {
+    this.ui.current();
+    return FIELDS.map((f) => ({ value: f, label: this.translate.instant('editor.fields.' + f) }));
+  });
+  protected readonly profileField = computed(() =>
+    detectField(this.cv().personal.headline, ...this.cv().experience.map((e) => e.position)),
+  );
+
+  protected entryField(e: ExperienceItem): Field {
+    return this.fieldPick()[e.id] ?? detectField(e.position, this.cv().personal.headline);
+  }
+
+  protected pickField(id: string, f: string): void {
+    this.fieldPick.update((m) => ({ ...m, [id]: f as Field }));
+  }
+
+  protected bulletsFor(e: ExperienceItem): string[] {
+    const q = this.phraseQuery().trim().toLowerCase();
+    const b = this.bank().bullets;
+    const list = q ? Object.values(b).flat().filter((x) => x.toLowerCase().includes(q)) : b[this.entryField(e)];
+    return [...new Set(list)].slice(0, 12);
+  }
+
+  protected hasLine(text: string, line: string): boolean {
+    return text.split('\n').some((l) => l.replace(/^[-•*]\s*/, '').trim() === line);
+  }
+
+  protected toggleBullet(i: number, e: ExperienceItem, line: string): void {
+    const lines = e.description.split('\n').filter((l) => l.trim());
+    const next = this.hasLine(e.description, line)
+      ? lines.filter((l) => l.replace(/^[-•*]\s*/, '').trim() !== line)
+      : [...lines, line];
+    this.setItem('experience', i, 'description', next.join('\n'));
+  }
+
+  protected titleMatches(q: string): string[] {
+    const t = q.trim().toLowerCase();
+    if (t.length < 2) return [];
+    return this.bank().titles.filter((x) => x.toLowerCase().includes(t) && x.toLowerCase() !== t).slice(0, 6);
+  }
+  protected readonly titleFocus = signal<string | null>(null);
+
+  protected readonly suggestedSkills = computed(() => {
+    const have = new Set(this.cv().skills.map((s) => s.name.toLowerCase()));
+    return this.bank().skills[this.profileField()].filter((s) => !have.has(s.toLowerCase()));
+  });
+
+  protected readonly summaryExamples = computed(() => {
+    const s = this.bank().summaries, f = this.profileField();
+    return f === 'general' ? s.general : [...s[f], ...s.general];
+  });
+
+  protected useSummary(text: string): void {
+    this.store.update((cv) => (cv.summary = text), true);
+  }
 
   protected addSkill(name: string): void {
     this.set((cv) => cv.skills.push({ id: uid(), name, level: 0 }));

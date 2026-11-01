@@ -84,6 +84,20 @@
           </button>
         </div>
       </div>
+      <div class="phrases">
+        <div class="phrases-head">
+          <p class="flex items-center gap-2 text-[13.5px] font-semibold text-ink"><lucide-icon [img]="icons.Lightbulb" class="size-4" /> {{ 'editor.phrases.summaries' | translate }}</p>
+          <p class="text-[12.5px] text-muted">{{ 'editor.phrases.summariesLead' | translate }}</p>
+        </div>
+        <ul class="phrases-list">
+          @for (t of summaryExamples(); track t) {
+            <li class="summary-ex">
+              <p>{{ t }}</p>
+              <button type="button" class="btn-ghost btn-sm shrink-0" [disabled]="c.summary === t" (click)="useSummary(t)">{{ (c.summary === t ? 'editor.phrases.used' : 'editor.phrases.use') | translate }}</button>
+            </li>
+          }
+        </ul>
+      </div>
     </section>
   }
 
@@ -95,7 +109,18 @@
         @let e = c.experience[ei];
         <button type="button" class="text-action mb-6" (click)="close()"><lucide-icon [img]="icons.ArrowLeft" class="size-3.5" /> {{ 'editor.allEntries.experience' | translate }}</button>
         <div class="grid grid-cols-2 gap-x-4 gap-y-5">
-          <div><label class="label">{{ 'editor.f.position' | translate }}</label><input class="input" [value]="e.position" (input)="setItem('experience', ei, 'position', val($event))" [placeholder]="'editor.f.positionPh' | translate" /></div>
+          <div class="relative"><label class="label">{{ 'editor.f.position' | translate }}</label><input class="input" autocomplete="off" [value]="e.position" (focus)="titleFocus.set(e.id)" (blur)="titleFocus.set(null)" (input)="setItem('experience', ei, 'position', val($event))" [placeholder]="'editor.f.positionPh' | translate" />
+            @if (titleFocus() === e.id) {
+              @let tm = titleMatches(e.position);
+              @if (tm.length) {
+                <ul class="suggest-pop" role="listbox">
+                  @for (t of tm; track t) {
+                    <li role="option" (mousedown)="$event.preventDefault(); setItem('experience', ei, 'position', t); titleFocus.set(null)">{{ t }}</li>
+                  }
+                </ul>
+              }
+            }
+          </div>
           <div><label class="label">{{ 'editor.f.company' | translate }}</label><input class="input" [value]="e.company" (input)="setItem('experience', ei, 'company', val($event))" [placeholder]="'editor.f.companyPh' | translate" /></div>
           <div><label class="label">{{ 'editor.f.city' | translate }}</label><input placeholder=" " class="input" [value]="e.location" (input)="setItem('experience', ei, 'location', val($event))" /></div>
           <div></div>
@@ -110,6 +135,29 @@
             </div>
             <textarea class="input" [value]="e.description" (input)="setItem('experience', ei, 'description', val($event))" [placeholder]="'editor.f.achievementsPh' | translate"></textarea>
             <p class="hint">{{ 'editor.bulletsHint' | translate }}</p>
+            <div class="phrases">
+              <div class="phrases-head">
+                <p class="flex items-center gap-2 text-[13.5px] font-semibold text-ink"><lucide-icon [img]="icons.Lightbulb" class="size-4" /> {{ 'editor.phrases.title' | translate }}</p>
+                <p class="text-[12.5px] text-muted">{{ 'editor.phrases.lead' | translate }}</p>
+              </div>
+              <div class="phrases-tools">
+                <ui-select class="min-w-0 flex-1" [options]="fieldOptions()" [value]="entryField(e)" (valueChange)="pickField(e.id, $event)" [ariaLabel]="'editor.phrases.field' | translate" />
+                <label class="phrases-search"><lucide-icon [img]="icons.Search" class="size-4 text-faint" /><input [value]="phraseQuery()" (input)="phraseQuery.set(val($event))" [placeholder]="'editor.phrases.search' | translate" /></label>
+              </div>
+              <ul class="phrases-list">
+                @for (b of bulletsFor(e); track b) {
+                  @let on = hasLine(e.description, b);
+                  <li>
+                    <button type="button" class="phrase" [class.on]="on" (click)="toggleBullet(ei, e, b)" [attr.aria-pressed]="on">
+                      <span class="phrase-ic"><lucide-icon [img]="on ? icons.Check : icons.Plus" class="size-3.5" /></span>
+                      <span>{{ b }}</span>
+                    </button>
+                  </li>
+                } @empty {
+                  <li class="px-3 py-4 text-[13px] text-muted">{{ 'editor.phrases.none' | translate }}</li>
+                }
+              </ul>
+            </div>
             @if (proposals()[e.id]; as bullets) {
               <div class="mt-4 rounded-md border border-line bg-paper p-4">
                 <p class="mb-2 text-[12.5px] font-medium text-muted">{{ 'ai.proposal' | translate }}</p>
@@ -224,6 +272,14 @@
       <label class="label">{{ 'editor.sections.skills' | translate }}</label>
       <ui-tag-input [tags]="c.skills" [placeholder]="'editor.skillsInputPh' | translate" [removeLabel]="'common.remove' | translate" (add)="addSkill($event)" (remove)="removeSkill($event)" />
       <p class="hint">{{ 'editor.skillsInputHint' | translate }}</p>
+      @if (suggestedSkills().length) {
+        <p class="mt-6 mb-2.5 flex items-center gap-2 text-[13px] font-semibold text-ink"><lucide-icon [img]="icons.Lightbulb" class="size-4" /> {{ 'editor.phrases.skills' | translate }}</p>
+        <div class="flex flex-wrap gap-2">
+          @for (s of suggestedSkills(); track s) {
+            <button type="button" class="chip-add" (click)="addSkill(s)"><lucide-icon [img]="icons.Plus" class="size-3.5" /> {{ s }}</button>
+          }
+        </div>
+      }
       @if (showSkillLevels() && c.skills.length) {
         <p class="mt-8 mb-3 text-[13px] font-medium text-ink">{{ 'editor.f.level' | translate }}</p>
         <div class="entries">

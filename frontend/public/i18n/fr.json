@@ -489,6 +489,30 @@
    "required": "Ce champ est obligatoire",
    "email": "Saisissez une adresse e-mail valide",
    "phone": "Saisissez un numéro de téléphone valide"
+  },
+  "phrases": {
+   "title": "Exemples prêts à l’emploi",
+   "lead": "Cliquez pour ajouter un point, puis ajustez chiffres et détails.",
+   "field": "Secteur",
+   "search": "Rechercher, ex. « client »",
+   "none": "Aucun résultat — essayez un autre mot.",
+   "skills": "Compétences suggérées",
+   "summaries": "Exemples de profil",
+   "summariesLead": "Choisissez un exemple et personnalisez-le.",
+   "use": "Utiliser",
+   "used": "Utilisé"
+  },
+  "fields": {
+   "marketing": "Marketing",
+   "sales": "Vente",
+   "it": "IT et technologie",
+   "customer": "Service client",
+   "admin": "Administration et bureau",
+   "finance": "Finance et comptabilité",
+   "logistics": "Logistique et production",
+   "hr": "RH et recrutement",
+   "healthcare": "Santé",
+   "general": "Général"
   }
  },
  "ai": {

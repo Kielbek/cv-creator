@@ -489,6 +489,30 @@
    "required": "This field is required",
    "email": "Enter a valid e-mail address",
    "phone": "Enter a valid phone number"
+  },
+  "phrases": {
+   "title": "Ready-made examples",
+   "lead": "Click to add a bullet to the description, then adjust numbers and details.",
+   "field": "Field",
+   "search": "Search examples, e.g. “customer”",
+   "none": "No results — try another word.",
+   "skills": "Suggested skills",
+   "summaries": "Example summaries",
+   "summariesLead": "Pick an example and make it your own.",
+   "use": "Use",
+   "used": "Used"
+  },
+  "fields": {
+   "marketing": "Marketing",
+   "sales": "Sales",
+   "it": "IT & technology",
+   "customer": "Customer service",
+   "admin": "Administration & office",
+   "finance": "Finance & accounting",
+   "logistics": "Logistics & production",
+   "hr": "HR & recruiting",
+   "healthcare": "Healthcare",
+   "general": "General"
   }
  },
  "ai": {

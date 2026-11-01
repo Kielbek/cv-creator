@@ -489,6 +489,30 @@
    "required": "Dieses Feld ist erforderlich",
    "email": "Gib eine gültige E-Mail-Adresse ein",
    "phone": "Gib eine gültige Telefonnummer ein"
+  },
+  "phrases": {
+   "title": "Fertige Beispiele",
+   "lead": "Klicken, um einen Punkt hinzuzufügen – danach Zahlen und Details anpassen.",
+   "field": "Branche",
+   "search": "Beispiele suchen, z. B. „Kunde“",
+   "none": "Keine Treffer – anderes Wort versuchen.",
+   "skills": "Vorgeschlagene Fähigkeiten",
+   "summaries": "Beispiel-Profile",
+   "summariesLead": "Beispiel wählen und anpassen.",
+   "use": "Übernehmen",
+   "used": "Übernommen"
+  },
+  "fields": {
+   "marketing": "Marketing",
+   "sales": "Vertrieb",
+   "it": "IT & Technik",
+   "customer": "Kundenservice",
+   "admin": "Verwaltung & Büro",
+   "finance": "Finanzen & Buchhaltung",
+   "logistics": "Logistik & Produktion",
+   "hr": "HR & Recruiting",
+   "healthcare": "Gesundheitswesen",
+   "general": "Allgemein"
   }
  },
  "ai": {

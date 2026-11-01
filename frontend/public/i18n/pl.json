@@ -489,6 +489,30 @@
    "required": "To pole jest wymagane",
    "email": "Podaj poprawny adres e-mail",
    "phone": "Podaj poprawny numer telefonu"
+  },
+  "phrases": {
+   "title": "Gotowe przykłady",
+   "lead": "Kliknij, aby dodać punkt do opisu. Potem dopasuj liczby i szczegóły.",
+   "field": "Branża",
+   "search": "Szukaj przykładów, np. „klient”",
+   "none": "Brak wyników — spróbuj innego słowa.",
+   "skills": "Sugerowane umiejętności",
+   "summaries": "Przykładowe podsumowania",
+   "summariesLead": "Wybierz przykład i dopasuj go do siebie.",
+   "use": "Użyj",
+   "used": "Użyto"
+  },
+  "fields": {
+   "marketing": "Marketing",
+   "sales": "Sprzedaż",
+   "it": "IT i technologia",
+   "customer": "Obsługa klienta",
+   "admin": "Administracja i biuro",
+   "finance": "Finanse i księgowość",
+   "logistics": "Logistyka i produkcja",
+   "hr": "HR i rekrutacja",
+   "healthcare": "Opieka zdrowotna",
+   "general": "Ogólne"
   }
  },
  "ai": {
