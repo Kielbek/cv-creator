@@ -1521,3 +1521,105 @@ input.input:not(:placeholder-shown):valid:not(.is-invalid) {
 .ptool-light:hover {
   background: #f7f8ff;
 }
+
+/* =====================================================================================================================
+ * BUTTONS (reference: pill buttons, bold label) – blue primary, white outlined secondary. Final layer.
+ * ================================================================================================================== */
+:root {
+  --btn-blue: #1f6bff;
+  --btn-blue-hover: #1557d9;
+}
+.btn-primary,
+.mmcv .mmb-primary,
+.mmcv .mmb-secondary,
+.mmcv .header-cta {
+  height: 48px;
+  min-height: 48px;
+  padding: 0 32px;
+  border: 2px solid var(--btn-blue);
+  border-radius: 999px;
+  background: var(--btn-blue);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: none;
+}
+.btn-primary:hover,
+.mmcv .mmb-primary:hover,
+.mmcv .mmb-secondary:hover,
+.mmcv .header-cta:hover {
+  background: var(--btn-blue-hover);
+  border-color: var(--btn-blue-hover);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.btn-ghost,
+.mmcv .account {
+  height: 48px;
+  min-height: 48px;
+  padding: 0 30px;
+  border: 2px solid #111;
+  border-radius: 999px;
+  background: #fff;
+  color: #111;
+  font-size: 15px;
+  font-weight: 700;
+}
+.btn-ghost:hover,
+.mmcv .account:hover {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+  transform: translateY(-1px);
+}
+.btn-sm {
+  height: 38px;
+  min-height: 38px;
+  padding: 0 18px;
+  font-size: 13.5px;
+  border-radius: 999px;
+}
+/* secondary hero action from the design stays outlined, like the reference */
+.mmcv .mmb-secondary {
+  background: #fff;
+  border-color: #111;
+  color: #111;
+}
+.mmcv .mmb-secondary:hover {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+.mmcv .nav .header-cta {
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 0 24px !important;
+  border: 2px solid var(--btn-blue) !important;
+  border-radius: 999px !important;
+  background: var(--btn-blue) !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+.mmcv .nav .header-cta:hover {
+  background: var(--btn-blue-hover) !important;
+  border-color: var(--btn-blue-hover) !important;
+}
+.mmcv .nav .account {
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 0 22px !important;
+  border: 2px solid #111 !important;
+  border-radius: 999px !important;
+  background: #fff !important;
+  color: #111 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+.mmcv .nav .account:hover {
+  background: #111 !important;
+  color: #fff !important;
+}
+.mmcv .hired {
+  overflow: hidden;
+}

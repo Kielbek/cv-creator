@@ -246,7 +246,7 @@
 }
 .is-intro .wizard-footer .btn-ghost {
   background: transparent;
-  border-color: rgb(255 255 255 / 0.45);
+  border-color: #fff;
   color: #fff;
 }
 .is-intro .wizard-footer .btn-ghost:hover {
@@ -291,8 +291,8 @@
   color: rgb(255 255 255 / 0.5);
 }
 .is-intro .wizard-footer .btn-primary {
-  background: #4d49f5;
-  border-color: #4d49f5;
+  background: #1f6bff;
+  border-color: #1f6bff;
   color: #fff;
 }
 .is-intro .preview-tools {

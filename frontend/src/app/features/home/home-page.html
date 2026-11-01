@@ -33,204 +33,147 @@
 <section class="hired"><span class="hired-label">{{ 'mm.hero.hired' | translate }}</span><div class="brand-track"><div class="brand-set"><span class="brand apple">● Apple</span><span class="brand dhl">▰DHL▰</span><span class="brand">accenture</span><span class="brand amazon">amazon</span><span class="brand tesla">T E S L A</span></div><div class="brand-set" aria-hidden="true"><span class="brand apple">● Apple</span><span class="brand dhl">▰DHL▰</span><span class="brand">accenture</span><span class="brand amazon">amazon</span><span class="brand tesla">T E S L A</span></div></div></section>
 </main>
 
-<!-- ============================== PEOPLE ============================== -->
-<section class="border-b border-[#e6eaf1]">
-  <div class="mx-auto max-w-6xl px-5 py-24 sm:px-8">
-    <div class="flex flex-wrap items-end justify-between gap-6">
-      <div class="max-w-xl">
-        <p class="eyebrow">{{ 'home.v2.people.eyebrow' | translate }}</p>
-        <h2 class="mt-4 text-[2.4rem] leading-[1.08] font-semibold tracking-[-0.04em] text-balance">{{ 'home.v2.people.title' | translate }}</h2>
+<!-- ============================== HOW IT WORKS ============================== -->
+<section id="how" class="mm-section">
+  <div class="mm-head center">
+    <p class="mm-eyebrow">{{ 'home.how.eyebrow' | translate }}</p>
+    <h2>{{ 'home.v2.stepsTitle' | translate }}</h2>
+  </div>
+  <div class="steps">
+    @for (s of steps; track s.key; let i = $index) {
+      <article class="step">
+        <div class="step-art">
+          @switch (i) {
+            @case (0) {
+              <div class="sk-card sm tilt-l"><div class="sk-head"><span class="sk-av"></span><span class="sk-lines"><i class="b"></i><i></i></span></div><i class="sk-sec"></i><i></i><i class="m"></i><i class="s"></i></div>
+              <div class="sk-card sm front"><div class="sk-head"><span class="sk-av"></span><span class="sk-lines"><i class="b"></i><i class="d"></i></span></div><i class="sk-sec"></i><i></i><i class="m"></i><i></i><i class="s"></i></div>
+              <div class="sk-card sm tilt-r"><div class="sk-head"><span class="sk-lines"><i class="b"></i><i></i></span></div><i class="sk-sec"></i><i></i><i class="s"></i><i class="m"></i></div>
+            }
+            @case (1) {
+              <div class="sk-form">
+                <i class="lbl"></i><span class="fld"></span>
+                <i class="lbl"></i><span class="fld focus"></span>
+                <i class="lbl"></i><span class="fld tall"></span>
+              </div>
+              <div class="ai-mini"><lucide-icon [img]="icons.Sparkles" class="size-3.5" /> {{ 'mm.hero.aiPill' | translate }}</div>
+            }
+            @case (2) {
+              <div class="sk-card front pdf"><div class="sk-head"><span class="sk-av"></span><span class="sk-lines"><i class="b"></i><i class="d"></i></span></div><i class="sk-sec"></i><i></i><i class="m"></i><i></i><i class="sk-sec"></i><i class="m"></i><i class="s"></i><span class="pdf-tag">PDF</span></div>
+              <span class="dl-badge"><lucide-icon [img]="icons.Download" class="size-5" /></span>
+            }
+          }
+        </div>
+        <span class="step-num">{{ i + 1 }}</span>
+        <h3>{{ 'home.how.' + s.key + '.title' | translate }}</h3>
+        <p>{{ 'home.how.' + s.key + '.text' | translate }}</p>
+      </article>
+    }
+  </div>
+  <div class="center-cta"><a routerLink="/start" class="mm-btn mm-btn-primary">{{ 'mm.cta.create' | translate }}</a></div>
+</section>
+
+<!-- ============================== TEMPLATES ============================== -->
+<section class="mm-panel">
+  <div class="mm-panel-inner">
+    <div class="mm-head row">
+      <div>
+        <p class="mm-eyebrow">{{ 'home.templates.eyebrow' | translate }}</p>
+        <h2>{{ 'home.templates.title' | translate }}</h2>
+        <p class="lead">{{ 'home.templates.text' | translate }}</p>
       </div>
-      <p class="max-w-sm text-[15px] leading-relaxed text-[#586174]">{{ 'home.v2.people.text' | translate }}</p>
+      <a routerLink="/templates" class="mm-btn mm-btn-light">{{ 'home.templates.cta' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" /></a>
     </div>
-    <div class="mt-12 grid grid-cols-2 gap-5 lg:grid-cols-4">
-      @for (p of photos.people; track p.role) {
-        <figure>
-          <div class="photo aspect-[4/5]"><img [src]="p.src" alt="" loading="lazy" (error)="hide($event)" /></div>
-          <figcaption class="mt-3 flex items-center justify-between text-[14px]">
-            <span class="font-medium">{{ 'home.v2.people.roles.' + p.role | translate }}</span>
-            <lucide-icon [img]="icons.ArrowRight" class="size-4 text-[#8a93a6]" />
-          </figcaption>
-        </figure>
+    <div class="chips" role="tablist">
+      @for (f of filters; track f) {
+        <button type="button" role="tab" class="chip-f" [class.on]="filter() === f" [attr.aria-selected]="filter() === f" (click)="filter.set(f)">{{ 'templates.filter.' + f | translate }}</button>
       }
     </div>
-  </div>
-</section>
-
-<!-- ============================== STEPS ============================== -->
-<section id="how" class="scroll-mt-16">
-  <div class="mx-auto max-w-6xl px-5 py-24 sm:px-8">
-    <div class="grid items-end gap-10 lg:grid-cols-[1fr_1fr]">
-      <div>
-        <p class="eyebrow">{{ 'home.how.eyebrow' | translate }}</p>
-        <h2 class="mt-4 text-[2.4rem] leading-[1.08] font-semibold tracking-[-0.04em] text-balance">{{ 'home.v2.stepsTitle' | translate }}</h2>
-      </div>
-      <div class="photo aspect-[16/9]"><img [src]="photos.work" alt="" loading="lazy" (error)="hide($event)" /></div>
-    </div>
-    <div class="mt-14 grid gap-px bg-[#e6eaf1] md:grid-cols-3 rounded-2xl overflow-hidden">
-      @for (s of steps; track s.key; let i = $index) {
-        <div class="bg-white p-8 md:first:pl-0">
-          <div class="flex items-center justify-between">
-            <span class="flex size-11 items-center justify-center bg-[#4b45d5] text-white rounded-[10px]"><lucide-icon [img]="s.icon" class="size-5" /></span>
-            <span class="text-[3rem] leading-none font-semibold tracking-tight text-[#e6e8f5]">0{{ i + 1 }}</span>
-          </div>
-          <h3 class="mt-8 text-[18px] font-semibold tracking-[-0.02em]">{{ 'home.how.' + s.key + '.title' | translate }}</h3>
-          <p class="mt-2 text-[14.5px] leading-relaxed text-[#586174]">{{ 'home.how.' + s.key + '.text' | translate }}</p>
-        </div>
-      }
-    </div>
-    <a routerLink="/start" class="btn-primary mt-12">{{ 'home.v2.ctaCreate' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" /></a>
-  </div>
-</section>
-
-<!-- ============================== FEATURES (alternating) ============================== -->
-<section id="features" class="scroll-mt-16 border-t border-[#e6eaf1] bg-[#f5f8fc]">
-  <div class="mx-auto max-w-6xl space-y-28 px-5 py-28 sm:px-8">
-    <!-- AI -->
-    <div class="grid items-center gap-14 lg:grid-cols-2">
-      <div>
-        <p class="eyebrow">{{ 'home.v2.f1.eyebrow' | translate }}</p>
-        <h2 class="mt-4 text-[2.2rem] leading-[1.1] font-semibold tracking-[-0.04em] text-balance">{{ 'home.v2.f1.title' | translate }}</h2>
-        <p class="mt-5 text-[16px] leading-relaxed text-[#586174]">{{ 'home.v2.f1.text' | translate }}</p>
-        <ul class="mt-6 space-y-2.5 text-[14.5px]">
-          @for (k of ['a', 'b', 'c']; track k) {
-            <li class="flex gap-3"><span class="mt-0.5 inline-flex size-[18px] shrink-0 items-center justify-center rounded-full bg-[#e5f8ef] text-[#159b68]"><lucide-icon [img]="icons.Check" class="size-3" [strokeWidth]="3" /></span> {{ 'home.v2.f1.' + k | translate }}</li>
-          }
-        </ul>
-      </div>
-      <div class="rounded-2xl bg-white p-8 shadow-[0_0_0_1px_#e6eaf1,0_14px_28px_-12px_rgb(22_34_61/0.12)]">
-        <p class="text-[11px] font-semibold tracking-[0.08em] text-[#8a93a6] uppercase">{{ 'editor.f.achievements' | translate }}</p>
-        <p class="mt-3 border-b border-[#dfe3ef] pb-3 text-[14px] text-[#8a93a6]">{{ 'home.v2.float.before' | translate }}</p>
-        <div class="mt-5 rounded-xl bg-[#f5f8fc] p-5">
-          <p class="flex items-center gap-2 text-[12px] font-semibold"><lucide-icon [img]="icons.Sparkles" class="size-3.5" /> {{ 'ai.proposal' | translate }}</p>
-          <ul class="mt-3 list-disc space-y-1.5 pl-5 text-[14px]">
-            <li>{{ 'home.v2.f1.demo1' | translate }}</li>
-            <li>{{ 'home.v2.f1.demo2' | translate }}</li>
-            <li>{{ 'home.v2.f1.demo3' | translate }}</li>
-          </ul>
-          <div class="mt-4 flex gap-2"><span class="btn-primary btn-sm">{{ 'ai.accept' | translate }}</span><span class="btn-ghost btn-sm">{{ 'ai.discard' | translate }}</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- tailor -->
-    <div class="grid items-center gap-14 lg:grid-cols-2">
-      <div class="order-2 rounded-2xl bg-white p-8 shadow-[0_0_0_1px_#e6eaf1,0_14px_28px_-12px_rgb(22_34_61/0.12)] lg:order-1">
-        <div class="flex items-center gap-5">
-          <span class="ring flex size-24 items-center justify-center rounded-full"><span class="flex size-[76px] items-center justify-center rounded-full bg-white text-[22px] font-semibold">86%</span></span>
-          <p class="text-[14px] leading-relaxed text-[#586174]">{{ 'ai.tailor.score' | translate }}</p>
-        </div>
-        <p class="mt-7 text-[11px] font-semibold tracking-[0.08em] text-[#8a93a6] uppercase">{{ 'ai.tailor.missing' | translate }}</p>
-        <div class="mt-3 flex flex-wrap gap-2">
-          @for (k of ['Google Ads', 'Looker Studio', 'HubSpot', 'A/B tests']; track k) {
-            <span class="inline-flex h-8 items-center gap-1.5 rounded-full border border-[#d9dce5] bg-white px-3 text-[13px]"><lucide-icon [img]="icons.Plus" class="size-3.5" /> {{ k }}</span>
-          }
-        </div>
-        <p class="mt-6 text-[11px] font-semibold tracking-[0.08em] text-[#8a93a6] uppercase">{{ 'ai.tailor.matched' | translate }}</p>
-        <div class="mt-3 flex flex-wrap gap-2">
-          @for (k of ['SEO', 'Meta Ads', 'Copywriting', 'GA4']; track k) {
-            <span class="inline-flex h-8 items-center gap-1.5 rounded-full bg-[#4b45d5] px-3 text-[13px] text-white"><lucide-icon [img]="icons.Check" class="size-3.5" /> {{ k }}</span>
-          }
-        </div>
-      </div>
-      <div class="order-1 lg:order-2">
-        <p class="eyebrow">{{ 'home.v2.f2.eyebrow' | translate }}</p>
-        <h2 class="mt-4 text-[2.2rem] leading-[1.1] font-semibold tracking-[-0.04em] text-balance">{{ 'home.v2.f2.title' | translate }}</h2>
-        <p class="mt-5 text-[16px] leading-relaxed text-[#586174]">{{ 'home.v2.f2.text' | translate }}</p>
-      </div>
-    </div>
-
-    <!-- countries -->
-    <div class="grid items-center gap-14 lg:grid-cols-2">
-      <div>
-        <p class="eyebrow">{{ 'home.v2.f3.eyebrow' | translate }}</p>
-        <h2 class="mt-4 text-[2.2rem] leading-[1.1] font-semibold tracking-[-0.04em] text-balance">{{ 'home.v2.f3.title' | translate }}</h2>
-        <p class="mt-5 text-[16px] leading-relaxed text-[#586174]">{{ 'home.v2.f3.text' | translate }}</p>
-      </div>
-      <div class="grid grid-cols-6 gap-px overflow-hidden rounded-2xl bg-[#e6eaf1] shadow-[0_0_0_1px_#e6eaf1]">
-        @for (f of flags; track f) {
-          <div class="flex aspect-square items-center justify-center bg-white"><img [src]="'flags/' + f + '.svg'" alt="" class="h-6 w-8 object-cover shadow-[0_0_0_1px_rgb(0_0_0/0.08)]" /></div>
-        }
-      </div>
-    </div>
-
-    <!-- ATS -->
-    <div class="grid items-center gap-14 lg:grid-cols-2">
-      <div class="order-2 lg:order-1">
-        <div class="relative mx-auto w-fit sm:pl-24">
-          <div class="photo absolute top-10 left-0 hidden aspect-[3/4] w-56 sm:block"><img [src]="photos.portrait2" alt="" loading="lazy" (error)="hide($event)" /></div>
-          <div class="relative max-w-[300px] overflow-hidden rounded-lg bg-white shadow-[0_0_0_1px_#e6eaf1,0_30px_60px_-30px_rgb(0_0_0/0.3)]"><cv-thumb templateId="clarity" [lang]="ui.current()" [width]="300" /></div>
-          <div class="absolute right-0 bottom-10 flex items-center gap-3 rounded-xl bg-[#10113f] px-4 py-3 text-white sm:-right-6">
-            <lucide-icon [img]="icons.ShieldCheck" class="size-5" />
-            <span class="text-[13px] leading-tight"><span class="block font-semibold">{{ 'home.atsCard.title' | translate }}</span><span class="text-white/60">{{ 'home.atsCard.text' | translate }}</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="order-1 lg:order-2">
-        <p class="eyebrow">ATS</p>
-        <h2 class="mt-4 text-[2.2rem] leading-[1.1] font-semibold tracking-[-0.04em] text-balance">{{ 'home.v2.f4.title' | translate }}</h2>
-        <p class="mt-5 text-[16px] leading-relaxed text-[#586174]">{{ 'home.v2.f4.text' | translate }}</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== TEMPLATES CAROUSEL ============================== -->
-<section class="border-t border-[#e6eaf1]">
-  <div class="mx-auto max-w-6xl px-5 pt-24 sm:px-8">
-    <div class="flex flex-wrap items-end justify-between gap-6">
-      <div class="max-w-xl">
-        <p class="eyebrow">{{ 'home.templates.eyebrow' | translate }}</p>
-        <h2 class="mt-4 text-[2.4rem] leading-[1.08] font-semibold tracking-[-0.04em]">{{ 'home.templates.title' | translate }}</h2>
-      </div>
-      <a routerLink="/templates" class="btn-ghost">{{ 'home.templates.cta' | translate }}</a>
-    </div>
-  </div>
-  <div class="mx-auto max-w-6xl px-5 pt-10 pb-24 sm:px-8">
-    <div class="carousel">
-      @for (t of templates; track t.id) {
-        <a routerLink="/start" [queryParams]="{ template: t.id }" class="group block w-[240px]">
-          <div class="overflow-hidden rounded-lg bg-white shadow-[0_0_0_1px_#e6eaf1] transition group-hover:shadow-[0_0_0_2px_#4b45d5,0_20px_40px_-20px_rgb(22_34_61/0.3)]">
-            <cv-thumb [templateId]="t.id" [lang]="ui.current()" [width]="240" />
-          </div>
-          <div class="mt-3 flex items-center justify-between text-[14px]">
-            <span class="font-medium">{{ t.name }}</span>
-            <span class="text-[12px] text-[#8a93a6]">{{ t.ats ? 'ATS' : ('layout.columns.' + t.columns | translate) }}</span>
-          </div>
+    <div class="tpl-row">
+      @for (t of shown(); track t.id) {
+        <a routerLink="/start" [queryParams]="{ template: t.id }" class="tpl">
+          <div class="tpl-card"><cv-thumb [templateId]="t.id" [lang]="ui.current()" [width]="250" /></div>
+          <div class="tpl-meta"><span>{{ t.name }}</span>@if (t.ats) {<em>ATS</em>}</div>
         </a>
       }
     </div>
   </div>
 </section>
 
-<!-- ============================== FAQ ============================== -->
-<section id="faq" class="scroll-mt-16 border-t border-[#e6eaf1]">
-  <div class="mx-auto grid max-w-6xl gap-10 px-5 py-24 sm:px-8 lg:grid-cols-[1fr_1.6fr]">
-    <h2 class="text-[2.4rem] leading-tight font-semibold tracking-[-0.04em]">{{ 'home.faq.title' | translate }}</h2>
-    <div class="divide-y divide-[#e6eaf1] border-y border-[#e6eaf1]">
-      @for (q of faq; track q) {
-        <details class="group py-5">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-[16px] font-medium">
-            {{ 'home.faq.' + q + '.q' | translate }}
-            <lucide-icon [img]="icons.Plus" class="size-4 shrink-0 text-[#4b45d5] transition group-open:rotate-45" />
-          </summary>
-          <p class="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-[#586174]">{{ 'home.faq.' + q + '.a' | translate }}</p>
-        </details>
-      }
+<!-- ============================== FEATURES ============================== -->
+<section id="features" class="mm-section">
+  <div class="mm-head center">
+    <p class="mm-eyebrow">{{ 'home.features.eyebrow' | translate }}</p>
+    <h2>{{ 'home.features.title' | translate }}</h2>
+    <p class="lead">{{ 'home.features.subtitle' | translate }}</p>
+  </div>
+  <div class="feat-grid">
+    @for (f of features; track f.key) {
+      <article class="feat">
+        <span class="feat-ico"><lucide-icon [img]="f.icon" class="size-5" /></span>
+        <h3>{{ 'home.features.' + f.key + '.title' | translate }}</h3>
+        <p>{{ 'home.features.' + f.key + '.text' | translate }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<!-- ============================== AI ============================== -->
+<section class="mm-section ai">
+  <div class="ai-art">
+    <img class="ai-line" src="images/home/hero-line.webp" alt="" />
+    <div class="ai-card">
+      <p class="ai-label">{{ 'editor.f.achievements' | translate }}</p>
+      <p class="ai-before">{{ 'home.v2.float.before' | translate }}</p>
+      <div class="ai-result">
+        <p class="ai-res-title"><lucide-icon [img]="icons.Sparkles" class="size-4" /> {{ 'ai.proposal' | translate }}</p>
+        <ul>
+          <li>{{ 'home.v2.f1.demo1' | translate }}</li>
+          <li>{{ 'home.v2.f1.demo2' | translate }}</li>
+          <li>{{ 'home.v2.f1.demo3' | translate }}</li>
+        </ul>
+      </div>
     </div>
+    <div class="ai-pill-2"><span>✧</span> {{ 'mm.hero.aiPill' | translate }}</div>
+  </div>
+  <div class="ai-copy">
+    <p class="mm-eyebrow">{{ 'home.v2.f1.eyebrow' | translate }}</p>
+    <h2>{{ 'home.v2.f1.title' | translate }}</h2>
+    <p class="lead">{{ 'home.v2.f1.text' | translate }}</p>
+    <ul class="ticks">
+      @for (k of ['a', 'b', 'c']; track k) {
+        <li><span class="value-tick">✓</span> {{ 'home.v2.f1.' + k | translate }}</li>
+      }
+    </ul>
+    <a routerLink="/start" class="mm-btn mm-btn-primary">{{ 'mm.cta.create' | translate }}</a>
+  </div>
+</section>
+
+<!-- ============================== FAQ ============================== -->
+<section id="faq" class="mm-section narrow">
+  <div class="mm-head center">
+    <h2>{{ 'home.faq.title' | translate }}</h2>
+  </div>
+  <div class="faq">
+    @for (q of faq; track q) {
+      <details>
+        <summary>{{ 'home.faq.' + q + '.q' | translate }} <span class="faq-ico">+</span></summary>
+        <p>{{ 'home.faq.' + q + '.a' | translate }}</p>
+      </details>
+    }
   </div>
 </section>
 
 <!-- ============================== CTA ============================== -->
-<section class="relative mx-[max(12px,calc((100vw-1400px)/2))] mb-16 overflow-hidden rounded-[24px] bg-[#10113f] text-white">
-  <img [src]="photos.team" alt="" loading="lazy" class="absolute inset-0 size-full object-cover opacity-40" (error)="hide($event)" />
-  <div class="absolute inset-0 bg-gradient-to-r from-[#10113f] via-[#10113f]/85 to-[#10113f]/30"></div>
-  <div class="relative mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 px-5 py-24 sm:px-8 md:flex-row md:items-center">
-    <div>
-      <h2 class="text-[2.4rem] leading-tight font-semibold tracking-[-0.04em] text-balance">{{ 'home.final.title' | translate }}</h2>
-      <p class="mt-3 text-[16px] text-white/60">{{ 'home.final.text' | translate }}</p>
+<section class="mm-cta">
+  <img class="cta-line" src="images/home/hero-line.webp" alt="" />
+  <div class="cta-blob"></div>
+  <div class="cta-inner">
+    <h2>{{ 'home.final.title' | translate }}</h2>
+    <p>{{ 'home.final.text' | translate }}</p>
+    <div class="cta-row">
+      <a routerLink="/start" class="mm-btn mm-btn-primary">{{ 'mm.cta.create' | translate }}</a>
+      <a routerLink="/start" [queryParams]="{ mode: 'import' }" class="mm-btn mm-btn-outline"><span aria-hidden="true">⇩</span> {{ 'mm.cta.import' | translate }}</a>
     </div>
-    <a routerLink="/start" class="inline-flex h-12 items-center gap-2 rounded-lg bg-[#4d49f5] px-7 text-[15px] font-semibold text-white transition hover:bg-[#3f39bf]">{{ 'home.v2.ctaCreate' | translate }} <lucide-icon [img]="icons.ArrowRight" class="size-4" /></a>
   </div>
 </section>
 

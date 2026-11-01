@@ -22,11 +22,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "{pl,gb,de,fr,es,it,pt,nl,cz,ua,us,at,ch,ie,ca,be,se,no}.svg",
-                "input": "node_modules/flag-icons/flags/4x3",
-                "output": "flags"
               }
             ],
             "styles": [
@@ -43,8 +38,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "8kB",
-                  "maximumError": "16kB"
+                  "maximumWarning": "16kB",
+                  "maximumError": "32kB"
                 }
               ],
               "outputHashing": "all"
