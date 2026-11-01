@@ -1,7 +1,7 @@
 :host {
   display: block;
   background: #fff;
-  color: #111;
+  color: #111218;
 }
 .fan {
   position: relative;
@@ -60,7 +60,7 @@
 }
 .ring {
   --v: 86;
-  background: conic-gradient(#111 calc(var(--v) * 1%), #e6e6e6 0);
+  background: conic-gradient(#4b45d5 calc(var(--v) * 1%), #e6e8f5 0);
 }
 @media (max-width: 1023px) {
   .fan {
@@ -77,6 +77,7 @@
 
 .photo {
   overflow: hidden;
+  border-radius: 16px;
   background: linear-gradient(135deg, #ededed, #dcdcdc);
 }
 .photo img,

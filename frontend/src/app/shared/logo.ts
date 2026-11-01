@@ -1,18 +1,17 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-export const BRAND = 'cvcreator';
+export const BRAND = 'Makemycv';
 
-/** Typographic wordmark: "cvcreator." – compact form "cv." */
+/** Logo from the MakeMyCV design: tilted outline mark + wordmark (compact = mark only). */
 @Component({
   selector: 'app-logo',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <span class="inline-flex items-baseline text-[20px] leading-none tracking-[-0.04em]" [class]="dark() ? 'text-white' : 'text-[#111]'">
-      <span class="font-bold">cv</span>
+    <span class="inline-flex items-center gap-2 whitespace-nowrap text-[19px] tracking-[-0.03em]" [class]="dark() ? 'text-white' : 'text-[#111218]'">
+      <span class="inline-block size-[17px] rotate-[5deg] rounded-[4px] border-4" [class]="dark() ? 'border-white' : 'border-[#111]'"></span>
       @if (!compact()) {
-        <span class="font-normal">creator</span>
+        <span>{{ brand }}</span>
       }
-      <span class="font-bold">.</span>
     </span>
   `,
 })

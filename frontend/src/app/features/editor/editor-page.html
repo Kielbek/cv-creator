@@ -34,7 +34,7 @@
      <div>
       @if (intro()) {
         <div class="flex min-h-[52vh] flex-col justify-center" aria-live="polite">
-          <p class="reveal flex items-center gap-2.5 text-[15px] font-medium text-white/70" style="--d: 150ms">
+          <p class="reveal flex items-center gap-2.5 text-[15px] font-medium text-[#b9b5ff]" style="--d: 150ms">
             <span class="praise-line"></span>{{ 'editor.praise.' + (stepIndex() % 3) | translate }}
           </p>
           @let lead = 'editor.steps.' + step().id + '.lead' | translate;
@@ -48,8 +48,8 @@
       } @else {
        @for (k of [step().id]; track k) {
        <div class="step-enter">
-        <h1 class="text-[1.9rem] leading-tight font-semibold tracking-[-0.03em] text-balance text-[#1e2532]">{{ 'editor.steps.' + step().id + '.title1' | translate }} {{ 'editor.steps.' + step().id + '.title2' | translate }}</h1>
-        <p class="mt-2 max-w-[34rem] text-[15px] leading-relaxed text-[#6b7489]">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
+        <h1 class="text-[1.9rem] leading-tight font-semibold tracking-[-0.03em] text-balance text-[#111218]">{{ 'editor.steps.' + step().id + '.title1' | translate }} {{ 'editor.steps.' + step().id + '.title2' | translate }}</h1>
+        <p class="mt-2 max-w-[34rem] text-[15px] leading-relaxed text-[#586174]">{{ 'editor.steps.' + step().id + '.intro' | translate }}</p>
 
       <div class="mt-9">
         @if (!isFinish()) {
@@ -130,8 +130,8 @@
   <!-- ================= live preview ================= -->
   <section class="wizard-preview" [class.is-open]="mobilePreview()" [attr.aria-label]="'editor.preview' | translate">
     <svg class="waves no-print" viewBox="0 0 600 900" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
-      <path d="M640 60 H520 a90 90 0 0 0 0 180 H600 a90 90 0 0 1 0 180 H470 a110 110 0 0 0 0 220 H640" fill="none" stroke="#262626" stroke-width="64" stroke-linecap="round" opacity="1" />
-      <path d="M640 120 H560 a60 60 0 0 0 0 120" fill="none" stroke="#1c1c1c" stroke-width="64" stroke-linecap="round" opacity="1" />
+      <path d="M640 60 H520 a90 90 0 0 0 0 180 H600 a90 90 0 0 1 0 180 H470 a110 110 0 0 0 0 220 H640" fill="none" stroke="#4d49f5" stroke-width="64" stroke-linecap="round" opacity="0.55" />
+      <path d="M640 120 H560 a60 60 0 0 0 0 120" fill="none" stroke="#7d78f0" stroke-width="64" stroke-linecap="round" opacity="0.3" />
     </svg>
     <div class="preview-head no-print">
       <div class="min-w-0">
@@ -149,7 +149,7 @@
           <div class="relative">
             <button type="button" class="ptool" (click)="menuOpen.set(!menuOpen())" [attr.aria-expanded]="menuOpen()" [attr.aria-label]="'editor.menu.more' | translate" [title]="'editor.menu.more' | translate"><lucide-icon [img]="icons.MoreHorizontal" class="size-4" /></button>
             @if (menuOpen()) {
-              <div class="absolute right-0 z-30 mt-1 w-60 rounded-lg border border-[#e4e8f1] bg-white p-1 text-[#1e2532] shadow-[0_12px_40px_-8px_rgb(10_20_55/0.25)]" (mouseleave)="menuOpen.set(false)">
+              <div class="absolute right-0 z-30 mt-1 w-60 rounded-lg border border-[#e6eaf1] bg-white p-1 text-[#111218] shadow-[0_12px_40px_-8px_rgb(10_20_55/0.25)]" (mouseleave)="menuOpen.set(false)">
                 <button type="button" class="menu-item" (click)="exportJson()"><lucide-icon [img]="icons.FileJson" class="size-4" /> {{ 'editor.menu.export' | translate }}</button>
                 <label class="menu-item cursor-pointer"><lucide-icon [img]="icons.FileUp" class="size-4" /> {{ 'editor.menu.import' | translate }}<input type="file" accept="application/json,.json" class="sr-only" (change)="importJson($event)" /></label>
                 <button type="button" class="menu-item" (click)="loadSample()"><lucide-icon [img]="icons.Eye" class="size-4" /> {{ 'editor.menu.sample' | translate }}</button>

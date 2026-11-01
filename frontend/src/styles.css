@@ -1265,3 +1265,259 @@ input.input:not(:placeholder-shown):valid:not(.is-invalid) {
 .mm .eyebrow {
   color: #4d49f5;
 }
+
+/* =====================================================================================================================
+ * MAKEMYCV THEME – the rest of the app follows the provided MakeMyCV design (final layer).
+ * Inter, purple #4b45d5 actions with 8px radius, lavender panels, navy accents, soft borders.
+ * ================================================================================================================== */
+:root {
+  --pro-text: #111218;
+  --pro-muted: #586174;
+  --pro-faint: #8a93a6;
+  --pro-line: #dfe3ef;
+  --pro-fill: #ffffff;
+  --pro-fill-hover: #ffffff;
+  --pro-blue: #4b45d5;
+  --pro-blue-hover: #3f39bf;
+  --mm-purple: #4b45d5;
+  --mm-purple-hover: #3f39bf;
+  --mm-lavender: #eef1ff;
+  --mm-panel: #f5f8fc;
+  --mm-navy: #10113f;
+
+  --color-primary: #4b45d5;
+  --color-primary-hover: #3f39bf;
+  --color-primary-soft: #eef1ff;
+  --color-paper: #f5f8fc;
+  --color-paper-2: #eef1ff;
+  --color-ink: #111218;
+  --color-ink-2: #252b3a;
+  --color-muted: #586174;
+  --color-faint: #8a93a6;
+  --color-line: #e6eaf1;
+  --color-line-2: #d9dce5;
+  --color-brand-50: #f7f8ff;
+  --color-brand-100: #eef1ff;
+  --color-brand-200: #dedcff;
+  --color-brand-300: #b9b5ff;
+  --color-brand-400: #7d78f0;
+  --color-brand-500: #4b45d5;
+  --color-brand-600: #3f39bf;
+  --color-brand-700: #4139c5;
+  --color-brand-800: #2e2a8f;
+}
+body {
+  font-family: 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  color: #111218;
+  background: #fff;
+}
+::selection {
+  background: #dedcff;
+}
+
+.btn-primary {
+  height: 48px;
+  padding: 0 24px;
+  border: 1px solid var(--mm-purple);
+  border-radius: 8px;
+  background: var(--mm-purple);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 650;
+  box-shadow: none;
+  transition: background 0.18s, border-color 0.18s, transform 0.18s;
+}
+.btn-primary:hover {
+  background: var(--mm-purple-hover);
+  border-color: var(--mm-purple-hover);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  height: 48px;
+  border: 1px solid #d9dce5;
+  border-radius: 8px;
+  background: #fff;
+  color: #111b39;
+  font-size: 14px;
+  font-weight: 650;
+}
+.btn-ghost:hover {
+  background: #fff;
+  color: var(--mm-purple);
+  border-color: var(--mm-purple);
+}
+.btn-sm {
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 8px;
+}
+
+.input,
+.sel-trigger,
+.field-group,
+.tag-box {
+  height: 48px;
+  padding-left: 14px;
+  border: 1px solid #dfe3ef;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: none;
+  font-size: 15px;
+  color: #111218;
+}
+.sel-trigger {
+  padding-right: 12px;
+}
+.tag-box {
+  height: auto;
+  min-height: 48px;
+  padding: 6px 8px;
+}
+textarea.input {
+  height: auto;
+  padding: 12px 14px;
+}
+.input:hover,
+.sel-trigger:hover:not(:disabled),
+.field-group:hover,
+.tag-box:hover {
+  background-color: #fff;
+  border-color: #c5cbdb;
+}
+.input:focus,
+.sel-trigger:focus-visible,
+.sel-trigger.is-open,
+.field-group:focus-within,
+.tag-box:focus-within {
+  background-color: #fff;
+  border-color: var(--mm-purple);
+  box-shadow: 0 0 0 3px rgb(75 69 213 / 0.14);
+}
+.input.is-invalid,
+.input.is-invalid:focus {
+  background-color: #fff;
+  border-color: #e5484d;
+  box-shadow: 0 0 0 3px rgb(229 72 77 / 0.12);
+}
+input.input:not(:placeholder-shown):valid:not(.is-invalid) {
+  background-position: right 13px center;
+  padding-right: 40px;
+}
+.label {
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #252b3a;
+}
+.hint {
+  color: #8a93a6;
+}
+.tag {
+  height: 30px;
+  padding: 0 6px 0 12px;
+  border-radius: 999px;
+  background: #eef1ff;
+  color: #4139c5;
+  font-weight: 500;
+}
+.tag-x:hover {
+  background: #dedcff;
+}
+.chip {
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid #d9dce5;
+}
+.chip:hover {
+  border-color: var(--mm-purple);
+  background: #f0efff;
+  color: #4139c5;
+}
+.entry,
+.entry + .entry {
+  border: 1px solid #e6eaf1;
+  border-radius: 12px;
+}
+.entry-head {
+  border-radius: 12px;
+}
+.entry-head:hover {
+  background: #f7f8ff;
+}
+.add-row,
+.text-action,
+.link,
+.preview-link {
+  color: var(--mm-purple) !important;
+}
+.eyebrow {
+  color: var(--mm-purple);
+}
+.checkbox {
+  border-radius: 5px;
+  border: 1px solid #c5cbdb;
+}
+.checkbox:checked {
+  background: var(--mm-purple);
+  border-color: var(--mm-purple);
+}
+.sel-panel {
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px #e6eaf1, 0 14px 28px rgb(22 34 61 / 0.12);
+}
+.sel-option {
+  border-radius: 7px;
+}
+.sel-option.is-active {
+  background: #f7f8ff;
+}
+.sel-option svg {
+  color: var(--mm-purple) !important;
+}
+.panel-card,
+.layout-row {
+  border-radius: 10px;
+}
+.seg {
+  border-radius: 7px;
+}
+.seg-on {
+  background: #fff;
+  color: var(--mm-purple);
+  box-shadow: 0 1px 2px rgb(22 34 61 / 0.1);
+}
+.rating button.on {
+  background: var(--mm-purple);
+}
+.lvl input[type='range']::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--mm-purple) var(--p), #e1e6f0 var(--p));
+}
+.lvl input[type='range']::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--mm-purple) var(--p), #e1e6f0 var(--p));
+}
+.lvl input[type='range']::-webkit-slider-thumb {
+  margin-top: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--mm-purple);
+  box-shadow: 0 2px 6px rgb(16 24 64 / 0.2);
+}
+.lvl input[type='range']::-moz-range-thumb {
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--mm-purple);
+}
+.lvl-tick.is-current {
+  color: var(--mm-purple);
+}
+.ptool-light:hover {
+  background: #f7f8ff;
+}
